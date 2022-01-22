@@ -14,6 +14,7 @@ public class ProductVO {
 	private int cNo; // 카테고리 넘버
 	private int viewCnt; // 조회수
 	private int likeCnt; // 좋아요수
+	private int sugCnt; // 제시받은 수
 	
 
 	// 생성자
@@ -22,7 +23,7 @@ public class ProductVO {
 	}
 
 	public ProductVO(int pdNo, String id, String pdName, int hopePrice, int startPrice, String regDate, String dueDate,
-			String pdSimpleInfo, String pdInfo, int cNo, int viewCnt, int likeCnt) {
+			String pdSimpleInfo, String pdInfo, int cNo, int viewCnt, int likeCnt, int sugCnt) {
 		super();
 		this.pdNo = pdNo;
 		this.id = id;
@@ -36,103 +37,140 @@ public class ProductVO {
 		this.cNo = cNo;
 		this.viewCnt = viewCnt;
 		this.likeCnt = likeCnt;
+		this.sugCnt = sugCnt;
 	}
 
+	
+	// getter, setter
 	public int getPdNo() {
 		return pdNo;
 	}
+
 
 	public void setPdNo(int pdNo) {
 		this.pdNo = pdNo;
 	}
 
+
 	public String getId() {
 		return id;
 	}
+
 
 	public void setId(String id) {
 		this.id = id;
 	}
 
+
 	public String getPdName() {
 		return pdName;
 	}
+
 
 	public void setPdName(String pdName) {
 		this.pdName = pdName;
 	}
 
+
 	public int getHopePrice() {
 		return hopePrice;
 	}
+
 
 	public void setHopePrice(int hopePrice) {
 		this.hopePrice = hopePrice;
 	}
 
+
 	public int getStartPrice() {
 		return startPrice;
 	}
+
 
 	public void setStartPrice(int startPrice) {
 		this.startPrice = startPrice;
 	}
 
+
 	public String getRegDate() {
 		return regDate;
 	}
+
 
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 
+
 	public String getDueDate() {
 		return dueDate;
 	}
+
 
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
 
+
 	public String getPdSimpleInfo() {
 		return pdSimpleInfo;
 	}
+
 
 	public void setPdSimpleInfo(String pdSimpleInfo) {
 		this.pdSimpleInfo = pdSimpleInfo;
 	}
 
+
 	public String getPdInfo() {
 		return pdInfo;
 	}
+
 
 	public void setPdInfo(String pdInfo) {
 		this.pdInfo = pdInfo;
 	}
 
+
 	public int getcNo() {
 		return cNo;
 	}
+
 
 	public void setcNo(int cNo) {
 		this.cNo = cNo;
 	}
 
+
 	public int getViewCnt() {
 		return viewCnt;
 	}
+
 
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
 	}
 
+
 	public int getLikeCnt() {
 		return likeCnt;
 	}
 
+
 	public void setLikeCnt(int likeCnt) {
 		this.likeCnt = likeCnt;
 	}
+
+
+	public int getSugCnt() {
+		return sugCnt;
+	}
+
+
+	public void setSugCnt(int sugCnt) {
+		this.sugCnt = sugCnt;
+	}
+
 
 	// toString
 	@Override
@@ -140,8 +178,10 @@ public class ProductVO {
 		return "ProductVO [pdNo=" + pdNo + ", id=" + id + ", pdName=" + pdName + ", hopePrice=" + hopePrice
 				+ ", startPrice=" + startPrice + ", regDate=" + regDate + ", dueDate=" + dueDate + ", pdSimpleInfo="
 				+ pdSimpleInfo + ", pdInfo=" + pdInfo + ", cNo=" + cNo + ", viewCnt=" + viewCnt + ", likeCnt=" + likeCnt
-				+ "]";
+				+ ", sugCnt=" + sugCnt + "]";
 	}
+
+	
 	
 	
 }
