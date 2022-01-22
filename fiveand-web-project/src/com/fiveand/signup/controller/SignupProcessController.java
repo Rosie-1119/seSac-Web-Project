@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fiveand.controller.Controller;
+import com.fiveand.member.vo.MemberVO;
 import com.fiveand.signup.service.SignupService;
-import com.fiveand.signup.vo.SignupVO;
 
 public class SignupProcessController implements Controller {
 
@@ -23,16 +23,16 @@ public class SignupProcessController implements Controller {
 		String email = request.getParameter("email");
 		
 		//VO에 저장
-		SignupVO signup = new SignupVO();
-		signup.setId(id);
-		signup.setPwd(pwd);
-		signup.setName(name);
-		signup.setPhone(phone);
-		signup.setEmail(email);
+		MemberVO memberVo = new MemberVO();
+		memberVo.setId(id);
+		memberVo.setPwd(pwd);
+		memberVo.setName(name);
+		memberVo.setPhone(phone);
+		memberVo.setEmail(email);
 		
 		//service 호출
 		SignupService service = new SignupService();
-		service.addMember(signup);
+		service.addMember(memberVo);
 		
 		return null;
 	}

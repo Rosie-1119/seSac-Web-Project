@@ -3,7 +3,7 @@ package com.fiveand.signup.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import com.fiveand.signup.vo.SignupVO;
+import com.fiveand.member.vo.MemberVO;
 import com.fiveand.util.ConnectionFactory;
 import com.fiveand.util.JDBCClose;
 
@@ -15,7 +15,7 @@ public class SignupDAO {
 	/**
 	 * 회원가입
 	 */
-	public void addMember(SignupVO signup) {
+	public void addMember(MemberVO memberVo) {
 		
 		try {
 			Connection conn = new ConnectionFactory().getConnection();
@@ -23,11 +23,11 @@ public class SignupDAO {
 			sql.append("insert into FTBL_MEMBER(ID, PWD, NAME, PHONE, EMAIL) ");
 			sql.append("values(?, ?, ?, ?, ?) ");
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, signup.getId());
-			pstmt.setString(2, signup.getPwd());
-			pstmt.setString(3, signup.getName());
-			pstmt.setString(4, signup.getPhone());
-			pstmt.setString(5, signup.getEmail());
+			pstmt.setString(1, memberVo.getId());
+			pstmt.setString(2, memberVo.getPwd());
+			pstmt.setString(3, memberVo.getName());
+			pstmt.setString(4, memberVo.getPhone());
+			pstmt.setString(5, memberVo.getEmail());
 			
 			pstmt.executeUpdate();
 			
@@ -43,7 +43,7 @@ public class SignupDAO {
 	 * 아이디 중복체크
 	 * id = 1  ->  아이디 중복됨
 	 */
-	public int checkId(SignupVO signup) {
+	public int checkId(MemberVO memberVo) {
 		
 		int id = 0;
 		
@@ -54,7 +54,7 @@ public class SignupDAO {
 			sql.append("from FTBL_MEMBER ");
 			sql.append("where ID = ? ");
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, signup.getId());
+			pstmt.setString(1, memberVo.getId());
 			
 			id = pstmt.executeUpdate();
 			

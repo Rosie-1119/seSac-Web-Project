@@ -24,6 +24,24 @@ public class MemberVO {
 		this.type = type;
 		this.warningCnt = warningCnt;
 	}
+	
+	//로그인
+	public MemberVO(String id, String pwd, String type) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.type = type;
+	}
+
+	//회원가입
+	public MemberVO(String id, String pwd, String name, String phone, String email) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+	}
 
 	public String getId() {
 		return id;

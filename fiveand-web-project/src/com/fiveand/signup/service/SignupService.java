@@ -1,7 +1,7 @@
 package com.fiveand.signup.service;
 
+import com.fiveand.member.vo.MemberVO;
 import com.fiveand.signup.dao.SignupDAO;
-import com.fiveand.signup.vo.SignupVO;
 
 public class SignupService {
 
@@ -15,8 +15,8 @@ public class SignupService {
 	/**
 	 * 회원가입 서비스
 	 */
-	public void addMember(SignupVO signup) {
-		signupDao.addMember(signup);
+	public void addMember(MemberVO memberVo) {
+		signupDao.addMember(memberVo);
 	}
 
 }
