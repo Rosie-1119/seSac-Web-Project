@@ -51,6 +51,13 @@ Table OF Contents
 	01 -> GENERAL
 ===========================================================*/
 
+.logo_black{
+	position: absolute;
+	left: 45%;
+	bottom: 1px;
+	padding: 100px;
+}
+
 /*----------------------------*\
 	Typography
 \*----------------------------*/
@@ -638,7 +645,7 @@ textarea.input {
 }
 
 .main-nav>li>a:hover, .main-nav>li>a:focus, .main-nav>li.active>a {
-  color: #D10024;
+  color: #1b345e;
   background-color: transparent;
 }
 
@@ -647,7 +654,7 @@ textarea.input {
   display: block;
   width: 0%;
   height: 2px;
-  background-color: #D10024;
+  background-color: #1b345e;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
@@ -724,8 +731,8 @@ textarea.input {
   top: 0;
   bottom: 0;
   left: 0px;
-  width: 60%;
-  background: #D10024;
+  width: 20%;
+  background: #adb5bd;
   opacity: 0.9;
   -webkit-transform: skewX(-45deg);
   -ms-transform: skewX(-45deg);
@@ -739,7 +746,7 @@ textarea.input {
   bottom: 0;
   left: 1px;
   width: 100%;
-  background: #D10024;
+  background: #adb5bd;
   opacity: 0.9;
   -webkit-transform: skewX(-45deg) translateX(-100%);
   -ms-transform: skewX(-45deg) translateX(-100%);
@@ -2022,7 +2029,7 @@ textarea.input {
 }
 
 .footer-links li+li {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .footer-links li a {
