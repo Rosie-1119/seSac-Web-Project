@@ -1,5 +1,5 @@
 package com.fiveand.login.controller;
 
-public class Test {
+public class LoginController {
 
 }
