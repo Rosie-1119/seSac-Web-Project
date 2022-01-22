@@ -1,6 +1,7 @@
 package com.fiveand.auction.board.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 
 import com.fiveand.controller.Controller;
@@ -22,7 +23,7 @@ public class BoardWriteController implements Controller {
 				String writer = request.getParameter("writer");
 				String content = request.getParameter("content");
 				
-				BoardVO board = new BoardVO();
+				BoardVo board = new BoardVO();
 				board.setTitle(title);
 				board.setWriter(writer);
 				board.setContent(content);
