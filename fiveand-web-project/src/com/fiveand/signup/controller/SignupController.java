@@ -1,5 +1,16 @@
 package com.fiveand.signup.controller;
 
-public class SignupController {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.fiveand.controller.Controller;
+
+public class SignupController implements Controller {
+
+	@Override
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		return "/jsp/member/signupform.jsp";
+	}
 
 }
