@@ -10,7 +10,7 @@ public class LoginController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	
-		return "jsp/member/loginform";
+		return "jsp/member/loginform.jsp";
 	}
 	
 }
