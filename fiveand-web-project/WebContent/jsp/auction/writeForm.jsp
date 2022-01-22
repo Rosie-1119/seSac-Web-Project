@@ -1,6 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<script>
+	function doWrite() {
+
+		let f = document.inputForm
+		
+		if(f.productName.value == '') {
+			alert('상품명을 입력하세요')
+			f.productName.focus()
+			return false
+		}		
+		if(f.writer.value == '') {
+			alert('작성자를 입력하세요')
+			f.writer.focus()
+			return false
+		}
+		if(f.hopePrice.value == '') {
+			alert('가격을 입력하세요')
+			f.hopePrice.focus()
+			return false
+		}
+		if(f.content.value == '') {
+			alert('내용을 입력하세요')
+			f.content.focus()
+			return false
+		}
+		return true
+	}
+</script>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -28,7 +56,7 @@
 
  		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="${ pageContext.request.contextPath }/css/style.css"/>
-
+ 		
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -211,6 +239,10 @@
 		<!-- /BREADCRUMB -->
 
 		<!-- SECTION -->
+		<form action="${ pageContext.request.contextPath }/auction/write.do" method="post" 
+			  name="inputForm" 
+			enctype="multipart/form-data">
+		<div align="center">
 		<div class="section">
 			<!-- container -->
 			<div class="container">
@@ -220,38 +252,26 @@
 					<!-- Product details -->
 
 						<div class="product-details">
-							<h2 class="product-name">product name goes here</h2>
+							<h2 class="product-name">
+							상품명 : <input type="text" name="productName" ><br>
+							</h2>
+							<h4>
+							작성자 : <input type="text" name="writer" ><br>
+							</h4>
 							<div>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
-								<a class="review-link" href="#">10 Review(s) | Add your review</a>
+								<h3 class="product-price">
+								￦<input type="text" name="hopePrice" width="10px" > 
+								<del class="product-old-price">원</del></h3>
 							</div>
-							<div>
-								<h3 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h3>
-								<span class="product-available">In Stock</span>
-							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							<hr>
 
 							<div class="product-options">
-								<label>
-									Size
-									<select class="input-select">
-										<option value="0">X</option>
-									</select>
-								</label>
-								<label>
-									Color
-									<select class="input-select">
-										<option value="0">Red</option>
-									</select>
-								</label>
-							
-
+							<p>
+							한 줄 소개 : <input type="text" width="100px" name="simpleInfo"><br>
+							</p>
+							<p>
+							마감일 : <input type="date">
+							</p>
 							<div class="add-to-cart">
 								<div class="qty-label">
 									Qty
@@ -261,7 +281,7 @@
 										<span class="qty-down">-</span>
 									</div>
 								</div>
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+							<button class="add-to-cart-btn" onclick="return doWrite()"><i class="fa fa-shopping-cart"></i>add to cart</button>
 							</div>
 
 							<ul class="product-btns">
@@ -284,6 +304,10 @@
 							</ul>
 
 						</div>
+						</div>
+						</div>
+						</form>
+						
 					</div>
 					<!-- /Product details -->
 
@@ -577,6 +601,7 @@
 							</div>
 							<div class="add-to-cart">
 								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+							
 							</div>
 						</div>
 					</div>
