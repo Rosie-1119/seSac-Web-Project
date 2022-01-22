@@ -253,10 +253,10 @@
 
 						<div class="product-details">
 							<h2 class="product-name">
-							상품명 : <input type="text" name="productName" ><br>
+							상품명 : <input type="text" name="pdName" ><br>
 							</h2>
 							<h4>
-							작성자 : <input type="text" name="writer" ><br>
+							작성자 : <input type="text" name="id" ><br>
 							</h4>
 							<div>
 								<h3 class="product-price">
@@ -267,20 +267,22 @@
 
 							<div class="product-options">
 							<p>
-							한 줄 소개 : <input type="text" width="100px" name="simpleInfo"><br>
+							한 줄 소개 : <input type="text" width="100px" name="pdSimpleInfo"><br>
 							</p>
 							<p>
 							마감일 : <input type="date">
 							</p>
+							<p>
+							상품 소개 : <textarea rows="10" cols="20" name="pdInfo">
+							</textarea>
+							</p>
+							사진 : <input type="file" name="attachfile1">
+								 <input type="file" name="attachfile2">
+								 <input type="file" name="attachfile3">
+								 <input type="file" name="attachfile4">
+								 <input type="file" name="attachfile5">
 							<div class="add-to-cart">
-								<div class="qty-label">
-									Qty
-									<div class="input-number">
-										<input type="number">
-										<span class="qty-up">+</span>
-										<span class="qty-down">-</span>
-									</div>
-								</div>
+				
 							<button class="add-to-cart-btn" onclick="return doWrite()"><i class="fa fa-shopping-cart"></i>add to cart</button>
 							</div>
 
