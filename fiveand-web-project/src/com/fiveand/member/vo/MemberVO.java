@@ -1,24 +1,28 @@
-package com.fiveand.signup.vo;
+package com.fiveand.member.vo;
 
-public class SignupVO {
+public class MemberVO {
 
 	private String id;
 	private String pwd;
 	private String name;
 	private String phone;
 	private String email;
+	private String type;  //'A':관리자, 'U':일반사용자
+	private int warningCnt;  //경고수 default:0
 	
-	public SignupVO() {
+	public MemberVO() {
 		super();
 	}
 
-	public SignupVO(String id, String pwd, String name, String phone, String email) {
+	public MemberVO(String id, String pwd, String name, String phone, String email, String type, int warningCnt) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
+		this.type = type;
+		this.warningCnt = warningCnt;
 	}
 
 	public String getId() {
@@ -61,9 +65,26 @@ public class SignupVO {
 		this.email = email;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public int getWarningCnt() {
+		return warningCnt;
+	}
+
+	public void setWarningCnt(int warningCnt) {
+		this.warningCnt = warningCnt;
+	}
+
 	@Override
 	public String toString() {
-		return "SignupVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", phone=" + phone + ", email=" + email + "]";
+		return "MemberVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", phone=" + phone + ", email=" + email
+				+ ", type=" + type + ", warningCnt=" + warningCnt + "]";
 	}
 	
 }
