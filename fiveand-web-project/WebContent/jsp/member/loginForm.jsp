@@ -9,6 +9,26 @@
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 		<title>Electro - HTML Ecommerce Template</title>
+		<script>
+			function isNull(obj, msg) {
+				if (obj.value == '') {
+					alert(msg)
+					obj.focus()
+					return true
+				}
+				return false
+			}
+			
+			function checkForm() {
+				let f = document.loginForm;
+				if(isNull(f.id, '아이디를 입력하세요'))
+					return false
+				if(isNull(f.password, '패스워드를 입력하세요'))
+					return false
+				return true
+			}	
+		</script>
+
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -44,6 +64,7 @@
 	<body>
 		<!-- HEADER -->
 		<header>
+			
 			<!-- TOP HEADER -->
 			<div id="top-header">
 				<div class="container">
@@ -208,30 +229,55 @@
 		</div>
 		<!-- /BREADCRUMB -->
 
-		<!-- SECTION -->
-		<div class="section">
+
+
+
+
+
+		<section>
+		
+		
+		<div align="center" class="section">
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-
 					<div class="col-md-7">
 						<!-- Billing Details -->
 						<div class="billing-details">
-							<div class="section-title">
-							
-								<h3 class="title">로그인</h3>
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="아이디" placeholder="아이디를 입력하세요.">
-							</div>
-							<div class="form-group">
-								<input class="input" type="password" name="비밀번호" placeholder="비밀번호를 입력하세요">
-							</div>
-													
-	
-						<a href="#" class="primary-btn order-submit">로그인</a>
-					
+						
+						<br>
+		<form name="loginForm" method="post" action="${ pageContext.request.contextPath }/login.do" onsubmit="return checkForm()">
+			<table>
+				<tr>
+					<th>ID</th>
+					<td>&nbsp;&nbsp;&nbsp;<input type="text" name="아이디"></td>
+				</tr>
+				
+				<tr>
+					<th>PASSWORD</th>
+					<td>&nbsp;&nbsp;&nbsp;<input type="password" name="비밀번호"></td>
+				</tr>
+			</table>
+			<br>
+			<br>
+			<button type="submit">로그인</button>
+						
+						
+						
+						
+						
+						
+						
+		</section>			
+
+
+
+
+
+
+
+
 
 		<!-- NEWSLETTER -->
 		<div id="newsletter" class="section">

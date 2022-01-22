@@ -16,8 +16,9 @@ public class LoginVO {
 		this.id = id;
 		this.password = password;
 		this.type = type;
-	}
+	}   
 
+	
 
 	public String getId() {
 		return id;
