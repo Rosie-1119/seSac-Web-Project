@@ -1,7 +1,7 @@
 package com.fiveand.login.service;
 
 import com.fiveand.login.dao.LoginDAO;
-import com.fiveand.login.vo.LoginVO;
+import com.fiveand.member.vo.MemberVO;
 
 public class LoginService {
 	private LoginDAO loginDao;
@@ -10,7 +10,7 @@ public class LoginService {
 		loginDao = new LoginDAO();
 	}
 	
-	public LoginVO login(LoginVO loginVO) {
-		return loginDao.login(loginVO);
+	public MemberVO login(MemberVO memberVO) {
+		return loginDao.login(memberVO);
 	}
 }

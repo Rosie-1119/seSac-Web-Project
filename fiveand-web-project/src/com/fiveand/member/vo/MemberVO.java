@@ -104,5 +104,10 @@ public class MemberVO {
 		return "MemberVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", phone=" + phone + ", email=" + email
 				+ ", type=" + type + ", warningCnt=" + warningCnt + "]";
 	}
+
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

@@ -234,9 +234,9 @@
 
 
 
-		<section>
-		
-		
+	<section>
+
+
 		<div align="center" class="section">
 			<!-- container -->
 			<div class="container">
@@ -245,31 +245,26 @@
 					<div class="col-md-7">
 						<!-- Billing Details -->
 						<div class="billing-details">
-						
-						<br>
-		<form name="loginForm" method="post" action="${ pageContext.request.contextPath }/login.do" onsubmit="return checkForm()">
-			<table>
-				<tr>
-					<th>ID</th>
-					<td>&nbsp;&nbsp;&nbsp;<input type="text" name="아이디"></td>
-				</tr>
-				
-				<tr>
-					<th>PASSWORD</th>
-					<td>&nbsp;&nbsp;&nbsp;<input type="password" name="비밀번호"></td>
-				</tr>
-			</table>
-			<br>
-			<br>
-			<button type="submit">로그인</button>
-						
-						
-						
-						
-						
-						
-						
-		</section>			
+
+							<br>
+							<form name="loginForm" method="post"
+								action="${ pageContext.request.contextPath }/login.do"
+								onsubmit="return checkForm()">
+								<div class="form-group">
+									<input class="input" type="text" name="id"
+										placeholder="아이디를 입력해 주세요.">
+								</div>
+								<div class="form-group">
+									<input class="input" type="text" name="password"
+										placeholder="패스워드를 입력해 주세요.">
+								</div>
+								<div class="form-group">
+									<button type="submit" class="primary-btn order-submit"
+										align="center">로그인</button>
+								</div>
+
+								<br> <br>
+	</section>
 
 
 
@@ -279,7 +274,7 @@
 
 
 
-		<!-- NEWSLETTER -->
+	<!-- NEWSLETTER -->
 		<div id="newsletter" class="section">
 			<!-- container -->
 			<div class="container">

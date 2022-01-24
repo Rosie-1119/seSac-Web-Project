@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fiveand.controller.Controller;
 import com.fiveand.login.service.LoginService;
-import com.fiveand.login.vo.LoginVO;
+import com.fiveand.member.vo.MemberVO;
 
  
 public class LoginProcessController implements Controller {
@@ -17,16 +17,17 @@ public class LoginProcessController implements Controller {
 		request.setCharacterEncoding("utf-8");
 
 		String id = request.getParameter("id");
-		String password = request.getParameter("pwd");
+		String pwd = request.getParameter("pwd");
 		
-		LoginVO loginVO = new LoginVO();
+		MemberVO memberVO = new MemberVO();
 		
-		loginVO.setId(id);
-		loginVO.setPassword(password);
+		memberVO.setId(id);
+		memberVO.setPwd(pwd);
+		
 		
 		
 		LoginService service = new LoginService();
-		LoginVO userVO = service.login(loginVO);
+		MemberVO userVO = service.login(memberVO);
 		
 		String url="";
 		if(userVO == null) {

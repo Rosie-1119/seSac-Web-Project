@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.fiveand.login.vo.LoginVO;
+import com.fiveand.member.vo.MemberVO;
 import com.fiveand.util.ConnectionFactory;
 
 public class LoginDAO {
 
-	public LoginVO login(LoginVO loginVO) { 
+	public MemberVO login(MemberVO memberVO) { 
 
 	
-	LoginVO userVO = null;
+	MemberVO userVO = null;
 	
 
 	StringBuilder sql = new StringBuilder();
@@ -24,15 +24,15 @@ public class LoginDAO {
 				Connection conn = new ConnectionFactory().getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		){
-			pstmt.setString(1, loginVO.getId());
-			pstmt.setString(2, loginVO.getPassword());
+			pstmt.setString(1, memberVO.getId());
+			pstmt.setString(2, memberVO.getPassword());
 			
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) { 
-				userVO = new LoginVO();
+				userVO = new MemberVO();
 				
 				userVO.setId(rs.getString("id"));
-				userVO.setPassword(rs.getString("pwd"));
+				userVO.setPwd(rs.getString("pwd"));
 				userVO.setType(rs.getString("type"));
 			}			
 		} catch (Exception e) {
