@@ -35,15 +35,32 @@
 <!-- Custom stlylesheet -->
 <link type="text/css" rel="stylesheet"
 	href="${ pageContext.request.contextPath }/css/style.css" />
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
 
-<script>
-	function checkForm() {
-		let f = document.signupForm;
-		if (isNull(f.id, '아이디를 입력하세요'))
-			return false
-		if (isNull(f.password, '패스워드를 입력하세요'))
-			return true
+	$(function() {
+		$('#id').on('keyup', idCheck);
+	})
+	
+	function idCheck() {
+		var id = $('#id').val();
+		var sendData = {'id':id}
+		$.ajax({
+			url: 'idCheck',
+			data: sendData,
+			success: function(result) {
+				if(result == 'fail') {
+					$('#idCheck').css('color', 'red')
+					$('#idcheck').html("사용할 수 없는 ID입니다.")
+	                flag=false;
+				} else {
+	                $('#idcheck').html("사용할 수 있는 ID입니다.")
+	                flag=true;
+				}
+			}
+		})
 	}
+
 </script>
 </head>
 <body>
@@ -79,9 +96,7 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-
 				<div class="col-md-7">
-	<div align="center">
 					<!-- 회원가입 폼 -->
 					<form name="SignupForm" method="post"
 						action="${ pageContext.request.contextPath }/signupProcess.do"
@@ -92,27 +107,28 @@
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="id"
-									placeholder="사용하실 ID를 입력해 주세요."> * 사용가능 한 ID입니다
+									placeholder="사용하실 ID를 입력해 주세요." required>
+									<span id="idCheck"></span>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="password"
-									placeholder="패스워드를 입력해 주세요.">
+								<input class="input" type="password" name="password"
+									placeholder="패스워드를 입력해 주세요." required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="passwordCheck"
-									placeholder="패스워드를 다시 입력해 주세요.">
+								<input class="input" type="password" name="passwordCheck"
+									placeholder="패스워드를 다시 입력해 주세요." required>
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="name"
-									placeholder="이름을 입력해 주세요.">
+									placeholder="이름을 입력해 주세요." required>
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="phone"
-									placeholder="휴대폰 번호 '-'표 없이 입력해 주세요.">
+									placeholder="휴대폰 번호 '-'표 없이 입력해 주세요." required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="email"
-									placeholder="이메일을 입력해 주세요.">
+								<input class="input" type="email" name="email"
+									placeholder="이메일을 입력해 주세요." required>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="primary-btn order-submit"
@@ -143,7 +159,6 @@
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-		</div>
 	</div>
 	<!-- /SECTION -->
 
