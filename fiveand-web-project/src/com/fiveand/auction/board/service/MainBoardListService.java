@@ -45,11 +45,11 @@ public class MainBoardListService {
 	 * 
 	 * @return 최근 5개 제품 정보+파일 Object 배열에 묶어서 리턴
 	 */
-	public Set<Object> selectRecentList() {
+	public List<Object> selectRecentList() {
 	
-		Set<Object> listset = ListDao.selectRecentList();
+		List<Object> list = ListDao.selectRecentList();
 		
-		return listset;
+		return list;
 	}
 	
 	
