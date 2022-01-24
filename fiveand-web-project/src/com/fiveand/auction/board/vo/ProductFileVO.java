@@ -12,6 +12,12 @@ public class ProductFileVO {
 		
 	}
 	
+	public ProductFileVO(int pdNo, String fileSaveName) {
+		super();
+		this.pdNo = pdNo;
+		this.fileSaveName = fileSaveName;
+	}
+
 	public ProductFileVO(int no, int pdNo, String fileOriName, String fileSaveName, int fileSize) {
 		super();
 		this.no = no;
