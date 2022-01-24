@@ -5,7 +5,7 @@ import com.fiveand.signup.dao.SignupDAO;
 
 public class IdCheckService {
 
-	private SignupDAO signupDao = new SignupDAO();
+	private SignupDAO signupDao;
 	
 	public IdCheckService() {
 		signupDao = new SignupDAO();

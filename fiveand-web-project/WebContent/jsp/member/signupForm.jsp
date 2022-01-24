@@ -37,8 +37,8 @@
 	href="${ pageContext.request.contextPath }/css/style.css" />
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
-	$(document).ready {
+	
+	$(document).ready(function() {
 		$('#id').on('keyup', idCheck);
 	})
 	
@@ -46,10 +46,11 @@
 		var id = $('#id').val();
 		var sendData = {'id':id}
 		$.ajax({
-			url: '${ pageContext.request.contextPath }/idCheck.do',
+			url: '/idCheck.do',
 			data: sendData,
+			type: post,
 			success: function(result) {
-				if(result == 'fail') {
+				if(result == '1') {
 					$('#idCheck').css('color', 'red')
 					$('#idcheck').html("사용할 수 없는 ID입니다.")
 	                flag=false;
@@ -99,24 +100,19 @@
 				<div class="col-md-7">
 					<!-- 회원가입 폼 -->
 					<form name="SignupForm" method="post"
-						action="${ pageContext.request.contextPath }/signupProcess.do"
-						onsubmit="return checkForm()">
+						action="${ pageContext.request.contextPath }/signupProcess.do">
 						<div class="billing-details">
 							<div class="section-title">
 								<h3 class="title">Fiveand 회원가입</h3>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="id"
+								<input class="input" type="text" name="id" id="id"
 									placeholder="사용하실 ID를 입력해 주세요." required>
 									<span id="idCheck"></span>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="password"
+								<input class="input" type="password" name="pwd"
 									placeholder="패스워드를 입력해 주세요." required>
-							</div>
-							<div class="form-group">
-								<input class="input" type="password" name="passwordCheck"
-									placeholder="패스워드를 다시 입력해 주세요." required>
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="name"
