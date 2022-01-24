@@ -47,7 +47,6 @@ public class MainBoardListDAO {
 				
 				listset.add(productVO);
 				listset.add(productFVO);
-				
 			}
 			
 		}catch(Exception e) {
@@ -57,14 +56,5 @@ public class MainBoardListDAO {
 		return listset;
 	}
 	
-	public List<ProductFileVO> selectRecentFileList(){
-		
-		List<ProductFileVO> RecentFileList = new ArrayList<ProductFileVO>();
-		
-		StringBuilder sql = new StringBuilder();
-		sql.append(" select pd_no, file_save_name ");
-		sql.append(" from ftbl_product_file where pd_no = ? ");
-		return list;
-	}
 	
 }

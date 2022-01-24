@@ -1,6 +1,7 @@
 package com.fiveand.auction.board.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.fiveand.auction.board.dao.MainBoardListDAO;
 import com.fiveand.auction.board.vo.ProductFileVO;
@@ -44,14 +45,11 @@ public class MainBoardListService {
 	 * 
 	 * @return 최근 5개 제품 정보+파일 Object 배열에 묶어서 리턴
 	 */
-	public Object[] selectRecentList() {
+	public Set<Object> selectRecentList() {
 	
-		List<ProductVO> RecentList = ListDao.selectRecentList();
-		List<ProductFileVO> RecentFileList = ListDao.selectRecentFileList();
+		Set<Object> listset = ListDao.selectRecentList();
 		
-		Object[] arr = {RecentList, RecentFileList};
-		
-		return arr;
+		return listset;
 	}
 	
 	

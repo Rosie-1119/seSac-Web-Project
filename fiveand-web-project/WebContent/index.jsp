@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -288,6 +289,7 @@
 					<!-- 새로 등록된 경매 5개가 넘어가면서 보이도록 체크
 						사진, 카테고리, 등록된 제품명, 금액,  -->
 					<!-- Products tab & slick -->
+					
 					<div class="col-md-12">
 						<div class="row">
 							<div class="products-tabs">
@@ -305,10 +307,13 @@
 													<span class="sale">D-7</span>
 												</div>
 											</div>
+											
 											<div class="product-body">
-												<p class="product-category">카테고리</p>
-												<h3 class="product-name"><a href="#">물품1</a></h3>
-												<h4 class="product-price">시작가 38,000원</del></h4>
+										<c:forEach items="${ RecentList1 }" var="RecentList">
+												<p class="product-category">${ RecentList.cNo }</p>
+												<h3 class="product-name"><a href="#">${ RecentList.pdName }</a></h3>
+												<h4 class="product-price">시작가 ${ RecentList.startPrice }</h4>
+										</c:forEach>
 												
 												<div class="product-btns">
 													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
