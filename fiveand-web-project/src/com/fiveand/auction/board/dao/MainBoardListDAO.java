@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +19,6 @@ public class MainBoardListDAO {
 	 */
 	public List<ProductVO> selectRecentList(){
 		
-		Set<ProductVO, ProductFileVO> listset
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select row_num, tp.pd_no, pd_name, start_price, reg_date, due_date, c_no , tpf.file_save_name ");
@@ -44,6 +44,7 @@ public class MainBoardListDAO {
 				productFVO.setPdNo(rs.getInt("pd_no"));
 				productFVO.setFileSaveName(rs.getString("file_save_name"));
 				
+				Object[] arr = {productVO, productFVO};
 				
 			}
 			
@@ -51,7 +52,7 @@ public class MainBoardListDAO {
 			e.printStackTrace();
 		}
 		
-		return list;
+		return arr;
 	}
 	
 	public List<ProductFileVO> selectRecentFileList(){
