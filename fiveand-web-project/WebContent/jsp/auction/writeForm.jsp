@@ -1,37 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<style>
+/*datepicker에서 사용한 이미지 버튼 style적용*/
+img.ui-datepicker-trigger {
+	margin-left: 5px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- datepicker 한국어로 -->
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
 <!DOCTYPE html>
 <script>
-	function doWrite() {
 
-		let f = document.inputForm
 
-		if (f.productName.value == '') {
-			alert('상품명을 입력하세요')
-			f.productName.focus()
-			return false
-		}
-		if (f.writer.value == '') {
-			alert('작성자를 입력하세요')
-			f.writer.focus()
-			return false
-		}
-		if (f.hopePrice.value == '') {
-			alert('가격을 입력하세요')
-			f.hopePrice.focus()
-			return false
-		}
-		if (f.content.value == '') {
-			modal('내용을 입력하세요')
-			f.content.focus()
-			return false
-		}
-		return true
-	}
+	$(function() {
 
-	document.getElementById('nowDate').value = new Date().toISOString()
-			.substring(0, 10);
-	;
+		//오늘 날짜를 출력
+		$("#today").text(new Date().toLocaleDateString());
+
+		//datepicker 한국어로 사용하기 위한 언어설정
+		$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+		// 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
+		// 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
+/* 
+		//시작일.
+		$('#fromDate').datepicker({
+			showOn : "both", // 달력을 표시할 타이밍 (both: focus or button)
+			buttonImage : "img/calendar.png", // 버튼 이미지
+			buttonImageOnly : true, // 버튼 이미지만 표시할지 여부
+			dateFormat : "yy-mm-dd", // 날짜의 형식
+			changeMonth : true, // 월을 이동하기 위한 선택상자 표시여부
+			minDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+			onClose : function(selectedDate) {
+				// 시작일(fromDate) datepicker가 닫힐때
+				// 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+				$("#toDate").datepicker("option", "minDate", selectedDate);
+			}
+		});
+ */
+		//종료일
+		$('#dueDate').datepicker({
+			showOn : "both",
+			buttonImage : "img/calendar.png",
+			buttonImageOnly : true,
+			dateFormat : "yy-mm-dd",
+			changeMonth : true,
+			minDate: 1,
+			maxDate: 20, // 오늘 이전 날짜 선택 불가
+			onClose : function(selectedDate) {
+				// 종료일(toDate) datepicker가 닫힐때
+				// 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
+				$("#today").datepicker("option", "maxDate", selectedDate);
+			}
+		});
+	});
 </script>
 <html lang="en">
 <head>
@@ -109,7 +138,7 @@
 
 	<!-- SECTION -->
 	<form action="${ pageContext.request.contextPath }/auction/write.do"
-		method="post" name="inputForm" enctype="multipart/form-data">
+		method="post" enctype="multipart/form-data">
 		<div align="center">
 			<div class="section">
 				<!-- container -->
@@ -121,14 +150,15 @@
 
 						<div class="product-details">
 							<h2 class="product-name">
-								상품명 : <input type="text" name="pdName"><br>
+								상품명 : <input type="text" name="pdName" placeholder="상품명을 입력해주세요" required><br>
 							</h2>
 							<h4>
-								작성자 : <input type="text" name="id"><br>
+								<!--  작성자 : ${ userVO.id }<br> -->
+								작성자 : admin<br>
 							</h4>
 							<div>
 								<h3 class="product-price">
-									￦<input type="text" name="hopePrice" width="10px">
+									￦<input type="text" name="hopePrice" width="10px" placeholder="희망가격을 입력해주세요" required>
 									<del class="product-old-price">원</del>
 								</h3>
 							</div>
@@ -136,24 +166,28 @@
 
 							<div class="product-options">
 								<p>
-									한 줄 소개 : <input type="text" width="100px" name="pdSimpleInfo"><br>
+									한 줄 소개 : <input type="text" width="100px" name="pdSimpleInfo" placeholder="상품 한 줄 소개를 입력해주세요" required><br>
 								</p>
 								<p>
-									마감일 : <input type="date" id='nowDate'>
+								<form>
+										<label for="dueDate"> 경매 마감일 : </label>
+									<input type="text" name="dueDate" id="dueDate" placeholder="경매마감일을 지정해주세요" required>
+								</form>
 								</p>
+
 								<p>
 									상품 소개 :
 									<textarea rows="10" cols="20" name="pdInfo">
 							</textarea>
 								</p>
-								사진 : <input type="file" name="attachfile1"> <input
-									type="file" name="attachfile2"> <input type="file"
-									name="attachfile3"> <input type="file"
-									name="attachfile4"> <input type="file"
-									name="attachfile5">
+								사진 : <input type="file" name="attachfile1"> 
+								<input type="file" name="attachfile2"> 
+								<input type="file" name="attachfile3"> 
+								<input type="file" name="attachfile4"> 
+								<input type="file" name="attachfile5">
 								<div class="add-to-cart">
 
-									<button class="add-to-cart-btn" onclick="return doWrite()">
+									<button class="add-to-cart-btn" >
 										<i class="fa fa-shopping-cart"></i>add to cart
 									</button>
 								</div>
@@ -182,7 +216,7 @@
 							</div>
 						</div>
 					</div>
-	</form>
+
 
 	</div>
 	<!-- /Product details -->
@@ -606,11 +640,11 @@
 	<!-- /Section -->
 
 
-<!-- FOOTER -->
-   <footer>
-      <jsp:include page="/jsp/include/footer.jsp" />
-   </footer>
-   <!-- /FOOTER -->
+	<!-- FOOTER -->
+	<footer>
+		<jsp:include page="/jsp/include/footer.jsp" />
+	</footer>
+	<!-- /FOOTER -->
 
 	<!-- jQuery Plugins -->
 	<script src="js/jquery.min.js"></script>
