@@ -43,6 +43,8 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+		
+		
 
 </head>
 	<body>
@@ -271,7 +273,7 @@
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
-							<h2 class="product-name">product name goes here</h2>
+							<h2 class="product-name">${ product.pdName }</h2>
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -284,11 +286,11 @@
 							</div>
 							<div>
 								<h3 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h3>
-								<span class="product-available">In Stock</span>
+								<!-- <span class="product-available">In Stock</span>  -->
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							<p>${ product.pdSimpleInfo }</p>
 
-							<div class="product-options">
+							<!-- <div class="product-options">
 								<label>
 									Size
 									<select class="input-select">
@@ -301,18 +303,19 @@
 										<option value="0">Red</option>
 									</select>
 								</label>
-							</div>
+								
+							</div>  -->
 
 							<div class="add-to-cart">
 								<div class="qty-label">
-									Qty
+									제시가
 									<div class="input-number">
 										<input type="number">
 										<span class="qty-up">+</span>
 										<span class="qty-down">-</span>
 									</div>
 								</div>
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>제시하기</button>
 							</div>
 
 							<ul class="product-btns">
@@ -345,7 +348,7 @@
 							<ul class="tab-nav">
 								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
 								<li><a data-toggle="tab" href="#tab2">Details</a></li>
-								<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+								<li><a data-toggle="tab" href="#tab3">QnA ()</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -741,11 +744,11 @@
 		<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/slick.min.js"></script>
-		<script src="js/nouislider.min.js"></script>
-		<script src="js/main.js"></script>
+		<script src="${ pageContext.request.contextPath }/js/jquery.min.js"></script>
+		<script src="${ pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+		<script src="${ pageContext.request.contextPath }/js/slick.min.js"></script>
+		<script src="${ pageContext.request.contextPath }js/nouislider.min.js"></script>
+		<script src="${ pageContext.request.contextPath }js/main.js"></script>
 </body>
 </html>
 

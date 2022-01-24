@@ -100,7 +100,7 @@ public class BoardWriteController implements Controller {
 		System.out.println("cNo : " + cNo);
 		
 		//return "redirect:/auction/detail.do?pdNo="+pdNo;
-		return "redirect:/auction/writeForm.jsp";
+		return "redirect:/jsp/auction/writeForm.jsp";
 	}
 
 }
