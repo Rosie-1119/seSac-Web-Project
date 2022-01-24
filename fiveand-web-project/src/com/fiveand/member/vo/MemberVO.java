@@ -107,7 +107,7 @@ public class MemberVO {
 
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return null;
+		return pwd;
 	}
 	
 }
