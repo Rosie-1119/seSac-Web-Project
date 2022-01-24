@@ -40,7 +40,6 @@ public class DispatcherServlet extends HttpServlet{
 		//톰캣 - Modules - path 에 저장된 경로의 이름을 가져오는 메서드
 		//우리는 Dynamic Project 이름을 가져오는 용도로 사용할 수 있다
 		uri = uri.substring(contextPath.length()); //contextPath 길이 이후부터 끝까지 잘라내기
-		
 		System.out.println("요청 URI : " + uri);
 		//요청 URI : /Mission-Web-MVC/*.do
 		//요청 URI : /Mission-Web-MVC/board/list.do 요청된 uri 형태를 가져올 수 있다

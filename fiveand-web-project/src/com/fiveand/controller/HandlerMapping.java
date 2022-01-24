@@ -47,6 +47,7 @@ public class HandlerMapping {
 			prop.load(is);
 			
 			Set<Object> keys = prop.keySet(); //set형식으로 key값들을 가져온다
+			System.out.println(keys);
 			for(Object key : keys) {
 				//System.out.println(key); 모든 key값들이 출력되는지 확인
 				

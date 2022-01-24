@@ -10,7 +10,7 @@ public class SignupController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		return "/jsp/member/signupform.jsp";
+		return "/jsp/member/signupForm.jsp";
 	}
 
 }
