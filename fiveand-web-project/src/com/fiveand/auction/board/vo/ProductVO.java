@@ -21,6 +21,14 @@ public class ProductVO {
 	public ProductVO() {
 
 	}
+	
+	public ProductVO(String pdName, int startPrice, String dueDate, int cNo) {
+		super();
+		this.pdName = pdName;
+		this.startPrice = startPrice;
+		this.dueDate = dueDate;
+		this.cNo = cNo;
+	}
 
 	public ProductVO(int pdNo, String id, String pdName, int hopePrice, int startPrice, String regDate, String dueDate,
 			String pdSimpleInfo, String pdInfo, int cNo, int viewCnt, int likeCnt, int sugCnt) {
