@@ -250,22 +250,36 @@
 							<form name="loginForm" method="post"
 								action="${ pageContext.request.contextPath }/loginProcess.do"
 								onsubmit="return checkForm()">
+								
 								<div class="form-group">
 									<input class="input" type="text" name="id"
 										placeholder="아이디를 입력해 주세요.">
 								</div>
+								
+								
 								<div class="form-group">
-									<input class="input" type="text" name="password"
+									<input class="input" type="password" name="pwd"
 										placeholder="패스워드를 입력해 주세요.">
 								</div>
 								<div class="form-group">
-									<button type="submit" class="primary-btn order-submit"
+								<button type="submit" class="primary-btn order-submit"
 										align="center">로그인</button>
+								</form>
+								
+								
 								</div>
+	</div>
+	</div>
+	</div>
+	</div>
 
-								<br> <br>
-	</section>
 
+	
+									
+								
+								</section>
+				
+	
 
 
 
