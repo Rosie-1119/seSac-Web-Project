@@ -85,4 +85,26 @@ public class AuctionBoardDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * ftbl_product에 게시글 조회수 + 1
+	 */
+	public void addViewCnt(int pdNo)
+	{
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update ftbl_product ");
+		sql.append(" set view_cnt = view_cnt+1 ");
+		sql.append(" where no = ? ");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		) {
+			pstmt.setInt(1, pdNo);
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

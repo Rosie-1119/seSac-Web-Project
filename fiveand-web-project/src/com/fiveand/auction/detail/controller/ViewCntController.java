@@ -3,14 +3,19 @@ package com.fiveand.auction.detail.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fiveand.auction.board.service.AuctionBoardService;
 import com.fiveand.controller.Controller;
 
-public class AuctionDetailController implements Controller {
+public class ViewCntController implements Controller {
+
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+
 		int no = Integer.parseInt(request.getParameter("no"));
+		AuctionBoardService service = new AuctionBoardService();
 		
-		return "/jsp/detail.jsp?no="+no;
+		service.addViewCnt(no);
+		return "redirect:/detail.do?no="+no;
 	}
+
 }

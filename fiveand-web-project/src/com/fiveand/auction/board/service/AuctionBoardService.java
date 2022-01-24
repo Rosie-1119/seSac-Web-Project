@@ -35,4 +35,11 @@ public class AuctionBoardService {
 		}
 		return pdNo;
 	}
+	
+	/**
+	 * 게시글 조회수 증가
+	 */
+	public void addViewCnt(int pdNo) {
+		auctionBoardDao.addViewCnt(pdNo);
+	}
 }
