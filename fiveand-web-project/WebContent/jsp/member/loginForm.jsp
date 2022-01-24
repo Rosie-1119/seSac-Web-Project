@@ -248,7 +248,7 @@
 
 							<br>
 							<form name="loginForm" method="post"
-								action="${ pageContext.request.contextPath }/login.do"
+								action="${ pageContext.request.contextPath }/loginProcess.do" 
 								onsubmit="return checkForm()">
 								<div class="form-group">
 									<input class="input" type="text" name="id"
