@@ -38,9 +38,10 @@ public class BoardWriteController implements Controller {
 		String pdSimpleInfo = multi.getParameter("pdSimpleInfo"); // 한줄정보
 		int startPrice = Integer.parseInt(multi.getParameter("startPrice").trim()); // 시작가
 		String dueDate = multi.getParameter("dueDate"); // 마감일
-		String pdInfo = multi.getParameter("pdInfo"); // 상세정보
+		String pdInfo = multi.getParameter("pdInfo").trim(); // 상세정보
+		//System.out.println(multi.getParameter("cNo"));
 		int cNo = Integer.parseInt(multi.getParameter("cNo")); // 카테고리수
-		System.out.println(multi.getParameter("cNo"));
+		
 		
 		ProductVO product = new ProductVO();
 		product.setPdName(pdName);
@@ -98,8 +99,8 @@ public class BoardWriteController implements Controller {
 		System.out.println("pdInfo : " + pdInfo);
 		System.out.println("cNo : " + cNo);
 		
-		return "redirect:/auction/detail.do?pdNo="+pdNo;
-
+		//return "redirect:/auction/detail.do?pdNo="+pdNo;
+		return "redirect:/auction/writeForm.jsp";
 	}
 
 }
