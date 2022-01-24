@@ -6,9 +6,9 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		 <!-- The above 3 meta  *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Electro - HTML Ecommerce Template</title>
+		<title>loginForm</title>
 		<script>
 			function isNull(obj, msg) {
 				if (obj.value == '') {
@@ -248,7 +248,7 @@
 
 							<br>
 							<form name="loginForm" method="post"
-								action="${ pageContext.request.contextPath }/loginProcess.do" 
+								action="${ pageContext.request.contextPath }/loginProcess.do"
 								onsubmit="return checkForm()">
 								<div class="form-group">
 									<input class="input" type="text" name="id"
@@ -265,10 +265,6 @@
 
 								<br> <br>
 	</section>
-
-
-
-
 
 
 
