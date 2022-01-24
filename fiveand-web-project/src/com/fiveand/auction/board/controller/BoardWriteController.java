@@ -22,34 +22,26 @@ public class BoardWriteController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		request.setCharacterEncoding("utf-8");
-
-		// 파일 업로드를 하기 위해서 cos.jar 추가 및 객체 생성
-		MultipartRequest multi = null;
-
-		// 업로드 될 파일의 최대 사이즈 (50메가)
-		int sizeLimit = 50 * 1024 * 1024;
-
+		
 		// 파일이 업로드될 실제 tomcat 폴더의 경로 (WebContent 기준)
 		String savePath = request.getRealPath("/upload");
-
-		//
-		try {
-			multi = new MultipartRequest(request, savePath, sizeLimit, "UTF-8", new SesacFileNamePolicy());
-
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
+		// 업로드 될 파일의 최대 사이즈 (50메가)
+		int sizeLimit = 50 * 1024 * 1024;
+		
+		// 파일 업로드를 하기 위해서 cos.jar 추가 및 객체 생성
+		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "UTF-8", new SesacFileNamePolicy());
+		
 
 		String pdName = multi.getParameter("pdName"); // 제품명
 		String id = multi.getParameter("id"); // 등록자 아이디
-		int hopePrice = Integer.parseInt(multi.getParameter("hopePrice")); // 희망가
+		int hopePrice = Integer.parseInt(multi.getParameter("hopePrice").trim()); // 희망가
 		String pdSimpleInfo = multi.getParameter("pdSimpleInfo"); // 한줄정보
-		int startPrice = Integer.parseInt(multi.getParameter("startPrice")); // 시작가
+		int startPrice = Integer.parseInt(multi.getParameter("startPrice").trim()); // 시작가
 		String dueDate = multi.getParameter("dueDate"); // 마감일
 		String pdInfo = multi.getParameter("pdInfo"); // 상세정보
 		int cNo = Integer.parseInt(multi.getParameter("cNo")); // 카테고리수
-
+		System.out.println(multi.getParameter("cNo"));
+		
 		ProductVO product = new ProductVO();
 		product.setPdName(pdName);
 		product.setId(id);
@@ -95,6 +87,17 @@ public class BoardWriteController implements Controller {
 
 		int pdNo = service.insertBoard(product, fileList);
 
+
+		
+		System.out.println("pdName : " + pdName);
+		System.out.println("pdId : " + id);
+		System.out.println("hopePrice : " + hopePrice);
+		System.out.println("pdSimpleInfo : " + pdSimpleInfo);
+		System.out.println("startPrice : " + startPrice);
+		System.out.println("dueDate : " + dueDate);
+		System.out.println("pdInfo : " + pdInfo);
+		System.out.println("cNo : " + cNo);
+		
 		return "redirect:/auction/detail.do?pdNo="+pdNo;
 
 	}
