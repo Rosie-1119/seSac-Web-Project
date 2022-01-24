@@ -30,6 +30,7 @@ public class LoginProcessController implements Controller {
 		
 		LoginService service = new LoginService();
 		MemberVO userVO = service.login(memberVO);
+		System.out.println(userVO);
 		
 		String msg="";
 		String url="";

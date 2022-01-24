@@ -14,7 +14,7 @@ public class LoginDAO {
 	
 	MemberVO userVO = null;
 	
-
+	System.out.println("member dao : " + memberVO);
 	StringBuilder sql = new StringBuilder();
 	sql.append("select id, pwd, type ");
 	sql.append("  from ftbl_member ");
@@ -29,11 +29,13 @@ public class LoginDAO {
 			
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) { 
+				
 				userVO = new MemberVO();
 				
 				userVO.setId(rs.getString("id"));
 				userVO.setPwd(rs.getString("pwd"));
 				userVO.setType(rs.getString("type"));
+				System.out.println("dao userVO : " + userVO);
 			}			
 		} catch (Exception e) {
 			e.printStackTrace();
