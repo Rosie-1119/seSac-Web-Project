@@ -19,7 +19,7 @@ public class AuctionBoardService {
 	/**
 	 * 게시글 등록
 	 */
-	public void insertBoard(ProductVO product, List<ProductFileVO> fileList) {
+	public int insertBoard(ProductVO product, List<ProductFileVO> fileList) {
 		
 		// 제품번호 설정
 		int pdNo = auctionBoardDao.selectProductNo();
@@ -33,6 +33,6 @@ public class AuctionBoardService {
 			fileVO.setPdNo(pdNo);
 			auctionBoardDao.insertFile(fileVO);
 		}
-		
+		return pdNo;
 	}
 }
