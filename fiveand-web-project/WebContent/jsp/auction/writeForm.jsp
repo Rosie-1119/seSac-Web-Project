@@ -60,11 +60,15 @@ img.ui-datepicker-trigger {
 		});
 	});
 	
-	function getCNo() {
-	 
-		return	$('#cNo option:selected').val();
-
-	}
+	
+/* 	function getCNoCheck() {
+		
+		var f = document.category;
+		
+		String cNo = multi.getParameter("cNo")
+		
+	} */
+	
 </script>
 <html lang="en">
 <head>
@@ -182,11 +186,9 @@ img.ui-datepicker-trigger {
 										placeholder="상품 한 줄 소개를 입력해주세요" required><br>
 								</p>
 								<p>
-								<form>
 									<label for="dueDate"> 경매 마감일 : </label> <input type="text"
 										name="dueDate" id="dueDate" placeholder="경매마감일을 지정해주세요"
 										required>
-								</form>
 								</p>
 
 								<p>
@@ -195,7 +197,6 @@ img.ui-datepicker-trigger {
 							</textarea>
 								</p>
 								카테고리 :
-								<form> 
 									<select name="cNo">
 										<option value="1">디지털기기</option>
 										<option value="2">생활가전</option>
@@ -205,15 +206,14 @@ img.ui-datepicker-trigger {
 										<option value="6">도서/음반</option>
 										<option value="7">기타</option>
 									</select>
-								</form>
-								사진 : <input type="file" name="attachfile1"> <input
-									type="file" name="attachfile2"> <input type="file"
-									name="attachfile3"> <input type="file"
-									name="attachfile4"> <input type="file"
-									name="attachfile5">
+								사진 : <input type="file" name="attachfile1"> 
+								<input type="file" name="attachfile2"> 
+									<input type="file" name="attachfile3"> 
+									<input type="file" name="attachfile4"> 
+									<input type="file" name="attachfile5">
 								<div class="add-to-cart">
 
-									<button class="add-to-cart-btn" onclick="getCNo()">
+									<button class="add-to-cart-btn">
 										<i class="fa fa-shopping-cart"></i>add to cart
 									</button>
 								</div>
