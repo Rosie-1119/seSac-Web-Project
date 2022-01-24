@@ -45,6 +45,7 @@
 	function idCheck() {
 		var id = $('#id').val();
 		var sendData = {'id':id}
+		
 		$.ajax({
 			url: '/idCheck.do',
 			data: sendData,
@@ -119,7 +120,7 @@
 									placeholder="이름을 입력해 주세요." required>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="phone"
+								<input class="input" type="tel" name="phone"
 									placeholder="휴대폰 번호 '-'표 없이 입력해 주세요." required>
 							</div>
 							<div class="form-group">
