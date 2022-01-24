@@ -38,26 +38,25 @@
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	
+	
 	$(document).ready(function() {
-		$('#id').on('keyup', idCheck);
+		$('#id').on('keyup', idCheck)
 	})
 	
 	function idCheck() {
-		var id = $('#id').val();
+		var id = $('#id').val()
 		var sendData = {'id':id}
 		
 		$.ajax({
 			url: '/idCheck.do',
 			data: sendData,
-			type: post,
+			type: 'post',
 			success: function(result) {
 				if(result == '1') {
-					$('#idCheck').css('color', 'red')
-					$('#idcheck').html("사용할 수 없는 ID입니다.")
-	                flag=false;
+					$('#idCheck').css('color', 'red'),
+					$('#idcheck').html("사용할 수 없는 ID입니다.") 
 				} else {
 	                $('#idcheck').html("사용할 수 있는 ID입니다.")
-	                flag=true;
 				}
 			}
 		})
@@ -109,7 +108,7 @@
 							<div class="form-group">
 								<input class="input" type="text" name="id" id="id"
 									placeholder="사용하실 ID를 입력해 주세요." required>
-									<span id="idCheck"></span>
+									<span id="idCheck"> </span>
 							</div>
 							<div class="form-group">
 								<input class="input" type="password" name="pwd"
