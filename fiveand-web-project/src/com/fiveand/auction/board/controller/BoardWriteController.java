@@ -40,7 +40,7 @@ public class BoardWriteController implements Controller {
 	         }catch (Exception e) {
 	                e.printStackTrace();
 	        
-				
+	         }
 	              
 				String pdName = multi.getParameter("pdName");
 				String id = multi.getParameter("id");
@@ -85,8 +85,11 @@ public class BoardWriteController implements Controller {
 						
 						fileList.add(fileVO);
 				
-				
+					
 		return null;
 	}
+				}
+				
 
+}
 }
