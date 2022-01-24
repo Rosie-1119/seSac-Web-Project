@@ -11,19 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 //대표적으로 요청을 받는 servlet을 만들어준다
 public class DispatcherServlet extends HttpServlet{
-	/*
-	 * 가상의 url설정 예시
-	 * 전체게시글 조회 :   /board/list.do
-	 * 상세게시글 조회:   /board/detail.do
-	 * 새 글 등록        :   /board/writeForm.do
-	 * 마이페이지       :   /board/mypage.do
-	 * 대부분 .do 이런식으로 작성
-	 * 
-	 * 다음 --> .daum
-	 * 네이버 -> .naver 각자의 가상의 url생성
-	 * =>MVC패턴으로 웹을 구성했음을 알 수 있음!
-	 */
-	
+
 	
 	//service()에서도 사용해야 하므로 지역변수로 선언
 	private HandlerMapping mappings = null;
@@ -62,28 +50,6 @@ public class DispatcherServlet extends HttpServlet{
 			
 			//System.out.println("contextPath : " + contextPath);
 			//요청된 uri를 분석
-			/*
-			switch(uri) {
-				case "/board/list.do":
-					//System.out.println("전체 게시글 조회");
-					//BoardListController list = new BoardListController(); //객체지향 -> controller가 dao역할을 담당함
-					control = new BoardListController(); //묵시적 형변환으로 자식객체 생성 -> 동일한 메서드를 실행하는 것이므로 switch문 밖에서 한꺼번에 실행
-					
-					//controller가 상세보기 할 경우, 글 번호처럼 요청 객체의 정보를 통해 작업해야 하는 경우가 생긴다
-					//따라서 request, response 객체를 모두 넘겨주기 (response는 쿠키 조회를 할 때에 필요할 수 있으므로 같이 넘겨준다)
-					
-					break;
-					
-				case "/board/writeForm.do":
-					//System.out.println("새 글 등록");
-					//BoardWriteFormController write = new BoardWriteFormController();
-					
-					control = new BoardWriteFormController();
-					break;
-				
-				//현재의 코드는 제공하는 기능마다 case를 하나씩 다 줘야 함 (기능30개 -> case 30개)
-				//하지만 실제 실행되면 이 곳은 블랙박스가 되므로 고칠 수 없음 => 접근할 수 있는 다른 쪽에 만들어주자 => HandlerMapping
-			}*/
 			
 			
 			//HandlerMapping mappings = new HandlerMapping();
