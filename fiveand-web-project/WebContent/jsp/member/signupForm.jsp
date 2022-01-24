@@ -38,7 +38,7 @@
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	
-	
+	let data
 	$(document).ready(function() {
 		$('#id').on('keyup', idCheck)
 	})
@@ -48,15 +48,18 @@
 		var sendData = {'id':id}
 		
 		$.ajax({
-			url: '/idCheck.do',
+			url: '${pageContext.request.contextPath}/idCheck.do',
 			data: sendData,
 			type: 'post',
 			success: function(result) {
+				result = result.trim()
+				data = result
 				if(result == '1') {
 					$('#idCheck').css('color', 'red'),
-					$('#idcheck').html("사용할 수 없는 ID입니다.") 
+					$('#idCheck').html("사용할 수 없는 ID입니다.") 
 				} else {
-	                $('#idcheck').html("사용할 수 있는 ID입니다.")
+					$('#idCheck').css('color', 'black'),
+	                $('#idCheck').html("사용할 수 있는 ID입니다.")
 				}
 			}
 		})

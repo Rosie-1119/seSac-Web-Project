@@ -46,7 +46,7 @@ img.ui-datepicker-trigger {
 		//종료일
 		$('#dueDate').datepicker({
 			showOn : "both",
-			buttonImage : "img/calendar.png",
+			buttonImage : "${pageContext.request.contextPath}/img/calendar.png",
 			buttonImageOnly : true,
 			dateFormat : "yy-mm-dd",
 			changeMonth : true,

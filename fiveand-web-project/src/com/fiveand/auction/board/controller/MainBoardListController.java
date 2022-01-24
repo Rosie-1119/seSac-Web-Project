@@ -1,6 +1,7 @@
 package com.fiveand.auction.board.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,21 @@ public class MainBoardListController implements Controller{
 		
 		MainBoardListService service = new MainBoardListService();
 		List<Object> list = service.selectRecentList();
+
+		// 0, 2, 4, 6, 8
+		ProductVO[] recentList = new ProductVO[5];
+		// 1, 3, 5, 7, 9
+		ProductFileVO[] recentFileList = new ProductFileVO[5];
+		
+		for(int i = 0, j = 0; i < list.size(); i += 2, j++) {
+			recentList[j] = (ProductVO)list.get(i);
+			recentFileList[j] = (ProductFileVO)list.get(i+1);
+		}
+		
+		System.out.println(Arrays.toString(recentList));
+		System.out.println(Arrays.toString(recentFileList));
+/*		
+		
 		
 //		ProductVO productVO = new ProductVO();
 //		ProductFileVO productFVO = new ProductFileVO();
@@ -32,16 +48,16 @@ public class MainBoardListController implements Controller{
 		MainList.add(new ProductFileVO[5]);
 		
 		//list에 저장되어 있는 값 추출
-		for(int i=0; i<=5; i++) {
-			ProductVO[] = (ProductVO[])list.get(0);
-		}
+//		for(int i=0; i<=5; i++) {
+//			ProductVO[] = (ProductVO[])list.get(0);
+//		}
 		
 		//ProductVO[] RecentList = (ProductVO[])list.get(0);
 		//ProductFileVO[] RecentFileList = (ProductFileVO[])list.get(1);
 		
-		request.setAttribute("RecentList", RecentList);
-		request.setAttribute("RecentFileList", RecentFileList);
-		
+ */		
+		request.setAttribute("recentList", recentList);
+		request.setAttribute("recentFileList", recentFileList);
 		return "/";
 	}
 
