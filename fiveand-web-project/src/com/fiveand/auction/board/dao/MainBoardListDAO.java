@@ -17,8 +17,9 @@ public class MainBoardListDAO {
 	/**
 	 *  ftbl_product 에서 최근 5개 제품 조회
 	 */
-	public List<ProductVO> selectRecentList(){
+	public Set<Object> selectRecentList(){
 		
+		Set<Object> listset = new HashSet<Object>();
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select row_num, tp.pd_no, pd_name, start_price, reg_date, due_date, c_no , tpf.file_save_name ");
@@ -44,7 +45,8 @@ public class MainBoardListDAO {
 				productFVO.setPdNo(rs.getInt("pd_no"));
 				productFVO.setFileSaveName(rs.getString("file_save_name"));
 				
-				Object[] arr = {productVO, productFVO};
+				listset.add(productVO);
+				listset.add(productFVO);
 				
 			}
 			
@@ -52,7 +54,7 @@ public class MainBoardListDAO {
 			e.printStackTrace();
 		}
 		
-		return arr;
+		return listset;
 	}
 	
 	public List<ProductFileVO> selectRecentFileList(){
