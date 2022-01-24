@@ -154,7 +154,7 @@ img.ui-datepicker-trigger {
 
 						<div class="product-details">
 							<h2 class="product-name">
-								상품명 : <input type="text" name="pdName" placeholder="상품명을 입력해주세요"
+								상품명 : <input type="text" class="input" name="pdName" placeholder="상품명을 입력해주세요"
 									required><br>
 							</h2>
 							<h4>
