@@ -5,5 +5,5 @@
 %>
 <script>
 	modal('로그아웃되었습니다')
-	location.href = "/fiveand-web" 
+	location.href = "/" 
 </script>
