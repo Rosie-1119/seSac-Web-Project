@@ -47,10 +47,10 @@
 										<option value="0">전체</option>
 										<option value="1">디지털기기</option>
 										<option value="1">생활가전</option>
-										<option value="1">가구</option>
-										<option value="1">의류</option>
-										<option value="1">뷰티</option>
-										<option value="1">도서</option>
+										<option value="1">가구/인테리어</option>
+										<option value="1">의류/잡화</option>
+										<option value="1">뷰티/미용</option>
+										<option value="1">도서/음반</option>
 										<option value="1">기타</option>
 									</select>
 									<input class="input" placeholder="Search here">
@@ -158,7 +158,7 @@
 						<li><a href="#">가구/인테리어</a></li>
 						<li><a href="#">의류/잡화</a></li>
 						<li><a href="#">뷰티/미용</a></li>
-						<li><a href="#">도서/티켓/음반</a></li>
+						<li><a href="#">도서/음반</a></li>
 						<li><a href="#">기타</a></li>
 					</ul>
 					<!-- /NAV -->
