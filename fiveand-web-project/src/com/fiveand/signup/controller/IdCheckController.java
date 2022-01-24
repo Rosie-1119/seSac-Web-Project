@@ -12,10 +12,18 @@ public class IdCheckController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		MemberVO memberVo = new MemberVO();
+		request.setCharacterEncoding("utf-8");
+		
+		String id = request.getParameter("id");
+		
+		MemberVO memberVO = new MemberVO();
+		memberVO.setId(id);
 		
 		IdCheckService service = new IdCheckService();
-		request.setAttribute("result", service.checkId(memberVo));
+		int result = service.checkId(memberVO);
+
+		
+		request.setAttribute("result", result);
 		
 		return "/jsp/member/result.jsp";
 	}

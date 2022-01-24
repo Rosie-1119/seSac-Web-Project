@@ -33,19 +33,7 @@ public class SignupProcessController implements Controller {
 		//service 호출
 		SignupService service = new SignupService();
 		service.addMember(memberVo);
-		/*
-		MemberVO userVO = service.addMember(memberVo);
-		
-		String url = "";
-		if(userVO == null) {
-			//회원가입 실패
-			url = "/signup.do";
-		} else {
-			//회원가입 성공
-			url = "/";
-		}
-		return "redirect:" + url;  // redirect:/fiveand-web-project/signup.do
-		*/
+
 		return "redirect:/";  //회원가입 완료 시 메인 페이지로 돌아감
 	}
 
