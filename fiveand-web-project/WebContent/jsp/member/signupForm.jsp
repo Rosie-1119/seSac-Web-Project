@@ -38,7 +38,7 @@
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
-	$(function() {
+	$(document).ready {
 		$('#id').on('keyup', idCheck);
 	})
 	
@@ -46,7 +46,7 @@
 		var id = $('#id').val();
 		var sendData = {'id':id}
 		$.ajax({
-			url: 'idCheck',
+			url: '${ pageContext.request.contextPath }/idCheck.do',
 			data: sendData,
 			success: function(result) {
 				if(result == 'fail') {

@@ -15,9 +15,9 @@ public class IdCheckController implements Controller {
 		MemberVO memberVo = new MemberVO();
 		
 		IdCheckService service = new IdCheckService();
-		service.checkId(memberVo);
+		request.setAttribute("result", service.checkId(memberVo));
 		
-		return null;
+		return "/jsp/member/result.jsp";
 	}
 
 }

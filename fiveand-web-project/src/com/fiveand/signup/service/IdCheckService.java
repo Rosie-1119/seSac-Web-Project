@@ -5,13 +5,15 @@ import com.fiveand.signup.dao.SignupDAO;
 
 public class IdCheckService {
 
-	private SignupDAO signupDao;
+	private SignupDAO signupDao = new SignupDAO();
 	
 	public IdCheckService() {
 		signupDao = new SignupDAO();
 	}
 	
-	public void checkId(MemberVO memberVo) {
-		signupDao.checkId(memberVo);
+	public int checkId(MemberVO memberVo) {
+		int result = signupDao.checkId(memberVo);
+		
+		return result;
 	}
 }
