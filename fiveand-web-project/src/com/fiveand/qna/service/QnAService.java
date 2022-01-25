@@ -28,8 +28,9 @@ public class QnAService {
 	 */
 	public QnAVO detailBoard(int no) {
 		
-		QnAVO qna = dao.detailBoard(no);
-		return qna;
+	//	QnAVO qna = dao.detailBoard(no);
+	//	return qna;
+		return null;
 	}
 	
 	/**
@@ -37,7 +38,7 @@ public class QnAService {
 	 */
 	public void insertBoard(QnAVO qna) {
 		
-		dao.insertBoard(qna);
+//		dao.insertBoard(qna);
 	}
 	
 	/**
@@ -45,7 +46,7 @@ public class QnAService {
 	 */
 	public void deleteBoard(QnAVO qna) {
 		
-		dao.deleteBoard(qna);
+//		dao.deleteBoard(qna);
 	}
 	
 	/**
@@ -53,7 +54,7 @@ public class QnAService {
 	 */
 	public void updateBoard(QnAVO qna) {
 		
-		dao.updateBoard(qna);
+//		dao.updateBoard(qna);
 	}
 	
 }

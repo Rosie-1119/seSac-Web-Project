@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.fiveand.qna.vo.QnAVO;
 import com.fiveand.util.ConnectionFactory;
+import com.fiveand.util.JDBCClose;
 
 public class QnADAO {
 
@@ -36,9 +37,9 @@ public class QnADAO {
 				String writer = rs.getString("writer");
 				String regDate = rs.getString("reg_date");
 
-				BoardVO board = new BoardVO(no, title, writer, regDate);
+		//		BoardVO board = new BoardVO(no, title, writer, regDate);
 				// System.out.println(board);
-				list.add(board);
+		//		list.add(board);
 				// board 하나가 <tr>
 			}
 		} catch (Exception e) {

@@ -148,6 +148,7 @@ img.ui-datepicker-trigger {
 	<!-- SECTION -->
 	<form action="${ pageContext.request.contextPath }/auction/write.do"
 		method="post" enctype="multipart/form-data">
+			<input type="hidden" name="id" value="${ userVO.id }">
 		<div align="center">
 			<div class="section">
 				<!-- container -->
