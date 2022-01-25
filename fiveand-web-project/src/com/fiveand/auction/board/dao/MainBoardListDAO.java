@@ -17,9 +17,9 @@ public class MainBoardListDAO {
 	/**
 	 *  ftbl_product 에서 최근 5개 제품 조회
 	 */
-	public Set<Object> selectRecentList(){
+	public List<Object> selectRecentList(){
 		
-		Set<Object> listset = new HashSet<Object>();
+		List<Object> list = new ArrayList<Object>();
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select row_num, tp.pd_no, pd_name, start_price, reg_date, due_date, c_no , tpf.file_save_name ");
@@ -37,6 +37,8 @@ public class MainBoardListDAO {
 				ProductVO productVO = new ProductVO();
 				ProductFileVO productFVO = new ProductFileVO();
 				
+				//set 순서 x, 타입 알 수 없음
+				//List<Object>
 				productVO.setPdName(rs.getString("pd_name"));
 				productVO.setStartPrice(rs.getInt("start_price"));
 				productVO.setDueDate(rs.getString("due_date"));
@@ -45,15 +47,15 @@ public class MainBoardListDAO {
 				productFVO.setPdNo(rs.getInt("pd_no"));
 				productFVO.setFileSaveName(rs.getString("file_save_name"));
 				
-				listset.add(productVO);
-				listset.add(productFVO);
+				list.add(productVO);
+				list.add(productFVO);
 			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		return listset;
+		return list;
 	}
 	
 	

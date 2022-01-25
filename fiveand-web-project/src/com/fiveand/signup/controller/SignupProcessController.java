@@ -34,6 +34,7 @@ public class SignupProcessController implements Controller {
 		SignupService service = new SignupService();
 		service.addMember(memberVo);
 
+		
 		return "redirect:/";  //회원가입 완료 시 메인 페이지로 돌아감
 	}
 

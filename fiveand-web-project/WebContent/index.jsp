@@ -309,7 +309,7 @@
 											</div>
 											
 											<div class="product-body">
-										<c:forEach items="${ RecentList1 }" var="RecentList">
+										<c:forEach items="${ RecentList }" var="RecentList"> <!-- begin end 사용 -->
 												<p class="product-category">${ RecentList.cNo }</p>
 												<h3 class="product-name"><a href="#">${ RecentList.pdName }</a></h3>
 												<h4 class="product-price">시작가 ${ RecentList.startPrice }</h4>
@@ -1022,7 +1022,7 @@
 									<li><a href="#">가구/인테리어</a></li>
 									<li><a href="#">의류/잡화</a></li>
 									<li><a href="#">뷰티/미용</a></li>
-									<li><a href="#">도서/티켓/음반</a></li>
+									<li><a href="#">도서/음반</a></li>
 									<li><a href="#">기타</a></li>
 								</ul>
 							</div>

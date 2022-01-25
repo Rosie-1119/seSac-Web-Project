@@ -8,6 +8,7 @@ img.ui-datepicker-trigger {
 	margin-left: 5px;
 	vertical-align: middle;
 	cursor: pointer;
+	width: 30px;
 }
 </style>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -46,7 +47,11 @@ img.ui-datepicker-trigger {
 		//종료일
 		$('#dueDate').datepicker({
 			showOn : "both",
-			buttonImage : "img/calendar.png",
+<<<<<<< HEAD
+			buttonImage : "${pageContext.request.contextPath}/img/calendar.png",
+=======
+			buttonImage : "${ pageContext.request.contextPath }/img/calendar.png",
+>>>>>>> detail-qna-board
 			buttonImageOnly : true,
 			dateFormat : "yy-mm-dd",
 			changeMonth : true,

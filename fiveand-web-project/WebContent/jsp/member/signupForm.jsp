@@ -37,31 +37,58 @@
 	href="${ pageContext.request.contextPath }/css/style.css" />
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	
+	/* ID중복 체크 */
 	$(document).ready(function() {
-		$('#id').on('keyup', idCheck);
+		$('#id').on('keyup', idCheck)
 	})
 	
 	function idCheck() {
-		var id = $('#id').val();
+		var id = $('#id').val()
 		var sendData = {'id':id}
 		
 		$.ajax({
-			url: '/idCheck.do',
+			url: '${pageContext.request.contextPath}/idCheck.do',
 			data: sendData,
-			type: post,
+			type: 'post',
 			success: function(result) {
+				result = result.trim()
+				data = result
 				if(result == '1') {
-					$('#idCheck').css('color', 'red')
-					$('#idcheck').html("사용할 수 없는 ID입니다.")
-	                flag=false;
+					$('#idCheck').css('color', 'red'),
+					$('#idCheck').html('* 사용할 수 없는 ID입니다.'),
+					$('#signBtn').attr('type', 'button')
 				} else {
-	                $('#idcheck').html("사용할 수 있는 ID입니다.")
-	                flag=true;
+					$('#idCheck').css('color', '#8d99ae'),
+	                $('#idCheck').html('* 사용할 수 있는 ID입니다.')
+	                $('#signBtn').attr('type', 'submit')
 				}
 			}
 		})
 	}
+	
+	
+	$(document).ready(function() {
+		$('#pwd, #pwd2').on('keyup', pwdCheck)
+	})
+	
+	function pwdCheck() {
+		let pass1 = $('#pwd').val();
+		let pass2 = $('#pwd2').val();
+		
+		if(pass1 != "" || pass2 != "") {
+			if(pass1 == pass2) {
+				$('#pwdCheck').css('color', '#8d99ae'),
+				$('#pwdCheck').html('* 패스워드가 일치합니다.')
+				$('#signBtn').attr('type', 'submit')
+			} else {
+				$('#pwdCheck').css('color', 'red'),
+				$('#pwdCheck').html('* 패스워드가 일치하지 않습니다.')
+				$('#signBtn').attr('type', 'button')
+			}
+		}
+	}
+	
+
 
 </script>
 </head>
@@ -109,11 +136,16 @@
 							<div class="form-group">
 								<input class="input" type="text" name="id" id="id"
 									placeholder="사용하실 ID를 입력해 주세요." required>
-									<span id="idCheck"></span>
+									<span id="idCheck"> </span>
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="pwd"
+								<input class="input" type="password" name="pwd" id="pwd"
 									placeholder="패스워드를 입력해 주세요." required>
+							</div>
+							<div class="form-group">
+								<input class="input" type="password" name="pwdCheck" id="pwd2"
+									placeholder="패스워드를 다시 입력해 주세요." required>
+									<span id="pwdCheck"> </span>
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="name"
@@ -128,7 +160,7 @@
 									placeholder="이메일을 입력해 주세요." required>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="primary-btn order-submit"
+								<button type="submit" class="primary-btn order-submit" id="signBtn"
 									align="center">가입하기</button>
 							</div>
 						</div>
