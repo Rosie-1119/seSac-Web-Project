@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!-- !!폼 만들 때 index.html에 있는 링크 복붙해 놓고 TopMenu/footer 넣기!! -->
 
 
@@ -7,19 +9,25 @@
 		
 			<!-- TOP HEADER -->
 			<div id="top-header">
-				<div class="container">
-					
+				<div class="container" >
+
 					<ul class="header-links pull-right">
-					
-					<!-- 회원가입 버튼 -->
-						<li><a href="${ pageContext.request.contextPath }/signup.do"><i class="fa fa-arrow-right"></i> Join</a></li>
-					<!-- 로그인 버튼 -->
-						<li><a href="${ pageContext.request.contextPath }/login.do"><i class="fa fa-user-o"></i> Login</a></li>
+
+					<c:if test="${ not empty userVO }">
+   							[${ userVO.id }님으로 로그인 중...]
+					</c:if>
+							<!-- 회원가입 버튼 -->
+							<li><a href="${ pageContext.request.contextPath }/signup.do"><i
+									class="fa fa-arrow-right"></i> Join</a></li>
+							<!-- 로그인 버튼 -->
+							<li><a href="${ pageContext.request.contextPath }/login.do"><i
+									class="fa fa-user-o"></i> Login</a></li>
+						
 					</ul>
-					
-					
 				</div>
 			</div>
+			
+			<header>
 			<!-- /TOP HEADER -->
 			<!-- MAIN HEADER -->
 			<div id="header">
@@ -32,7 +40,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="./img/fiveand_Logo5.png" alt="fiveand_Logo" width="150" height="80">
+									<img src="${ pageContext.request.contextPath }/img/fiveand_Logo5.png" alt="fiveand_Logo" width="150" height="80">
 								</a>
 							</div>
 						</div>
