@@ -61,19 +61,20 @@
 						<div class="col-md-6">
 							<div class="header-search">
 								<form>
+								
 									<!-- 검색할 때 선택할 수 있는 카테고리 -->
 									<select class="input-select">
 										<option value="0">전체</option>
 										<option value="1">디지털기기</option>
-										<option value="1">생활가전</option>
-										<option value="1">가구/인테리어</option>
-										<option value="1">의류/잡화</option>
-										<option value="1">뷰티/미용</option>
-										<option value="1">도서/음반</option>
-										<option value="1">기타</option>
+										<option value="2">생활가전</option>
+										<option value="3">가구/인테리어</option>
+										<option value="4">의류/잡화</option>
+										<option value="5">뷰티/미용</option>
+										<option value="6">도서/음반</option>
+										<option value="7">기타</option>
 									</select>
 									<input class="input" placeholder="Search here">
-									<button class="search-btn">Search</button>
+									<button type="button" onclick="location.href='${ pageContext.request.contextPath }/search.do'"class="search-btn">Search</button>
 								</form>
 							</div>
 						</div>
