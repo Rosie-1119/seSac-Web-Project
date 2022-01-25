@@ -23,7 +23,7 @@ public class MemberListDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("select id, name, phone, email, warning_cnt ");
 			sql.append(" from ftbl_member");
-			sql.append(" order by name");
+			sql.append(" where type = 'U' ");
 
 			pstmt = conn.prepareStatement(sql.toString());
 			ResultSet rs = pstmt.executeQuery();
