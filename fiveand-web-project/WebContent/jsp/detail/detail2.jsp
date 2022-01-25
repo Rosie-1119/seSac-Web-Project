@@ -47,20 +47,24 @@
 <script
 	src="${ pageContext.request.contextPath }/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$('button')
-								.click(
-										function() {
+	$(document).ready(function() {
+		$('button').click(function() {
+			
+		$.ajax({
+			type: "post",
+			url: "${ pageContext.request.contextPath }/detail/qnaWriteForm.do",
+			data: param,
+			succes: function(data) {
+				console.log()
+			}
+		})
+		/* location.href = "${ pageContext.request.contextPath }/detail/qnaWriteForm.do"
+				}) */
+		})
 
-											location.href = "${ pageContext.request.contextPath }/detail/qnaWriteForm.do"
-										})
-					})
-
-	function goWriteForm() {
+/* 	function goWriteForm() {
 		location.href = "qnaWriteForm.do"
-	}
+	} */
 
 	function doAction(boardNo) {
 		<c:choose>
@@ -75,6 +79,10 @@
 		</c:otherwise>
 		</c:choose>
 	}
+	
+	
+	
+	
 </script>
 </head>
 <body>
@@ -436,6 +444,7 @@
 							<div id="tab3" class="tab-pane fade in">
 
 								<section>
+								
 										<div align="center">
 											<br>
 											<table border="1" class="list">

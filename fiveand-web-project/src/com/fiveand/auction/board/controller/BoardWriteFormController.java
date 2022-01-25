@@ -9,6 +9,6 @@ public class BoardWriteFormController implements Controller {
 	
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		return "";
+		return "/jsp/auction/writeForm.jsp";
 	}
 }
