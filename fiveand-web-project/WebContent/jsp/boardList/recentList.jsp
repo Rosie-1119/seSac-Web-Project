@@ -97,6 +97,8 @@
 
 						<!-- store products -->
 						<div class="row">
+						
+						
 							<!-- product -->
 							<div class="col-md-4 col-xs-6">
 								<div class="product">
@@ -109,7 +111,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h3 class="product-name"><a href="#">1</a></h3>
 										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
@@ -142,7 +144,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h3 class="product-name"><a href="#">2</a></h3>
 										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
@@ -174,7 +176,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h3 class="product-name"><a href="#">3</a></h3>
 										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 										<div class="product-rating">
 										</div>
@@ -201,7 +203,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h3 class="product-name"><a href="#">4</a></h3>
 										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 										<div class="product-rating">
 										</div>
@@ -228,7 +230,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h3 class="product-name"><a href="#">5</a></h3>
 										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 										<div class="product-rating">
 										</div>
@@ -253,7 +255,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h3 class="product-name"><a href="#">6</a></h3>
 										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
@@ -285,7 +287,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h3 class="product-name"><a href="#">7</a></h3>
 										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
@@ -315,7 +317,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h3 class="product-name"><a href="#">8</a></h3>
 										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 										<div class="product-rating">
 										</div>
@@ -342,7 +344,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">product name goes here</a></h3>
+										<h3 class="product-name"><a href="#">9</a></h3>
 										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
 										<div class="product-rating">
 										</div>
@@ -361,7 +363,11 @@
 						</div>
 						<!-- /store products -->
 
-						<!-- store bottom filter -->
+
+
+
+						
+						<!-- 페이징 기능 -->
 						<div class="store-filter clearfix">
 							<span class="store-qty">Showing 20-100 products</span>
 							<ul class="store-pagination">
@@ -381,6 +387,13 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
+
+
+
+
+
+
+
 
 
 		<!-- FOOTER -->
