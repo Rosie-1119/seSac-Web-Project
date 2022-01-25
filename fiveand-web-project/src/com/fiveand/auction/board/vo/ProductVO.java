@@ -12,6 +12,7 @@ public class ProductVO {
 	private String pdSimpleInfo; // 간단 제품 정보
 	private String pdInfo; // 제품 정보
 	private int cNo; // 카테고리 넘버
+	private String cName; // 카테고리 이름
 	private int viewCnt; // 조회수
 	private int likeCnt; // 좋아요수
 	private int sugCnt; // 제시받은 수
@@ -29,9 +30,9 @@ public class ProductVO {
 		this.dueDate = dueDate;
 		this.cNo = cNo;
 	}
-
+	
 	public ProductVO(int pdNo, String id, String pdName, int hopePrice, int startPrice, String regDate, String dueDate,
-			String pdSimpleInfo, String pdInfo, int cNo, int viewCnt, int likeCnt, int sugCnt) {
+			String pdSimpleInfo, String pdInfo, int cNo, String cName, int viewCnt, int likeCnt, int sugCnt) {
 		super();
 		this.pdNo = pdNo;
 		this.id = id;
@@ -43,12 +44,12 @@ public class ProductVO {
 		this.pdSimpleInfo = pdSimpleInfo;
 		this.pdInfo = pdInfo;
 		this.cNo = cNo;
+		this.cName = cName;
 		this.viewCnt = viewCnt;
 		this.likeCnt = likeCnt;
 		this.sugCnt = sugCnt;
 	}
 
-	
 	// getter, setter
 	public int getPdNo() {
 		return pdNo;
@@ -144,11 +145,18 @@ public class ProductVO {
 		return cNo;
 	}
 
-
 	public void setcNo(int cNo) {
 		this.cNo = cNo;
 	}
 
+
+	public String getcName() {
+		return cName;
+	}
+
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
 
 	public int getViewCnt() {
 		return viewCnt;
@@ -179,17 +187,14 @@ public class ProductVO {
 		this.sugCnt = sugCnt;
 	}
 
-
+	
 	// toString
 	@Override
 	public String toString() {
 		return "ProductVO [pdNo=" + pdNo + ", id=" + id + ", pdName=" + pdName + ", hopePrice=" + hopePrice
 				+ ", startPrice=" + startPrice + ", regDate=" + regDate + ", dueDate=" + dueDate + ", pdSimpleInfo="
-				+ pdSimpleInfo + ", pdInfo=" + pdInfo + ", cNo=" + cNo + ", viewCnt=" + viewCnt + ", likeCnt=" + likeCnt
-				+ ", sugCnt=" + sugCnt + "]";
+				+ pdSimpleInfo + ", pdInfo=" + pdInfo + ", cNo=" + cNo + ", cName=" + cName + ", viewCnt=" + viewCnt
+				+ ", likeCnt=" + likeCnt + ", sugCnt=" + sugCnt + "]";
 	}
-
-	
-	
 	
 }
