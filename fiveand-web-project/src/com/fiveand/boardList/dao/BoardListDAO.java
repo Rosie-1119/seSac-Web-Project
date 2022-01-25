@@ -1,10 +1,8 @@
 package com.fiveand.boardList.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +20,11 @@ public class BoardListDAO {
 			List<Object> list = new ArrayList<Object>();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append(" select p.pd_no, p.pd_name, p.start_price, p.reg_date, p.due_date, p.c_no, c.category, pf.file_save_name ");
-			sql.append("  from ftbl_product p, ftbl_product_file pf, ftbl_category c ");
-			sql.append("  	where p.pd_no = pf.pd_no(+) and p.c_no = c.c_no ");
+			sql.append(" select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name ");
+			sql.append("  from ftbl_product p, ( ");
+			sql.append("  select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name ");
+			sql.append("  from  ftbl_product_file) f, ftbl_category c ");
+			sql.append("  where row_num = 1 and p.pd_no = f.pd_no and p.c_no = c.c_no  ");
 			sql.append("  order by reg_date desc ");
 			
 			try(
@@ -35,12 +35,13 @@ public class BoardListDAO {
 				while(rs.next()) {
 					ProductVO productVO = new ProductVO();
 					ProductFileVO productFVO = new ProductFileVO();
-					LocalDate now = LocalDate.now();
+					
+					//System.out.println("[[[[" + rs.getString("due_date") + "]");
 					
 					productVO.setPdNo(rs.getInt("pd_no"));
 					productVO.setPdName(rs.getString("pd_name"));
 					productVO.setStartPrice(rs.getInt("start_price"));
-					productVO.setDueDate(rs.getString("due_date")-now);
+					productVO.setDueDate(rs.getString("due_date"));
 					productVO.setcNo(rs.getInt("c_no"));
 					productVO.setcName(rs.getString("category"));
 					
@@ -57,4 +58,11 @@ public class BoardListDAO {
 			
 			return list;
 		}
+	
+	
+	
+	
+	
+	
+	
 }

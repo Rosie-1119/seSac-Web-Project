@@ -9,18 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.fiveand.auction.board.service.MainBoardListService;
 import com.fiveand.auction.board.vo.ProductFileVO;
 import com.fiveand.auction.board.vo.ProductVO;
+import com.fiveand.boardList.service.BoardListService;
 import com.fiveand.controller.Controller;
 
 public class RecentBoardController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		MainBoardListService service = new MainBoardListService();
+		BoardListService service = new BoardListService();
 		List<Object> list = service.selectRecentList();
 
 		// 0, 2, 4, 6, 8
-		ProductVO[] recentList = new ProductVO[9];
+		ProductVO[] recentList = new ProductVO[100];
 		// 1, 3, 5, 7, 9
-		ProductFileVO[] recentFileList = new ProductFileVO[9];
+		ProductFileVO[] recentFileList = new ProductFileVO[100];
 		
 		for(int i = 0, j = 0; i < list.size(); i += 2, j++) {
 			recentList[j] = (ProductVO)list.get(i);

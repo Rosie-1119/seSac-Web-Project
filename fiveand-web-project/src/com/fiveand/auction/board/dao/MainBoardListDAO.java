@@ -16,6 +16,7 @@ public class MainBoardListDAO {
 	
 	/**
 	 *  ftbl_product 에서 최근 5개 제품 조회
+	 *  (productVO 셋팅)
 	 */
 	public List<Object> selectRecentList(){
 		
