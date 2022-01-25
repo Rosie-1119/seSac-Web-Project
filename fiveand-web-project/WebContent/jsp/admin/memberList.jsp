@@ -36,6 +36,28 @@
 <!-- Custom stlylesheet -->
 <link type="text/css" rel="stylesheet"
 	href="${ pageContext.request.contextPath }/css/style.css" />
+	
+<style>
+table {
+	width: 100%;
+	border-color: #E4E7ED;
+}
+
+th {
+	text-align: center;
+	font-size: 12pt;
+	height: 30px;
+	color: ##1E1F29;
+	background-color: #FBFBFC;
+}
+
+td {
+	color: ##1E1F29;
+}
+</style>
+<script>
+
+</script>
 </head>
 <body>
 	<!-- HEADER -->
@@ -82,10 +104,11 @@
 
 				<c:forEach items="${ list }" var="">
 					<tr>
-						<td style="text-align: center;">${ board.no }</td>
-						<td style="text-align: center;">${ board.writer }</td>
-						<td style="text-align: center;">${ board.viewCnt }</td>
-						<td style="text-align: center;">${ board.regDate }</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 				</c:forEach>
 			</table>
