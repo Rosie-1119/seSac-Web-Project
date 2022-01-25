@@ -53,6 +53,8 @@ th {
 }
 
 td {
+	text-align: center;
+	height: 25px;
 	color: ##1E1F29;
 }
 </style>
@@ -123,8 +125,22 @@ td {
 	</div>
 	<!-- /SECTION -->
 
+<!-- blank  -->
+               <div>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+               </div>
+               <!-- /blank  -->
 	<!-- FOOTER -->
-	<footer>
+	<footer id="footer">
 		<jsp:include page="/jsp/include/footer.jsp" />
 	</footer>
 	<!-- /FOOTER -->
