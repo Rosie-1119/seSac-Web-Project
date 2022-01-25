@@ -35,6 +35,9 @@
 <!-- Custom stlylesheet -->
 <link type="text/css" rel="stylesheet"
 	href="${ pageContext.request.contextPath }/css/style.css" />
+	
+	
+	
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	/* ID중복 체크 */
