@@ -22,11 +22,12 @@ public class MainBoardListDAO {
 		List<Object> list = new ArrayList<Object>();
 		
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select row_num, tp.pd_no, pd_name, start_price, reg_date, due_date, c_no , tpf.file_save_name ");
-		sql.append("  from (select rownum as row_num, pd_no, pd_name, start_price, reg_date, due_date, c_no ");
-		sql.append("  		from (select * from ftbl_product order by reg_date desc)) tp, ftbl_product_file tpf ");
-		sql.append("  where row_num >=1  and row_num <= 5 ");
-		sql.append("  and tp.pd_no = tpf.pd_no(+) ");
+		sql.append(" select * from(   ");
+		sql.append("  select p.pd_no, p.pd_name, p.start_price, p.reg_date, p.due_date, p.c_no, c.category, pf.file_save_name ");
+		sql.append("  		from ftbl_product p, ftbl_product_file pf, ftbl_category c ");
+		sql.append("  where p.pd_no = pf.pd_no(+) and p.c_no = c.c_no ");
+		sql.append("  order by reg_date desc) ");
+		sql.append("   where rownum <= 5 ");
 		
 		try(
 				Connection conn = new ConnectionFactory().getConnection();
@@ -44,6 +45,7 @@ public class MainBoardListDAO {
 				productVO.setStartPrice(rs.getInt("start_price"));
 				productVO.setDueDate(rs.getString("due_date"));
 				productVO.setcNo(rs.getInt("c_no"));
+				productVO.setcName(rs.getString("category"));
 				
 				productFVO.setPdNo(rs.getInt("pd_no"));
 				productFVO.setFileSaveName(rs.getString("file_save_name"));
