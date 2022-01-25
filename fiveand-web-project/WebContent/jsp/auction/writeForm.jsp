@@ -163,7 +163,7 @@ img.ui-datepicker-trigger {
 									required><br>
 							</h2>
 							<h4>
-								${ userVO.id }
+								작성자 : ${ userVO.id }
 							</h4>
 							<div>
 								<h3 class="product-price">
