@@ -44,9 +44,38 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		
 <script>
 
+function remindTime() {
+	var today = new Date(); // 현재 시간
+	var dday = new Date('${ product.dueDate }');
+	var gap = dday.getTime() - today.getTime();
+	
+	var day = Math.ceil(gap / (1000*60*60*24));
+	var hour = Math.ceil((gap % (1000*60*60*24)) / (1000*60*60));
+	var min = Math.ceil((gap % (1000*60*60)) / (1000*60));
+	var sec = Math.ceil((gap % (1000*60)) / 1000);
+	
+	$("h6.time-title").html("경매 마감 D-"+day+" "+hour+":"+min+":"+sec)
+}
+
+setInterval(remindTime, 1000);
+
+function checkSuggest() {
+	if(${ empty suggestList[0].sugPrice }) {
+		if ($("#suggest").val() <= ${product.startPrice})
+			alert('시작가보다 높게 입력해주세요')
+			return false
+	}
+	else {
+		if($("#suggest").val() <= ${ suggestList[0].sugPrice }) {
+			alert('최고 경매가보다 높게 입력해주세요')
+			return false
+		}
+	}
+	alert('성공적으로 제시되었습니다')
+	location.href = "${ pageContext.request.contextPath }/auction/seggest.do"
+}
 </script>
 		
 
@@ -270,6 +299,8 @@
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
+							<h6 class="product-price time-title"></h6>
+							<div class="count"></div>
 							<h2 class="product-name">${ product.pdName }</h2>
 							<h5>판매자 ${ product.id }</h5>
 							<div>
@@ -286,17 +317,17 @@
 									<div class="input-number">
 										<c:choose>
 										<c:when test="${ empty suggestList }">
-										<input type="number" value="${ product.startPrice }">
+										<input id="suggest" type="number" value="${ product.startPrice }">
 										</c:when>
 										<c:otherwise>										
-										<input type="number" value="${ suggestList[0].sugPrice }">
+										<input id="suggest" type="number" value="${ suggestList[0].sugPrice }">
 										</c:otherwise>	
 										</c:choose>
 										<span class="qty-up">+</span>
 										<span class="qty-down">-</span>
 									</div>
 								</div>
-								<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>제시하기</button>
+								<button class="add-to-cart-btn" onclick="checkSuggest()"><i class="fa fa-hand-o-up"></i>제시하기</button>
 							</div>
 
 							<ul class="product-btns">
@@ -322,7 +353,9 @@
  								<h4>1100&#8361 (ad**)</h4>
 								<h6>1000&#8361 (ad**)</h6>
 								 -->
-								 <h4 class="product-price due-time">종료</h4>
+								 
+								 	
+								 </div>
  							</div>
 							<!-- <ul class="product-links">
 								<li>제시 현황:</li><br>
@@ -331,7 +364,7 @@
 								<li>1000 (ad**)</li>
 							</ul>  -->
 
-						</div>
+						
 					</div>
 					<!-- /Product details -->
 
@@ -732,7 +765,7 @@
 
 	
 		<!-- FOOTER -->
-		<footer>
+		<footer id="footer">
 			<jsp:include page="/jsp/include/footer.jsp" />
 		</footer>
 		<!-- /FOOTER -->
