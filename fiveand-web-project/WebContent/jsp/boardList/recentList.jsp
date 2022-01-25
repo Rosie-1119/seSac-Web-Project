@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -101,6 +102,8 @@
 						
 							<!-- product -->
 							<div class="col-md-4 col-xs-6">
+							
+							<c:forEach var="i" begin="0" end="9">
 								<div class="product">
 									<div class="product-img">
 										<%-- 이미지 링크하기 --%>
@@ -116,13 +119,7 @@
 										<p class="product-category">Category</p>
 										<h3 class="product-name"><a href="#">1</a></h3>
 										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
+										
 										<div class="product-btns">
 											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
 											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
@@ -133,6 +130,8 @@
 										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 									</div>
 								</div>
+							</c:forEach>
+						
 							</div>
 							<!-- /product -->
 

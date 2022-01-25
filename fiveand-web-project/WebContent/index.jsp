@@ -66,6 +66,7 @@
 				
 					<!-- Recent : 최근 등록 순으로 정렬된 페이지(링크해야함) -->
 					<div class="col-md-4 col-xs-6">
+						<a href="${ pageContext.request.contextPath }/boardList/recent.do">
 						<div class="shop">
 						<!-- 이미지 -->
 							<div class="shop-img">
@@ -73,9 +74,10 @@
 							</div>
 							<div class="shop-body">
 								<h3>Recent</h3>
-								<a href="#" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="${ pageContext.request.contextPath }/boardList/recent.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
+						</a>
 					</div>
 					<!-- /Recent -->
 					
