@@ -64,7 +64,7 @@
 				
 				
 				
-					<!-- Recent : 최근 등록 순으로 정렬된 페이지(링크해야함) -->
+					<!-- Recent : 최근 등록 순으로 정렬된 페이지 -->
 					<div class="col-md-4 col-xs-6">
 						<a href="${ pageContext.request.contextPath }/boardList/recent.do">
 						<div class="shop">
@@ -81,37 +81,38 @@
 					</div>
 					<!-- /Recent -->
 					
-
-
-
-
-					<!-- View : 조회 순으로 정렬된 페이지(링크해야함) -->
+					<!-- View : 조회 순으로 정렬된 페이지 -->
 					<div class="col-md-4 col-xs-6">
+					<a href="${ pageContext.request.contextPath }/boardList/view.do">
 						<div class="shop">
 							<div class="shop-img">
 								<img src="./img/shop03.png" alt="">
 							</div>
 							<div class="shop-body">
 								<h3>View</h3>
-								<a href="#" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
+						</a>
 					</div>
 					<!-- /View -->
 
-					<!-- Hearts : 하트 순으로 정렬된 페이지(링크해야함) -->
+					<!-- Hearts : 하트 순으로 정렬된 페이지 -->
 					<div class="col-md-4 col-xs-6">
+					<a href="${ pageContext.request.contextPath }/boardList/heart.do">
 						<div class="shop">
 							<div class="shop-img">
 								<img src="./img/shop02.png" alt="">
 							</div>
 							<div class="shop-body">
 								<h3>Hearts</h3>
-								<a href="#" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
+						</a>
 					</div>
 					<!-- /Hearts -->
+					
 				</div>
 				<!-- /row -->
 			</div>

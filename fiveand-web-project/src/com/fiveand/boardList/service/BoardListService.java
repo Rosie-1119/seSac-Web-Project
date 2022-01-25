@@ -17,9 +17,9 @@ private BoardListDAO ListDao;
 	
 	
 	/**
-	 * 최근 등록 제품 정보를 가져올 리스트 DB(ftbl_product, ftbl_product_file)에서 검색
+	 * 최근 등록 제품 정보를 가져올 리스트 DB(ftbl_product, ftbl_product_file, ftbl_category)에서 검색
 	 * 
-	 * @return 최근 5개 제품 정보+파일 Object 배열에 묶어서 리턴
+	 * @return 최근순  제품 정보+파일 Object 배열에 묶어서 리턴
 	 */
 	public List<Object> selectRecentList() {
 	
@@ -27,5 +27,28 @@ private BoardListDAO ListDao;
 		
 		return list;
 	}
+	
+	/**
+	 * 조회수 순으로 제품 정보 가져오기
+	 */
+	public List<Object> selectViewList() {
+		
+		List<Object> list = ListDao.selectViewList();
+		
+		return list;
+	}
+	
+	/**
+	 * 좋아요 순으로 제품 정보 가져오기
+	 */
+	public List<Object> selectHeartList() {
+		
+		List<Object> list = ListDao.selectHeartList();
+		
+		return list;
+	}
+	
+	
+	
 	
 }
