@@ -64,7 +64,7 @@
 				
 				
 				
-					<!-- Recent : 최근 등록 순으로 정렬된 페이지(링크해야함) -->
+					<!-- Recent : 최근 등록 순으로 정렬된 페이지 -->
 					<div class="col-md-4 col-xs-6">
 						<a href="${ pageContext.request.contextPath }/boardList/recent.do">
 						<div class="shop">
@@ -81,37 +81,38 @@
 					</div>
 					<!-- /Recent -->
 					
-
-
-
-
-					<!-- View : 조회 순으로 정렬된 페이지(링크해야함) -->
+					<!-- View : 조회 순으로 정렬된 페이지 -->
 					<div class="col-md-4 col-xs-6">
+					<a href="${ pageContext.request.contextPath }/boardList/view.do">
 						<div class="shop">
 							<div class="shop-img">
 								<img src="./img/shop03.png" alt="">
 							</div>
 							<div class="shop-body">
 								<h3>View</h3>
-								<a href="#" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
+						</a>
 					</div>
 					<!-- /View -->
 
-					<!-- Hearts : 하트 순으로 정렬된 페이지(링크해야함) -->
+					<!-- Hearts : 하트 순으로 정렬된 페이지 -->
 					<div class="col-md-4 col-xs-6">
+					<a href="${ pageContext.request.contextPath }/boardList/heart.do">
 						<div class="shop">
 							<div class="shop-img">
 								<img src="./img/shop02.png" alt="">
 							</div>
 							<div class="shop-body">
 								<h3>Hearts</h3>
-								<a href="#" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
+						</a>
 					</div>
 					<!-- /Hearts -->
+					
 				</div>
 				<!-- /row -->
 			</div>
@@ -154,7 +155,7 @@
 											<div class="product-img">
 											<%-- 서버에 저장된 이미지 가져오기(메인서버 하나)
 												  확인할 때에는 upload 파일에서 확인  --%>
-												<img src="C:\fiveand-server-work\wtpwebapps\fiveand-web-project\upload\${ recentFileList[i].fileSaveName }" alt="">
+												<img src="${ pageContext.request.contextPath }/upload/${ recentFileList[i].fileSaveName }" alt="">
 												<div class="product-label">
 													<span class="new">NEW</span>
 													<span class="sale">D-7</span>
@@ -167,7 +168,7 @@
 													<h4 class="product-price">시작가 ${ recentList[i].startPrice }</h4>
 												
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to My Heart</span></button>
 						
 													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 												</div>
