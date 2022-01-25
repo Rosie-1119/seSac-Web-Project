@@ -42,6 +42,16 @@ public class MemberVO {
 		this.phone = phone;
 		this.email = email;
 	}
+	
+	//관리자 회원 조회
+	public MemberVO(String id, String name, String phone, String email, int warningCnt) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+		this.warningCnt = warningCnt;
+	}
 
 	public String getId() {
 		return id;

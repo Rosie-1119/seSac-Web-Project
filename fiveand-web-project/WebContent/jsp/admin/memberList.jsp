@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,14 +56,15 @@ td {
 	color: ##1E1F29;
 }
 </style>
+<script src="${ pageContext.request.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
 <script>
-
+	
 </script>
 </head>
 <body>
 	<!-- HEADER -->
 	<header>
-		<jsp:include page="/jsp/include/topMenu.jsp" />
+		<jsp:include page="/jsp/include/topMenuAdmin.jsp" />
 	</header>
 	<!-- /HEADER -->
 
@@ -102,13 +104,13 @@ td {
 					<th width="10%">경고 수</th>
 				</tr>
 
-				<c:forEach items="${ list }" var="">
+				<c:forEach items="${ list }" var="member">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${ member.id }</td>
+						<td>${ member.name }</td>
+						<td>${ member.phone }</td>
+						<td>${ member.email }</td>
+						<td>${ member.warningCnt }</td>
 					</tr>
 				</c:forEach>
 			</table>

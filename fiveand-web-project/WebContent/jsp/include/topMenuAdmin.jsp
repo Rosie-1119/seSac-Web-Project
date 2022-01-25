@@ -67,7 +67,7 @@
 
 					<!-- Wishlist : 하트를 누른 경매물품 리스트 보기 -->
 					<div>
-						<a href="#"> <i class="fa fa-heart-o"></i> <span>회원관리</span>
+						<a href="${ pageContext.request.contextPath }/memberList.do"> <i class="fa fa-heart-o"></i> <span>회원관리</span>
 							<!-- 몇 개 눌렀는지 나오게 하려면, 하트를 누른 경매 물품을 저장해둔 테이블이 존재해야함
 											 셀렉트해서 갯수를 넣어주면 됨
 										<div class="qty"></div> -->
