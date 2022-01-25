@@ -47,11 +47,7 @@ img.ui-datepicker-trigger {
 		//종료일
 		$('#dueDate').datepicker({
 			showOn : "both",
-<<<<<<< HEAD
 			buttonImage : "${pageContext.request.contextPath}/img/calendar.png",
-=======
-			buttonImage : "${ pageContext.request.contextPath }/img/calendar.png",
->>>>>>> detail-qna-board
 			buttonImageOnly : true,
 			dateFormat : "yy-mm-dd",
 			changeMonth : true,
@@ -167,8 +163,7 @@ img.ui-datepicker-trigger {
 									required><br>
 							</h2>
 							<h4>
-								<!--  작성자 : ${ userVO.id }<br> -->
-								작성자 : <input type="hidden" name="id" value="admin"> <br>
+								${ userVO.id }
 							</h4>
 							<div>
 								<h3 class="product-price">
