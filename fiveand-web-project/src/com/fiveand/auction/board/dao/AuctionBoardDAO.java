@@ -151,8 +151,7 @@ public class AuctionBoardDAO {
 				product.setcName(rs.getString("category"));
 			}
 			
-		} catch(Exception e) {{
-		}
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		

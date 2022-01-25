@@ -45,6 +45,9 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		
+<script>
+
+</script>
 		
 
 </head>
@@ -260,19 +263,6 @@
 								<img src="${ pageContext.request.contextPath }/upload/${ file.fileSaveName }" alt="">
 							</div>
 							</c:forEach>
-							<!-- 
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
-							</div>
-							 -->
 						</div>
 					</div>
 					<!-- /Product thumb imgs -->
@@ -281,6 +271,7 @@
 					<div class="col-md-5">
 						<div class="product-details">
 							<h2 class="product-name">${ product.pdName }</h2>
+							<h5>판매자 ${ product.id }</h5>
 							<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -292,32 +283,25 @@
 								<a class="review-link" href="#">10 Review(s) | Add your review</a>
 							</div>
 							<div>
-								<h3 class="product-price">1200&#8361 <del class="product-old-price">${ product.startPrice }&#8361</del></h3>
+								<h3 class="product-price">${ product.startPrice }&#8361 <del class="product-old-price">${ product.hopePrice }&#8361</del></h3>
 								<!-- <span class="product-available">In Stock</span>  -->
 							</div>
 							<p>${ product.pdSimpleInfo }</p>
+							<hr>
 
-							<!-- <div class="product-options">
-								<label>
-									Size
-									<select class="input-select">
-										<option value="0">X</option>
-									</select>
-								</label>
-								<label>
-									Color
-									<select class="input-select">
-										<option value="0">Red</option>
-									</select>
-								</label>
-								
-							</div>  -->
 
 							<div class="add-to-cart">
 								<div class="qty-label">
 									제시가
 									<div class="input-number">
-										<input type="number">	
+										<c:choose>
+										<c:when test="${ empty suggestList }">
+										<input type="number" value="${ product.startPrice }">
+										</c:when>
+										<c:otherwise>										
+										<input type="number" value="${ suggestList[0].sugPrice }">
+										</c:otherwise>	
+										</c:choose>
 										<span class="qty-up">+</span>
 										<span class="qty-down">-</span>
 									</div>
@@ -331,17 +315,23 @@
 							</ul>
 
 							<ul class="product-links">
-								<li>Category:</li>
+								<li>Category : </li>
 								<li><a href="#">${ product.cName }</a></li>
 								<!-- <li><a href="#">Accessories</a></li>  -->
 							</ul>
-							
- 							<br>
+							<hr>
  							<div>
- 								<p>제시현황</p>
- 								<p>1200&#8361 (ad**) 최고가</p>
- 								<p>1100&#8361 (ad**)</p>
-								<p>1000&#8361 (ad**)</p>
+ 								<p>경매 진행 현황 (TOP 3)</p>
+ 								<hr>
+ 								<c:forEach items="${ suggestList }" var="suggest">
+ 								<h4>${ suggest.sugPrice }&#8361</h4>
+ 								<h6>${ suggest.id } (${ suggest.sugDate })</h6>
+ 								<hr>
+ 								</c:forEach>
+ 								<!-- 
+ 								<h4>1100&#8361 (ad**)</h4>
+								<h6>1000&#8361 (ad**)</h6>
+								 -->
  							</div>
 							<!-- <ul class="product-links">
 								<li>제시 현황:</li><br>
