@@ -42,6 +42,7 @@
 		$('#id').on('keyup', idCheck)
 	})
 	
+		flag = false;
 	function idCheck() {
 		var id = $('#id').val()
 		var sendData = {'id':id}
@@ -57,10 +58,12 @@
 					$('#idCheck').css('color', 'red'),
 					$('#idCheck').html('* 사용할 수 없는 ID입니다.'),
 					$('#signBtn').attr('type', 'button')
+					flag = false;
 				} else {
 					$('#idCheck').css('color', '#8d99ae'),
 	                $('#idCheck').html('* 사용할 수 있는 ID입니다.')
 	                $('#signBtn').attr('type', 'submit')
+	                flag = true;
 				}
 			}
 		})
@@ -71,6 +74,7 @@
 		$('#pwd, #pwd2').on('keyup', pwdCheck)
 	})
 	
+		flag2 = false;
 	function pwdCheck() {
 		let pass1 = $('#pwd').val();
 		let pass2 = $('#pwd2').val();
@@ -80,15 +84,24 @@
 				$('#pwdCheck').css('color', '#8d99ae'),
 				$('#pwdCheck').html('* 패스워드가 일치합니다.')
 				$('#signBtn').attr('type', 'submit')
+				flag2 = true;
 			} else {
 				$('#pwdCheck').css('color', 'red'),
 				$('#pwdCheck').html('* 패스워드가 일치하지 않습니다.')
 				$('#signBtn').attr('type', 'button')
+				flag2 = false;
 			}
 		}
 	}
-	
 
+	$(document).ready(function() {
+		if(flag == true && flag2 == true) {
+			alert("sggrsdghrrh")
+			e.cancelBubble = true
+		} else {
+			e.cancelBubble = true
+		}
+	})
 
 </script>
 </head>
