@@ -160,7 +160,7 @@
 											</div>
 											
 											<div class="product-body">
-													
+													<p class="product-category">${ recentList[i].cName }</p>
 													<h3 class="product-name"><a href="#">${ recentList[i].pdName }</a></h3>
 													<h4 class="product-price">시작가 ${ recentList[i].startPrice }</h4>
 												

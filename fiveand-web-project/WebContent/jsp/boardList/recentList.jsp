@@ -103,9 +103,12 @@
 							<div class="col-md-4 col-xs-6">
 								<div class="product">
 									<div class="product-img">
-										<img src="./img/product01.png" alt="">
+										<%-- 이미지 링크하기 --%>
+										<img src="${ pageContext.request.contextPath }/img/product01.png" alt="">
 										<div class="product-label">
-											<span class="sale">-30%</span>
+											<%-- 마감일까지의 차이 등록 --%>
+											<span class="sale">D-7</span>
+											<%-- 등록일 기준 오늘 등록한 제품 NEW --%>
 											<span class="new">NEW</span>
 										</div>
 									</div>
