@@ -48,14 +48,17 @@
 	src="${ pageContext.request.contextPath }/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		// 문의글 등록할 때!!
 		$('button').click(function() {
-			
+			//깅까 auction/detail.do?no= 요거를 받아와야 한담마리야
+			const no = $('no').val();
+			console.log('btn click')
 		$.ajax({
 			type: "post",
 			url: "${ pageContext.request.contextPath }/detail/qnaWriteForm.do",
-			data: param,
+			data: {no:no},
 			succes: function(data) {
-				console.log()
+				
 			}
 		})
 		/* location.href = "${ pageContext.request.contextPath }/detail/qnaWriteForm.do"

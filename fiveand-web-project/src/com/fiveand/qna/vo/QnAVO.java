@@ -8,9 +8,9 @@ public class QnAVO {
 	private String title;
 	private String content;
 	private String regDate;
-	private int groupNo;
-	private int groupStep;
-	private int indent;
+	private int groupNo; // 답글 그룹
+	private int groupStep; // 답글 순서
+	private int indent; // 들여쓰기
 
 	public QnAVO() {
 
@@ -28,6 +28,15 @@ public class QnAVO {
 		this.groupNo = groupNo;
 		this.groupStep = groupStep;
 		this.indent = indent;
+	}
+
+	
+	public QnAVO(int no, String id, String title, String regDate) {
+		super();
+		this.no = no;
+		this.id = id;
+		this.title = title;
+		this.regDate = regDate;
 	}
 
 	public int getNo() {
