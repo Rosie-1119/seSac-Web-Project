@@ -41,9 +41,19 @@
     </head>
 	<body>
 		<!-- HEADER -->
+
+	<c:choose>
+		<c:when test="${ userVO.type eq 'A' }">
+			<header>
+				<jsp:include page="/jsp/include/topMenuAdmin.jsp" />
+			</header>	
+	</c:when>
+		<c:otherwise>
 		<header>
 			<jsp:include page="/jsp/include/topMenu.jsp" />
 		</header>
+	</c:otherwise>
+	</c:choose>
 
 		<!-- SECTION -->
 		<div class="section">
