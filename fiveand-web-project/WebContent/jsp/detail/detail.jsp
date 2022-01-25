@@ -74,7 +74,7 @@ function checkSuggest() {
 		}
 	}
 	alert('성공적으로 제시되었습니다')
-	location.href = "${ pageContext.request.contextPath }/seggest.do"
+	location.href = "${ pageContext.request.contextPath }/suggest.do"
 }
 </script>
 		
