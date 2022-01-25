@@ -46,10 +46,7 @@ public class MainBoardListController implements Controller{
 	
 		request.setAttribute("recentList", recentList);
 		request.setAttribute("recentFileList", recentFileList);
-<<<<<<< HEAD
-=======
-		
->>>>>>> 7907c8d504b82285e9160e972460c21ebcb81b43
+
 		return "/index.jsp";
 	}
 }
