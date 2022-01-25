@@ -59,10 +59,20 @@
                $('#idCheck').css('color', 'red'),
                $('#idCheck').html('* 사용할 수 없는 ID입니다.'),
                $('#signBtn').attr('type', 'button')
+               /* $('#signBtn').attr({
+            	   'type' : 'button',
+            	   'role' : 'button',
+            	   'data-modal' : 'open-modal'
+               }) */
             } else {
                $('#idCheck').css('color', '#8d99ae'),
-                   $('#idCheck').html('* 사용할 수 있는 ID입니다.')
-                   $('#signBtn').attr('type', 'submit')
+               $('#idCheck').html('* 사용할 수 있는 ID입니다.'),
+               $('#signBtn').attr('type', 'submit')
+                   /* $('#signBtn').attr({
+                	   'type' : 'submit',
+                	   'role' : 'button',
+                	   'data-modal' : 'open-modal'
+                   }) */
             }
          }
       })
@@ -80,12 +90,22 @@
       if(pass1 != "" || pass2 != "") {
          if(pass1 == pass2) {
             $('#pwdCheck').css('color', '#8d99ae'),
-            $('#pwdCheck').html('* 패스워드가 일치합니다.')
+            $('#pwdCheck').html('* 패스워드가 일치합니다.'),
             $('#signBtn').attr('type', 'submit')
+            /* $('#signBtn').attr({
+                	   'type' : 'submit',
+                	   'role' : 'button',
+                	   'data-modal' : 'open-modal'
+                   }) */
          } else {
             $('#pwdCheck').css('color', 'red'),
-            $('#pwdCheck').html('* 패스워드가 일치하지 않습니다.')
+            $('#pwdCheck').html('* 패스워드가 일치하지 않습니다.'),
             $('#signBtn').attr('type', 'button')
+            /* $('#signBtn').attr({
+                	   'type' : 'button',
+                	   'role' : 'button',
+                	   'data-modal' : 'open-modal'
+                   }) */
          }
       }
    }
@@ -162,8 +182,7 @@
                            placeholder="이메일을 입력해 주세요." required>
                      </div>
                      <div class="form-group">
-                        <button type="submit" class="primary-btn order-submit" id="signBtn"
-                           align="center">가입하기</button>
+                        <button class="primary-btn order-submit" id="signBtn">가입하기</button>
                      </div>
                   </div>
                </form>
@@ -173,20 +192,20 @@
 <div class="modal" data-modal>
   <div class="modal-content">
     <button role="button" class="close-icon" data-modal="close-modal">X</button>
-    <div class="modal-header">
-      <h2 class="modal-title"><a href="https://www.jqueryscript.net/tags.php?/Modal/">Modal</a> Title</h2>
-    </div>
     <div class="modal-body">
-      <p>Modal Content</p>
+    	<br>
+      <p>회원가입이 완료되었습니다.<br>
+      	로그인 페이지로 이동하시겠습니까?</p>
+      	<br>
     </div>
     <div class="modal-footer">
-      <button role="button">Custom Action Button</button>
-      <button role="button" class="close-button" data-modal="close-modal">Close</button>
+      <button role="button" class="close-button" data-modal="close-modal">취소</button>
+      <button role="button">확인</button>
     </div>
   </div>
 </div>
 
-<button role="button" data-modal="open-modal" >Launch</button>
+<button role="button" data-modal="open-modal" >클릭하면 모달 !</button>
 
                <!-- blank  -->
                <div>
