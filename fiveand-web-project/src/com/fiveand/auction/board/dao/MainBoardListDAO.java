@@ -24,11 +24,13 @@ public class MainBoardListDAO {
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select * from(   ");
-		sql.append("  select p.pd_no, p.pd_name, p.start_price, p.reg_date, p.due_date, p.c_no, c.category, pf.file_save_name ");
-		sql.append("  		from ftbl_product p, ftbl_product_file pf, ftbl_category c ");
-		sql.append("  where p.pd_no = pf.pd_no(+) and p.c_no = c.c_no ");
+		sql.append("  select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name ");
+		sql.append("  	 from ftbl_product p, (  ");
+		sql.append("  select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name ");
+		sql.append("  from  ftbl_product_file) f, ftbl_category c ");
+		sql.append("  where row_num=1 and p.pd_no = f.pd_no and p.c_no = c.c_no ");
 		sql.append("  order by reg_date desc) ");
-		sql.append("   where rownum <= 5 ");
+		sql.append("  where rownum <= 5 ");
 		
 		try(
 				Connection conn = new ConnectionFactory().getConnection();

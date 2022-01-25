@@ -100,7 +100,8 @@
 
 								<!-- Auction : 경매 등록하기 -->
 								<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"
+									 href="${ pageContext.request.contextPath }/auction/writeForm.do">
 										<i class="fa fa-handshake-o"></i>
 										<span>경매 등록</span>
 									</a>

@@ -1,5 +1,6 @@
 package com.fiveand.boardList.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,17 +20,17 @@ public class RecentBoardController implements Controller {
 		List<Object> list = service.selectRecentList();
 
 		// 0, 2, 4, 6, 8
-		ProductVO[] recentList = new ProductVO[100];
+		List<ProductVO> recentList = new ArrayList<ProductVO>();
 		// 1, 3, 5, 7, 9
-		ProductFileVO[] recentFileList = new ProductFileVO[100];
+		List<ProductFileVO> recentFileList = new ArrayList<ProductFileVO>();
 		
 		for(int i = 0, j = 0; i < list.size(); i += 2, j++) {
-			recentList[j] = (ProductVO)list.get(i);
-			recentFileList[j] = (ProductFileVO)list.get(i+1);
+			recentList.add((ProductVO)list.get(i));
+			recentFileList.add((ProductFileVO)list.get(i+1));
 		}
 		
-		System.out.println(Arrays.toString(recentList));
-		System.out.println(Arrays.toString(recentFileList));
+		//System.out.println(Arrays.toString(recentList));
+		//System.out.println(Arrays.toString(recentFileList));
 		
 		//[ProductVO [pdNo=0, id=null, pdName=입력테스트2, hopePrice=0, startPrice=1200, regDate=null, dueDate=2022-01-27 00:00:00, pdSimpleInfo=null, pdInfo=null, cNo=1, viewCnt=0, likeCnt=0, sugCnt=0], 
 		//ProductVO [pdNo=0, id=null, pdName=dsf, hopePrice=0, startPrice=1000, regDate=null, dueDate=2022-01-26 00:00:00, pdSimpleInfo=null, pdInfo=null, cNo=3, viewCnt=0, likeCnt=0, sugCnt=0], 

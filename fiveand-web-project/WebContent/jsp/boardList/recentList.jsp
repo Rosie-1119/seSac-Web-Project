@@ -109,7 +109,7 @@
 								<div class="product">
 									<div class="product-img">
 										<%-- 이미지 링크하기 --%>
-										<img src="${ pageContext.request.contextPath }/img/product01.png" alt="">
+										<img src="${ pageContext.request.contextPath }/upload/${ recentFileList[i].fileSaveName }" alt="">
 										<div class="product-label">
 											<%-- 마감일까지의 차이 등록 --%>
 											<span class="sale">마감 ${ recentList[i].dueDate }</span>

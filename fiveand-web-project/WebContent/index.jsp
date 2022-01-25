@@ -154,7 +154,7 @@
 											<div class="product-img">
 											<%-- 서버에 저장된 이미지 가져오기(메인서버 하나)
 												  확인할 때에는 upload 파일에서 확인  --%>
-												<img src="C:\fiveand-server-work\wtpwebapps\fiveand-web-project\upload\${ recentFileList[i].fileSaveName }" alt="">
+												<img src="${ pageContext.request.contextPath }/upload/${ recentFileList[i].fileSaveName }" alt="">
 												<div class="product-label">
 													<span class="new">NEW</span>
 													<span class="sale">D-7</span>
