@@ -237,7 +237,7 @@
 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
-        window.Kakao.init('본인 JAVASCRIPT API 키');
+        window.Kakao.init('ebdcff68f6f76a623abdabb849ea24a4');
 
         function kakaoLogin() {
             window.Kakao.Auth.login({
@@ -251,7 +251,7 @@
                             console.log(kakao_account)
                         }
                     });
-                    // window.location.href='/ex/kakao_login.html' //리다이렉트 되는 코드
+                    window.location.href='/' //리다이렉트 되는 코드
                 },
                 fail: function(error) {
                     console.log(error);

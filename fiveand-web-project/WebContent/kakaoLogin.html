@@ -5,28 +5,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="javascript:kakaoLogin();"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png"></a>
 	<script src="http://developers.kakao.com/sdk/js/kakao.js"></script>
-
-
 	<script>
 	window.KaKao.init("ebdcff68f6f76a623abdabb849ea24a4");
+	consloe.log( Kakao.isInitialized());
 	
-	function kakaoLogin() {
-		window.Kakoa.Auth.login({
-			scope:'profile_nickname, account_email, gender'
-			scucess: function(authObj) {
-				console.lo;g(authObk);
-				window.Kakao.AIP.request({
-					url: '/v2/user/me', 
-					success: res => {
-						const kakao_account = res.kakao_account;
-						console.log(kakao_account);
-					}
-				});
-			}
-		});
-	}
+	
+	
+	
 	
 	</script>
 </body>
