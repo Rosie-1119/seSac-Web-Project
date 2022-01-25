@@ -12,9 +12,9 @@
 					<ul class="header-links pull-right">
 					
 					<!-- 회원가입 버튼 -->
-						<li><a href="#"><i class="fa fa-arrow-right"></i> Join</a></li>
+						<li><a href="${ pageContext.request.contextPath }/signup.do"><i class="fa fa-arrow-right"></i> Join</a></li>
 					<!-- 로그인 버튼 -->
-						<li><a href="#"><i class="fa fa-user-o"></i> Login</a></li>
+						<li><a href="${ pageContext.request.contextPath }/login.do"><i class="fa fa-user-o"></i> Login</a></li>
 					</ul>
 					
 					
@@ -32,7 +32,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="./img/fiveand_Logo3.png" alt="fiveand_Logo" width="200" height="55">
+									<img src="./img/fiveand_Logo5.png" alt="fiveand_Logo" width="150" height="80">
 								</a>
 							</div>
 						</div>
@@ -79,13 +79,13 @@
 
 
 
-								<!-- Auction : 경매 참여 한 리스트 보기 -->
+								<!-- Auction : 경매 등록하기 -->
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-										<i class="fa fa-shopping-cart"></i>
+										<i class="fa fa-handshake-o"></i>
 										<span>경매 등록</span>
-										<!-- <div class="qty">3</div> -->
 									</a>
+									<!-- 현재 경매 등록한 현황 드롭다운으로 생성 가능(미정)
 									<div class="cart-dropdown">
 										<div class="cart-list">
 											<div class="product-widget">
@@ -118,7 +118,7 @@
 											<a href="#">View Cart</a>
 											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
-									</div>
+									</div> -->
 								</div>
 								<!-- /Cart -->
 
@@ -139,7 +139,7 @@
 				<!-- container -->
 			</div>
 			<!-- /MAIN HEADER -->
-		
+		</header>
 		<!-- /HEADER -->
 
 		<!-- NAVIGATION -->
