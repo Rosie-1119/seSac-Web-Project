@@ -30,7 +30,7 @@
 									<li><a href="#">가구/인테리어</a></li>
 									<li><a href="#">의류/잡화</a></li>
 									<li><a href="#">뷰티/미용</a></li>
-									<li><a href="#">도서/티켓/음반</a></li>
+									<li><a href="#">도서/음반</a></li>
 									<li><a href="#">기타</a></li>
 								</ul>
 							</div>
