@@ -40,14 +40,14 @@ public class LoginProcessController implements Controller {
 		} else {
 			
 			switch(userVO.getType()) {
-			case "S" :
+			case "A" :
 				msg = "관리자님 환영합니다";
 				break;
 			case "U" :
 				msg = userVO.getId() + "님 환영합니다";
 				break;
-		}
-			url = "/";
+			}
+			url = "/main.do"; // "/"했을때는 로그아웃이 안떠서 수정했음ㅠ!
 			HttpSession session = request.getSession();
 			session.setAttribute("userVO", userVO);
 			
