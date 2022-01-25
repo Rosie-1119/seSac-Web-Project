@@ -25,6 +25,7 @@ public class BoardWriteController implements Controller {
 		
 		// 파일이 업로드될 실제 tomcat 폴더의 경로 (WebContent 기준)
 		String savePath = request.getRealPath("/upload");
+
 		// 업로드 될 파일의 최대 사이즈 (50메가)
 		int sizeLimit = 50 * 1024 * 1024;
 		

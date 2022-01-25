@@ -1,6 +1,5 @@
 package com.fiveand.auction.board.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,33 +31,25 @@ public class MainBoardListController implements Controller{
 		
 		System.out.println(Arrays.toString(recentList));
 		System.out.println(Arrays.toString(recentFileList));
-/*		
 		
+		//[ProductVO [pdNo=0, id=null, pdName=입력테스트2, hopePrice=0, startPrice=1200, regDate=null, dueDate=2022-01-27 00:00:00, pdSimpleInfo=null, pdInfo=null, cNo=1, viewCnt=0, likeCnt=0, sugCnt=0], 
+		//ProductVO [pdNo=0, id=null, pdName=dsf, hopePrice=0, startPrice=1000, regDate=null, dueDate=2022-01-26 00:00:00, pdSimpleInfo=null, pdInfo=null, cNo=3, viewCnt=0, likeCnt=0, sugCnt=0], 
+		//ProductVO [pdNo=0, id=null, pdName=sfdsfd, hopePrice=0, startPrice=543, regDate=null, dueDate=2022-01-26 00:00:00, pdSimpleInfo=null, pdInfo=null, cNo=1, viewCnt=0, likeCnt=0, sugCnt=0], 
+		//ProductVO [pdNo=0, id=null, pdName=sfdfsd, hopePrice=0, startPrice=1000, regDate=null, dueDate=2022-01-26 00:00:00, pdSimpleInfo=null, pdInfo=null, cNo=1, viewCnt=0, likeCnt=0, sugCnt=0], 
+		//ProductVO [pdNo=0, id=null, pdName=sdfsfd, hopePrice=0, startPrice=1000, regDate=null, dueDate=2022-01-26 00:00:00, pdSimpleInfo=null, pdInfo=null, cNo=1, viewCnt=0, likeCnt=0, sugCnt=0]]
 		
-//		ProductVO productVO = new ProductVO();
-//		ProductFileVO productFVO = new ProductFileVO();
-		
-//		List<ProductVO> RecentList = new ArrayList<ProductVO>();
-//		List<ProductFileVO> RecentFileList = new ArrayList<ProductFileVO>();
-
-		//Object배열을 가지고 있는 리스트 생성
-		List<Object[]> MainList = new ArrayList<>();
-		//5개의 제품정보, 파일 저장 공간에 저장 해야함
-		MainList.add(new ProductVO[5]);
-		MainList.add(new ProductFileVO[5]);
-		
-		//list에 저장되어 있는 값 추출
-//		for(int i=0; i<=5; i++) {
-//			ProductVO[] = (ProductVO[])list.get(0);
-//		}
-		
-		//ProductVO[] RecentList = (ProductVO[])list.get(0);
-		//ProductFileVO[] RecentFileList = (ProductFileVO[])list.get(1);
-		
- */		
+		//[ProductFileVO [no=0, pdNo=13, fileOriName=null, fileSaveName=sesac519838e8-285c-4597-b1d3-5024f0407a70.png, fileSize=0], 
+		//ProductFileVO [no=0, pdNo=14, fileOriName=null, fileSaveName=null, fileSize=0], 
+		//ProductFileVO [no=0, pdNo=15, fileOriName=null, fileSaveName=null, fileSize=0], 
+		//ProductFileVO [no=0, pdNo=17, fileOriName=null, fileSaveName=null, fileSize=0], 
+		//ProductFileVO [no=0, pdNo=16, fileOriName=null, fileSaveName=null, fileSize=0]]
+	
 		request.setAttribute("recentList", recentList);
 		request.setAttribute("recentFileList", recentFileList);
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 7907c8d504b82285e9160e972460c21ebcb81b43
 		return "/index.jsp";
 	}
-
 }

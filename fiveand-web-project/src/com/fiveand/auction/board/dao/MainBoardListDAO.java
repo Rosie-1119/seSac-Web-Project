@@ -23,10 +23,10 @@ public class MainBoardListDAO {
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select row_num, tp.pd_no, pd_name, start_price, reg_date, due_date, c_no , tpf.file_save_name ");
-		sql.append("  from (select rownum as row_num, pd_no, pd_name, start_price, reg_date, due_date, c_no) ");
-		sql.append("  from (select * from ftbl_product order by reg_date desc)) tp, ftbl_product_file tpf ");
-		sql.append("  where row_num <= 5 and row_num >= 1 ");
-		sql.append(" and tp.pd_no = tpf.pd_no(+) ");
+		sql.append("  from (select rownum as row_num, pd_no, pd_name, start_price, reg_date, due_date, c_no ");
+		sql.append("  		from (select * from ftbl_product order by reg_date desc)) tp, ftbl_product_file tpf ");
+		sql.append("  where row_num >=1  and row_num <= 5 ");
+		sql.append("  and tp.pd_no = tpf.pd_no(+) ");
 		
 		try(
 				Connection conn = new ConnectionFactory().getConnection();
@@ -47,8 +47,8 @@ public class MainBoardListDAO {
 				productFVO.setPdNo(rs.getInt("pd_no"));
 				productFVO.setFileSaveName(rs.getString("file_save_name"));
 				
-				list.add(productVO);
-				list.add(productFVO);
+				list.add(productVO); //0, 2, 4, 6, 8
+				list.add(productFVO); //1, 3, 5, 7, 9
 			}
 			
 		}catch(Exception e) {
