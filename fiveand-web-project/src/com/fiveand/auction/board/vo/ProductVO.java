@@ -23,7 +23,7 @@ public class ProductVO {
 
 	}
 	
-	public ProductVO(String pdName, int startPrice, String dueDate, int cNo) {
+	public ProductVO(int pdNo, String pdName, int startPrice, String dueDate, int cNo) {
 		super();
 		this.pdName = pdName;
 		this.startPrice = startPrice;

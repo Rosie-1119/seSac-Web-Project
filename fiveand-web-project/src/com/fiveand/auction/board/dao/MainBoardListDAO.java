@@ -39,6 +39,7 @@ public class MainBoardListDAO {
 				
 				//set 순서 x, 타입 알 수 없음
 				//List<Object>
+				productVO.setPdNo(rs.getInt("pd_no"));
 				productVO.setPdName(rs.getString("pd_name"));
 				productVO.setStartPrice(rs.getInt("start_price"));
 				productVO.setDueDate(rs.getString("due_date"));

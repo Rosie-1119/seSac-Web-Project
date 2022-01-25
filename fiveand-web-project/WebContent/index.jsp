@@ -170,7 +170,7 @@
 													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 												</div>
 											</div>
-											<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do">
+											<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ recentList[i].pdNo }">
 												<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button></a>
 											</div>
 										</div>

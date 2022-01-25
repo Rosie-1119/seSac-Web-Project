@@ -15,7 +15,7 @@ public class ViewCntController implements Controller {
 		AuctionBoardService service = new AuctionBoardService();
 		
 		service.addViewCnt(no);
-		return "redirect:/detail.do?no="+no;
+		return "redirect:/auction/detail.do?no="+no;
 	}
 
 }

@@ -96,7 +96,7 @@ public class AuctionBoardDAO {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" update ftbl_product ");
 		sql.append(" set view_cnt = view_cnt+1 ");
-		sql.append(" where no = ? ");
+		sql.append(" where pd_no = ? ");
 		
 		try(
 				Connection conn = new ConnectionFactory().getConnection();

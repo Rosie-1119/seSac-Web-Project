@@ -1,5 +1,14 @@
 package com.fiveand.boardList.controller;
 
-public class HeartBoardController {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import com.fiveand.controller.Controller;
+
+public class HeartBoardController implements Controller {
+	@Override
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+		return "";
+	}
 }
