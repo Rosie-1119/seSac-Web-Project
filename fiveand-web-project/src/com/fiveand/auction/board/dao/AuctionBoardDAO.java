@@ -181,11 +181,12 @@ public class AuctionBoardDAO {
 			
 			while(rs.next()) {
 				ProductFileVO file = new ProductFileVO();
-				file.setNo(rs.getInt("no"));
+				file.setPdNo(rs.getInt("pd_no"));
 				file.setFileOriName(rs.getString("file_ori_name"));
 				file.setFileSaveName(rs.getString("file_save_name"));
 				file.setFileSize(rs.getInt("file_size"));
 				files.add(file);
+				System.out.println("세이브 파일명 : "+file.getFileSaveName());
 			}
 			
 		} catch (Exception e) {
