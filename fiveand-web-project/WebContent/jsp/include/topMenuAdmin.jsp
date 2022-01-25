@@ -13,18 +13,9 @@
 			<c:if test="${ not empty userVO }">
                               [${ userVO.id }님으로 로그인 중...]
             </c:if>
-			<c:choose>
-				<c:when test="${ empty userVO }">
-					<!-- 로그인 버튼 -->
-					<li><a href="${ pageContext.request.contextPath }/login.do"><i
-							class="fa fa-user-o"></i> Login</a></li>
-				</c:when>
-				<c:otherwise>
 					<!-- 로그아웃 버튼 -->
 					<li><a href="${ pageContext.request.contextPath }/logout.do"><i
 							class="fa fa-user-o"></i> Logout</a></li>
-				</c:otherwise>
-			</c:choose>
 		</ul>
 
 
