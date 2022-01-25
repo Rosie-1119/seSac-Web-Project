@@ -273,16 +273,6 @@
 							<h2 class="product-name">${ product.pdName }</h2>
 							<h5>판매자 ${ product.id }</h5>
 							<div>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
-								<a class="review-link" href="#">10 Review(s) | Add your review</a>
-							</div>
-							<div>
 								<h3 class="product-price">${ product.startPrice }&#8361 <del class="product-old-price">${ product.hopePrice }&#8361</del></h3>
 								<!-- <span class="product-available">In Stock</span>  -->
 							</div>
@@ -306,7 +296,7 @@
 										<span class="qty-down">-</span>
 									</div>
 								</div>
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>제시하기</button>
+								<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>제시하기</button>
 							</div>
 
 							<ul class="product-btns">
@@ -332,6 +322,7 @@
  								<h4>1100&#8361 (ad**)</h4>
 								<h6>1000&#8361 (ad**)</h6>
 								 -->
+								 <h4 class="product-price due-time">종료</h4>
  							</div>
 							<!-- <ul class="product-links">
 								<li>제시 현황:</li><br>

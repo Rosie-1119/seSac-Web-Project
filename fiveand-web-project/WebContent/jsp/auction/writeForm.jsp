@@ -207,7 +207,7 @@ img.ui-datepicker-trigger {
 										<option value="6">도서/음반</option>
 										<option value="7">기타</option>
 									</select>
-								사진 : <input type="file" name="attachfile1"> 
+								사진 : <input type="file" name="attachfile1" required/> 
 								<input type="file" name="attachfile2"> 
 									<input type="file" name="attachfile3"> 
 									<input type="file" name="attachfile4"> 
