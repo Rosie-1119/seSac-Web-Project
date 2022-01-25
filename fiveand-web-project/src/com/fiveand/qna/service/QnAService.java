@@ -28,9 +28,8 @@ public class QnAService {
 	 */
 	public QnAVO detailBoard(int no) {
 		
-	//	QnAVO qna = dao.detailBoard(no);
-	//	return qna;
-		return null;
+		QnAVO qna = dao.detailBoard(no);
+		return qna;
 	}
 	
 	/**
