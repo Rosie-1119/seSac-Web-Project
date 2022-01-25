@@ -8,8 +8,10 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!-- The above 3 meta  *must* come first in the head; any other head content must come *after* these tags -->
 			
-			<title>loginForm</title>
+			<title>loginForm</title> 
 			<script>
+			// 아이디, 패스워드 값 입력하기
+			
 						function isNull(obj, msg) {
 							if (obj.value == '') {
 								alert(msg)
@@ -73,7 +75,7 @@
 
 </head>
 
-			<body>
+<body>
 				<header>
 					<jsp:include page="/jsp/include/topMenu.jsp" />
 				</header>
@@ -172,7 +174,7 @@
 
 
 
-			<footer>
+			<footer id="footer">
 				<jsp:include page="/jsp/include/footer.jsp" />
 			</footer>
 		
