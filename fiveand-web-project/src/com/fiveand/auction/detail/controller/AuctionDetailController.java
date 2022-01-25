@@ -24,6 +24,8 @@ public class AuctionDetailController implements Controller {
 		ProductVO product = (ProductVO)result.get("product");
 		List<ProductFileVO> fileList = (List<ProductFileVO>)result.get("fileList");
 
+		System.out.println(fileList.get(0).getFileSaveName());
+		
 		// 공유 영역에 등록
 		request.setAttribute("product", product);
 		request.setAttribute("fileList", fileList);
