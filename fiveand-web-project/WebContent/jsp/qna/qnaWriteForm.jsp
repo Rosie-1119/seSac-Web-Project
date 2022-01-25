@@ -10,7 +10,7 @@
 	<section>
 		<div align="center">
 			<hr>
-			<h2>문의글 등록</h2>
+			<h2>QnA 문의글 등록</h2>
 			<hr>
 			<br>
 			<!-- submit이라는 타입을 가진 것을 눌렀을 때 실행되도록 하는 메소드 onsubmit -->

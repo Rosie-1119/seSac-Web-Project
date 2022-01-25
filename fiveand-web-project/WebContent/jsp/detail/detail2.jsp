@@ -44,34 +44,37 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-<script src="${ pageContext.request.contextPath }/js/jquery-3.6.0.min.js"></script>
+<script
+	src="${ pageContext.request.contextPath }/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						$('button')
+								.click(
+										function() {
 
- 
- $(document).ready(function() {
-  $('button').click(function() {
-  
-      location.href = "${ pageContext.request.contextPath }/detail/qnaWriteForm.do"
-   }) })
+											location.href = "${ pageContext.request.contextPath }/detail/qnaWriteForm.do"
+										})
+					})
 
-function goWriteForm() {
-      location.href = "qnaWriteForm.do"
-   }
+	function goWriteForm() {
+		location.href = "qnaWriteForm.do"
+	}
 
- 
-   function doAction(boardNo) {
-      <c:choose>
-      <c:when test="${ not empty userVO }">
-      location.href = "${ pageContext.request.contextPath }/detail/detail.do?no=" + boardNo
-      </c:when>
-      <c:otherwise>
-      if (confirm('로그인 서비스가 필요합니다\n로그인 페이지로 이동하시겠습니다?')) {
-         location.href = '${ pageContext.request.contextPath }/member/login.do'
-      }
-      </c:otherwise>
-      </c:choose>
-   }
-
+	function doAction(boardNo) {
+		<c:choose>
+		<c:when test="${ not empty userVO }">
+		location.href = "${ pageContext.request.contextPath }/detail/detail.do?no="
+				+ boardNo
+		</c:when>
+		<c:otherwise>
+		if (confirm('로그인 서비스가 필요합니다\n로그인 페이지로 이동하시겠습니다?')) {
+			location.href = '${ pageContext.request.contextPath }/member/login.do'
+		}
+		</c:otherwise>
+		</c:choose>
+	}
 </script>
 </head>
 <body>
@@ -433,33 +436,36 @@ function goWriteForm() {
 							<div id="tab3" class="tab-pane fade in">
 
 								<section>
-									<div align="center">
-										<br>
-										<table border="1" class="list">
-											<tr>
-												<th width="5%">번호</th>
-												<th>제목</th>
-												<th width="10%">글쓴이</th>
-												<th width="10%">등록일</th>
-											</tr>
-
-											<c:forEach items="${ list }" var="board">
+										<div align="center">
+											<br>
+											<table border="1" class="list">
 												<tr>
-													<td style="text-align: center;">${ board.no }</td>
-
-													<td><a href="javascript:doAction(${ board.no })">
-															<c:out value="${ board.title }" /></a></td>
-													<td style="text-align: center;">${ board.writer }</td>
-													<td style="text-align: center;">${ board.regDate }</td>
+													<th width="5%">번호</th>
+													<th>제목</th>
+													<th width="10%">글쓴이</th>
+													<th width="10%">등록일</th>
 												</tr>
-											</c:forEach>
-										</table>
-										<br>
-										<c:if test="${ not empty userVO }">
-											<button onclick="goWriteForm()">새글등록</button>
-											<!-- <button>새글등록</button> -->
-										</c:if>
-									</div>
+
+												<c:forEach items="${ list }" var="board">
+													<tr>
+														<td style="text-align: center;">${ board.no }</td>
+														
+														<td><a href="javascript:doAction(${ board.no })">
+															
+																<c:out value="${ board.title }" />
+														</a></td>
+														
+														<td style="text-align: center;">${ board.writer }</td>
+														<td style="text-align: center;">${ board.regDate }</td>
+													</tr>
+												</c:forEach>
+											</table>
+											<br>
+											<c:if test="${ not empty userVO }">
+												<button onclick="goWriteForm()">새글등록</button>
+												<!-- <button>새글등록</button> -->
+											</c:if>
+										</div>
 								</section>
 
 							</div>
