@@ -5,5 +5,5 @@
 %>
 <script>
 	modal('로그아웃되었습니다')
-	location.href = "/" 
+	location.href = "/main.do" 
 </script>
