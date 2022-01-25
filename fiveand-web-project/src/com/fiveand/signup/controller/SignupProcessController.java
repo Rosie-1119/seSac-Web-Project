@@ -35,7 +35,7 @@ public class SignupProcessController implements Controller {
 		service.addMember(memberVo);
 
 		
-		return "redirect:/";  //회원가입 완료 시 메인 페이지로 돌아감
+		return "redirect:/main.do";  //회원가입 완료 시 메인 페이지로 돌아감
 	}
 
 }
