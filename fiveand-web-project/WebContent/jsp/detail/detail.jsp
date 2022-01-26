@@ -55,8 +55,7 @@
 <script src="${ pageContext.request.contextPath }/js/simple-modal.min.js"></script>
 
 <style>
-
-p#deleteProduct {
+p.textBtn {
 	text-align : right;
 }
 
@@ -89,7 +88,14 @@ $(document).ready(
 				}
 			})
 		}
-		
+)
+
+$(document).ready(
+		function(){
+			$('p#modifyProduct').click(function() {
+				location.href = "remove.do?no=${product.pdNo}"
+			})
+		}
 )
 
 
@@ -460,16 +466,18 @@ $(window).on("beforeunload", function(){
 								<li>1100 (ad**)</li>
 								<li>1000 (ad**)</li>
 							</ul>  -->
+							<c:if test="${ userVO.type eq 'A' }">
 							<div class="deletebtn" >
-								<p id="deleteProduct">삭제하기</p>
+								<p class="textBtn" id="deleteProduct">삭제하기</p>
 							</div>
+							</c:if>
+							<c:if test="${ userVO.id eq product.id }">
+								<p class="textBtn" id="modifyProduct">수정하기</p>
+							</c:if>
 						
 					</div>
 					<!-- /Product details -->
-					
-					<c:if test="${ userVO.type eq 'A' }">
-					
-					</c:if>
+
 					<!-- Product tab -->
 					<div class="col-md-12">
 						<div id="product-tab">
