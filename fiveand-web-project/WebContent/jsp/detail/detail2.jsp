@@ -122,17 +122,25 @@ $(document).ready(function() {
 		$('#qnaWriteForm').css('display', 'none');
 		$(this).css('display', 'block')
 		
+		const title = $('#title').val().trim();
+		const id = ${ userVO.id };
+		const content = $('#content').val().trim();
+		
+		var formData = new FormData();
+		formData.append("title",title);
+		formData.append("id",id);
+		formData.append("content",content);
+		
+		
 		$.ajax({
 			type: "post",
 			url: "${ pageContext.request.contextPath }/qna/write.do",
+			data : formData,
 			success: function(){
-				//리스트 DB에 삽입(컨트롤러) -> 리스트 출력
-				location.href = "${ pageContext.request.contextPath }/qna/list.do";
+				location.href = "${ pageContext.request.contextPath }/aution/detail.do?no="+no;
+				alert('게시글 등록이 완료 되었습니다.')
 			}
-			
-				
 		})
-		
 		})
 		})
 
@@ -503,13 +511,13 @@ $(document).ready(function() {
 								<section>
 										<div align="center">
 											<br>
-											<table border="1" class="list">
+											<table border="1" class="list" width="60%">
 												<thead>
 												<tr>
-													<th width="5%">번호</th>
+													<th width="10%">번호</th>
 													<th>제목</th>
 													<th width="10%">글쓴이</th>
-													<th width="10%">등록일</th>
+													<th width="15%">등록일</th>
 												</tr>
 												</thead>
 												<tbody>
@@ -534,6 +542,10 @@ $(document).ready(function() {
 												<button id="goWriteForm">문의하기</button>
 												<!-- <button>새글등록</button> -->
 											</c:if>
+											
+											
+											
+											
 											
 											<!-- 작성폼 -->
 											<div align="center" id="qnaWriteForm">
@@ -560,13 +572,17 @@ $(document).ready(function() {
 														</tr>
 														<tr>
 															<th>내용</th>
-															<td><textarea name="content" rows="7" cols="60" required>
+															<td><textarea name="content" rows="7" cols="60" id="content" required>
 														</textarea></td>
 														</tr>
 													</table>
 													<br> <input type="submit" value="새글등록" id="writeBtn">
 												</form>
 											</div>
+											
+											
+											
+											
 											
 											<!-- 디테일폼 -->
 											<div align = "center" id="qnaDetailForm">
