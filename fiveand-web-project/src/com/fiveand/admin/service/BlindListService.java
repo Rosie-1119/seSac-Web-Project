@@ -12,7 +12,10 @@ public class BlindListService {
 	private AuctionBoardDAO auctionBoardDao;
 	
 	public BlindListService() {
+		System.out.println("blindDAO 생성");
 		blindDao = new BlindListDAO();
+		System.out.println("auctionBoardDao 생성");
+		auctionBoardDao = new AuctionBoardDAO();
 	}
 	
 	/**
