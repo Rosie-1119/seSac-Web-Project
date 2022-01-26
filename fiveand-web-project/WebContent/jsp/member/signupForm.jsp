@@ -38,12 +38,19 @@
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/simple-modal-default.min.css">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+
+	// form submit 클릭시 유효성검사결과 변수
+	let resultFlag = true
+
+
    /* ID중복 체크 */
    $(document).ready(function() {
       $('#id').on('keyup', idCheck)
       $('#pwd, #pwd2').on('keyup', pwdCheck)
    })
    
+   
+
    function idCheck() {
       var id = $('#id').val()
       var sendData = {'id':id}
@@ -57,17 +64,17 @@
             data = result
             if(result == '1') {
                $('#idCheck').css('color', 'red'),
-               $('#idCheck').html('* 사용할 수 없는 ID입니다.'),
-               $('#signBtn').attr('type', 'button')
-               return false;
+               $('#idCheck').html('* 사용할 수 없는 ID입니다.')
+               resultFlag = false
             } else {
                $('#idCheck').css('color', '#8d99ae'),
-               $('#idCheck').html('* 사용할 수 있는 ID입니다.'),
-               $('#signBtn').attr('type', 'submit')
-               return true;
+               $('#idCheck').html('* 사용할 수 있는 ID입니다.')
+               resultFlag = true
             }
          }
       })
+      
+      
    }
 
    
@@ -79,27 +86,27 @@
       if(pass1 != "" || pass2 != "") {
          if(pass1 == pass2) {
             $('#pwdCheck').css('color', '#8d99ae'),
-            $('#pwdCheck').html('* 패스워드가 일치합니다.'),
-            $('#signBtn').attr('type', 'submit')
-            return true;
+            $('#pwdCheck').html('* 패스워드가 일치합니다.')
+            resultFlag = true
          } else {
             $('#pwdCheck').css('color', 'red'),
-            $('#pwdCheck').html('* 패스워드가 일치하지 않습니다.'),
-            $('#signBtn').attr('type', 'button')
-            return false;
+            $('#pwdCheck').html('* 패스워드가 일치하지 않습니다.')
+            resultFlag = false
          }
       }
    }
 
-   
+    
    function checkForm() {
-		if(('#idCheck').val() == '* 사용할 수 없는 ID입니다.')
-			return false
-		if(('#pwdCheck').val() == '* 패스워드가 일치하지 않습니다.')
-			return false
+	   /*
+		모달창 되면 띄우기
+		*/
+		if(!resultFlag )
+		alert('오류')
+		return resultFlag
 	}
-	return true;
-
+	
+ 
 </script>
 </head>
 <body>
@@ -170,11 +177,15 @@
                            placeholder="이메일을 입력해 주세요." required>
                      </div>
                      <div class="form-group">
-                        <button class="primary-btn order-submit" id="signBtn">가입하기</button>
+                        <button class="primary-btn order-submit" id="signBtn" type="submit">가입하기</button>
+           
                      </div>
                   </div>
                </form>
                <!-- /회원가입 폼 -->
+
+
+
 
 
 <div class="modal" data-modal>
