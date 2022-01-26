@@ -53,6 +53,14 @@
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/simple-modal.min.css">
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/simple-modal-default.min.css">
 <script src="${ pageContext.request.contextPath }/js/simple-modal.min.js"></script>
+
+<style>
+
+p#deleteProduct {
+	text-align : right;
+}
+
+</style>
 <script>
 
 $(document).ready(
@@ -72,7 +80,22 @@ $(document).ready(
 		}
 )
 
+$(document).ready(
+		function(){
+			$('p#deleteProduct').click(function() {
+				let conf = confirm('정말 삭제하시겠습니까?')
+				if (conf) {
+					location.href = "#"
+				}
+			})
+		}
+		
+)
+
+
 /* 경매 마감까지 남은 시간 */
+
+
 function remindTime() {
 	var today = new Date(); // 현재 시간
 	var dday = new Date('${ product.dueDate }');
@@ -93,12 +116,12 @@ function remindTime() {
 
 let timers = setInterval(remindTime, 1000);
 
-/* 제시하기 누를 때 실행되는 메소드 */
+/* 제시하기 조건 통과 후 실행되는 메소드 */
 function doAction(){
 	location.href = "${ pageContext.request.contextPath }/suggest.do?no=${product.pdNo}"
 }
 
-/* 버튼 누를 때 조건 확인 */
+/* 제시하기 버튼 누를 때 조건 확인 */
 function checkSuggest() {	
 	if(${ empty userVO }){
 		alert('로그인을 해주세요')
@@ -128,7 +151,8 @@ function checkSuggest() {
 	return true
 }
 
-/* 페이지 이동 시 interval 실행 */
+
+/* 페이지 이동 시 interval 실행 - 뒤로가기로 돌아와도 멈춰있어요 */
 $(window).on("beforeunload", function(){
 	clearInterval(timers)
 })
@@ -436,15 +460,16 @@ $(window).on("beforeunload", function(){
 								<li>1100 (ad**)</li>
 								<li>1000 (ad**)</li>
 							</ul>  -->
-
+							<div class="deletebtn" >
+								<p id="deleteProduct">삭제하기</p>
+							</div>
 						
 					</div>
 					<!-- /Product details -->
 					
-					<div class="deletebtn">
-						<p>삭제하기</p>
-					</div>
+					<c:if test="${ userVO.type eq 'A' }">
 					
+					</c:if>
 					<!-- Product tab -->
 					<div class="col-md-12">
 						<div id="product-tab">
