@@ -90,7 +90,7 @@ public class BoardWriteController implements Controller {
 		int no = service.insertBoard(product, fileList);
 
 
-		
+		System.out.println("--BoardWriteController 등록한 게시글 정보--");
 		System.out.println("pdName : " + pdName);
 		System.out.println("pdId : " + id);
 		System.out.println("hopePrice : " + hopePrice);
@@ -99,7 +99,7 @@ public class BoardWriteController implements Controller {
 		System.out.println("dueDate : " + dueDate);
 		System.out.println("pdInfo : " + pdInfo);
 		System.out.println("cNo : " + cNo);
-
+		System.out.println("-----------------");
 		//return "redirect:/auction/detail.do?pdNo="+pdNo;
 		return "redirect:/auction/detail.do?no="+no;
 	}

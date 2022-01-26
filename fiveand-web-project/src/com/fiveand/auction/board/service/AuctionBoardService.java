@@ -42,4 +42,11 @@ public class AuctionBoardService {
 	public void addViewCnt(int pdNo) {
 		auctionBoardDao.addViewCnt(pdNo);
 	}
+	
+	/**
+	 * 게시글 수정
+	 */
+	public void updateBoard(ProductVO product) {
+		auctionBoardDao.updateProduct(product);
+	}
 }

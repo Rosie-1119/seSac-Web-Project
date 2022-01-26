@@ -214,4 +214,31 @@ public class AuctionBoardDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 게시글 수정
+	 */
+	public void updateProduct(ProductVO product) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update ftbl_product ");
+		sql.append(" set pd_name = ?, pd_simple_info = ?, pd_info = ?, c_no = ? ");
+		sql.append(" where pd_no = ? ");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		){
+			pstmt.setString(1, product.getPdName());
+			pstmt.setString(2, product.getPdSimpleInfo());
+			pstmt.setString(3, product.getPdInfo());
+			pstmt.setInt(4, product.getcNo());
+			pstmt.setInt(5, product.getPdNo());
+			
+			pstmt.executeUpdate();
+			
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
