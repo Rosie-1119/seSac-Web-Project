@@ -79,8 +79,7 @@
 
 					<!-- Auction : 경매 등록하기 -->
 					<div class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown"
-							aria-expanded="true"> <i class="fa fa-handshake-o"></i> <span>경매관리</span>
+						<a href="${ pageContext.request.contextPath }/blindList.do"> <i class="fa fa-handshake-o"></i> <span>경매관리</span>
 						</a>
 						<!-- 현재 경매 등록한 현황 드롭다운으로 생성 가능(미정)
 									<div class="cart-dropdown">
