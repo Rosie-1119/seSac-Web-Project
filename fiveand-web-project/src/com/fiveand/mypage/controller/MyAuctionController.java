@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fiveand.member.vo.MemberVO;
+
 import com.fiveand.mypage.service.MyPageService;
 import com.fiveand.controller.Controller;
 
@@ -16,9 +16,9 @@ public class MyAuctionController implements Controller{
 		
 		String id = request.getParameter("id");
 		MyPageService service = new MyPageService();
-		MemberVO member = service.selectMyAuction(id);
+		//MemberVO member = service.selectMyAuction(id);
 		
-		request.setAttribute("member", member);
+	//	request.setAttribute("member", member);
 		
 		return "/jsp/member/myPageForm.jsp";
 	}

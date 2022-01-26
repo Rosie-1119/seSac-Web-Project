@@ -206,7 +206,7 @@ public class AuctionBoardDAO {
 	}
 
 	/**
-	 * 게시물 삭제
+	 * 게시물 삭제   
 	 */
 	public void removeProduct(int pdNo) {
 		StringBuilder sql = new StringBuilder();
@@ -243,8 +243,7 @@ public class AuctionBoardDAO {
 			pstmt.setInt(5, product.getPdNo());
 			
 			pstmt.executeUpdate();
-			
-			pstmt.executeUpdate();
+		
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -57,7 +57,7 @@ public class MyPageDAO {
 	/**
 	 * 마이페이지(내정보 수정) -----미완(where check 할것!)
 	 */
-	public void UpdateMyInfo(MemberVO member) {
+	public void updateMyInfo(MemberVO member) {
 	
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -66,7 +66,7 @@ public class MyPageDAO {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append(" update ftbl_member ");
-			sql.append(" pwd = ? , phone = ? , email = ? ");
+			sql.append(" set pwd = ? , phone = ? , email = ? ");
 			sql.append(" where id = ? ");
 
 			pstmt = conn.prepareStatement(sql.toString());
