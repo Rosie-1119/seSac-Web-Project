@@ -32,6 +32,7 @@ public class BlindListService {
 	 */
 	public void insertBlind(int pdNo) {
 		blindDao.insertBlind(pdNo);
+		auctionBoardDao.removeFileByNo(pdNo);
 		auctionBoardDao.removeProduct(pdNo);
 	}
 	
