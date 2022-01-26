@@ -4,6 +4,16 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+
+#qnaWriteForm {
+	display: none;
+}
+
+#qnaDetailForm {
+	display: none;
+}
+
 html {
 	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
@@ -7662,10 +7672,4 @@ button.close {
 	url('https://fonts.googleapis.com/css?family=Gothic+A1:200,300,400,500,600')
 	;
 
-#qnaWriteForm {
-	display: none;
-}
 
-#qnaDetailForm {
-	display: none;
-}
