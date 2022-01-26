@@ -1,7 +1,5 @@
 package com.fiveand.mypage.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,11 +13,12 @@ public class MyInfoController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		String id = request.getParameter("id");
 		MyPageService service = new MyPageService();
-		List<MemberVO> list = service.selectMyInfo();
+		MemberVO member = service.selectMyInfo(id);
 		
-		request.setAttribute("list", list);
+		request.setAttribute("member", member);
 		
-		return "/jsp/member/myPageForm.jsp";
+		return "/jsp/member/myInfo.jsp";
 	}
 }
