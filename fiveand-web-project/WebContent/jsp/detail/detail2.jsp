@@ -114,9 +114,28 @@ $(document).ready(function() {
 		*/
 		})
 		})
-/* 	function goWriteForm() {
-		location.href = "qnaWriteForm.do"
-	} */
+		
+$(document).ready(function() {
+	// 문의글 등록할 때!!
+	$('#writeBtn').click(function() {
+		$('.list').css('display', 'block');
+		$('#qnaWriteForm').css('display', 'none');
+		$(this).css('display', 'block')
+		
+		$.ajax({
+			type: "post",
+			url: "${ pageContext.request.contextPath }/qna/write.do",
+			success: function(){
+				//리스트 DB에 삽입(컨트롤러) -> 리스트 출력
+				location.href = "${ pageContext.request.contextPath }/qna/list.do";
+			}
+			
+				
+		})
+		
+		})
+		})
+
 
 	function doAction(boardNo) {
 		<c:choose>
@@ -545,7 +564,7 @@ $(document).ready(function() {
 														</textarea></td>
 														</tr>
 													</table>
-													<br> <input type="submit" value="새글등록">
+													<br> <input type="submit" value="새글등록" id="writeBtn">
 												</form>
 											</div>
 											
