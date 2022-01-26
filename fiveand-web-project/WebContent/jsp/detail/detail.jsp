@@ -44,10 +44,15 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		
+
+<!-- jquery 적용 스크립트 -->
 <script src="${ pageContext.request.contextPath }/js/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
 
+<!-- 모달창 관련 -->
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/simple-modal.min.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/simple-modal-default.min.css">
+<script src="${ pageContext.request.contextPath }/js/simple-modal.min.js"></script>
 <script>
 
 $(document).ready(
@@ -94,13 +99,11 @@ function doAction(){
 }
 
 /* 버튼 누를 때 조건 확인 */
-function checkSuggest() {
-	
+function checkSuggest() {	
 	if(${ empty userVO }){
 		alert('로그인을 해주세요')
 		return false
 	}
-	
 	if(new Date() >= new Date('${ product.dueDate }')) {
 		alert('이미 마감된 경매입니다')
 		return false
@@ -121,6 +124,7 @@ function checkSuggest() {
 	}
 	</c:if>
 	alert('성공적으로 제시되었습니다')
+	
 	return true
 }
 
@@ -388,6 +392,22 @@ $(window).on("beforeunload", function(){
 							</div>
 							</c:if>
 
+							<!-- suggest 모달창 -->
+							<div class="modal" data-modal>
+								<div class="modal-content">
+									<button role="button" class="close-icon" data-modal="close-modal">X</button>
+									<div class="modal-body">
+										<br>
+										<p id="suggestFailMsg">내용입니다</p>
+										<br>
+									</div>
+									<div class="modal-footer">
+										<button role="button" class="close-button" data-modal="close-modal">취소</button>
+										<button role="button">확인</button>
+									</div>
+								</div>
+							</div>
+
 							<ul class="product-btns">
 								<li><a href="#"><i class="fa fa-heart-o"></i> add to Heart</a></li>
 								<!-- <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>  -->
@@ -420,7 +440,11 @@ $(window).on("beforeunload", function(){
 						
 					</div>
 					<!-- /Product details -->
-
+					
+					<div class="deletebtn">
+						<p>삭제하기</p>
+					</div>
+					
 					<!-- Product tab -->
 					<div class="col-md-12">
 						<div id="product-tab">
