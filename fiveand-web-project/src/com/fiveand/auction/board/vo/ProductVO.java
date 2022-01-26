@@ -16,6 +16,7 @@ public class ProductVO {
 	private int viewCnt; // 조회수
 	private int likeCnt; // 좋아요수
 	private int sugCnt; // 제시받은 수
+	private String delDate;  //삭제한 날짜
 	
 
 	// 생성자
@@ -32,7 +33,7 @@ public class ProductVO {
 	}
 	
 	public ProductVO(int pdNo, String id, String pdName, int hopePrice, int startPrice, String regDate, String dueDate,
-			String pdSimpleInfo, String pdInfo, int cNo, String cName, int viewCnt, int likeCnt, int sugCnt) {
+			String pdSimpleInfo, String pdInfo, int cNo, String cName, int viewCnt, int likeCnt, int sugCnt, String delDate) {
 		super();
 		this.pdNo = pdNo;
 		this.id = id;
@@ -48,6 +49,21 @@ public class ProductVO {
 		this.viewCnt = viewCnt;
 		this.likeCnt = likeCnt;
 		this.sugCnt = sugCnt;
+		this.delDate = delDate;
+	}
+	
+	
+	public ProductVO(int pdNo, String id, String pdName, String cName, int hopePrice, int startPrice, String regDate, String dueDate, String delDate) {
+		super();
+		this.pdNo = pdNo;
+		this.id = id;
+		this.pdName = pdName;
+		this.cName = cName;
+		this.hopePrice = hopePrice;
+		this.startPrice = startPrice;
+		this.regDate = regDate;
+		this.dueDate = dueDate;
+		this.delDate = delDate;
 	}
 
 	// getter, setter
@@ -186,15 +202,23 @@ public class ProductVO {
 	public void setSugCnt(int sugCnt) {
 		this.sugCnt = sugCnt;
 	}
-
 	
+	public String getDelDate() {
+		return delDate;
+	}
+
+
+	public void setDelDate(String delDate) {
+		this.delDate = delDate;
+	}
+
 	// toString
 	@Override
 	public String toString() {
 		return "ProductVO [pdNo=" + pdNo + ", id=" + id + ", pdName=" + pdName + ", hopePrice=" + hopePrice
 				+ ", startPrice=" + startPrice + ", regDate=" + regDate + ", dueDate=" + dueDate + ", pdSimpleInfo="
 				+ pdSimpleInfo + ", pdInfo=" + pdInfo + ", cNo=" + cNo + ", cName=" + cName + ", viewCnt=" + viewCnt
-				+ ", likeCnt=" + likeCnt + ", sugCnt=" + sugCnt + "]";
+				+ ", likeCnt=" + likeCnt + ", sugCnt=" + sugCnt + ", delDate=" + delDate + "]";
 	}
 	
 }
