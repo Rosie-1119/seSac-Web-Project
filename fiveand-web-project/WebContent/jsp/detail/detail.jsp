@@ -44,7 +44,29 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+		
+<script src="${ pageContext.request.contextPath }/js/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+
 <script>
+
+$(document).ready(
+		function(){
+			$('span.qty-up').click(function() {
+				let upPrice = Number($("#suggest").val()) + 1000
+				$("#suggest").val(upPrice)
+			})
+		})
+		
+$(document).ready(
+		function(){
+			$('span.qty-down').click(function() {
+				let downPrice = Number($("#suggest").val()) - 1000
+				$("#suggest").val(downPrice)
+			})
+		}
+)
+
 /* 경매 마감까지 남은 시간 */
 function remindTime() {
 	var today = new Date(); // 현재 시간
