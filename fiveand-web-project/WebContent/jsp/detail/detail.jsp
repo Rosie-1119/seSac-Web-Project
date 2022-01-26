@@ -45,32 +45,45 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 <script>
-
+/* 경매 마감까지 남은 시간 */
 function remindTime() {
 	var today = new Date(); // 현재 시간
 	var dday = new Date('${ product.dueDate }');
-	var gap = dday.getTime() - today.getTime();
-	
-	var day = Math.ceil(gap / (1000*60*60*24));
-	var hour = Math.ceil((gap % (1000*60*60*24)) / (1000*60*60));
-	var min = Math.ceil((gap % (1000*60*60)) / (1000*60));
-	var sec = Math.ceil((gap % (1000*60)) / 1000);
-	
-	$("h6.time-title").html("경매 마감 D-"+day+" "+hour+":"+min+":"+sec)
+	if (today < dday) {
+		var gap = dday.getTime() - today.getTime();
+		var day = Math.ceil(gap / (1000*60*60*24));
+		var hour = Math.ceil((gap % (1000*60*60*24)) / (1000*60*60));
+		var min = Math.ceil((gap % (1000*60*60)) / (1000*60));
+		var sec = Math.ceil((gap % (1000*60)) / 1000);
+		
+		$("h6.time-title").html("경매 마감 D-"+day+" "+hour+":"+min+":"+sec)
+	}
+	else {
+		$("h6.time-title").html("경매 마감")
+		$("h2.product-name").html("<del>${product.pdName}</del>")		
+	}
 }
 
-setInterval(remindTime, 1000);
+let timers = setInterval(remindTime, 1000);
 
+/* 제시하기 누를 때 실행되는 메소드 */
 function doAction(){
 	location.href = "${ pageContext.request.contextPath }/suggest.do?no=${product.pdNo}"
 }
 
+/* 버튼 누를 때 조건 확인 */
 function checkSuggest() {
 	
 	if(${ empty userVO }){
 		alert('로그인을 해주세요')
 		return false
 	}
+	
+	if(new Date() >= new Date('${ product.dueDate }')) {
+		alert('이미 마감된 경매입니다')
+		return false
+	}
+	
 	if(${ empty suggestList[0].sugPrice }) {
 		if ($("#suggest").val() <= ${product.startPrice}) {
 			alert('시작가보다 높게 입력해주세요')
@@ -88,6 +101,11 @@ function checkSuggest() {
 	alert('성공적으로 제시되었습니다')
 	return true
 }
+
+/* 페이지 이동 시 interval 실행 */
+$(window).on("beforeunload", function(){
+	clearInterval(timers)
+})
 </script>
 		
 
@@ -322,7 +340,8 @@ function checkSuggest() {
 							<p>${ product.pdSimpleInfo }</p>
 							<hr>
 
-
+							
+							<c:if test="${ userVO.id ne product.id }">
 							<div class="add-to-cart">
 								<form action="${ pageContext.request.contextPath }/suggest.do" method="post" name="inputSuggest" onsubmit="return checkSuggest()">
 								<input type="hidden" name="id" value="${ userVO.id }">
@@ -345,6 +364,7 @@ function checkSuggest() {
 								<button type="submit" class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>제시하기</button>
 								</form>
 							</div>
+							</c:if>
 
 							<ul class="product-btns">
 								<li><a href="#"><i class="fa fa-heart-o"></i> add to Heart</a></li>
@@ -365,12 +385,7 @@ function checkSuggest() {
  								<h6>${ suggest.id } (${ suggest.sugDate })</h6>
  								<hr>
  								</c:forEach>
- 								<!-- 
- 								<h4>1100&#8361 (ad**)</h4>
-								<h6>1000&#8361 (ad**)</h6>
-								 -->
-								 
-								 	
+
 								 </div>
  							</div>
 							<!-- <ul class="product-links">
