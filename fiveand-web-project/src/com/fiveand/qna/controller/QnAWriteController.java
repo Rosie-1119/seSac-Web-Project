@@ -18,14 +18,15 @@ public class QnAWriteController implements Controller {
 		// 요청객체에서 입력한 데이터 추출
 		String title = request.getParameter("title");
 		String id = request.getParameter("id");
+		String content = request.getParameter("content");
 		int no = Integer.parseInt(request.getParameter("no"));
-		String regDate = request.getParameter("regDate");
+		System.out.println("title : "+ title+",id : "+id+", content : "+content+", no : "+no);
 		
 		QnAVO qna = new QnAVO();
 		qna.setTitle(title);
 		qna.setId(id);
-		qna.setRegDate(regDate);
-		qna.setbNo(no);
+		qna.setContent(content);
+		qna.setPdNo(no);
 		
 		QnAService service = new QnAService();
 		

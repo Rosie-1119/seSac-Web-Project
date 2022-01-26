@@ -122,17 +122,34 @@ $(document).ready(function() {
 		$('#qnaWriteForm').css('display', 'none');
 		$(this).css('display', 'block')
 		
+		var title = $('#title').val().trim();
+		var id = '${ userVO.id }';
+		var content = $('#content').val().trim();
+
+		/*console.log(title);
+		
+		var formData = new FormData();
+		formData.append("title",title);
+		formData.append("id",id);
+		formData.append("content",content);
+		console.log(formData);*/
+		
 		$.ajax({
 			type: "post",
 			url: "${ pageContext.request.contextPath }/qna/write.do",
+			data : {
+				title: title,
+				id: id,
+				content: content,
+				no: ${ param.no }
+			},
 			success: function(){
-				//리스트 DB에 삽입(컨트롤러) -> 리스트 출력
-				location.href = "${ pageContext.request.contextPath }/qna/list.do";
+				alert('게시글 등록이 완료 되었습니다.')
+				location.href = "${ pageContext.request.contextPath }/auction/detail.do?no=${param.no}";
+			}, error: function(){
+				alert('실패')
 			}
-			
-				
 		})
-		
 		})
 		})
 
@@ -503,13 +520,13 @@ $(document).ready(function() {
 								<section>
 										<div align="center">
 											<br>
-											<table border="1" class="list">
+											<table border="1" class="list" width="60%">
 												<thead>
 												<tr>
-													<th width="5%">번호</th>
+													<th width="10%">번호</th>
 													<th>제목</th>
 													<th width="10%">글쓴이</th>
-													<th width="10%">등록일</th>
+													<th width="15%">등록일</th>
 												</tr>
 												</thead>
 												<tbody>
@@ -535,6 +552,10 @@ $(document).ready(function() {
 												<!-- <button>새글등록</button> -->
 											</c:if>
 											
+											
+											
+											
+											
 											<!-- 작성폼 -->
 											<div align="center" id="qnaWriteForm">
 												<hr>
@@ -542,15 +563,12 @@ $(document).ready(function() {
 												<hr>
 												<br>
 												<!-- submit이라는 타입을 가진 것을 눌렀을 때 실행되도록 하는 메소드 onsubmit -->
-												<form action="${ pageContext.request.contextPath }/qna/write.do"
-													method="post" name="inputForm" onsubmit="return doWrite()">
-													<input type="hidden" name="writer" value="${ userVO.id }">
 													<table border="1">
 														<tr>
 															<th width=23%>제목</th>
 															<td>
 																<!-- notnull일때 무조건 써야할 때! required --> <input type="text"
-																name="title" required>
+																name="title" id="title" required>
 															</td>
 														</tr>
 														<tr>
@@ -560,13 +578,16 @@ $(document).ready(function() {
 														</tr>
 														<tr>
 															<th>내용</th>
-															<td><textarea name="content" rows="7" cols="60" required>
+															<td><textarea name="content" rows="7" cols="60" id="content" required>
 														</textarea></td>
 														</tr>
 													</table>
-													<br> <input type="submit" value="새글등록" id="writeBtn">
-												</form>
+													<br> <button type="button" id="writeBtn">새글등록</button>
 											</div>
+											
+											
+											
+											
 											
 											<!-- 디테일폼 -->
 											<div align = "center" id="qnaDetailForm">
