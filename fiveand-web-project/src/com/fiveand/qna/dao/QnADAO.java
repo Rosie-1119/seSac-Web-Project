@@ -24,7 +24,7 @@ public class QnADAO {
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select b_no, id, to_char(reg_date, 'yyyy-mm-dd') as reg_date, title ");
+			sql.append("select b_no, id, to_char(reg_date, 'yyyy-mm-dd') as reg_date, title, content ");
 			sql.append(" from ftbl_qna_board where pd_no = ? ");
 			sql.append(" order by reg_date desc ");
 
@@ -35,10 +35,11 @@ public class QnADAO {
 			while (rs.next()) {
 				int bNo = rs.getInt("b_no");
 				String title = rs.getString("title");
+				String content = rs.getString("content");
 				String id = rs.getString("id");
 				String regDate = rs.getString("reg_date");
 
-				QnAVO qna = new QnAVO(bNo, title, id, regDate);
+				QnAVO qna = new QnAVO(bNo, title, content, id, regDate);
 				list.add(qna);
 				System.out.println(list);
 

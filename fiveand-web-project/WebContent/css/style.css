@@ -59,6 +59,14 @@ Table OF Contents
 	padding: 100px;
 }
 
+#qnaWriteForm {
+	display: none;
+}
+
+#qnaDetailForm {
+	display: none;
+}
+
 /*----------------------------*\
 	Typography
 \*----------------------------*/
