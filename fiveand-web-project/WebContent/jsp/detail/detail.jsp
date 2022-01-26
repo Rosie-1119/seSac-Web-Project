@@ -84,7 +84,7 @@ $(document).ready(
 			$('p#deleteProduct').click(function() {
 				let conf = confirm('정말 삭제하시겠습니까?')
 				if (conf) {
-					location.href = "#?no=${product.pdNo}"
+					location.href = "remove.do?no=${product.pdNo}"
 				}
 			})
 		}
