@@ -82,10 +82,6 @@ $(document).ready(function() {
 				//	$('.list').children().eq(0).append(tag)
 					$('.list').children('tbody').append(tag);
 					
-					//작성 폼 display=none
-					
-					
-					
 				}) 
 			}
 		})
@@ -93,27 +89,17 @@ $(document).ready(function() {
 	})
 })
 
+
 $(document).ready(function() {
-	// 문의글 등록할 때!!
+	// 문의
 	$('#goWriteForm').click(function() {
+		
 		$('.list').css('display', 'none');
 		$('#qnaWriteForm').css('display', 'block');
 		$(this).css('display', 'none')
-		/*
-		$.ajax({
-			type: "post",
-			url: "${ pageContext.request.contextPath }/qna/write.do",
-			success: function(){
-				//jquery css의 함수
-				//디스플레이 설정 (기존 리스트 -> none 작성폼 -> !none)
-				
-			}
-			
-				
-		})
-		*/
 		})
 		})
+		
 		
 $(document).ready(function() {
 	// 문의글 등록할 때!!
