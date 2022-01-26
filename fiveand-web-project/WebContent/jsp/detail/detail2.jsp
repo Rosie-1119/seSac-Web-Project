@@ -169,6 +169,7 @@ $(document).ready(function() {
 			},
 			success: function(){
 				alert('게시글 등록이 완료 되었습니다.')
+				
 				location.href = "${ pageContext.request.contextPath }/auction/detail.do?no=${param.no}";
 			}, error: function(){
 				alert('게시글 등록 실패')
