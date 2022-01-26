@@ -55,6 +55,28 @@
 			</c:otherwise>
 	</c:choose>
 
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="breadcrumb-header">마이페이지</h3>
+					<ul class="breadcrumb-tree">
+						<li><a href="${ pageContext.request.contextPath }/main.do">HOME</a></li>
+						<li class="active">My PAGE</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /BREADCRUMB -->
+
+
+
 		<!-- SECTION -->
 		<div class="section">
 			<!-- container -->
@@ -64,16 +86,16 @@
 				
 					<!-- Recent : 최근 등록 순으로 정렬된 페이지(링크해야함) -->
 					<!-- 1.내정보 조회  -->
-					 <a href="${ pageContext.request.contextPath }/myinfo/selectMyInfo.do"> 
+					 <a href="${ pageContext.request.contextPath }/myInfo.do?id=${ userVO.id }"> 
 					<div class="col-md-4 col-xs-6">	
 						<div class="shop">
 						<!-- 이미지 -->
 							<div class="shop-img">
-								<img src="${ pageContext.request.contextPath }/img/shop01.png" alt="">
+								<img src="${ pageContext.request.contextPath }/img/myinfo.jpg" alt="">
 							</div>
 							<div class="shop-body">
 								<h3>MY INFO</h3>
-								<a href="${ pageContext.request.contextPath }/myinfo/selectMyInfo.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="${ pageContext.request.contextPath }/myInfo.do?id=${ userVO.id }" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -82,16 +104,16 @@
 				
 				
 					<!-- 2.내가 올린 경매 조회  -->
-					<a href="${ pageContext.request.contextPath }/myinfo/selectMyAuction.do">
+					<a href="${ pageContext.request.contextPath }/myAcution.do">
 					<div class="col-md-4 col-xs-6">	
 						<div class="shop">
 						<!-- 이미지 -->
 							<div class="shop-img">
-								<img src="${ pageContext.request.contextPath }/img/shop02.png" alt="">
+								<img src="${ pageContext.request.contextPath }/img/myauction.jpg" alt="">
 							</div>
 							<div class="shop-body">
 								<h3>MY AUCTION</h3>
-								<a href="${ pageContext.request.contextPath }/myinfo/selectMyAuction.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="${ pageContext.request.contextPath }/myAcution.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -100,16 +122,16 @@
 
 
 					<!-- 3.내가 누른 하트 조회-->
-					<a href="${ pageContext.request.contextPath }/myinfo/selectMyHeart.do">
+					<a href="${ pageContext.request.contextPath }/myHeart.do">
 					<div class="col-md-4 col-xs-6">	
 						<div class="shop">
 						<!-- 이미지 -->
 							<div class="shop-img">
-								<img src="${ pageContext.request.contextPath }/img/shop03.png" alt="">
+								<img src="${ pageContext.request.contextPath }/img/myheart.png" alt="">
 							</div>
 							<div class="shop-body">
 								<h3>MY HEART</h3>
-								<a href="${ pageContext.request.contextPath }/myinfo/selectMyHeart.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="${ pageContext.request.contextPath }/myHeart.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>

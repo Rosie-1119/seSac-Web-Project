@@ -16,18 +16,30 @@ public class MyPageService {
 	/**
 	 * 내정보 조회
 	 */
-	public List<MemberVO> selectMyInfo() {
-		List<MemberVO> list = myInfoDao.selectMyInfo();
-		return list;
+	public MemberVO selectMyInfo(String id) {
+		MemberVO member = myInfoDao.selectMyInfo(id);
+		return member;
 	}
 	
-	/**
-	 * 내옥션 조회
+
+	/**z
+	 * 내정보 수정
 	 */
-	public List<MemberVO> selectMyAuction() {
-		List<MemberVO> list = myInfoDao.selectMyAuction();
-		return list;
+	public void UpdateMyInfo(String id) {
+		
 	}
+	
+	
+	
+	/**
+	 * 내옥션 조회 ----수정해야함
+	 * 
+	 */
+	  public List<Object> selectMyAuction(String id) { 
+		  List<Object> member2 = myInfoDao.selectMyAuction();
+		  return member2;
+	   }
+	 
 	
 	/**
 	 * 내하트 조회

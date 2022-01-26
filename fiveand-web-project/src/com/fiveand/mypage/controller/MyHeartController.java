@@ -12,18 +12,18 @@ import com.fiveand.controller.Controller;
 import com.fiveand.member.vo.MemberVO;
 import com.fiveand.mypage.service.MyPageService;
 
-public class MyHeartController implements Controller{
+public class MyHeartController implements Controller {
+
 	
-	///전체수정해야함
-	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		MyPageService service = new MyPageService();
-		List<MemberVO> list = service.selectMyInfo();
-		
-		request.setAttribute("list", list);
-		
-		return "/jsp/member/myPageForm.jsp";
-	}
+	  ///전체수정해야함
+	  
+	 @Override public String handleRequest(HttpServletRequest request,
+	 HttpServletResponse response) throws Exception {
+	  
+	 MyPageService service = new MyPageService(); List<MemberVO> list =
+	 service.selectMyHeart();
+	 
+	 request.setAttribute("list", list);
+	 return "/jsp/member/myPageForm.jsp"; }
+
 }
-	
