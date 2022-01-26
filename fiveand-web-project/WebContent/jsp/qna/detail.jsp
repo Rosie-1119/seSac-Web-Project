@@ -33,27 +33,28 @@
 		<hr>
 		<br>
 		<table border="1">
-			<tr>
-				<th width="25%">번호</th>
-				<td>${ board.no }</td>
-			</tr>
-			<tr>
-				<th width="25%">제목</th>
-				<td>${ board.title }</td>
-			</tr>
-			<tr>
-				<th width="25%">작성자</th>
-				<td>${ board.id }</td>
-			</tr>
-			<tr>
-				<th width="25%">내용</th>
-				<td>${ board.content }</td>
-			</tr>
-			<tr>
-				<th width="25%">등록일</th>
-				<td>${ board.regDate }</td>
-			</tr>
-		</table>
+													<tr>
+														<th width="25%">번호</th>
+														<td>${ board.no }</td>
+													</tr>
+													<tr>
+														<th width="25%">제목</th>
+														<td><input type="text" name="title" value="${ board.title }" class="title"></td>
+													</tr>
+													<tr>
+														<th width="25%">작성자</th>
+														<td><input type="text" name="id" value="${ board.id }" class="id"></td>
+													</tr>
+													<tr>
+														<th width="25%">내용</th>
+														<td><textarea name="content" rows="7" cols="60" id="content" value="${ param.content }">
+														</textarea></td>
+													</tr>
+													<tr>
+														<th width="25%">등록일</th>
+														<td><input type="text" name="regDate" value="${ board.regDate }" class="regDate"></td>
+													</tr>
+												</table>
 		<br>
 		<c:if test="${ board.id eq userVO.id }">
 		<button onclick="doAction('U')">수정</button>

@@ -35,10 +35,11 @@ public class QnAVO {
 
 	
 
-	public QnAVO(int bNo, String title, String id, String regDate) {
+	public QnAVO(int bNo, String title, String content, String id, String regDate) {
 		super();
 		this.bNo = bNo;
 		this.title = title;
+		this.content = content;
 		this.id = id;
 		this.regDate = regDate;
 	}
