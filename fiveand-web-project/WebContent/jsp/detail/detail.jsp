@@ -84,7 +84,7 @@ $(document).ready(
 			$('p#deleteProduct').click(function() {
 				let conf = confirm('정말 삭제하시겠습니까?')
 				if (conf) {
-					location.href = "remove.do?no=${product.pdNo}"
+					location.href = "${ pageContext.request.contextPath }/remove.do?no=${product.pdNo}"
 				}
 			})
 		}
@@ -93,7 +93,7 @@ $(document).ready(
 $(document).ready(
 		function(){
 			$('p#modifyProduct').click(function() {
-				location.href = "remove.do?no=${product.pdNo}"
+				location.href = "${ pageContext.request.contextPath }/remove.do?no=${product.pdNo}"
 			})
 		}
 )
