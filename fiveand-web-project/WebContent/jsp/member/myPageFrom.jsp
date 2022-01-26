@@ -10,56 +10,49 @@
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 		<title>MY PAGE</title>
-
+		
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Gothic+A1:200,300,400,500,600" rel="stylesheet">
 		
 		<!-- Bootstrap -->
-<link type="text/css" rel="stylesheet"
-	href="${ pageContext.request.contextPath }/css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="${ pageContext.request.contextPath }/css/bootstrap.min.css" />
 
-<!-- Slick -->
-<link type="text/css" rel="stylesheet"
-	href="${ pageContext.request.contextPath }/css/slick.css" />
-<link type="text/css" rel="stylesheet"
-	href="${ pageContext.request.contextPath }/css/slick-theme.css" />
+		<!-- Slick -->
+		<link type="text/css" rel="stylesheet" href="${ pageContext.request.contextPath }/css/slick.css" />
+		<link type="text/css" rel="stylesheet" href="${ pageContext.request.contextPath }/css/slick-theme.css" />
 
-<!-- nouislider -->
-<link type="text/css" rel="stylesheet"
-	href="${ pageContext.request.contextPath }/css/nouislider.min.css" />
+		<!-- nouislider -->
+		<link type="text/css" rel="stylesheet" href="${ pageContext.request.contextPath }/css/nouislider.min.css" />
 
-<!-- Font Awesome Icon -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/css/font-awesome.min.css">
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/font-awesome.min.css">
 
-<!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet"
-	href="${ pageContext.request.contextPath }/css/style.css" />
-
-
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="${ pageContext.request.contextPath }/css/style.css" />
+		
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
+		<![endif]-->   
     </head>
-	<body>
+    
+    <body>
 		<!-- HEADER -->
 
 	<c:choose>
-		<c:when test="${ userVO.type eq 'A' }">
-			<header>
-				<jsp:include page="/jsp/include/topMenuAdmin.jsp" />
-			</header>	
-	</c:when>
-		<c:otherwise>
-		<header>
-			<jsp:include page="/jsp/include/topMenu.jsp" />
-		</header>
-	</c:otherwise>
+			<c:when test="${ userVO.type eq 'A' }">
+				<header>
+					<jsp:include page="/jsp/include/topMenuAdmin.jsp" />
+				</header>	
+			</c:when>
+			<c:otherwise>
+				<header>
+					<jsp:include page="/jsp/include/topMenu.jsp" />
+				</header>
+			</c:otherwise>
 	</c:choose>
 
 		<!-- SECTION -->
@@ -69,56 +62,61 @@
 				<!-- row -->
 				<div class="row">
 				
-				
-				
 					<!-- Recent : 최근 등록 순으로 정렬된 페이지(링크해야함) -->
-					<div class="col-md-4 col-xs-6">
-						<a href="${ pageContext.request.contextPath }/boardList/recent.do">
+					<!-- 1.내정보 조회  -->
+					 <a href="${ pageContext.request.contextPath }/myinfo/selectMyInfo.do"> 
+					<div class="col-md-4 col-xs-6">	
 						<div class="shop">
 						<!-- 이미지 -->
 							<div class="shop-img">
-								<img src="./img/shop01.png" alt="">
+								<img src="${ pageContext.request.contextPath }/img/shop01.png" alt="">
 							</div>
 							<div class="shop-body">
-								<h3>Recent</h3>
-								<a href="${ pageContext.request.contextPath }/boardList/recent.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<h3>MY INFO</h3>
+								<a href="${ pageContext.request.contextPath }/myinfo/selectMyInfo.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
-						</a>
 					</div>
-					<!-- /Recent -->
-					
-
-
-
-
-					<!-- View : 조회 순으로 정렬된 페이지(링크해야함) -->
-					<div class="col-md-4 col-xs-6">
+					</a>
+					<!--/1.내정보 조회 -->
+				
+				
+					<!-- 2.내가 올린 경매 조회  -->
+					<a href="${ pageContext.request.contextPath }/myinfo/selectMyAuction.do">
+					<div class="col-md-4 col-xs-6">	
 						<div class="shop">
+						<!-- 이미지 -->
 							<div class="shop-img">
-								<img src="./img/shop03.png" alt="">
+								<img src="${ pageContext.request.contextPath }/img/shop02.png" alt="">
 							</div>
 							<div class="shop-body">
-								<h3>View</h3>
-								<a href="#" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<h3>MY AUCTION</h3>
+								<a href="${ pageContext.request.contextPath }/myinfo/selectMyAuction.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
-					<!-- /View -->
+					</a>
+					<!-- /2.내가 올린 경매 조회   -->
 
-					<!-- Hearts : 하트 순으로 정렬된 페이지(링크해야함) -->
-					<div class="col-md-4 col-xs-6">
+
+					<!-- 3.내가 누른 하트 조회-->
+					<a href="${ pageContext.request.contextPath }/myinfo/selectMyHeart.do">
+					<div class="col-md-4 col-xs-6">	
 						<div class="shop">
+						<!-- 이미지 -->
 							<div class="shop-img">
-								<img src="./img/shop02.png" alt="">
+								<img src="${ pageContext.request.contextPath }/img/shop03.png" alt="">
 							</div>
 							<div class="shop-body">
-								<h3>Hearts</h3>
-								<a href="#" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<h3>MY HEART</h3>
+								<a href="${ pageContext.request.contextPath }/myinfo/selectMyHeart.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
-					<!-- /Hearts -->
+					</a>
+					<!-- /3.내가 누른 하트 조회 -->
+			
+			
 				</div>
 				<!-- /row -->
 			</div>
@@ -126,8 +124,7 @@
 		</div>
 		<!-- /SECTION -->
 
-
-		
+<br><br><br><br><br><br>
 		<!-- NEWSLETTER -->
 		<div id="newsletter" class="section">
 			<!-- container -->
@@ -148,15 +145,17 @@
 			<!-- /container -->
 		</div>
 		<!-- /NEWSLETTER -->
+		
 
 
 
+		
 		<!-- FOOTER -->
 		<footer id="footer">
 			<jsp:include page="/jsp/include/footer.jsp" />
 		</footer>
 		<!-- /FOOTER -->
-
+		
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -164,7 +163,6 @@
 		<script src="js/nouislider.min.js"></script>
 		<script src="js/jquery.zoom.min.js"></script>
 		<script src="js/main.js"></script>
-
 	</body>
 </html>
     
