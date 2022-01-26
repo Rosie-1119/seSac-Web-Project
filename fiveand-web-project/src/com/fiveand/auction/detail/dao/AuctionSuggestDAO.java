@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.fiveand.auction.suggest.vo.SuggestListVO;
 import com.fiveand.util.ConnectionFactory;
+import com.fiveand.util.JDBCClose;
 
 public class AuctionSuggestDAO {
 
@@ -47,5 +48,58 @@ public class AuctionSuggestDAO {
 		}
 		
 		return suggestList;
+	}
+	
+	/**
+	 * 제시가 ftbl_auction에 추가 및 ftbl_product에 제시 수 증가
+	 * @param suggest
+	 */
+	public void insertSuggest(SuggestListVO suggest) {
+		Connection conn = null;
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		
+		
+		
+		try {
+			conn = new ConnectionFactory().getConnection();
+			// 오토커밋 종료
+			conn.setAutoCommit(false);
+			
+			// ftbl_auction에 삽입
+			StringBuilder sql = new StringBuilder();
+			sql.append(" insert into ftbl_auction ( ");
+			sql.append(" a_no, pd_no, id, sug_price ) ");
+			sql.append(" values( seq_ftbl_auction_a_no.nextval, ?, ?, ?) ");
+			
+			// 1번 쿼리용 pstmt 실행
+			pstmt1 = conn.prepareStatement(sql.toString());
+			pstmt1.setInt(1, suggest.getPdNo());
+			pstmt1.setString(2, suggest.getId());
+			pstmt1.setInt(3, suggest.getSugPrice());
+			pstmt1.executeUpdate();
+			
+			// sql 초기화
+			sql.setLength(0);
+			
+			sql.append(" update ftbl_product ");
+			sql.append(" set sug_cnt = sug_cnt + 1 ");
+			sql.append(" where pd_no = ? ");
+			
+			//2번 쿼리용 pstmt 실행
+			pstmt2 = conn.prepareStatement(sql.toString());
+			pstmt2.setInt(1, suggest.getPdNo());
+			pstmt2.executeUpdate();
+			
+			conn.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.stmtClose(pstmt1);
+			JDBCClose.stmtClose(pstmt2);
+			JDBCClose.connClose(conn);
+		}
+		
 	}
 }

@@ -26,4 +26,14 @@ public class AuctionProcessService {
 		return suggestList;
 	}
 	
+	/**
+	 * 프로덕트에 최고가 제시함
+	 * @param suggest 제시 내용
+	 */
+	public void addSuggest(SuggestListVO suggest) {
+		
+		auctionSuggestDao.insertSuggest(suggest);
+		
+	}
+	
 }

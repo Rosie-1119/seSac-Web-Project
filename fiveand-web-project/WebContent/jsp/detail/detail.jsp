@@ -61,20 +61,32 @@ function remindTime() {
 
 setInterval(remindTime, 1000);
 
+function doAction(){
+	location.href = "${ pageContext.request.contextPath }/suggest.do?no=${product.pdNo}"
+}
+
 function checkSuggest() {
+	
+	if(${ empty userVO }){
+		alert('로그인을 해주세요')
+		return false
+	}
 	if(${ empty suggestList[0].sugPrice }) {
-		if ($("#suggest").val() <= ${product.startPrice})
+		if ($("#suggest").val() <= ${product.startPrice}) {
 			alert('시작가보다 높게 입력해주세요')
 			return false
+		}
 	}
+	<c:if test="${ not empty suggestList[0].sugPrice }">
 	else {
 		if($("#suggest").val() <= ${ suggestList[0].sugPrice }) {
 			alert('최고 경매가보다 높게 입력해주세요')
 			return false
 		}
 	}
+	</c:if>
 	alert('성공적으로 제시되었습니다')
-	location.href = "${ pageContext.request.contextPath }/suggest.do"
+	return true
 }
 </script>
 		
@@ -312,22 +324,26 @@ function checkSuggest() {
 
 
 							<div class="add-to-cart">
+								<form action="${ pageContext.request.contextPath }/suggest.do" method="post" name="inputSuggest" onsubmit="return checkSuggest()">
+								<input type="hidden" name="id" value="${ userVO.id }">
+								<input type="hidden" name="pdNo" value="${ product.pdNo }">
 								<div class="qty-label">
 									제시가
 									<div class="input-number">
 										<c:choose>
 										<c:when test="${ empty suggestList }">
-										<input id="suggest" type="number" value="${ product.startPrice }">
+										<input id="suggest" type="number" name="sugPrice" value="${ product.startPrice }">
 										</c:when>
 										<c:otherwise>										
-										<input id="suggest" type="number" value="${ suggestList[0].sugPrice }">
+										<input id="suggest" type="number" name="sugPrice" value="${ suggestList[0].sugPrice }">
 										</c:otherwise>	
 										</c:choose>
 										<span class="qty-up">+</span>
 										<span class="qty-down">-</span>
 									</div>
 								</div>
-								<button class="add-to-cart-btn" onclick="checkSuggest()"><i class="fa fa-hand-o-up"></i>제시하기</button>
+								<button type="submit" class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>제시하기</button>
+								</form>
 							</div>
 
 							<ul class="product-btns">
