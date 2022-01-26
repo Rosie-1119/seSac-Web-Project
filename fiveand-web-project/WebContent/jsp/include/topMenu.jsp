@@ -31,9 +31,12 @@
 			<!-- 로그아웃 버튼 -->
 			<li><a href="${ pageContext.request.contextPath }/logout.do"><i
 					class="fa fa-user-o"></i> Logout</a></li>
-								     
+			 <li><a href="${ pageContext.request.contextPath }/myPage.do"><i
+					class="fa fa-user-o"></i> 마이페이지</a></li>
 				</c:otherwise>
 			</c:choose>
+			
+			
 		</ul>
 	</div>
 </div>
