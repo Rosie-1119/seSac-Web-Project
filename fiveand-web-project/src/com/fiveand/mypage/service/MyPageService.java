@@ -22,11 +22,11 @@ public class MyPageService {
 	}
 	
 
-	/**z
-	 * 내정보 수정
+	/**
+	 * 내정보 수정 --
 	 */
-	public void UpdateMyInfo(String id) {
-		
+	public void updateMyInfo(MemberVO member) {
+		myInfoDao.updateMyInfo(member);
 	}
 	
 	

@@ -60,7 +60,12 @@ td {
 </style>
 <script src="${ pageContext.request.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
 <script>
-	
+
+
+	function goUpdateForm(){
+		location.href = "${ pageContext.request.contextPath }/updateMyInfoForm.do?id=${ userVO.id }"
+			}
+		
 </script>
 </head>
 <body>
@@ -117,7 +122,9 @@ td {
 			 <div class="form-group">
 			 	<br><br>
                      
-                        <button class="primary-btn order-submit" id="UpdateInfo">--->내 정보 수정하러 가기</button>
+                        <button class="primary-btn order-submit" id="UpdateInfo" onclick="goUpdateForm()">
+                        --->내 정보 수정하러 가기
+                        </button>	
                      </div>
 			</div>
 			<!-- /row -->

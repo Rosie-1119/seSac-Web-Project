@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fiveand.controller.Controller;
 import com.fiveand.member.vo.MemberVO;
 import com.fiveand.mypage.service.MyPageService;
-
+ 
 
 public class MyInfoController implements Controller {
 

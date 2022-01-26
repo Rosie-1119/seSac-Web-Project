@@ -149,7 +149,8 @@
             <div class="col-md-7">
                <!-- 정보수정 폼 -->
                <form name="SignupForm" method="post"
-                  action="${ pageContext.request.contextPath }/updateInfoProcess.do">
+                  action="${ pageContext.request.contextPath }/updateMyInfo.do">
+                  <input type="hidden" name="id" value="${ param.id }">
                   <div class="billing-details">
                      <div class="section-title">
                      
