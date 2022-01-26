@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,8 +45,7 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-<script
-	src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
 //번호에 해당하는 답글 -> 등록 페이지 뜨이게 하기 -> ㄴ 답글 형태
@@ -54,8 +53,19 @@ $(document).ready(function(){
 	$(document).on('click', '.replyBtn', function() {
 		
 		let bNo = $(this).attr('id')
-		
 		alert(bNo)
+		$('#qnaReplyForm').css('display', 'block');
+		$('.list').css('display', 'none');
+		$('#goWriteForm').css('display', 'none')
+		//display 답글 등록 qnaForm
+		
+		
+		//bNo 게시글 DB에 insert
+		$.ajax({
+			
+		})
+		
+		
 	})
 })
 
@@ -192,7 +202,7 @@ $(document).ready(function() {
 	<header>
 		<jsp:include page="/jsp/include/topMenu.jsp" />
 	</header>
-	
+
 
 	<!-- BREADCRUMB -->
 	<div id="breadcrumb" class="section">
@@ -357,8 +367,8 @@ $(document).ready(function() {
 						<!-- product tab nav -->
 						<ul class="tab-nav">
 							<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-							
-							<li id="qnaList"><a data-toggle="tab" href="#tab3" >QnA</a></li>
+
+							<li id="qnaList"><a data-toggle="tab" href="#tab3">QnA</a></li>
 						</ul>
 						<!-- /product tab nav -->
 
@@ -374,16 +384,16 @@ $(document).ready(function() {
 							</div>
 							<!-- /tab1  -->
 
-							
-							
+
+
 							<!-- tab3  -->
 							<div id="tab3" class="tab-pane fade in">
 
 								<section>
-										<div align="center">
-											<br>
-											<table border="1" class="list" width="60%">
-												<thead>
+									<div align="center">
+										<br>
+										<table border="1" class="list" width="60%">
+											<thead>
 												<tr>
 													<th width="5%">번호</th>
 													<th>제목</th>
@@ -392,130 +402,162 @@ $(document).ready(function() {
 													<th width="15%">등록일</th>
 													<th width="12%">답글</th>
 												</tr>
-												</thead>
-												<tbody>
+											</thead>
+											<tbody>
 
 												<c:forEach items="${ list }" var="board">
 													<tr>
 														<td style="text-align: center;">${ board.no }</td>
-														
+
 														<td><a href="javascript:doAction(${ board.no })">
-															
+
 																<c:out value="${ board.title }" />
 														</a></td>
-														
+
 														<td style="text-align: center;">${ board.writer }</td>
 														<td style="text-align: center;">${ board.regDate }</td>
 													</tr>
 												</c:forEach>
-												</tbody>
+											</tbody>
+										</table>
+										<br>
+										<c:if test="${ not empty userVO }">
+											<button id="goWriteForm">문의하기</button>
+											<!-- <button>새글등록</button> -->
+										</c:if>
+
+
+
+
+
+										<!-- 작성폼 -->
+										<div align="center" id="qnaWriteForm">
+											<hr>
+											<h2>QnA 문의글 등록</h2>
+											<hr>
+											<br>
+											<!-- submit이라는 타입을 가진 것을 눌렀을 때 실행되도록 하는 메소드 onsubmit -->
+											<table border="1">
+												<tr>
+													<th width=23%>제목</th>
+													<td>
+														<!-- notnull일때 무조건 써야할 때! required --> <input type="text"
+														name="title" id="title" required>
+													</td>
+												</tr>
+												<tr>
+													<th>글쓴이</th>
+													<td>${ userVO.id }<!-- <input type="text" name="writer" required> -->
+													</td>
+												</tr>
+												<tr>
+													<th>내용</th>
+													<td><textarea name="content" rows="7" cols="60" id="content" required></textarea></td>
+												</tr>
 											</table>
 											<br>
-											<c:if test="${ not empty userVO }">
-												<button id="goWriteForm">문의하기</button>
-												<!-- <button>새글등록</button> -->
-											</c:if>
-											
-											
-											
-											
-											
-											<!-- 작성폼 -->
-											<div align="center" id="qnaWriteForm">
-												<hr>
-												<h2>QnA 문의글 등록</h2>
-												<hr>
-												<br>
-												<!-- submit이라는 타입을 가진 것을 눌렀을 때 실행되도록 하는 메소드 onsubmit -->
-													<table border="1">
-														<tr>
-															<th width=23%>제목</th>
-															<td>
-																<!-- notnull일때 무조건 써야할 때! required --> <input type="text"
-																name="title" id="title" required>
-															</td>
-														</tr>
-														<tr>
-															<th>글쓴이</th>
-															<td>${ userVO.id } <!-- <input type="text" name="writer" required> -->
-															</td>
-														</tr>
-														<tr>
-															<th>내용</th>
-															<td><textarea name="content" rows="7" cols="60" id="content" required>
-														</textarea></td>
-														</tr>
-													</table>
-													<br> <button type="button" id="writeBtn">새글등록</button>
-											</div>
-											
-											
-											
-											
-											
-											<!-- 디테일폼 -->
-											<div align = "center" id="qnaDetailForm">
-												<hr>
-												<h2>게시판 상세</h2>
-												<hr>
-												<br>
+											<button type="button" id="writeBtn">새글등록</button>
+										</div>
+
+										<div align="center" id="qnaReplyForm">
+											<hr>
+											<h2>QnA 답글 등록</h2>
+											<hr>
+											<br>
+											<!-- submit이라는 타입을 가진 것을 눌렀을 때 실행되도록 하는 메소드 onsubmit -->
+											<form
+												action="${ pageContext.request.contextPath }/qna/write.do"
+												method="post" name="inputForm" onsubmit="return doWrite()">
+												<input type="hidden" name="writer" value="${ userVO.id }">
 												<table border="1">
 													<tr>
-														<th width="25%">번호</th>
-														<td>${ board.no }</td>
+														<th width=23%>제목</th>
+														<td>
+															<!-- notnull일때 무조건 써야할 때! required --> <input type="text"
+															name="title" required>
+														</td>
 													</tr>
 													<tr>
-														<th width="25%" style="padding-top: 15px">제목</th>
-														<td><input type="text" name="title" value="${ board.title }" class="title"></td>
+														<th>글쓴이</th>
+														<td>${ userVO.id }<!-- <input type="text" name="writer" required> -->
+														</td>
 													</tr>
 													<tr>
-														<th width="25%">작성자</th>
-														<td><input type="text" name="id" value="${ board.id }" class="id"></td>
-													</tr>
-													<tr>
-														<th width="25%">내용</th>
-														<td><textarea name="content" rows="7" cols="60" id="content" value="${ param.content }">
-														</textarea></td>
-													</tr>
-													<tr>
-														<th width="25%">등록일</th>
-														<td><input type="text" name="regDate" value="${ board.regDate }" class="regDate"></td>
+														<th>내용</th>
+														<td><textarea name="content" rows="7" cols="60" required></textarea></td>
 													</tr>
 												</table>
-												<br>
-												<c:if test="${ board.id eq userVO.id }">
+												<br> <input type="submit" value="답글등록">
+											</form>
+										</div>
+
+
+
+										<!-- 디테일폼 -->
+										<div align="center" id="qnaDetailForm">
+											<hr>
+											<h2>게시판 상세</h2>
+											<hr>
+											<br>
+											<table border="1">
+												<tr>
+													<th width="25%">번호</th>
+													<td>${ board.no }</td>
+												</tr>
+												<tr>
+													<th width="25%" style="padding-top: 15px">제목</th>
+													<td><input type="text" name="title"
+														value="${ board.title }" class="title"></td>
+												</tr>
+												<tr>
+													<th width="25%">작성자</th>
+													<td><input type="text" name="id" value="${ board.id }"
+														class="id"></td>
+												</tr>
+												<tr>
+													<th width="25%">내용</th>
+													<td><textarea name="content" rows="7" cols="60" id="content" value="${ param.content }"></textarea></td>
+												</tr>
+												<tr>
+													<th width="25%">등록일</th>
+													<td><input type="text" name="regDate"
+														value="${ board.regDate }" class="regDate"></td>
+												</tr>
+											</table>
+											<br>
+											<c:if test="${ board.id eq userVO.id }">
 												<button onclick="doAction('U')">수정</button>
 												<button onclick="doAction('D')">삭제</button>
-												</c:if>
-												<button onclick="doAction('C')">답글</button>
-												<button onclick="doAction('L')">목록</button>
-											</div>
-											
-											
+											</c:if>
+											<button onclick="doAction('C')">답글</button>
+											<button onclick="doAction('L')">목록</button>
 										</div>
+
+
+									</div>
 								</section>
 
 							</div>
 						</div>
 						<!-- /tab3  -->
-						
+
 					</div>
 					<!-- /product tab content  -->
-					
+
 				</div>
 			</div>
 			<!-- /product tab -->
-			
+
 		</div>
 		<!-- /row -->
 	</div>
 	<!-- /container -->
 	</div>
 	<!-- /SECTION -->
-	
-	
-	
-	
+
+
+
+
 
 
 
