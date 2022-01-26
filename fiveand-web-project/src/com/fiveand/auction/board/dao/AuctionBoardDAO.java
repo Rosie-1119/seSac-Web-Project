@@ -194,4 +194,24 @@ public class AuctionBoardDAO {
 		
 		return files;
 	}
+	
+	/**
+	 * 게시물 삭제
+	 */
+	public void removeProduct(int pdNo) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("delete from ftbl_product ");
+		sql.append("where pd_no = ? ");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		){
+			pstmt.setInt(1, pdNo);
+			
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
