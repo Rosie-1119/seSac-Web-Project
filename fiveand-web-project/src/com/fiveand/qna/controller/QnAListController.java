@@ -27,7 +27,7 @@ public class QnAListController implements Controller {
 		*/
 		
 		String json = new Gson().toJson(list);
-		System.out.println(json);
+		//System.out.println(json);
 
 		request.setAttribute("json", json);
 		

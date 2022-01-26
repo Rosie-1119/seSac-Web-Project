@@ -122,23 +122,32 @@ $(document).ready(function() {
 		$('#qnaWriteForm').css('display', 'none');
 		$(this).css('display', 'block')
 		
-		const title = $('#title').val().trim();
-		const id = ${ userVO.id };
-		const content = $('#content').val().trim();
+		var title = $('#title').val().trim();
+		var id = '${ userVO.id }';
+		var content = $('#content').val().trim();
+
+		/*console.log(title);
 		
 		var formData = new FormData();
 		formData.append("title",title);
 		formData.append("id",id);
 		formData.append("content",content);
-		
+		console.log(formData);*/
 		
 		$.ajax({
 			type: "post",
 			url: "${ pageContext.request.contextPath }/qna/write.do",
-			data : formData,
+			data : {
+				title: title,
+				id: id,
+				content: content,
+				no: ${ param.no }
+			},
 			success: function(){
-				location.href = "${ pageContext.request.contextPath }/aution/detail.do?no="+no;
 				alert('게시글 등록이 완료 되었습니다.')
+				location.href = "${ pageContext.request.contextPath }/auction/detail.do?no=${param.no}";
+			}, error: function(){
+				alert('실패')
 			}
 		})
 		})
@@ -554,15 +563,12 @@ $(document).ready(function() {
 												<hr>
 												<br>
 												<!-- submit이라는 타입을 가진 것을 눌렀을 때 실행되도록 하는 메소드 onsubmit -->
-												<form action="${ pageContext.request.contextPath }/qna/write.do"
-													method="post" name="inputForm" onsubmit="return doWrite()">
-													<input type="hidden" name="writer" value="${ userVO.id }">
 													<table border="1">
 														<tr>
 															<th width=23%>제목</th>
 															<td>
 																<!-- notnull일때 무조건 써야할 때! required --> <input type="text"
-																name="title" required>
+																name="title" id="title" required>
 															</td>
 														</tr>
 														<tr>
@@ -576,8 +582,7 @@ $(document).ready(function() {
 														</textarea></td>
 														</tr>
 													</table>
-													<br> <input type="submit" value="새글등록" id="writeBtn">
-												</form>
+													<br> <button type="button" id="writeBtn">새글등록</button>
 											</div>
 											
 											

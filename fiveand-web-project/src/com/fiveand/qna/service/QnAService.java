@@ -39,7 +39,7 @@ public class QnAService {
 	 */
 	public void insertBoard(QnAVO qna) {
 		
-//		dao.insertBoard(qna);
+			dao.insertBoard(qna);
 	}
 	
 	/**
