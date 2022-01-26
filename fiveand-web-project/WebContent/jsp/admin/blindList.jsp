@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<title>전체 회원 목록</title>
+<title>게시물 블라인드 처리 목록</title>
 
 <!-- Google font -->
 <link
@@ -77,10 +77,10 @@ td {
 			<!-- row -->
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="breadcrumb-header">전체 회원 조회</h3>
+					<h3 class="breadcrumb-header">블라인드 게시물 목록</h3>
 					<ul class="breadcrumb-tree">
 						<li><a href="${ pageContext.request.contextPath }/main.do">Home</a></li>
-						<li class="active">전체 회원 조회</li>
+						<li class="active">블라인드 게시물 목록</li>
 					</ul>
 				</div>
 			</div>
@@ -96,27 +96,35 @@ td {
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-			<!-- 전체 회원 목록 -->
+			<!-- 블라인드 게시물 목록 -->
 			<table border="1" class="list">
 				<tr>
-					<th width="20%">ID</th>
-					<th width="20%">이름</th>
-					<th width="25%">전화번호</th>
-					<th width="25%">이메일</th>
-					<th width="10%">경고 수</th>
+					<th>번호</th>
+					<th>회원ID</th>
+					<th>제품명</th>
+					<th>분류</th>
+					<th>희망가</th>
+					<th>시작가</th>
+					<th>등록일</th>
+					<th>마감일</th>
+					<th>삭제일</th>
 				</tr>
 
-				<c:forEach items="${ list }" var="member">
+				<c:forEach items="${ list }" var="blind">
 					<tr>
-						<td>${ member.id }</td>
-						<td>${ member.name }</td>
-						<td>${ member.phone }</td>
-						<td>${ member.email }</td>
-						<td>${ member.warningCnt }</td>
+						<td>${ blind.pdNo }</td>
+						<td>${ blind.id }</td>
+						<td>${ blind.pdName }</td>
+						<td>${ blind.cName }</td>
+						<td>${ blind.hopePrice }</td>
+						<td>${ blind.startPrice }</td>
+						<td>${ blind.regDate }</td>
+						<td>${ blind.dueDate }</td>
+						<td>${ blind.delDate }</td>
 					</tr>
 				</c:forEach>
 			</table>
-			<!-- /전체 회원 목록 -->
+			<!-- /블라인드 게시물 목록 -->
 			
 			</div>
 			<!-- /row -->

@@ -41,6 +41,7 @@
    /* ID중복 체크 */
    $(document).ready(function() {
       $('#id').on('keyup', idCheck)
+      $('#pwd, #pwd2').on('keyup', pwdCheck)
    })
    
    function idCheck() {
@@ -58,29 +59,18 @@
                $('#idCheck').css('color', 'red'),
                $('#idCheck').html('* 사용할 수 없는 ID입니다.'),
                $('#signBtn').attr('type', 'button')
-               /* $('#signBtn').attr({
-            	   'type' : 'button',
-            	   'role' : 'button',
-            	   'data-modal' : 'open-modal'
-               }) */
+               return false;
             } else {
                $('#idCheck').css('color', '#8d99ae'),
                $('#idCheck').html('* 사용할 수 있는 ID입니다.'),
                $('#signBtn').attr('type', 'submit')
-                   /* $('#signBtn').attr({
-                	   'type' : 'submit',
-                	   'role' : 'button',
-                	   'data-modal' : 'open-modal'
-                   }) */
+               return true;
             }
          }
       })
    }
+
    
-   
-   $(document).ready(function() {
-      $('#pwd, #pwd2').on('keyup', pwdCheck)
-   })
    
    function pwdCheck() {
       let pass1 = $('#pwd').val();
@@ -91,25 +81,24 @@
             $('#pwdCheck').css('color', '#8d99ae'),
             $('#pwdCheck').html('* 패스워드가 일치합니다.'),
             $('#signBtn').attr('type', 'submit')
-            /* $('#signBtn').attr({
-                	   'type' : 'submit',
-                	   'role' : 'button',
-                	   'data-modal' : 'open-modal'
-                   }) */
+            return true;
          } else {
             $('#pwdCheck').css('color', 'red'),
             $('#pwdCheck').html('* 패스워드가 일치하지 않습니다.'),
             $('#signBtn').attr('type', 'button')
-            /* $('#signBtn').attr({
-                	   'type' : 'button',
-                	   'role' : 'button',
-                	   'data-modal' : 'open-modal'
-                   }) */
+            return false;
          }
       }
    }
-   
 
+   
+   function checkForm() {
+		if(('#idCheck').val() == '* 사용할 수 없는 ID입니다.')
+			return false
+		if(('#pwdCheck').val() == '* 패스워드가 일치하지 않습니다.')
+			return false
+	}
+	return true;
 
 </script>
 </head>
@@ -129,7 +118,7 @@
             <div class="col-md-12">
                <h3 class="breadcrumb-header">회원가입</h3>
                <ul class="breadcrumb-tree">
-                  <li><a href="#">Home</a></li>
+                  <li><a href="${ pageContext.request.contextPath }/main.do">Home</a></li>
                   <li class="active">SignUp</li>
                </ul>
             </div>
@@ -149,7 +138,7 @@
             <div class="col-md-7">
                <!-- 회원가입 폼 -->
                <form name="SignupForm" method="post"
-                  action="${ pageContext.request.contextPath }/signupProcess.do">
+                  action="${ pageContext.request.contextPath }/signupProcess.do" onsubmit="return checkForm()">
                   <div class="billing-details">
                      <div class="section-title">
                         <h3 class="title">Fiveand 회원가입</h3>
