@@ -95,7 +95,37 @@ public class QnADAO {
 		}
 		return qna;
 	}
+	
+	
+	/**
+	 * 문의글 작성 서비스
+	 */
+	public void insertBoard(QnAVO qna) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		qna = null;
 
+		try {
+			conn = new ConnectionFactory().getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("insert into ftbl_qna_board (b_no, id, pd_no, title, content, ");
+			sql.append(" values() ");
+
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, no);
+
+			pstmt.executeUpdate();
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(pstmt, conn);
+		}
+	}
+	
+	
+	
 	/**
 	 * 문의글 수정 서비스
 	 */
@@ -175,12 +205,16 @@ public class QnADAO {
 	 *  문의글 답글 서비스
 	 */
 	
-	public void reply(QnAVO qna) {
+	/*public void reply(QnAVO qna) {
 		
 		replyStep(groupNo, groupStep);
 		ArrayList<>
 		
-	}
+	}*/
+	
+	
+	
+	
 }
 
 

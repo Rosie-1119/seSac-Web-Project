@@ -49,21 +49,22 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 문의글 등록할 때!!
-		$('button').click(function() {
+		$('#tab3').click(function() {
 			//깅까 auction/detail.do?no= 요거를 받아와야 한담마리야
 			const no = $('no').val();
 			console.log('btn click')
-		$.ajax({
-			type: "post",
-			url: "${ pageContext.request.contextPath }/detail/qnaWriteForm.do",
-			data: {no:no},
-			succes: function(data) {
-				
-			}
+			
+			$.ajax({
+				type: "post",
+				url: "${ pageContext.request.contextPath }/detail/qna.do",
+				data: {no:no},
+				success: function(data) {
+					
+				}
+			})
+		
 		})
-		/* location.href = "${ pageContext.request.contextPath }/detail/qnaWriteForm.do"
-				}) */
-		})
+	}
 
 /* 	function goWriteForm() {
 		location.href = "qnaWriteForm.do"
@@ -412,7 +413,7 @@
 						<ul class="tab-nav">
 							<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
 							
-							<li><a data-toggle="tab" href="#tab3">QnA</a></li>
+							<li><a data-toggle="tab" href="#tab3" >QnA</a></li>
 						</ul>
 						<!-- /product tab nav -->
 

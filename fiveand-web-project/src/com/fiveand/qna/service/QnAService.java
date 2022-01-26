@@ -17,9 +17,10 @@ public class QnAService {
 	/**
 	 *  문의글 조회 서비스
 	 */
-	public List<QnAVO> selectAllBoard() {
+	public List<QnAVO> selectAllBoard(int pdNo) {
+		//request에서 가져오기
 		
-		List<QnAVO> list = dao.selectAllBoard();
+		List<QnAVO> list = dao.selectAllBoard(pdNo);
 		return list;
 	}
 	
