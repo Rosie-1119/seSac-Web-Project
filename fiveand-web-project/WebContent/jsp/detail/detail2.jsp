@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,27 +46,74 @@
 		<![endif]-->
 
 <script
-	src="${ pageContext.request.contextPath }/js/jquery-3.6.0.min.js"></script>
+	src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		// 문의글 등록할 때!!
-		$('#tab3').click(function() {
-			//깅까 auction/detail.do?no= 요거를 받아와야 한담마리야
-			const no = $('no').val();
-			console.log('btn click')
-			
-			$.ajax({
-				type: "post",
-				url: "${ pageContext.request.contextPath }/detail/qna.do",
-				data: {no:no},
-				success: function(data) {
+$(document).ready(function() {
+	// 문의글 등록할 때!!
+	$('#qnaList').click(function() {
+		//깅까 auction/detail.do?no= 요거를 받아와야 한담마리야
+		$.ajax({
+			type: "post",
+			url: "${ pageContext.request.contextPath }/qna/list.do",
+			data: {
+				no: ${param.no}
+			},
+			datatype: "json",
+			success: function(data) {
+				$('.list').children('tbody').empty()
+				let list = JSON.parse(data)
+				list.forEach(function(data) {
+					//console.log(data)
+					let tag = '<tr>';
+					tag += '<td>';
+					tag += data.bNo
+					tag += '</td>';
+					tag += '<td>';
+					tag += data.title
+					tag += '</td>';
+					tag += '<td>';
+					tag += data.id
+					tag += '</td>';
+					tag += '</td>';
+					tag += '<td>';
+					tag += data.regDate
+					tag += '</td>';
+					tag += '</tr>';
+				//	$('.list').children().eq(0).append(tag)
+					$('.list').children('tbody').append(tag);
 					
-				}
-			})
-		
+					//작성 폼 display=none
+					
+					
+					
+				}) 
+			}
 		})
-	}
+	
+	})
+})
 
+$(document).ready(function() {
+	// 문의글 등록할 때!!
+	$('#goWriteForm').click(function() {
+		$('.list').css('display', 'none');
+		$('#qnaWriteForm').css('display', 'block');
+		$(this).css('display', 'none')
+		/*
+		$.ajax({
+			type: "post",
+			url: "${ pageContext.request.contextPath }/qna/write.do",
+			success: function(){
+				//jquery css의 함수
+				//디스플레이 설정 (기존 리스트 -> none 작성폼 -> !none)
+				
+			}
+			
+				
+		})
+		*/
+		})
+		})
 /* 	function goWriteForm() {
 		location.href = "qnaWriteForm.do"
 	} */
@@ -83,7 +131,6 @@
 		</c:otherwise>
 		</c:choose>
 	}
-	
 	
 	
 	
@@ -413,7 +460,7 @@
 						<ul class="tab-nav">
 							<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
 							
-							<li><a data-toggle="tab" href="#tab3" >QnA</a></li>
+							<li id="qnaList"><a data-toggle="tab" href="#tab3" >QnA</a></li>
 						</ul>
 						<!-- /product tab nav -->
 
@@ -438,12 +485,15 @@
 										<div align="center">
 											<br>
 											<table border="1" class="list">
+												<thead>
 												<tr>
 													<th width="5%">번호</th>
 													<th>제목</th>
 													<th width="10%">글쓴이</th>
 													<th width="10%">등록일</th>
 												</tr>
+												</thead>
+												<tbody>
 
 												<c:forEach items="${ list }" var="board">
 													<tr>
@@ -458,12 +508,85 @@
 														<td style="text-align: center;">${ board.regDate }</td>
 													</tr>
 												</c:forEach>
+												</tbody>
 											</table>
 											<br>
 											<c:if test="${ not empty userVO }">
-												<button onclick="goWriteForm()">새글등록</button>
+												<button id="goWriteForm">문의하기</button>
 												<!-- <button>새글등록</button> -->
 											</c:if>
+											
+											<!-- 작성폼 -->
+											<div align="center" id="qnaWriteForm">
+												<hr>
+												<h2>QnA 문의글 등록</h2>
+												<hr>
+												<br>
+												<!-- submit이라는 타입을 가진 것을 눌렀을 때 실행되도록 하는 메소드 onsubmit -->
+												<form action="${ pageContext.request.contextPath }/qna/write.do"
+													method="post" name="inputForm" onsubmit="return doWrite()">
+													<input type="hidden" name="writer" value="${ userVO.id }">
+													<table border="1">
+														<tr>
+															<th width=23%>제목</th>
+															<td>
+																<!-- notnull일때 무조건 써야할 때! required --> <input type="text"
+																name="title" required>
+															</td>
+														</tr>
+														<tr>
+															<th>글쓴이</th>
+															<td>${ userVO.id } <!-- <input type="text" name="writer" required> -->
+															</td>
+														</tr>
+														<tr>
+															<th>내용</th>
+															<td><textarea name="content" rows="7" cols="60" required>
+														</textarea></td>
+														</tr>
+													</table>
+													<br> <input type="submit" value="새글등록">
+												</form>
+											</div>
+											
+											<!-- 디테일폼 -->
+											<div align = "center" id="qnaDetailForm">
+												<hr>
+												<h2>게시판 상세</h2>
+												<hr>
+												<br>
+												<table border="1">
+													<tr>
+														<th width="25%">번호</th>
+														<td>${ board.no }</td>
+													</tr>
+													<tr>
+														<th width="25%">제목</th>
+														<td>${ board.title }</td>
+													</tr>
+													<tr>
+														<th width="25%">작성자</th>
+														<td>${ board.id }</td>
+													</tr>
+													<tr>
+														<th width="25%">내용</th>
+														<td>${ board.content }</td>
+													</tr>
+													<tr>
+														<th width="25%">등록일</th>
+														<td>${ board.regDate }</td>
+													</tr>
+												</table>
+												<br>
+												<c:if test="${ board.id eq userVO.id }">
+												<button onclick="doAction('U')">수정</button>
+												<button onclick="doAction('D')">삭제</button>
+												</c:if>
+												<button onclick="doAction('C')">답글</button>
+												<button onclick="doAction('L')">목록</button>
+											</div>
+											
+											
 										</div>
 								</section>
 
@@ -489,205 +612,10 @@
 	
 	
 
-	<!-- Section -->
-	<div class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-
-				<div class="col-md-12">
-					<div class="section-title text-center">
-						<h3 class="title">Related Products</h3>
-					</div>
-				</div>
-
-				<!-- product -->
-				<div class="col-md-3 col-xs-6">
-					<div class="product">
-						<div class="product-img">
-							<img src="./img/product01.png" alt="">
-							<div class="product-label">
-								<span class="sale">-30%</span>
-							</div>
-						</div>
-						<div class="product-body">
-							<p class="product-category">Category</p>
-							<h3 class="product-name">
-								<a href="#">product name goes here</a>
-							</h3>
-							<h4 class="product-price">
-								$980.00
-								<del class="product-old-price">$990.00</del>
-							</h4>
-							<div class="product-rating"></div>
-							<div class="product-btns">
-								<button class="add-to-wishlist">
-									<i class="fa fa-heart-o"></i><span class="tooltipp">add
-										to wishlist</span>
-								</button>
-								<button class="add-to-compare">
-									<i class="fa fa-exchange"></i><span class="tooltipp">add
-										to compare</span>
-								</button>
-								<button class="quick-view">
-									<i class="fa fa-eye"></i><span class="tooltipp">quick
-										view</span>
-								</button>
-							</div>
-						</div>
-						<div class="add-to-cart">
-							<button class="add-to-cart-btn">
-								<i class="fa fa-shopping-cart"></i> add to cart
-							</button>
-						</div>
-					</div>
-				</div>
-				<!-- /product -->
-
-				<!-- product -->
-				<div class="col-md-3 col-xs-6">
-					<div class="product">
-						<div class="product-img">
-							<img src="./img/product02.png" alt="">
-							<div class="product-label">
-								<span class="new">NEW</span>
-							</div>
-						</div>
-						<div class="product-body">
-							<p class="product-category">Category</p>
-							<h3 class="product-name">
-								<a href="#">product name goes here</a>
-							</h3>
-							<h4 class="product-price">
-								$980.00
-								<del class="product-old-price">$990.00</del>
-							</h4>
-							<div class="product-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-							<div class="product-btns">
-								<button class="add-to-wishlist">
-									<i class="fa fa-heart-o"></i><span class="tooltipp">add
-										to wishlist</span>
-								</button>
-								<button class="add-to-compare">
-									<i class="fa fa-exchange"></i><span class="tooltipp">add
-										to compare</span>
-								</button>
-								<button class="quick-view">
-									<i class="fa fa-eye"></i><span class="tooltipp">quick
-										view</span>
-								</button>
-							</div>
-						</div>
-						<div class="add-to-cart">
-							<button class="add-to-cart-btn">
-								<i class="fa fa-shopping-cart"></i> add to cart
-							</button>
-						</div>
-					</div>
-				</div>
-				<!-- /product -->
-
-				<div class="clearfix visible-sm visible-xs"></div>
-
-				<!-- product -->
-				<div class="col-md-3 col-xs-6">
-					<div class="product">
-						<div class="product-img">
-							<img src="./img/product03.png" alt="">
-						</div>
-						<div class="product-body">
-							<p class="product-category">Category</p>
-							<h3 class="product-name">
-								<a href="#">product name goes here</a>
-							</h3>
-							<h4 class="product-price">
-								$980.00
-								<del class="product-old-price">$990.00</del>
-							</h4>
-							<div class="product-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star-o"></i>
-							</div>
-							<div class="product-btns">
-								<button class="add-to-wishlist">
-									<i class="fa fa-heart-o"></i><span class="tooltipp">add
-										to wishlist</span>
-								</button>
-								<button class="add-to-compare">
-									<i class="fa fa-exchange"></i><span class="tooltipp">add
-										to compare</span>
-								</button>
-								<button class="quick-view">
-									<i class="fa fa-eye"></i><span class="tooltipp">quick
-										view</span>
-								</button>
-							</div>
-						</div>
-						<div class="add-to-cart">
-							<button class="add-to-cart-btn">
-								<i class="fa fa-shopping-cart"></i> add to cart
-							</button>
-						</div>
-					</div>
-				</div>
-				<!-- /product -->
-
-				<!-- product -->
-				<div class="col-md-3 col-xs-6">
-					<div class="product">
-						<div class="product-img">
-							<img src="./img/product04.png" alt="">
-						</div>
-						<div class="product-body">
-							<p class="product-category">Category</p>
-							<h3 class="product-name">
-								<a href="#">product name goes here</a>
-							</h3>
-							<h4 class="product-price">
-								$980.00
-								<del class="product-old-price">$990.00</del>
-							</h4>
-							<div class="product-rating"></div>
-							<div class="product-btns">
-								<button class="add-to-wishlist">
-									<i class="fa fa-heart-o"></i><span class="tooltipp">add
-										to wishlist</span>
-								</button>
-								<button class="add-to-compare">
-									<i class="fa fa-exchange"></i><span class="tooltipp">add
-										to compare</span>
-								</button>
-								<button class="quick-view">
-									<i class="fa fa-eye"></i><span class="tooltipp">quick
-										view</span>
-								</button>
-							</div>
-						</div>
-						<div class="add-to-cart">
-							<button class="add-to-cart-btn">
-								<i class="fa fa-shopping-cart"></i> add to cart
-							</button>
-						</div>
-					</div>
-				</div>
-				<!-- /product -->
-
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /Section -->
 
 
 	<!-- FOOTER -->
-	<footer>
+	<footer id="footer">
 		<jsp:include page="/jsp/include/footer.jsp" />
 	</footer>
 	<!-- /FOOTER -->

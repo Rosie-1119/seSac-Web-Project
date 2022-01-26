@@ -21,6 +21,7 @@ public class QnAService {
 		//request에서 가져오기
 		
 		List<QnAVO> list = dao.selectAllBoard(pdNo);
+		System.out.println(list);
 		return list;
 	}
 	

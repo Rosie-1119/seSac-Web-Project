@@ -25,13 +25,13 @@ public class QnAWriteController implements Controller {
 		qna.setTitle(title);
 		qna.setId(id);
 		qna.setRegDate(regDate);
-		qna.setNo(no);
+		qna.setbNo(no);
 		
 		QnAService service = new QnAService();
 		
 		service.insertBoard(qna);
 		
-		return "redirect:/detail/list.do";
+		return "/jsp/qna/qnaWriteForm.jsp";
 	}
 
 }

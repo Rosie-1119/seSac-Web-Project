@@ -29,17 +29,18 @@ public class QnADAO {
 			sql.append(" order by reg_date desc ");
 
 			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, pdNo);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				int no = rs.getInt("b_no");
+				int bNo = rs.getInt("b_no");
+				String title = rs.getString("title");
 				String id = rs.getString("id");
 				String regDate = rs.getString("reg_date");
-				String title = rs.getString("title");
 
-				QnAVO qna = new QnAVO(no, id, regDate, title);
-				System.out.println(qna);
+				QnAVO qna = new QnAVO(bNo, title, id, regDate);
 				list.add(qna);
+				System.out.println(list);
 
 				// board 하나가 <tr>
 			}
@@ -100,28 +101,31 @@ public class QnADAO {
 	/**
 	 * 문의글 작성 서비스
 	 */
-	public void insertBoard(QnAVO qna) {
+	public synchronized int insertBoard(QnAVO qna) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		qna = null;
+		int result = 0;
 
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("insert into ftbl_qna_board (b_no, id, pd_no, title, content, ");
-			sql.append(" values() ");
-
+			sql.append("insert into ftbl_qna_board ");
+			sql.append(" values(seq_ftbl_qna_board_b_no.nextval, ?, ?, ?, ?, seq_ftbl_qna_board_b_no.currval, 0, 0, 0, sysdate ) ");
+			
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, no);
-
-			pstmt.executeUpdate();
-
+			pstmt.setString(1, qna.getId());
+			pstmt.setInt(2, qna.getPdNo());
+			pstmt.setString(3, qna.getTitle());
+			pstmt.setString(4, qna.getContent());
+			
+			result = pstmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			JDBCClose.close(pstmt, conn);
 		}
+		return result;
 	}
 	
 	
@@ -170,7 +174,7 @@ public class QnADAO {
 			sql.append("where b_no = ? ");
 
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, qna.getNo());
+		//	pstmt.setInt(1, qna.getNo());
 
 			pstmt.executeUpdate();
 

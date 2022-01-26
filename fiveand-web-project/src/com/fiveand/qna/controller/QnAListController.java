@@ -1,5 +1,6 @@
 package com.fiveand.qna.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fiveand.controller.Controller;
 import com.fiveand.qna.service.QnAService;
 import com.fiveand.qna.vo.QnAVO;
+import com.google.gson.Gson;
 
 public class QnAListController implements Controller {
 
@@ -19,10 +21,17 @@ public class QnAListController implements Controller {
 		
 		QnAService service = new QnAService();
 		List<QnAVO> list = service.selectAllBoard(pdNo);
+		/*List<QnAVO> list = new ArrayList<>();
+		list.add(new QnAVO(1, "aaa", "good", "2022-01-26"));
+		list.add(new QnAVO(1, "aaa", "good2", "2022-01-26"));
+		*/
 		
-		request.setAttribute("list", list);
+		String json = new Gson().toJson(list);
+		System.out.println(json);
+
+		request.setAttribute("json", json);
 		
-		return "/jsp/detail/detail2.jsp";
+		return "/jsp/qna/qnaList.jsp";
 		//return "/jsp/detail/detail.jsp";
 		//수정
 	}

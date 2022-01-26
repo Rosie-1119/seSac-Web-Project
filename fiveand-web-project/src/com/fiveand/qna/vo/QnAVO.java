@@ -2,120 +2,154 @@ package com.fiveand.qna.vo;
 
 public class QnAVO {
 
-	private int no;
+	private int bNo;
 	private String id;
 	private int pdNo;
 	private String title;
 	private String content;
 	private String regDate;
-	private int groupNo; // 답글 그룹
-	private int groupStep; // 답글 순서
-	private int indent; // 들여쓰기
+	private int groupId; 
+	private int pos; 
+	private int hit; 	
+	private int depth; 
 
 	public QnAVO() {
 
 	}
 
-	public QnAVO(int no, String id, int pdNo, String title, String content, String regDate, int groupNo, int groupStep,
-			int indent) {
+	
+	public QnAVO(int bNo, String id, int pdNo, String title, String content, String regDate, int groupId, int pos,
+			int hit, int depth) {
 		super();
-		this.no = no;
+		this.bNo = bNo;
 		this.id = id;
 		this.pdNo = pdNo;
 		this.title = title;
 		this.content = content;
 		this.regDate = regDate;
-		this.groupNo = groupNo;
-		this.groupStep = groupStep;
-		this.indent = indent;
+		this.groupId = groupId;
+		this.pos = pos;
+		this.hit = hit;
+		this.depth = depth;
 	}
 
 	
-	public QnAVO(int no, String id, String title, String regDate) {
+
+	public QnAVO(int bNo, String title, String id, String regDate) {
 		super();
-		this.no = no;
-		this.id = id;
+		this.bNo = bNo;
 		this.title = title;
+		this.id = id;
 		this.regDate = regDate;
 	}
 
-	public int getNo() {
-		return no;
+
+	public int getbNo() {
+		return bNo;
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+
+	public void setbNo(int bNo) {
+		this.bNo = bNo;
 	}
+
 
 	public String getId() {
 		return id;
 	}
 
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 
 	public int getPdNo() {
 		return pdNo;
 	}
 
+
 	public void setPdNo(int pdNo) {
 		this.pdNo = pdNo;
 	}
+
 
 	public String getTitle() {
 		return title;
 	}
 
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 
 	public String getContent() {
 		return content;
 	}
 
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 
 	public String getRegDate() {
 		return regDate;
 	}
 
+
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 
-	public int getGroupNo() {
-		return groupNo;
+
+	public int getGroupId() {
+		return groupId;
 	}
 
-	public void setGroupNo(int groupNo) {
-		this.groupNo = groupNo;
+
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
 	}
 
-	public int getGroupStep() {
-		return groupStep;
+
+	public int getPos() {
+		return pos;
 	}
 
-	public void setGroupStep(int groupStep) {
-		this.groupStep = groupStep;
+
+	public void setPos(int pos) {
+		this.pos = pos;
 	}
 
-	public int getIndent() {
-		return indent;
+
+	public int getHit() {
+		return hit;
 	}
 
-	public void setIndent(int indent) {
-		this.indent = indent;
+
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 
+
+	public int getDepth() {
+		return depth;
+	}
+
+
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+
+
+	
 	@Override
 	public String toString() {
-		return "QnAVO [no=" + no + ", id=" + id + ", pdNo=" + pdNo + ", title=" + title + ", content=" + content
-				+ ", regDate=" + regDate + ", groupNo=" + groupNo + ", groupStep=" + groupStep + ", indent=" + indent
-				+ "]";
+		return "QnAVO [bNo=" + bNo + ", title=" + title + ", id=" + id + ", regDate=" + regDate + "]";
 	}
+
+
 
 }
