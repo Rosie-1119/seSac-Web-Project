@@ -34,6 +34,16 @@ public class QnAVO {
 	}
 
 	
+	
+	public QnAVO(int bNo, String id, String title, String regDate, int depth) {
+		super();
+		this.bNo = bNo;
+		this.id = id;
+		this.title = title;
+		this.regDate = regDate;
+		this.depth = depth;
+	}
+
 
 	public QnAVO(int bNo, String title, String content, String id, String regDate) {
 		super();

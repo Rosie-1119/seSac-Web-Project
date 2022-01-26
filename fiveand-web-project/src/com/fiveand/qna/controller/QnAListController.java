@@ -20,20 +20,20 @@ public class QnAListController implements Controller {
 		int pdNo = Integer.parseInt(request.getParameter("no"));
 		
 		QnAService service = new QnAService();
-		List<QnAVO> list = service.selectAllBoard(pdNo);
+		List<QnAVO> list = service.selectPagingBoard(pdNo);
+		int totalCount = service.totalCount();
 		/*List<QnAVO> list = new ArrayList<>();
 		list.add(new QnAVO(1, "aaa", "good", "2022-01-26"));
 		list.add(new QnAVO(1, "aaa", "good2", "2022-01-26"));
 		*/
 		
-		String json = new Gson().toJson(list);
+		//String json = new Gson().toJson(list);
 		//System.out.println(json);
 
-		request.setAttribute("json", json);
+		request.setAttribute("list", list);
+		request.setAttribute("totalCount", totalCount);
 		
-		return "/jsp/qna/qnaList.jsp";
-		//return "/jsp/detail/detail.jsp";
-		//수정
+		return "/jsp/detail/detailQnA.jsp";
 	}
 
 }

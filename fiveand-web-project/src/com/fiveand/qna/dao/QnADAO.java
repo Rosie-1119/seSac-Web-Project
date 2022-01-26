@@ -53,6 +53,80 @@ public class QnADAO {
 
 		return list;
 	}
+	
+	/**
+	 * 페이징 처리된 게시글 조회 메서드
+	 */
+	public List<QnAVO> selectPagingBoard(int pdNo) {
+
+		List<QnAVO> list = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = new ConnectionFactory().getConnection();
+			StringBuilder sql = new StringBuilder();
+			
+			//쿼리문 확인하기
+			sql.append("SELECT * from ( SELECT ROWNUM AS row_num, b_no, id, title, to_char(reg_date, 'yyyy-mm-dd') as reg_date, depth ");
+			sql.append(" FROM ( SELECT * FROM tbl_board ORDER BY group_id DESC, pos ) board ) ");
+			sql.append(" WHERE row_num >= ? AND row_num <= ? ");
+
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, pdNo);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int bNo = rs.getInt("b_no");
+				String title = rs.getString("title");
+				String id = rs.getString("id");
+				String regDate = rs.getString("reg_date");
+				int depth = rs.getInt("depth");
+
+				QnAVO qna = new QnAVO(bNo, title, id, regDate, depth);
+				list.add(qna);
+				System.out.println(list);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(pstmt, conn);
+		}
+
+		return list;
+	}
+	
+	/**
+	 * 전체 게시글 수 조회 메서드
+	 */
+	public int totalCount() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		int totalList = 0; //전체 글 수 
+		
+		try {
+			conn = new ConnectionFactory().getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select count(*) from ( ");
+			sql.append(" 	select * from ftbl_qna_board order by b_no desc)");
+			pstmt = conn.prepareStatement(sql.toString());
+			
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			
+			totalList = rs.getInt(1);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(pstmt, conn);
+		}
+		return totalList;
+	}
+	
+	
 
 	/**
 	 * 문의글 상세 게시글 조회 서비스
