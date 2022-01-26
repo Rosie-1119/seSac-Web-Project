@@ -35,6 +35,6 @@ public class AuctionDetailController implements Controller {
 		request.setAttribute("fileList", fileList);
 		request.setAttribute("suggestList", suggestList);
 		
-		return "/jsp/detail/detail2.jsp?no="+no;
+		return "/jsp/detail/detail.jsp?no="+no;
 	}
 }

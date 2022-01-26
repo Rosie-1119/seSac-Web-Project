@@ -17,7 +17,7 @@ public class RemoveController implements Controller {
 		BlindListService service = new BlindListService();
 		
 		service.insertBlind(pdNo);
-		return null;
+		return "redirect:/main.do";
 	}
 
 }
