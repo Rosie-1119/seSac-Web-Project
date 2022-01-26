@@ -99,8 +99,7 @@ img.ui-datepicker-trigger {
 	<!-- /BREADCRUMB -->
 
 	<!-- SECTION -->
-	<form action="${ pageContext.request.contextPath }/auction/update.do"
-		method="post" enctype="multipart/form-data">
+	<form action="${ pageContext.request.contextPath }/auction/update.do" method="post">
 			<input type="hidden" name="id" value="${ product.id }">
 			<input type="hidden" name="pdNo" value="${ product.pdNo }">
 		<div align="center">
@@ -130,7 +129,6 @@ img.ui-datepicker-trigger {
 								</h4>
 							</div>
 							<hr>
-
 							<div class="product-options">
 								<p>
 									한 줄 소개 : <input type="text" width="100px" name="pdSimpleInfo"
@@ -161,17 +159,18 @@ img.ui-datepicker-trigger {
 										<i class="fa fa-shopping-cart"></i>수정하기
 									</button>
 								</div>
-
 							</div>
+						
+						</div>
 
-					</div>
 					<!-- /Product details -->
-
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /container -->
 			</div>
-			<!-- /row -->
 		</div>
-		<!-- /container -->
-		</div>
+	</form>
 		<!-- /SECTION -->
 
 		<!-- Section -->
@@ -374,7 +373,7 @@ img.ui-datepicker-trigger {
 
 		<!-- FOOTER -->
 		<footer>
-			<jsp:include page="${ pageContext.request.contextPath }/jsp/include/footer.jsp" />
+			<jsp:include page="/jsp/include/footer.jsp" />
 		</footer>
 		<!-- /FOOTER -->
 

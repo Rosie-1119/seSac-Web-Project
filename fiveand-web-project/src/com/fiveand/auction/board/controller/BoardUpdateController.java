@@ -30,6 +30,7 @@ public class BoardUpdateController implements Controller {
 		product.setcNo(cNo);
 		
 		AuctionBoardService service = new AuctionBoardService();
+		service.updateBoard(product);
 		
 		return "redirect:/auction/detail.do?no="+pdNo;
 	}
