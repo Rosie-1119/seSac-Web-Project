@@ -157,39 +157,7 @@ $(document).ready(function(){
 		}
 	})
 })
-/*
-$(document).ready(
-		function(){
-			$('#add-heart').click(function(e){
-				alert('add-heart 누름');
-				if($('#add-heart').children('ul')) {
-					alert('$('#add-heart').children('ul').attr('id')')
-					$.ajax({
-						url: '${ pageContext.request.contextPath }/addHeart.do',
-						type: 'POST',
-						data: {
-							id: '${userVO.id}',
-							pdNo: '${product.pdNo}'
-						},
-						success : function(result){
-							if(result) {
-								$('#add-heart').attr('id', 'cancle-heart')
-								//$('#heart-icon').attr('class', 'fa fa-heart')
-								$('#heart-btn').html('<i id="heart-icon" class="fa fa-heart"></i> cancle to Heart')
-								alert('마음함에 추가되었습니다.')
-							}
-							else {
-								alert('이미 마음을 찍었습니다.')
-							}
-						}, error: function(){
-							alert('ajax 연결 실패')
-						}
-					})
-				}
-			})
-		}
-)
-*/
+
 /* 경매 마감까지 남은 시간 */
 function remindTime() {
 	var today = new Date(); // 현재 시간
@@ -388,14 +356,14 @@ $(window).on("beforeunload", function(){
 						<c:when test="${isHeart eq false}">
 							<div id="heart-btns">
 							<ul class="product-btns" id="add-heart">
-								<li id='heart-btn'><i id="heart-icon" class="fa fa-heart-o"></i> add to Heart</li>
+								<li id="heart-btn"><i id="heart-icon" class="fa fa-heart-o"></i> add to Heart</li>
 							</ul>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div id="heart-btns">
 							<ul class="product-btns" id="cancle-heart">
-								<li id='heart-btn'><i id="heart-icon" class="fa fa-heart"></i> cancle to Heart</li>
+								<li id="heart-btn"><i id="heart-icon" class="fa fa-heart"></i> cancle to Heart</li>
 							</ul>
 							</div>
 						</c:otherwise>
