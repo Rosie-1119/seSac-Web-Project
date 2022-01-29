@@ -67,6 +67,7 @@ p.textBtn {
 </style>
 <script>
 
+/* + 버튼 누르면 금액 추가 */
 $(document).ready(
 		function(){
 			$('span.qty-up').click(function() {
@@ -75,6 +76,7 @@ $(document).ready(
 			})
 		})
 		
+/* - 버튼 누르면 금액 감소 */
 $(document).ready(
 		function(){
 			$('span.qty-down').click(function() {
@@ -84,6 +86,7 @@ $(document).ready(
 		}
 )
 
+/* 삭제하기 눌렀을 때 */
 $(document).ready(
 		function(){
 			$('p#deleteProduct').click(function() {
@@ -95,6 +98,7 @@ $(document).ready(
 		}
 )
 
+/* 수정하기 눌렀을 때 */
 $(document).ready(
 		function(){
 			$('p#modifyProduct').click(function() {
@@ -103,10 +107,90 @@ $(document).ready(
 		}
 )
 
-
+/* 마음 찍기 - ajax로 구현 */
+$(document).ready(function(){
+	$('#heart-btns').click(function(e){
+		// 마음 추가 안되어있을 경우
+		if($('#heart-btns').children('ul').attr('id') == 'add-heart') {
+			$.ajax({
+				url: '${ pageContext.request.contextPath }/addHeart.do',
+				type: 'POST',
+				data: {
+					id: '${userVO.id}',
+					pdNo: '${product.pdNo}'
+				},
+				success : function(result){
+					if(result) {
+						$('#heart-btns').children('ul').attr('id', 'cancle-heart')
+						$('#heart-btn').html('<i id="heart-icon" class="fa fa-heart"></i> cancle to Heart')
+						alert('마음함에 추가되었습니다.')
+					}
+					else {
+						alert('이미 마음을 찍었습니다.')
+					}
+				}, error: function(){
+					alert('ajax 연결 실패')
+				}
+			})
+		}
+		else {
+			$.ajax({
+				url: '${ pageContext.request.contextPath }/cancleHeart.do',
+				type: 'POST',
+				data: {
+					id: '${userVO.id}',
+					pdNo: '${product.pdNo}'
+				},
+				success : function(result){
+					if(result) {
+						$('#heart-btns').children('ul').attr('id', 'add-heart')
+						$('#heart-btn').html('<i id="heart-icon" class="fa fa-heart-o"></i> add to Heart')
+						alert('마음함에서 삭제했습니다.')
+					}
+					else {
+						alert('이미 마음이 없습니다.')
+					}
+				}, error: function(){
+					alert('ajax 연결 실패')
+				}
+			})
+		}
+	})
+})
+/*
+$(document).ready(
+		function(){
+			$('#add-heart').click(function(e){
+				alert('add-heart 누름');
+				if($('#add-heart').children('ul')) {
+					alert('$('#add-heart').children('ul').attr('id')')
+					$.ajax({
+						url: '${ pageContext.request.contextPath }/addHeart.do',
+						type: 'POST',
+						data: {
+							id: '${userVO.id}',
+							pdNo: '${product.pdNo}'
+						},
+						success : function(result){
+							if(result) {
+								$('#add-heart').attr('id', 'cancle-heart')
+								//$('#heart-icon').attr('class', 'fa fa-heart')
+								$('#heart-btn').html('<i id="heart-icon" class="fa fa-heart"></i> cancle to Heart')
+								alert('마음함에 추가되었습니다.')
+							}
+							else {
+								alert('이미 마음을 찍었습니다.')
+							}
+						}, error: function(){
+							alert('ajax 연결 실패')
+						}
+					})
+				}
+			})
+		}
+)
+*/
 /* 경매 마감까지 남은 시간 */
-
-
 function remindTime() {
 	var today = new Date(); // 현재 시간
 	var dday = new Date('${ product.dueDate }');
@@ -299,12 +383,13 @@ $(window).on("beforeunload", function(){
 							</div>
 						</div>
 
-						<ul class="product-btns">
-							<li><a href="#"><i class="fa fa-heart-o"></i> add to
-									Heart</a></li>
+						<div id="heart-btns">
+						<ul class="product-btns" id="add-heart">
+							<li id='heart-btn'><i id="heart-icon" class="fa fa-heart-o"></i> add to Heart</li>
 							<!-- <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>  -->
 						</ul>
-
+						</div>
+						
 						<ul class="product-links">
 							<li>Category :</li>
 							<li><a href="#">${ product.cName }</a></li>
