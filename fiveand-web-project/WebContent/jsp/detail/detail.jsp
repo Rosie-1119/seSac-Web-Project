@@ -382,13 +382,24 @@ $(window).on("beforeunload", function(){
 								</div>
 							</div>
 						</div>
-
-						<div id="heart-btns">
-						<ul class="product-btns" id="add-heart">
-							<li id='heart-btn'><i id="heart-icon" class="fa fa-heart-o"></i> add to Heart</li>
-							<!-- <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>  -->
-						</ul>
-						</div>
+						
+						<!-- 마음 찍기 버튼 -->
+						<c:choose>
+						<c:when test="${isHeart eq false}">
+							<div id="heart-btns">
+							<ul class="product-btns" id="add-heart">
+								<li id='heart-btn'><i id="heart-icon" class="fa fa-heart-o"></i> add to Heart</li>
+							</ul>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div id="heart-btns">
+							<ul class="product-btns" id="cancle-heart">
+								<li id='heart-btn'><i id="heart-icon" class="fa fa-heart"></i> cancle to Heart</li>
+							</ul>
+							</div>
+						</c:otherwise>
+						</c:choose>
 						
 						<ul class="product-links">
 							<li>Category :</li>
@@ -407,12 +418,6 @@ $(window).on("beforeunload", function(){
 
 						</div>
 					</div>
-					<!-- <ul class="product-links">
-								<li>제시 현황:</li><br>
-								<li>1200(ad**) 최고가</li>
-								<li>1100 (ad**)</li>
-								<li>1000 (ad**)</li>
-							</ul>  -->
 					<c:if test="${ userVO.type eq 'A' }">
 						<div class="deletebtn">
 							<p class="textBtn" id="deleteProduct">삭제하기</p>
