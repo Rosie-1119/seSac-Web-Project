@@ -33,6 +33,7 @@ public class MyAuctionController implements Controller {
 
 		request.setAttribute("myList", myList);
 		request.setAttribute("myFileList", myFileList);
+		request.setAttribute("list", list);
 
 		return "/jsp/member/myAuction.jsp";
 	}
