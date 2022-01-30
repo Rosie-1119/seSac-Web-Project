@@ -69,8 +69,10 @@ public class AuctionBoardDAO {
 		sql.append(" no, pd_no, file_ori_name, file_save_name, file_size ) ");
 		sql.append(" values( seq_ftbl_product_file_no.nextval, ?, ?, ?, ?) ");
 
-		try (Connection conn = new ConnectionFactory().getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+		try (
+			Connection conn = new ConnectionFactory().getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+			) {
 			pstmt.setInt(1, fileVO.getPdNo());
 			pstmt.setString(2, fileVO.getFileOriName());
 			pstmt.setString(3, fileVO.getFileSaveName());

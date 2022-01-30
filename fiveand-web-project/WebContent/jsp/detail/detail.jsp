@@ -110,8 +110,13 @@ $(document).ready(
 /* 마음 찍기 - ajax로 구현 */
 $(document).ready(function(){
 	$('#heart-btns').click(function(e){
+		
+		// 로그인을 안했을 경우
+		if ( ${ empty userVO } ) {
+			alert('로그인을 해주시기 바랍니다.')
+		}
 		// 마음 추가 안되어있을 경우
-		if($('#heart-btns').children('ul').attr('id') == 'add-heart') {
+		else if($('#heart-btns').children('ul').attr('id') == 'add-heart' ) {
 			$.ajax({
 				url: '${ pageContext.request.contextPath }/addHeart.do',
 				type: 'POST',
@@ -120,13 +125,14 @@ $(document).ready(function(){
 					pdNo: '${product.pdNo}'
 				},
 				success : function(result){
-					if(result) {
+					if(result.trim() > '0') {
 						$('#heart-btns').children('ul').attr('id', 'cancle-heart')
 						$('#heart-btn').html('<i id="heart-icon" class="fa fa-heart"></i> cancle to Heart')
+						$('#heart-cnt').html(result.trim())
 						alert('마음함에 추가되었습니다.')
 					}
 					else {
-						alert('이미 마음을 찍었습니다.')
+						alert('마음을 찍을 수 없습니다.')
 					}
 				}, error: function(){
 					alert('ajax 연결 실패')
@@ -142,9 +148,10 @@ $(document).ready(function(){
 					pdNo: '${product.pdNo}'
 				},
 				success : function(result){
-					if(result) {
+					if(result.trim() >= '0') {
 						$('#heart-btns').children('ul').attr('id', 'add-heart')
 						$('#heart-btn').html('<i id="heart-icon" class="fa fa-heart-o"></i> add to Heart')
+						$('#heart-cnt').html(result.trim())
 						alert('마음함에서 삭제했습니다.')
 					}
 					else {
@@ -255,19 +262,6 @@ $(window).on("beforeunload", function(){
 									alt="">
 							</div>
 						</c:forEach>
-						<!-- 
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
-							</div>
-							 -->
 					</div>
 				</div>
 				<!-- /Product main img -->
@@ -353,23 +347,27 @@ $(window).on("beforeunload", function(){
 						
 						<!-- 마음 찍기 버튼 -->
 						<c:choose>
-						<c:when test="${isHeart eq false}">
+						<c:when test="${ userVO.id eq product.id }">
+						</c:when>
+						<c:when test="${isHeart eq true}">
 							<div id="heart-btns">
-							<ul class="product-btns" id="add-heart">
-								<li id="heart-btn"><i id="heart-icon" class="fa fa-heart-o"></i> add to Heart</li>
+							<ul class="product-btns" id="cancle-heart">
+								<li id="heart-btn"><i id="heart-icon" class="fa fa-heart"></i> cancle to Heart</li>
 							</ul>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div id="heart-btns">
-							<ul class="product-btns" id="cancle-heart">
-								<li id="heart-btn"><i id="heart-icon" class="fa fa-heart"></i> cancle to Heart</li>
+							<ul class="product-btns" id="add-heart">
+								<li id="heart-btn"><i id="heart-icon" class="fa fa-heart-o"></i> add to Heart</li>
 							</ul>
 							</div>
 						</c:otherwise>
 						</c:choose>
 						
 						<ul class="product-links">
+							<li><i id="heart-icon" class="fa fa-heart"></i></li>
+							<li id="heart-cnt">${ product.likeCnt }</li>
 							<li>Category :</li>
 							<li><a href="#">${ product.cName }</a></li>
 							<!-- <li><a href="#">Accessories</a></li>  -->
