@@ -36,8 +36,8 @@ public class MyPageService {
 	 * 
 	 */
 	  public List<Object> selectMyAuction(String id) { 
-		  List<Object> member2 = myInfoDao.selectMyAuction();
-		  return member2;
+		  List<Object> list = myInfoDao.selectMyAuction(id);
+		  return list;
 	   }
 	 
 	

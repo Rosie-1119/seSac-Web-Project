@@ -104,7 +104,7 @@
 				
 				
 					<!-- 2.내가 올린 경매 조회  -->
-					<a href="${ pageContext.request.contextPath }/myAcution.do">
+					<a href="${ pageContext.request.contextPath }/myAcution.do?id=${ userVO.id }">
 					<div class="col-md-4 col-xs-6">	
 						<div class="shop">
 						<!-- 이미지 -->
@@ -113,7 +113,7 @@
 							</div>
 							<div class="shop-body">
 								<h3>MY AUCTION</h3>
-								<a href="${ pageContext.request.contextPath }/myAcution.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="${ pageContext.request.contextPath }/myAcution.do?id=${ userVO.id }" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
