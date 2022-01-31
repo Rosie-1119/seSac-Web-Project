@@ -89,8 +89,8 @@ public class QnAService {
 	/**
 	 * 댓글 등록 서비스
 	 */
-	public HashMap<String, Object> insertComment(CommentVO com) {
-		HashMap<String, Object> list =dao.insertComment(com);
+	public HashMap<String, Object> insertComment(String id, String comContent, int bNo) {
+		HashMap<String, Object> list =dao.insertComment(id, comContent, bNo);
 		return list;
 	}
 	

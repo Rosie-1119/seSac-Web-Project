@@ -119,11 +119,29 @@ function doWrite(){
 		</c:otherwise>
 	</c:choose>
 	<!-- /HEADER -->
+	<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">QnA Page</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="${ pageContext.request.contextPath }/auction/detail.do?no=${result.pdNo}">List</a></li>
+							<li class="active">Current Page</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /BREADCRUMB -->
+		
 	<section>
-		<div align = "center">
-		<hr>
-		<h2>QnA</h2>
-		<hr>
+		<div align = "left">
+		
 		<br>
 			<table border="1">
 				<tr>
@@ -160,11 +178,10 @@ function doWrite(){
 		</div>
 		
 		<!-- 댓글 기능 -->
-		<div class="input-group" role="group" aria-label="..."
-			style="margin-top: 10px; width: 100%;">
+		<div class="input-group" role="group" style="margin-top: 10px; width: 100%;">
 			<textarea class="form-control" rows="3" id="commentContent"
 				placeholder="댓글을 입력하세요." style="width: 70%;"></textarea>
-			<div class="btn-group btn-group-sm" role="group" aria-label="...">
+			<div class="btn-group btn-group-sm" role="group">
 			
 				<c:if test="${userVO.id == null}">
 					<input type="button" class="btn btn-default" value="댓글 쓰기"
@@ -183,8 +200,7 @@ function doWrite(){
 		</div>
 
 		<!-- Comment 태그 추가 -->
-		<div class="input-group" role="group" aria-label="..."
-			style="margin-top: 10px; width: 100%;">
+		<div class="input-group" role="group" style="margin-top: 10px; width: 100%;">
 			<div id="showComment" style="text-align: center;"></div>
 		</div>
 
@@ -238,7 +254,7 @@ function doWrite(){
 	
 	<script>
     jQuery(document).ready(function() {
-        if(${userVO.id== null}) {
+        if(${userVO.id}== null}) {
             alert("게시판을 이용하시려면 로그인하셔야 합니다.");
             location.href="${ pageContext.request.contextPath }/login.do";
         }
@@ -260,6 +276,7 @@ function doWrite(){
             $.ajax({
                 url:"${ pageContext.request.contextPath }/qna/commentWrite.do",
                 data:{
+                	id:"${userVO.id}",
                     comContent:$("#commentContent").val(),
                     bNo:"${result.bNo}"
                 },

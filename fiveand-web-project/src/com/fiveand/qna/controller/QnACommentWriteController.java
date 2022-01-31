@@ -28,13 +28,13 @@ public class QnACommentWriteController implements Controller {
 		HashMap<String, Object> result = null;
 		
 		
-		CommentVO com = new CommentVO();
-		com.setId(id);
-		com.setComContent(comContent);
-		com.setbNo(bNo);
+//		CommentVO com = new CommentVO();
+//		com.setId(id);
+//		com.setComContent(comContent);
+//		com.setbNo(bNo);
 		
 		QnAService service = new QnAService();
-		result = service.insertComment(com);
+		result = service.insertComment(id, comContent, bNo);
 		
 		JSONObject jsonObj = new JSONObject(result);
 		PrintWriter pw = response.getWriter();

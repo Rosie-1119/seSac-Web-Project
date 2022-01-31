@@ -388,7 +388,7 @@ public class QnADAO {
 	/**
 	 * 댓글 삽입 기능
 	 */
-	public HashMap<String, Object> insertComment(CommentVO com){
+	public HashMap<String, Object> insertComment(String id, String comContent, int bNo){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		HashMap<String, Object> hm = new HashMap<>();
@@ -400,13 +400,12 @@ public class QnADAO {
 			sql.append("  values(seq_ftbl_qna_comment_c_no.nextval, ?, ?, sysdate, ?) ");
 			
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, com.getId());
-			pstmt.setString(2, com.getComContent());
-			pstmt.setInt(3, com.getbNo());
+			pstmt.setString(1, id);
+			pstmt.setString(2, comContent);
+			pstmt.setInt(3, bNo);
 			
 			int result = pstmt.executeUpdate();
-			ArrayList<CommentVO> comments = selectComment(com.getbNo());
-			
+			ArrayList<CommentVO> comments = selectComment(bNo);
 			
 			hm.put("result", result);
 			hm.put("comments", comments);
