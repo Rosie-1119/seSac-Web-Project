@@ -74,5 +74,13 @@ public class QnAService {
 
 //		dao.updateBoard(qna);
 	}
+	
+	/**
+	 * 문의급 답글 등록 서비스
+	 */
+	public void replyBoard(QnAVO qna) {
+		dao.upPos(qna.getGroupId(), qna.getPos());
+		dao.replyboard(qna);
+	}
 
 }

@@ -34,26 +34,31 @@ public class QnAVO {
 	}
 
 	
-	
-	public QnAVO(int bNo, String title, String id, String regDate) {
+	//전체 리스트 조회 생성자
+	public QnAVO(int bNo, String title, String id, String regDate, int depth) {
 		super();
 		this.bNo = bNo;
 		this.title = title;
 		this.id = id;
 		this.regDate = regDate;
+		this.depth = depth;
 	}
 
 
 	
 
-
-	public QnAVO(int bNo, String title, String id, String regDate, String content) {
+	//디테일 조회 생성자
+	public QnAVO(int bNo, int pdNo, String title, String id, String regDate, String content, int groupId, int depth, int pos) {
 		super();
 		this.bNo = bNo;
-		this.title = title;
 		this.id = id;
-		this.regDate = regDate;
+		this.pdNo = pdNo;
+		this.title = title;
 		this.content = content;
+		this.regDate = regDate;
+		this.groupId = groupId;
+		this.pos = pos;
+		this.depth = depth;
 	}
 
 

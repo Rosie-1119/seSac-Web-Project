@@ -464,8 +464,13 @@ function doAction(bNo){
 											varStatus="status">
 											<tr align="center" height="30">
 												<td>${list.bNo}</td>
-												<td align="left">
-													<a href="javascript:doAction(${ list.bNo })">
+												<td align="left" id="title">
+													<c:if test="${list.depth > 0}">
+														<c:forEach var="i" begin="1" end="${list.depth}">
+															<span>&nbsp;&nbsp;&nbsp;</span>
+														</c:forEach>
+													</c:if>
+														<a href="javascript:doAction(${ list.bNo })">
 														<c:out value="${list.title}"></c:out>
 													</a> 
 												</td>
@@ -521,7 +526,7 @@ function doAction(bNo){
 											<tr>
 												<th>내용</th>
 												<td><textarea name="content" rows="7" cols="60"
-														id="content" required></textarea></td>
+														id="content" placeholder="글을 적어 주세요." required></textarea></td>
 											</tr>
 										</table>
 										<br>

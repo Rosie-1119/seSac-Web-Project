@@ -58,32 +58,31 @@
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/css/simple-modal-default.min.css">
 <script
-	src="${ pageContext.request.contextPath }/js/simple-modal.min.js"></script>
-	
+	src="${ pageContext.request.contextPath }/js/simple-modal.min.js">
+</script>
 <script>
-$(document).ready(function(){
-	
-	function doAction(type) {
-		switch(type) {
-			case 'U':
-				location.href="qnaUpdateForm.jsp?no=${ param.no }"
-				break;
-			case 'D':
-				location.href="qnaDeleteForm.jsp?no=${ param.no }"
-				break;
-			case 'R':
-				//location.href="reply.jsp?id=${ param.id }"
-				$('#qnaReplyForm').css('display', 'block');
-				break;
-			case 'L':
-				location.href="${pageContext.request.contextPath}/auction/detail.do?no="+${product.pdNo}
-				break;
-		}
+
+function doAction(type) {
+	switch(type) {
+		case 'U':
+			location.href="${ pageContext.request.contextPath }/qna/updateForm.do?bNo=${result.bNo}"
+			break;
+		case 'D':
+			location.href="${ pageContext.request.contextPath }/qna/delete.do?bNo=${result.bNo}"
+			break;
+		case 'R':
+			//location.href="reply.jsp?id=${ param.id }"
+			$('#qnaReplyForm').css('display', 'block');
+			break;
+		case 'L':
+			location.href="${ pageContext.request.contextPath }/auction/detail.do?no=${result.pdNo}"
+			break;
 	}
-	
-})
+}
+
 	
 </script>
+
 </head>
 <body>
 	<!-- HEADER -->
@@ -134,6 +133,7 @@ $(document).ready(function(){
 			<button onclick="doAction('U')">수정</button>
 			<button onclick="doAction('D')">삭제</button>
 			<button onclick="doAction('R')">답글</button>
+			<!-- request 영역에 등록되어 있는 product.id 를 어떻게 가져오는지? -->
 			
 		</c:if>
 			<button onclick="doAction('L')">목록</button>
@@ -141,32 +141,41 @@ $(document).ready(function(){
 
 		<div align="center" id="qnaReplyForm">
 			<hr>
-			<h2>QnA 답글 등록</h2>
+			<h2>답글 등록</h2>
 			<hr>
 			<br>
 			<!-- submit이라는 타입을 가진 것을 눌렀을 때 실행되도록 하는 메소드 onsubmit -->
-			<form action="${ pageContext.request.contextPath }/qna/write.do"
+			<form action="${ pageContext.request.contextPath }/qna/reply.do"
 				method="post" name="inputForm" onsubmit="return doWrite()">
-				<input type="hidden" name="writer" value="${ userVO.id }">
+				
+				<input type="hidden" name="id" value="${ userVO.id }">
+				<input type="hidden" name="pdNo" value="${ result.pdNo }">
+				<input type="hidden" name="groupId" value="${ result.groupId }"> 
+				<input type="hidden" name="depth" value="${ result.depth }"> 
+				<input type="hidden" name="pos" value="${ result.pos }">
+				
+
 				<table border="1">
 					<tr>
 						<th width=23%>제목</th>
 						<td>
-							<!-- notnull일때 무조건 써야할 때! required --> <input type="text"
-							name="title" required>
+							<input type="text" name="title" value="	&#8627;[Re]&nbsp;" required>
 						</td>
 					</tr>
 					<tr>
 						<th>글쓴이</th>
-						<td>${ userVO.id }<!-- <input type="text" name="writer" required> -->
+						<td>${ userVO.id }
 						</td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea name="content" rows="7" cols="60" required></textarea></td>
+						<td><textarea name="content" rows="10" cols="60" placeholder="글을 적어 주세요." required></textarea></td>
 					</tr>
 				</table>
-				<br> <input type="submit" value="답글등록">
+				<br> 
+				<input type="submit" value="답글등록">
+				<input type="button" value="취소" onclick="doAction('L')">
+					
 			</form>
 		</div>
 	</section>

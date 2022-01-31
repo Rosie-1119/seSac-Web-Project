@@ -25,9 +25,9 @@ public class QnADAO {
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select b_no, id, to_char(reg_date, 'yyyy-mm-dd') as reg_date, title ");
-			sql.append(" from ftbl_qna_board where pd_no = ? ");
-			sql.append(" order by b_no desc ");
+			sql.append("select * ");
+			sql.append(" from (select b_no, id, pd_no, title, reg_date, group_id, depth, pos from ftbl_qna_board ");
+			sql.append(" where pd_no = ? order by group_id desc, depth asc) ftbl_qna_board ");
 
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, pdNo);
@@ -38,12 +38,12 @@ public class QnADAO {
 				String title = rs.getString("title");
 				String id = rs.getString("id");
 				String regDate = rs.getString("reg_date");
+				int depth = rs.getInt("depth");
 
-				QnAVO qna = new QnAVO(bNo, title, id, regDate);
+				QnAVO qna = new QnAVO(bNo, title, id, regDate, depth);
 				list.add(qna);
 				System.out.println(list);
 
-				// board 하나가 <tr>
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,8 +86,9 @@ public class QnADAO {
 				String title = rs.getString("title");
 				String id = rs.getString("id");
 				String regDate = rs.getString("reg_date");
+				int depth = rs.getInt("depth");
 
-				QnAVO qna = new QnAVO(bNo, title, id, regDate);
+				QnAVO qna = new QnAVO(bNo, title, id, regDate, depth);
 				list.add(qna);
 				System.out.println(list);
 
@@ -145,7 +146,7 @@ public class QnADAO {
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select b_no, title, id, to_char(reg_date, 'yyyy-mm-dd') as reg_date , content ");
+			sql.append("select b_no, pd_no, title, id, to_char(reg_date, 'yyyy-mm-dd') as reg_date , content, group_id, depth, pos ");
 			sql.append(" from ftbl_qna_board ");
 			sql.append(" where b_no = ? ");
 
@@ -156,12 +157,16 @@ public class QnADAO {
 
 			if (rs.next()) {
 				int bNo = rs.getInt("b_no");
+				int pdNo = rs.getInt("pd_no");
 				String title = rs.getString("title");
 				String id = rs.getString("id");
 				String regDate = rs.getString("reg_date");
 				String content = rs.getString("content");
+				int groupId = rs.getInt("group_id");
+				int depth = rs.getInt("depth");
+				int pos = rs.getInt("pos");
 				
-				qna = new QnAVO(bNo, title, id, regDate, content);
+				qna = new QnAVO(bNo, pdNo, title, id, regDate, content, groupId, depth, pos);
 				
 			}
 
@@ -263,35 +268,66 @@ public class QnADAO {
 
 	}
 	
+	
 	/**
-	 *  답글 순서 
+	 *  문의글 답글 (pos : 답글의 순서) 설정
 	 */
-	public void replyStep(int groupNo, int groupStep) {
-		
-		String sql = "update ftbl_qna_board set group_step=group_step+1 where groupNo=? and group_step>? ";
-		
-		try (	Connection conn = new ConnectionFactory().getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-			) {
-				pstmt.setInt(1, groupNo);
-				pstmt.setInt(2, groupStep);
-				ResultSet rs = pstmt.executeQuery();
+	public void upPos(int groupId, int pos) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = new ConnectionFactory().getConnection();
+			StringBuilder sql = new StringBuilder();
+			
+			sql.append("update ftbl_qna_board set pos = pos + 1 ");
+			sql.append(" where group_id = ? and pos >= ? ");
+			
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, groupId);
+			pstmt.setInt(2, pos);
+			
+			pstmt.executeUpdate();
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		
+		} finally {
+			JDBCClose.close(pstmt, conn);
+		}
 	}
 	
 	/**
-	 *  문의글 답글 서비스
+	 *  문의글 답글 삽입
 	 */
+	public void replyboard(QnAVO qna) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = new ConnectionFactory().getConnection();
+			StringBuilder sql = new StringBuilder();
+			
+			sql.append("insert into ftbl_qna_board ");
+			sql.append(" values(seq_ftbl_qna_board_b_no.nextval, ?, ?, ?, ?, sysdate, ?, ?, ? ) ");
+			
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, qna.getId());
+			pstmt.setInt(2, qna.getPdNo());
+			pstmt.setString(3, qna.getTitle());
+			pstmt.setString(4, qna.getContent());
+			pstmt.setInt(5, qna.getGroupId());
+			pstmt.setInt(6, qna.getDepth()+1); //깊이 +1
+			pstmt.setInt(7, qna.getPos()+1); //답글 순서 +1
+			
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(pstmt, conn);
+		}
+	}
 	
-	/*public void reply(QnAVO qna) {
-		
-		replyStep(groupNo, groupStep);
-		ArrayList<>
-		
-	}*/
 	
 	
 	
