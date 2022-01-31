@@ -346,7 +346,7 @@ public class QnADAO {
 	/**
 	 * 댓글 리스트 조회 기능
 	 */
-	public ArrayList<CommentVO> selectComment(int boardNo){
+	public ArrayList<CommentVO> selectComment(int boardNo, int comPageSize){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		CommentVO com = null;
@@ -358,9 +358,11 @@ public class QnADAO {
 			sql.append("select * ");
 			sql.append(" from (select id, c_content, c_date, b_no from ftbl_qna_comment ");
 			sql.append(" where b_no = ? order by c_no desc) ftbl_qna_comment ");
+			sql.append(" where rownum between 1 and ? ");
 
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, boardNo);
+			pstmt.setInt(2, comPageSize);
 
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -405,7 +407,7 @@ public class QnADAO {
 			pstmt.setInt(3, bNo);
 			
 			int result = pstmt.executeUpdate();
-			ArrayList<CommentVO> comments = selectComment(bNo);
+			ArrayList<CommentVO> comments = selectComment(bNo, 10);
 			
 			hm.put("result", result);
 			hm.put("comments", comments);

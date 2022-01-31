@@ -97,8 +97,8 @@ public class QnAService {
 	/**
 	 * 댓글 조회 서비스
 	 */
-	public ArrayList<CommentVO> selectComment(int bNo){
-		ArrayList<CommentVO> comList = dao.selectComment(bNo);
+	public ArrayList<CommentVO> selectComment(int bNo, int comPageNum){
+		ArrayList<CommentVO> comList = dao.selectComment(bNo, comPageNum);
 		return comList;
 	}
 	
