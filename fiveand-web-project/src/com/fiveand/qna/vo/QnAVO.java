@@ -12,6 +12,7 @@ public class QnAVO {
 	private int pos; 
 	private int hit; 	
 	private int depth; 
+	private long comCount; //댓글 수 추가
 
 	public QnAVO() {
 
@@ -19,7 +20,7 @@ public class QnAVO {
 
 	
 	public QnAVO(int bNo, String id, int pdNo, String title, String content, String regDate, int groupId, int pos,
-			int hit, int depth) {
+			int hit, int depth, long comCount) {
 		super();
 		this.bNo = bNo;
 		this.id = id;
@@ -31,7 +32,9 @@ public class QnAVO {
 		this.pos = pos;
 		this.hit = hit;
 		this.depth = depth;
+		this.comCount = comCount;
 	}
+
 
 	
 	//전체 리스트 조회 생성자
@@ -163,10 +166,23 @@ public class QnAVO {
 
 
 	
+	public long getComCount() {
+		return comCount;
+	}
+
+
+	public void setComCount(long comCount) {
+		this.comCount = comCount;
+	}
+
+
 	@Override
 	public String toString() {
-		return "QnAVO [bNo=" + bNo + ", title=" + title + ", id=" + id + ", regDate=" + regDate + "]";
+		return "QnAVO [bNo=" + bNo + ", id=" + id + ", pdNo=" + pdNo + ", title=" + title + ", content=" + content
+				+ ", regDate=" + regDate + ", groupId=" + groupId + ", pos=" + pos + ", hit=" + hit + ", depth=" + depth
+				+ ", comCount=" + comCount + "]";
 	}
+
 
 
 

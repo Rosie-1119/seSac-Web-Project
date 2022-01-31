@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import com.fiveand.qna.vo.CommentVO;
 import com.fiveand.qna.vo.PagingVO;
 import com.fiveand.qna.vo.QnAVO;
 import com.fiveand.util.ConnectionFactory;
@@ -134,7 +136,8 @@ public class QnADAO {
 	
 
 	/**
-	 * 문의글 상세 게시글 조회 서비스
+	 * 문의글 상세 게시글 조회 서비스 
+	 * + 총 댓글수 같이 불러오기
 	 */
 
 	public QnAVO detailBoard(int boardNo) {
@@ -168,6 +171,18 @@ public class QnADAO {
 				
 				qna = new QnAVO(bNo, pdNo, title, id, regDate, content, groupId, depth, pos);
 				
+			}
+			
+			StringBuilder sql2 = new StringBuilder();
+			sql2.append(" select count(*) from ftbl_qna_comment ");
+			sql2.append(" where b_no = ? ");
+			
+			pstmt = conn.prepareStatement(sql2.toString());
+			pstmt.setInt(1, boardNo);
+
+			ResultSet rs2 = pstmt.executeQuery();
+			if(rs2.next()) {
+				qna.setComCount(rs.getLong(1));
 			}
 
 		} catch (Exception e) {
@@ -328,6 +343,82 @@ public class QnADAO {
 		}
 	}
 	
+	/**
+	 * 댓글 리스트 조회 기능
+	 */
+	public ArrayList<CommentVO> selectComment(int boardNo){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		CommentVO com = null;
+		ArrayList<CommentVO> comList = new ArrayList<>();
+
+		try {
+			conn = new ConnectionFactory().getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * ");
+			sql.append(" from (select id, c_content, c_date, b_no from ftbl_qna_comment ");
+			sql.append(" where b_no = ? order by c_no desc) ftbl_qna_comment ");
+
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, boardNo);
+
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				String id = rs.getString("id");
+				String comContent = rs.getString("c_content");
+				String comDate = rs.getString("c_date");
+				int bNo = rs.getInt("b_no");
+				
+				com = new CommentVO(id, comContent, comDate, bNo);
+				comList.add(com);
+			}
+			
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(pstmt, conn);
+		}
+		return comList;
+		
+	}
+	
+	/**
+	 * 댓글 삽입 기능
+	 */
+	public HashMap<String, Object> insertComment(CommentVO com){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		HashMap<String, Object> hm = new HashMap<>();
+
+		try {
+			conn = new ConnectionFactory().getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("insert into ftbl_qna_comment ");
+			sql.append("  values(seq_ftbl_qna_comment_c_no.nextval, ?, ?, sysdate, ?) ");
+			
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, com.getId());
+			pstmt.setString(2, com.getComContent());
+			pstmt.setInt(3, com.getbNo());
+			
+			int result = pstmt.executeUpdate();
+			ArrayList<CommentVO> comments = selectComment(com.getbNo());
+			
+			
+			hm.put("result", result);
+			hm.put("comments", comments);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(pstmt, conn);
+		}
+		
+		return hm;
+	}
 	
 	
 	
