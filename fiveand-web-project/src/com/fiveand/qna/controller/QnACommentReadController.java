@@ -18,14 +18,14 @@ public class QnACommentReadController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
-
 		
+		int comPageNum = Integer.parseInt(request.getParameter("comPageNum"));
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
 		
 		ArrayList<CommentVO> comList = null;
 		
 		QnAService service = new QnAService();
-		comList = service.selectComment(bNo);
+		comList = service.selectComment(bNo, comPageNum);
 		
 		JSONArray jsonArr = new JSONArray(comList);
 		PrintWriter pw = response.getWriter();

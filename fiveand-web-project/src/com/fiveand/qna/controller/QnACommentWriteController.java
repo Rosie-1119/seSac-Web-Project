@@ -10,9 +10,6 @@ import org.json.JSONObject;
 
 import com.fiveand.controller.Controller;
 import com.fiveand.qna.service.QnAService;
-import com.fiveand.qna.vo.CommentVO;
-import com.fiveand.qna.vo.QnAVO;
-import com.google.gson.JsonObject;
 
 public class QnACommentWriteController implements Controller {
 
