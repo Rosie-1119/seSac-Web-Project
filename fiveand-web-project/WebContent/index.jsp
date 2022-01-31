@@ -160,7 +160,6 @@
 												<img src="${ pageContext.request.contextPath }/upload/${ recentFileList[i].fileSaveName }" alt="">
 												<div class="product-label">
 													<span class="new">NEW</span>
-													<%  %>
 													<span class="sale">마감 ${ recentList[i].dueDate }</span>
 												</div>
 											</div>

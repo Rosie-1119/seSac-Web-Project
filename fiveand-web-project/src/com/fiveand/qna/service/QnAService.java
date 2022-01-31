@@ -12,14 +12,23 @@ public class QnAService {
 	public QnAService() {
 		dao = new QnADAO();
 	}
+	
+	/**
+	 * 전체 글 조회 서비스(페이징X)
+	 */
+	public List<QnAVO> selectAllBoard(int pdNo){
+		List<QnAVO> list = dao.selectAllBoard(pdNo);
+		
+		return list;
+	}
 
 	/**
 	 * 문의글 조회 서비스
 	 */
-	public List<QnAVO> selectPagingBoard(int pdNo) {
+	public List<QnAVO> selectPagingBoard(int pdNo, int currentPage) {
 		// request에서 가져오기
 
-		List<QnAVO> list = dao.selectPagingBoard(pdNo);
+		List<QnAVO> list = dao.selectPagingBoard(pdNo,currentPage);
 		//System.out.println(list);
 		return list;
 	}
@@ -36,9 +45,9 @@ public class QnAService {
 	/**
 	 * 상세문의글 조회 서비스
 	 */
-	public QnAVO detailBoard(int no) {
+	public QnAVO detailBoard(int bNo) {
 
-		QnAVO qna = dao.detailBoard(no);
+		QnAVO qna = dao.detailBoard(bNo);
 		return qna;
 	}
 

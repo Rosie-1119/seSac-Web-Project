@@ -167,6 +167,66 @@ function checkSuggest() {
 $(window).on("beforeunload", function(){
 	clearInterval(timers)
 })
+
+
+
+
+//document.getElementById("QnABtn")[0].click();
+//현재상태 : detailQnA로딩된 후 다시 QnA를 클릭해야 리스트가 로딩됨
+$(document).ready(function() {
+	$('#QnABtn').get(0).click(); //QnA로딩되면 바로 다시 클릭되도록 trigger 사용하고 싶음..
+})
+
+//문의글 등록 폼 display 조정
+$(document).ready(function() {
+	
+	$('#goWriteForm').click(function() {
+		
+		$('#qnaList').css('display', 'none');
+		$('#qnaWriteForm').css('display', 'block');
+		$('#qnaDetailForm').css('display', 'none');
+		$(this).css('display', 'none')
+		})
+		})
+
+		
+		
+function doWrite(){
+let f = document.inputForm
+
+if(f.title.value == ''){
+	alert('제목을 입력하세요')
+	f.title.focus()
+	return false
+}
+if(f.content.value == ''){
+	alert('내용 입력하세요')
+	f.content.focus()
+	return false
+}
+else{
+	alert('문의글 등록이 완료되었습니다!')
+}
+
+return true
+}
+
+
+function doAction(bNo){
+	
+	<c:choose>
+		<c:when test="${ not empty userVO }">
+			location.href="${ pageContext.request.contextPath }/qna/detail.do?bNo=" + bNo
+			//alert(bNo)
+		</c:when>
+		<c:otherwise>
+			if(confirm('로그인이 필요한 서비스입니다.\n이동하시겠습니까?')){
+				location.href="${ pageContext.request.contextPath }/login.do"
+			}
+		</c:otherwise>
+	</c:choose>
+}
+
 </script>
 
 
@@ -358,7 +418,7 @@ $(window).on("beforeunload", function(){
 						<ul class="tab-nav">
 							<li><a data-toggle="tab" href="#tab1">Description</a></li>
 							<!-- detail에 링크 걸어줘야 함 /qna/list.do-->
-							<li class="active"><a data-toggle="tab" href="#tab3">QnA</a></li>
+							<li class="active"><a id="QnABtn" data-toggle="tab" href="#tab3" >QnA</a></li>
 						</ul>
 						<!-- /product tab nav -->
 
@@ -381,18 +441,17 @@ $(window).on("beforeunload", function(){
 
 								<!-- 게시판 리스트 -->
 								<div align="center">
-
+									<div id="qnaList">
 									<table width="700">
 										<tr>
 											<c:if test="${ not empty userVO }">
-												<td align="right" id="goWriteForm"><a
-													href="/bbs/writeForm.bbs">문의글 작성</a> <%-- <a href="/bbs/writeForm.bbs?pageNum=${pageNum}">글쓰기</a> --%>
+												<td align="right" id="goWriteForm">문의글 작성 <%-- <a href="/bbs/writeForm.bbs?pageNum=${pageNum}">글쓰기</a> --%>
 												</td>
 											</c:if>
 										</tr>
 									</table>
 
-									<table border="1" width="700">
+									<table border="1" width="700" class="list">
 										<tr>
 											<th width="5%">NO</th>
 											<th width="40%">TITLE</th>
@@ -406,28 +465,24 @@ $(window).on("beforeunload", function(){
 											<tr align="center" height="30">
 												<td>${list.bNo}</td>
 												<td align="left">
-												<c:if test="${list.depth > 0}"> &nbsp;&nbsp; <!-- 공백 이미지 -->
-														<%-- <img src="" width="${10 * article.depth}" height="16"> --%>
-													</c:if> <%-- <c:if test="${article.depth == 0}"> <img src="" width="0" height="16"> </c:if> --%>
-													
-													<a href="">${list.title}</a> <!-- URL query의 파라미터들은 request에 자동으로 심어지는 듯 하다. -->
-													<%-- <a href="/bbs/content.bbs?articleNumer=${article.articleNumber}&pageNum=${pageNum}">${article.title}</a> --%>
-													
-													</td>
+													<a href="javascript:doAction(${ list.bNo })">
+														<c:out value="${list.title}"></c:out>
+													</a> 
+												</td>
 												<td>${list.id}</td>
 												<td>${list.regDate}</td>
 											<tr>
 										</c:forEach>
+									</table>
 										
 										<!-- Paging 처리 -->
-										<tr>
+										<!-- <tr>
 											<td colspan="5" align="center" height="40">
 												<%-- ${pageCode} --%>
 											</td>
-										</tr>
-
-
-									</table>
+										</tr> -->
+									</div>
+									<!-- 게시판 리스트 -->
 
 
 
@@ -436,23 +491,31 @@ $(window).on("beforeunload", function(){
 
 
 									<!-- 문의하기 작성 폼 display조정으로 나타내기 -->
-									<div align="center" id="qnaWriteForm">
+									<form action="${ pageContext.request.contextPath }/qna/write.do" 
+										method="post" name="inputForm" onsubmit="return doWrite()">
+										<input type="hidden" name="id" value="${ userVO.id }">
+										<input type="hidden" name="pdNo" value="${ product.pdNo }"> 
+										<input type="hidden" name="pageNum" value="${pageNum}">
+										<input type="hidden" name="depth" value="${article.depth}"> 
+										<input type="hidden" name="pos" value="${article.pos}"> 
+										<input type="hidden" name="groupId" value="${article.groupId}"> 
+										
+										<div align="center" id="qnaWriteForm">
 										<hr>
 										<h2>QnA 문의글 등록</h2>
 										<hr>
 										<br>
-										<!-- submit이라는 타입을 가진 것을 눌렀을 때 실행되도록 하는 메소드 onsubmit -->
 										<table border="1">
 											<tr>
 												<th width=23%>제목</th>
 												<td>
-													<!-- notnull일때 무조건 써야할 때! required --> <input type="text"
+													<input type="text"
 													name="title" id="title" required>
 												</td>
 											</tr>
 											<tr>
-												<th>글쓴이</th>
-												<td>${ userVO.id }<!-- <input type="text" name="writer" required> -->
+												<th>작성자</th>
+												<td>${ userVO.id }
 												</td>
 											</tr>
 											<tr>
@@ -462,12 +525,15 @@ $(window).on("beforeunload", function(){
 											</tr>
 										</table>
 										<br>
-										<button type="button" id="writeBtn">새글등록</button>
+										<input type="submit" value="문의 등록">
+										<input type="reset" value="전체 삭제">
 									</div>
-
-
-
+									</form>
+									<!-- 문의글 등록 -->
+									
+									
 								</div>
+								<!-- 전체 리스트 -->
 							</div>
 							<!-- /tab3  -->
 						</div>

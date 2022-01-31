@@ -12,7 +12,7 @@
 			<div class="container">
 		
 				<ul class="header-links pull-right">
-					<span class="loginStatus">
+					<span>
 					<c:if test="${ not empty userVO }">
 		   				[${ userVO.id }님으로 로그인 중]&emsp;
 					</c:if>

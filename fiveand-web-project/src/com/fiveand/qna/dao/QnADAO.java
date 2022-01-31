@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fiveand.qna.vo.PagingVO;
 import com.fiveand.qna.vo.QnAVO;
 import com.fiveand.util.ConnectionFactory;
 import com.fiveand.util.JDBCClose;
@@ -24,9 +25,9 @@ public class QnADAO {
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select b_no, id, to_char(reg_date, 'yyyy-mm-dd') as reg_date, title, content ");
+			sql.append("select b_no, id, to_char(reg_date, 'yyyy-mm-dd') as reg_date, title ");
 			sql.append(" from ftbl_qna_board where pd_no = ? ");
-			sql.append(" order by reg_date desc ");
+			sql.append(" order by b_no desc ");
 
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, pdNo);
@@ -35,11 +36,10 @@ public class QnADAO {
 			while (rs.next()) {
 				int bNo = rs.getInt("b_no");
 				String title = rs.getString("title");
-				String content = rs.getString("content");
 				String id = rs.getString("id");
 				String regDate = rs.getString("reg_date");
 
-				QnAVO qna = new QnAVO(bNo, title, content, id, regDate);
+				QnAVO qna = new QnAVO(bNo, title, id, regDate);
 				list.add(qna);
 				System.out.println(list);
 
@@ -55,25 +55,30 @@ public class QnADAO {
 	}
 	
 	/**
-	 * 페이징 처리된 게시글 조회 메서드
+	 * 페이징 처리된 게시글 조회 메서드 (답글 처리한 후..)
 	 */
-	public List<QnAVO> selectPagingBoard(int pdNo) {
-
+	public List<QnAVO> selectPagingBoard(int pdNo, int currnetPage) {
+		
+		PagingVO paging = new PagingVO();
 		List<QnAVO> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		
+		int startNum = ((currnetPage - 1) * paging.getDisplayRow()) + 1;
+        int endNum = currnetPage * paging.getDisplayRow();
 
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
 			
-			//쿼리문 확인하기
-			sql.append("SELECT * from ( SELECT ROWNUM AS row_num, b_no, id, title, to_char(reg_date, 'yyyy-mm-dd') as reg_date, depth ");
-			sql.append(" FROM ( SELECT * FROM tbl_board ORDER BY group_id DESC, pos ) board ) ");
-			sql.append(" WHERE row_num >= ? AND row_num <= ? ");
+			sql.append("SELECT * from ( SELECT ROWNUM AS row_num, b_no, id, pd_no, title, to_char(reg_date, 'yyyy-mm-dd') as reg_date, depth ");
+			sql.append(" FROM ( SELECT * FROM ftbl_qna_board ORDER BY group_id DESC ) board ) ");
+			sql.append(" WHERE row_num >= ? AND row_num <= ? and pd_no = ?");
 
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, pdNo);
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
+			pstmt.setInt(3, pdNo);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -81,9 +86,8 @@ public class QnADAO {
 				String title = rs.getString("title");
 				String id = rs.getString("id");
 				String regDate = rs.getString("reg_date");
-				int depth = rs.getInt("depth");
 
-				QnAVO qna = new QnAVO(bNo, title, id, regDate, depth);
+				QnAVO qna = new QnAVO(bNo, title, id, regDate);
 				list.add(qna);
 				System.out.println(list);
 
@@ -132,36 +136,33 @@ public class QnADAO {
 	 * 문의글 상세 게시글 조회 서비스
 	 */
 
-	public QnAVO detailBoard(int no) {
+	public QnAVO detailBoard(int boardNo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		QnAVO qna = null;
-		// 리턴형은 무조건 try문 위에서 선언해줘야 함 -> 마지막에 리턴해주기 위해!
+		
 
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select id, title, content ");
+			sql.append("select b_no, title, id, to_char(reg_date, 'yyyy-mm-dd') as reg_date , content ");
 			sql.append(" from ftbl_qna_board ");
-			sql.append(" where no = ? ");
+			sql.append(" where b_no = ? ");
 
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, no);
+			pstmt.setInt(1, boardNo);
 
 			ResultSet rs = pstmt.executeQuery();
-			// rs 의 개수는 최소0 ~ 최대1 (하지만, 늘렀을 당시 이미 존재하였으므로 0개일 수는 없음 ) => 무조건 1개 조회
-			// if, while 필요 없지만
-			// -> DAO입장에서는 select결과가 없을 수도 있으므로 제어조건 if처리 우선 실행 (안전한 코드 지향)
 
 			if (rs.next()) {
-
-				String id = rs.getString("id");
+				int bNo = rs.getInt("b_no");
 				String title = rs.getString("title");
+				String id = rs.getString("id");
+				String regDate = rs.getString("reg_date");
 				String content = rs.getString("content");
-
-				qna.setId(id);
-				qna.setTitle(title);
-				qna.setContent(content);
+				
+				qna = new QnAVO(bNo, title, id, regDate, content);
+				
 			}
 
 		} catch (Exception e) {
@@ -176,16 +177,16 @@ public class QnADAO {
 	/**
 	 * 문의글 작성 서비스
 	 */
-	public synchronized int insertBoard(QnAVO qna) {
+	public void insertBoard(QnAVO qna) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		int result = 0;
+		//int result = 0;
 
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append("insert into ftbl_qna_board ");
-			sql.append(" values(seq_ftbl_qna_board_b_no.nextval, ?, ?, ?, ?, seq_ftbl_qna_board_b_no.currval, 0, 0, 0, sysdate ) ");
+			sql.append(" values(seq_ftbl_qna_board_b_no.nextval, ?, ?, ?, ?, sysdate, seq_ftbl_qna_board_b_no.currval, 0, 0 ) ");
 			
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, qna.getId());
@@ -193,14 +194,15 @@ public class QnADAO {
 			pstmt.setString(3, qna.getTitle());
 			pstmt.setString(4, qna.getContent());
 			
-			result = pstmt.executeUpdate();
+			//result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			JDBCClose.close(pstmt, conn);
 		}
-		return result;
+		//return result;
 	}
 	
 	

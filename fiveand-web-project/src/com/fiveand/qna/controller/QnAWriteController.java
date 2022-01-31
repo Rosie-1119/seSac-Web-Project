@@ -16,23 +16,23 @@ public class QnAWriteController implements Controller {
 		request.setCharacterEncoding("utf-8");
 
 		// 요청객체에서 입력한 데이터 추출
-		String title = request.getParameter("title");
 		String id = request.getParameter("id");
+		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		int no = Integer.parseInt(request.getParameter("no"));
-		System.out.println("title : "+ title+",id : "+id+", content : "+content+", no : "+no);
+		int pdNo = Integer.parseInt(request.getParameter("pdNo"));
+		System.out.println("title : "+ title+",id : "+id+", content : "+content+", no : "+pdNo);
 		
 		QnAVO qna = new QnAVO();
 		qna.setTitle(title);
 		qna.setId(id);
 		qna.setContent(content);
-		qna.setPdNo(no);
+		qna.setPdNo(pdNo);
 		
 		QnAService service = new QnAService();
 		
 		service.insertBoard(qna);
 		
-		return "/jsp/qna/qnaWriteForm.jsp";
+		return "redirect:/qna/list.do?no=" + pdNo;
 	}
 
 }

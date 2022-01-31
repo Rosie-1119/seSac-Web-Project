@@ -35,23 +35,25 @@ public class QnAVO {
 
 	
 	
-	public QnAVO(int bNo, String id, String title, String regDate, int depth) {
+	public QnAVO(int bNo, String title, String id, String regDate) {
 		super();
 		this.bNo = bNo;
-		this.id = id;
 		this.title = title;
+		this.id = id;
 		this.regDate = regDate;
-		this.depth = depth;
 	}
 
 
-	public QnAVO(int bNo, String title, String content, String id, String regDate) {
+	
+
+
+	public QnAVO(int bNo, String title, String id, String regDate, String content) {
 		super();
 		this.bNo = bNo;
 		this.title = title;
-		this.content = content;
 		this.id = id;
 		this.regDate = regDate;
+		this.content = content;
 	}
 
 
