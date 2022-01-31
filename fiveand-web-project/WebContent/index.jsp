@@ -37,7 +37,9 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-
+	<script>
+		
+	</script>
     </head>
 	<body>
 		<!-- HEADER -->
@@ -158,7 +160,8 @@
 												<img src="${ pageContext.request.contextPath }/upload/${ recentFileList[i].fileSaveName }" alt="">
 												<div class="product-label">
 													<span class="new">NEW</span>
-													<span class="sale">D-7</span>
+													<%  %>
+													<span class="sale">마감 ${ recentList[i].dueDate }</span>
 												</div>
 											</div>
 											

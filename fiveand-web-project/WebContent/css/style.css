@@ -446,6 +446,10 @@ textarea.input {
   color: #FFF;
 }
 
+.header-links span {
+  color: #FFF;
+}
+
 .header-links li a:hover {
   color: #E8001E;
 }
