@@ -26,7 +26,7 @@ public class QnADAO {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append("select * ");
-			sql.append(" from (select b_no, id, pd_no, title, reg_date, group_id, depth, pos from ftbl_qna_board ");
+			sql.append(" from (select b_no, id, pd_no, title, to_char(reg_date, 'yyyy-mm-dd') as reg_date, group_id, depth, pos from ftbl_qna_board ");
 			sql.append(" where pd_no = ? order by group_id desc, depth asc) ftbl_qna_board ");
 
 			pstmt = conn.prepareStatement(sql.toString());

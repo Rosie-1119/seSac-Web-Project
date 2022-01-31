@@ -80,6 +80,26 @@ function doAction(type) {
 	}
 }
 
+function doWrite(){
+	let f = document.inputForm
+
+	if(f.title.value == ''){
+		alert('제목을 입력하세요')
+		f.title.focus()
+		return false
+	}
+	if(f.content.value == ''){
+		alert('내용 입력하세요')
+		f.content.focus()
+		return false
+	}
+	else{
+		alert('답글 등록이 완료되었습니다!')
+	}
+
+	return true
+}
+
 	
 </script>
 
