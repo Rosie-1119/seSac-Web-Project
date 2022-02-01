@@ -76,7 +76,7 @@
 							</div>
 							<div class="shop-body">
 								<h3>Recent</h3>
-								<a href="${ pageContext.request.contextPath }/boardList/recent.do" class="cta-btn">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a href="${ pageContext.request.contextPath }/boardList/recent.do" class="cta-btn">now <i class="fa fa-comments"></i></a>
 							</div>
 						</div>
 					</div>
@@ -92,7 +92,7 @@
 							</div>
 							<div class="shop-body">
 								<h3>View</h3>
-								<a class="cta-btn" href="${ pageContext.request.contextPath }/boardList/view.do">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a class="cta-btn" href="${ pageContext.request.contextPath }/boardList/view.do">now <i class="fa fa-mouse-pointer"></i></a>
 							</div>
 						</div>
 					</div>
@@ -108,7 +108,7 @@
 							</div>
 							<div class="shop-body">
 								<h3>Hearts</h3>
-								<a class="cta-btn" href="${ pageContext.request.contextPath }/boardList/heart.do">now <i class="fa fa-arrow-circle-right"></i></a>
+								<a class="cta-btn" href="${ pageContext.request.contextPath }/boardList/heart.do">now <i class="fa fa-heart"></i></a>
 							</div>
 						</div>
 					</div>
