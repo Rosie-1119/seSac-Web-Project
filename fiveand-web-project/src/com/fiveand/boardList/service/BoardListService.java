@@ -36,6 +36,25 @@ private BoardListDAO ListDao;
 		return list;
 	}
 	
+	/**
+	 * 2-2. 조회수 순으로 페이징 처리한 제품 정보 리스트 가져오기
+	 */
+	public List<ProductVO> pagingViewList(int currentPage) {
+		
+		List<ProductVO> list = ListDao.pagingViewList(currentPage);
+		
+		return list;
+	}
+	
+	/**
+	 * 2-3. 하트 순으로 페이징 처리한 제품 정보 리스트 가져오기
+	 */
+	public List<ProductVO> pagingHeartList(int currentPage) {
+		
+		List<ProductVO> list = ListDao.pagingHeartList(currentPage);
+		
+		return list;
+	}
 	
 	
 	

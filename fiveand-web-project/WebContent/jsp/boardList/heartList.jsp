@@ -70,65 +70,42 @@
 				<!-- row -->
 				<div class="row">
 					<!-- STORE -->
-					<div id="store" class="col-md-9">
-					
-						<!-- store top filter -->
-						<div class="store-filter clearfix">
-							<div class="store-sort">
-								<label>
-									Sort By:
-									<select class="input-select">
-										<option value="0">Popular</option>
-										<option value="1">Position</option>
-									</select>
-								</label>
-
-								<label>
-									Show:
-									<select class="input-select">
-										<option value="0">20</option>
-										<option value="1">50</option>
-									</select>
-								</label>
-							</div>
-							<ul class="store-grid">
-								<li class="active"><i class="fa fa-th"></i></li>
-								<li><a href="#"><i class="fa fa-th-list"></i></a></li>
-							</ul>
+					<div id="store" class="col-md-11">
+						<div align="left">
+							TOTAL PRODUCTS : ${ pagingVO.totalCount }<br>
 						</div>
-						<!-- /store top filter -->
 
 						<!-- store products -->
 						<div class="row">
 						
 						
 							<!-- product -->
-							<c:forEach var="i" begin="0" end="9">
-							<div class="col-md-4 col-xs-6">
+							<c:forEach items="${ heartList }" var="heartList" varStatus="status">
+							<div class="col-md-4 col-xs-7">
 							
-								<div class="product">
+								<div class="product" style="width: 357.5px; height: 509.77px; padding: 10px;">
 									<div class="product-img">
 										<%-- 이미지 링크하기 --%>
-										<img src="${ pageContext.request.contextPath }/upload/${ heartFileList[i].fileSaveName }" alt="">
+										<img src="${ pageContext.request.contextPath }/upload/${ heartList.fileSaveName }" alt="">
 										<div class="product-label">
 											<%-- 마감일까지의 차이 등록 --%>
-											<span class="sale">마감 ${ heartList[i].dueDate }</span>
+											<span class="sale">마감 ${ heartList.dueDate }</span>
 											<%-- 등록일 기준 오늘 등록한 제품 NEW 
 											<span class="new">NEW</span>--%>
 											
 										</div>
 									</div>
 									<div class="product-body">
-										<p class="product-category">${ heartList[i].cName }</p>
-										<h3 class="product-name"><a href="#">${ heartList[i].pdName }</a></h3>
-										<h4 class="product-price">시작가 ${ heartList[i].startPrice }</h4>
+										<p class="product-category">${ heartList.cName }</p>
+										<h3 class="product-name"><a href="#">${ heartList.pdName }</a></h3>
+										<h4 class="product-price">시작가 ${ heartList.startPrice }</h4>
 										
 										<div class="product-btns">
 											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to My Heart</span></button>
 											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 										</div>
 									</div>
-									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ heartList[i].pdNo }">
+									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ heartList.pdNo }">
 										<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button></a>
 									</div>
 									
@@ -151,13 +128,35 @@
 						
 						<!-- 페이징 기능 -->
 						<div class="store-filter clearfix">
-							<span class="store-qty">Showing 20-100 products</span>
+							<span class="store-qty">Showing products</span>
+							
 							<ul class="store-pagination">
-								<li class="active">1</li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+								<c:if test="${ page <= 1 }">
+									<li><i class="fa fa-angle-left"></i></li>
+								</c:if>
+								<c:if test="${ page > 1 }">
+									<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
+								</c:if>
+								
+								<c:forEach var="item" varStatus="status" begin="${ beginPage }" end="${ endPage }" step="1">
+									<c:if test="${ page == item }">
+										<li>${ item }</li>
+									</c:if>
+									<c:if test="${ page != item }">
+					 					<li><a href="${ pageContext.request.contextPath }/boardList/heart.do?page=${ item }">${ item }</a></li>
+			               			</c:if>
+									<!-- <li class="active">1</li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li> -->
+								</c:forEach>
+								
+								<c:if test="${ page >= totalPage }">
+									<li><i class="fa fa-angle-right"></i></li>
+								</c:if>
+								<c:if test="${ page < totalPage }">
+			 						<li><a href="${ pageContext.request.contextPath }/boardList/heart.do?page=${ page + 1 }"><i class="fa fa-angle-right"></i></a></li>
+			           			</c:if>
+								
 							</ul>
 						</div>
 						<!-- /store bottom filter -->
