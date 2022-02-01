@@ -270,148 +270,52 @@
 				<!-- row -->
 				<div class="row">
 					
-					<!-- 당일 기준으로 가장 많이 제시를 받은 제품 탑5를 정렬하기
-						 tbl_auction 에 저장되어 있음  ----------------- 테이블 신규 생성(미리 만들어놓기)
-						 D-3(디데이), 제품 정보 동일하게 적용하기-->
+					<!-- 당일로부터 일주일 기준으로 가장 많이 제시를 받은 제품 탑5를 정렬-->
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<h3 class="title">Top suggested</h3>
+							<h3 class="title"><i class="fa fa-thumbs-o-up"></i>&nbsp;Top suggested</h3>
 						</div>
 					</div>
 					<!-- /section title -->
-
 					<!-- Products tab & slick -->
+					
 					<div class="col-md-12">
 						<div class="row">
 							<div class="products-tabs">
 								<!-- tab -->
-								<div id="tab2" class="tab-pane fade in active">
+								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-2">
-										<!-- product -->
+									
+									
+									<c:forEach items="${ sugList }" var="sugList">
+									<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="./img/product06.png" alt="">
+												<img src="${ pageContext.request.contextPath }/upload/${ sugList.fileSaveName }" alt="">
 												<div class="product-label">
-													<span class="sale">D-3</span>
+													<span class="sale">마감 ${ sugList.dueDate }</span>
 												</div>
 											</div>
+											
 											<div class="product-body">
-												<p class="product-category">카테고리</p>
-												<h3 class="product-name"><a href="#">물품4</a></h3>
-												<h4 class="product-price">시작가 15,000원</del></h4>
+													<p class="product-category">${ sugList.cName }</p>
+													<h3 class="product-name"><a href="#">${ sugList.pdName }</a></h3>
+													<h4 class="product-price">시작가 ${ sugList.startPrice }</h4>
 												
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to My Heart</span></button>
 						
 													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 												</div>
 											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button>
+											<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ sugList.pdNo }">
+												<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button></a>
 											</div>
 										</div>
-										<!-- /product -->
+									</c:forEach>
+								<!-- /product -->
 
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="./img/product07.png" alt="">
-												<div class="product-label">
-													<span class="sale">D-6</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">카테고리</p>
-												<h3 class="product-name"><a href="#">물품7</a></h3>
-												<h4 class="product-price">시작가 15,000원</del></h4>
-												
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-						
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="./img/product08.png" alt="">
-												<div class="product-label">
-													<span class="sale">D-4</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">카테고리</p>
-												<h3 class="product-name"><a href="#">물품8</a></h3>
-												<h4 class="product-price">시작가 15,000원</del></h4>
-												
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-						
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="./img/product09.png" alt="">
-												<div class="product-label">
-													<span class="sale">D-1</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">카테고리</p>
-												<h3 class="product-name"><a href="#">물품9</a></h3>
-												<h4 class="product-price">시작가 15,000원</del></h4>
-												
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-						
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="./img/product06.png" alt="">
-												<div class="product-label">
-													<span class="sale">D-3</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">카테고리</p>
-												<h3 class="product-name"><a href="#">물품4</a></h3>
-												<h4 class="product-price">시작가 15,000원</del></h4>
-												
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-						
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button>
-											</div>
-										</div>
-										<!-- /product -->
 									</div>
 									<div id="slick-nav-2" class="products-slick-nav"></div>
 								</div>
@@ -419,7 +323,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- /Products tab & slick -->
+					<!-- Products tab & slick -->
 				</div>
 				<!-- /row -->
 			</div>

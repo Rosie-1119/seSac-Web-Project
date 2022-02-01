@@ -29,8 +29,8 @@ public class MainBoardListController implements Controller{
 			recentFileList[j] = (ProductFileVO)list.get(i+1);
 		}
 		
-		System.out.println(Arrays.toString(recentList));
-		System.out.println(Arrays.toString(recentFileList));
+		//System.out.println(Arrays.toString(recentList));
+		//System.out.println(Arrays.toString(recentFileList));
 		
 		//[ProductVO [pdNo=0, id=null, pdName=입력테스트2, hopePrice=0, startPrice=1200, regDate=null, dueDate=2022-01-27 00:00:00, pdSimpleInfo=null, pdInfo=null, cNo=1, viewCnt=0, likeCnt=0, sugCnt=0], 
 		//ProductVO [pdNo=0, id=null, pdName=dsf, hopePrice=0, startPrice=1000, regDate=null, dueDate=2022-01-26 00:00:00, pdSimpleInfo=null, pdInfo=null, cNo=3, viewCnt=0, likeCnt=0, sugCnt=0], 
@@ -47,6 +47,12 @@ public class MainBoardListController implements Controller{
 		request.setAttribute("recentList", recentList);
 		request.setAttribute("recentFileList", recentFileList);
 
+		
+		//TOP SUGGESTED
+		List<ProductVO> sugList = service.selectTopSugList();
+		request.setAttribute("sugList", sugList);
+		
+		
 		return "/main.jsp";
 	}
 }

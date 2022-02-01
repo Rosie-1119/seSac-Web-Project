@@ -30,6 +30,15 @@ public class MainBoardListService {
 		return list;
 	}
 	
+	/**
+	 * 
+	 */
+	public List<ProductVO> selectTopSugList() {
+		
+		List<ProductVO> sugList = ListDao.selectTopSugList();
+		
+		return sugList;
+	}
 	
 	
 }

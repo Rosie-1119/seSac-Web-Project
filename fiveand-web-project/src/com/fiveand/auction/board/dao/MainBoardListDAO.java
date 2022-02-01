@@ -15,7 +15,7 @@ import com.fiveand.util.ConnectionFactory;
 public class MainBoardListDAO {
 	
 	/**
-	 *  ftbl_product 에서 최근 5개 제품 조회
+	 *  1. 최근 5개 제품 조회 (신규 경매)
 	 *  (productVO 셋팅)
 	 */
 	public List<Object> selectRecentList(){
@@ -62,6 +62,49 @@ public class MainBoardListDAO {
 		}
 		
 		return list;
+	}
+	
+	/**
+	 * 2. 제일 많이 제시받은 경매 5개 리스트 조회
+	 * @return List<ProductVO>
+	 */
+	public List<ProductVO> selectTopSugList(){
+		
+		List<ProductVO> sugList = new ArrayList<ProductVO>();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select * from(   ");
+		sql.append("  select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name ");
+		sql.append("  from ftbl_product p, ( select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from ftbl_product_file) f, ftbl_category c  ");
+		sql.append("  , (select count(*) as sug_cnt, pd_no from (select * from ftbl_auction where  sug_date >= to_char(sysdate-7, 'yyyy-mm-dd')) group by pd_no) a ");
+		sql.append("  where row_num=1 and p.pd_no = f.pd_no and p.c_no = c.c_no and a.pd_no = p.pd_no ");
+		sql.append("  order by a.sug_cnt desc)");
+		sql.append(" where rownum <= 5 ");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		){
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO productVO = new ProductVO();
+				
+				productVO.setPdNo(rs.getInt("pd_no"));
+				productVO.setPdName(rs.getString("pd_name"));
+				productVO.setStartPrice(rs.getInt("start_price"));
+				productVO.setDueDate(rs.getString("due_date"));
+				productVO.setcNo(rs.getInt("c_no"));
+				productVO.setcName(rs.getString("category"));
+				productVO.setFileSaveName(rs.getString("file_save_name"));
+				
+				sugList.add(productVO);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return sugList;
 	}
 	
 	
