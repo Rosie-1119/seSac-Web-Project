@@ -1,0 +1,11 @@
+diff a/fiveand-web-project/WebContent/main.jsp b/fiveand-web-project/WebContent/main.jsp	(rejected hunks)
+@@ -292,7 +292,9 @@
+ 									<!-- product -->
+ 										<div class="product">
+ 											<div class="product-img">
++											
+ 												<img src="${ pageContext.request.contextPath }/upload/${ sugList.fileSaveName }" alt="">
++												
+ 												<div class="product-label">
+ 													<span class="sale">마감 ${ sugList.dueDate }</span>
+ 												</div>
