@@ -87,7 +87,7 @@
 
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
-							<div class="header-ctn">
+							<div class="header-ctn" style="width: 280px;">
 							
 								<!-- Wishlist : 하트를 누른 경매물품 리스트 보기 -->
 								<div>
@@ -108,10 +108,8 @@
 										<div class="qty"></div> -->
 									</a>
 								</c:if>
+								
 								</div>
-								<!-- /Wishlist -->
-
-
 
 								<!-- Auction : 경매 등록하기 -->
 								<div class="dropdown">
@@ -127,41 +125,27 @@
 										<span>경매 등록</span>
 									</a>
 								</c:if>
-									<!-- 현재 경매 등록한 현황 드롭다운으로 생성 가능(미정)
-									<div class="cart-dropdown">
-										<div class="cart-list">
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="./img/product01.png" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
-
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="./img/product02.png" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
-										</div>
-										<div class="cart-summary">
-											<small>3 Item(s) selected</small>
-											<h5>SUBTOTAL: $2940.00</h5>
-										</div>
-										<div class="cart-btns">
-											<a href="#">View Cart</a>
-											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
-										</div>
-									</div> -->
+								
 								</div>
+								
+								<!-- 내가 참여한 경매 리스트 추가?? -->
+								<div class="dropdown">
+								<c:if test="${ empty userVO }">
+		   							<a onclick="alert('로그인이 필요합니다.')" id="auctionReg" href="${ pageContext.request.contextPath }/login.do">
+										<i class="fa fa-hand-peace-o"></i>
+										<span>참여한 경매</span>
+									</a>
+								</c:if>
+								<c:if test="${ not empty userVO }">
+									<a id="auctionSug" href="${ pageContext.request.contextPath }/auction/writeForm.do">
+										<i class="fa fa-hand-peace-o"></i>
+										<span>참여한 경매</span>
+									</a>
+								</c:if>
+								
+								</div>
+								
+								
 								<!-- /Cart -->
 
 								<!-- Menu Toogle -->
