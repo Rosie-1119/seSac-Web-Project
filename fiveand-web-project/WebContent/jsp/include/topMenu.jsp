@@ -91,13 +91,23 @@
 							
 								<!-- Wishlist : 하트를 누른 경매물품 리스트 보기 -->
 								<div>
-									<a href="#">
+								<c:if test="${ empty userVO }">
+									<a onclick="alert('로그인이 필요합니다.')" id="wishList" href="${ pageContext.request.contextPath }/login.do">
+										<i class="fa fa-heart-o"></i>
+										<span>위시리스트</span>
+									</a>
+								</c:if>
+								
+								
+								<c:if test="${ not empty userVO }">
+									<a id="wishList" href="#">
 										<i class="fa fa-heart-o"></i>
 										<span>위시리스트</span>
 										<!-- 몇 개 눌렀는지 나오게 하려면, 하트를 누른 경매 물품을 저장해둔 테이블이 존재해야함
 											 셀렉트해서 갯수를 넣어주면 됨
 										<div class="qty"></div> -->
 									</a>
+								</c:if>
 								</div>
 								<!-- /Wishlist -->
 
@@ -105,10 +115,18 @@
 
 								<!-- Auction : 경매 등록하기 -->
 								<div class="dropdown">
-									<a href="${ pageContext.request.contextPath }/auction/writeForm.do">
+								<c:if test="${ empty userVO }">
+		   							<a onclick="alert('로그인이 필요합니다.')" id="auctionReg" href="${ pageContext.request.contextPath }/login.do">
 										<i class="fa fa-handshake-o"></i>
 										<span>경매 등록</span>
 									</a>
+								</c:if>
+								<c:if test="${ not empty userVO }">
+									<a id="auctionReg" href="${ pageContext.request.contextPath }/auction/writeForm.do">
+										<i class="fa fa-handshake-o"></i>
+										<span>경매 등록</span>
+									</a>
+								</c:if>
 									<!-- 현재 경매 등록한 현황 드롭다운으로 생성 가능(미정)
 									<div class="cart-dropdown">
 										<div class="cart-list">
