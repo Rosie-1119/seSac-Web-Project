@@ -2,6 +2,7 @@ package com.fiveand.boardList.service;
 
 import java.util.List;
 
+import com.fiveand.auction.board.vo.ProductVO;
 import com.fiveand.boardList.dao.BoardListDAO;
 
 public class BoardListService {
@@ -14,6 +15,30 @@ private BoardListDAO ListDao;
 	public BoardListService() {
 		ListDao = new BoardListDAO();
 	}
+	
+	/**
+	 * 1. 전체 물품 수 체크 서비스
+	 */
+	public int totalProductCnt() {
+		
+		int totalCount = ListDao.totalProductCnt();
+		
+		return totalCount;
+	}
+	
+	/**
+	 * 2. 페이징 처리한 제품 정보 리스트 가져오기
+	 */
+	public List<ProductVO> pagingList(int currentPage) {
+		
+		List<ProductVO> list = ListDao.pagingList(currentPage);
+		
+		return list;
+	}
+	
+	
+	
+	
 	
 	
 	/**

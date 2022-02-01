@@ -18,12 +18,36 @@ public class ProductVO {
 	private int sugCnt; // 제시받은 수
 	private String delDate;  //삭제한 날짜
 	
+	private String fileSaveName; // 파일 저장명
+	
 
 	// 생성자
 	public ProductVO() {
 
 	}
 	
+	public ProductVO(int pdNo, String id, String pdName, int hopePrice, int startPrice, String regDate, String dueDate,
+			String pdSimpleInfo, String pdInfo, int cNo, String cName, int viewCnt, int likeCnt, int sugCnt,
+			String delDate, String fileSaveName) {
+		super();
+		this.pdNo = pdNo;
+		this.id = id;
+		this.pdName = pdName;
+		this.hopePrice = hopePrice;
+		this.startPrice = startPrice;
+		this.regDate = regDate;
+		this.dueDate = dueDate;
+		this.pdSimpleInfo = pdSimpleInfo;
+		this.pdInfo = pdInfo;
+		this.cNo = cNo;
+		this.cName = cName;
+		this.viewCnt = viewCnt;
+		this.likeCnt = likeCnt;
+		this.sugCnt = sugCnt;
+		this.delDate = delDate;
+		this.fileSaveName = fileSaveName;
+	}
+
 	public ProductVO(int pdNo, String pdName, int startPrice, String dueDate, int cNo) {
 		super();
 		this.pdName = pdName;
@@ -67,10 +91,19 @@ public class ProductVO {
 	}
 
 	// getter, setter
+	
 	public int getPdNo() {
 		return pdNo;
 	}
 
+
+	public String getFileSaveName() {
+		return fileSaveName;
+	}
+
+	public void setFileSaveName(String fileSaveName) {
+		this.fileSaveName = fileSaveName;
+	}
 
 	public void setPdNo(int pdNo) {
 		this.pdNo = pdNo;
@@ -212,13 +245,13 @@ public class ProductVO {
 		this.delDate = delDate;
 	}
 
-	// toString
 	@Override
 	public String toString() {
 		return "ProductVO [pdNo=" + pdNo + ", id=" + id + ", pdName=" + pdName + ", hopePrice=" + hopePrice
 				+ ", startPrice=" + startPrice + ", regDate=" + regDate + ", dueDate=" + dueDate + ", pdSimpleInfo="
 				+ pdSimpleInfo + ", pdInfo=" + pdInfo + ", cNo=" + cNo + ", cName=" + cName + ", viewCnt=" + viewCnt
-				+ ", likeCnt=" + likeCnt + ", sugCnt=" + sugCnt + ", delDate=" + delDate + "]";
+				+ ", likeCnt=" + likeCnt + ", sugCnt=" + sugCnt + ", delDate=" + delDate + ", fileSaveName="
+				+ fileSaveName + "]";
 	}
 	
 }
