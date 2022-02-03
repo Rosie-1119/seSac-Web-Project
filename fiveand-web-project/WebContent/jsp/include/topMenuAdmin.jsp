@@ -10,9 +10,11 @@
 	<div class="container">
 
 		<ul class="header-links pull-right">
+		<span>
 			<c:if test="${ not empty userVO }">
                               [${ userVO.id }님으로 로그인 중...]
             </c:if>
+            </span>
 					<!-- 로그아웃 버튼 -->
 					<li><a href="${ pageContext.request.contextPath }/logout.do"><i
 							class="fa fa-user-o"></i> Logout</a></li>
