@@ -21,7 +21,7 @@ public class MyPageDAO {
 	public MemberVO selectMyInfo(String id) {
 		
 		MemberVO member = null;	
-		Connection conn = null;
+		Connection conn = null; 
 		PreparedStatement pstmt = null;
 		
 		try {
@@ -101,11 +101,12 @@ public class MyPageDAO {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append(" delete from ftbl_member ");
-			sql.append(" where pwd = ? ");
+			sql.append(" where id = ? and pwd = ? ");
 
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, member.getPwd());
-
+			pstmt.setString(1, member.getId());
+			pstmt.setString(2, member.getPwd());
+			
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {

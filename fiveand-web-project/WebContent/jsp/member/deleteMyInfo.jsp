@@ -120,6 +120,10 @@
 							<div class="section-title"></div>
 
 							<div class="form-group">
+								<input class="input" type="text" name="id" id="id"
+									placeholder="삭제하실 아이디를 입력하세요." required>
+							</div>
+							<div class="form-group">
 								<input class="input" type="password" name="pwd" id="pwd"
 									placeholder="패스워드를 입력하세요." required>
 							</div>
