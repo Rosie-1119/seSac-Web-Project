@@ -67,9 +67,14 @@ Table OF Contents
 	display: none;
 }
 
+#kakao-login-btn img{
+	cursor : pointer;
+}
+
 /*----------------------------*\
 	Typography
 \*----------------------------*/
+
 
 body {
   font-family: 'Montserrat', 'Gothic+A1', sans-serif;

@@ -8,7 +8,7 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!-- The above 3 meta  *must* come first in the head; any other head content must come *after* these tags -->
 			
-			<title>loginForm</title> 
+			<title>로그인창</title> 
 			<script>
 			// 아이디, 패스워드 값 입력하기
 			
@@ -125,7 +125,7 @@
 												placeholder="패스워드를 입력해 주세요.">
 										</div>
 										<div class="form-group">
-											<button type="submit" class="primary-btn order-submit"
+											<button type="submit" class="primary-btn order-submit" id="btnLogin"
 												align="center">로그인</button>
 									</form>
 			
@@ -136,36 +136,56 @@
 					</div>
 				</div>
 	
-	
-<!--  
-    <a href="javascript:kakaoLogin();"><img src="${ pageContext.request.contextPath }/img/kakao_login.png" alt="카카오계정 로그인" style="height: 50px;"/></a>
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script>
-        window.Kakao.init('ebdcff68f6f76a623abdabb849ea24a4');
+		</section>
+		
+	 <section class="login-write">
+            <div class="button-login" align ="center" >
+                <a id="kakao-login-btn" >
+    <img src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="20%" height ="50px" />
+    </a>
+            </div>
+            
+        </section>
+        
 
-        function kakaoLogin() {
-            window.Kakao.Auth.login({
-                scope: 'profile, account_email, gender', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
-                success: function(response) {
-                    console.log(response) // 로그인 성공하면 받아오는 데이터
-                    window.Kakao.API.request({ // 사용자 정보 가져오기 
-                        url: '/v2/user/me',
-                        success: (res) => {
-                            const kakao_account = res.kakao_account;
-                            console.log(kakao_account)
-                        }
-                    });
-                   window.location.href='/main.do' //리다이렉트 되는 코드
-                }, 
-                fail: function(error) {
-                    console.log(error);
-                }
-            });
+<script>logInOut()</script>      
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type='text/javascript'>
+Kakao.init('23d3236e95d78f95d78a5ca69eb39dc6');
+$("#kakao-login-btn").on("click", function(){
+    //1. 로그인 시도
+    Kakao.Auth.login({
+        success: function(authObj) {
+          //console.log(JSON.stringify(authObj));
+          //console.log(Kakao.Auth.getAccessToken());
+          //2. 로그인 성공시, API를 호출합니다.
+          Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(res) {
+              //console.log(JSON.stringify(res));
+              console.log(res);
+              var id = res.id;
+			  scope : 'account_email';
+			alert('로그인성공');
+              //var email = res.kakao_account.email;
+			  //var name = res.properties.nickname;
+			  location.href="http://localhost:9999/fiveand-web-project/jsp/member/kakaocallback.jsp";
+		
+              
         }
-    </script>   
--->
-
-			</section>
+          })
+          console.log(authObj);
+          var token = authObj.access_token;
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+        
+})
+</script>
+		
 
 
 
