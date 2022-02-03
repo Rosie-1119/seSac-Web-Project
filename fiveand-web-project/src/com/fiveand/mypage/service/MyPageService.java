@@ -2,6 +2,7 @@ package com.fiveand.mypage.service;
 
 import java.util.List;
 
+import com.fiveand.auction.board.vo.ProductVO;
 import com.fiveand.member.vo.MemberVO;
 import com.fiveand.mypage.dao.MyPageDAO;
 
@@ -39,7 +40,25 @@ public class MyPageService {
 	}
 	
 	
+	/**
+	 * 1. 전체 물품 수 체크 서비스
+	 */
+	public int totalProductCnt() {
+		
+		int totalCount = myInfoDao.totalProductCnt();
+		
+		return totalCount;
+	}
 	
+	/**
+	 * 2. 페이징 처리한 제품 정보 리스트 가져오기
+	 */
+	public List<ProductVO> pagingMyAuction(int currentPage) {
+		
+		List<ProductVO> list = myInfoDao.pagingMyAuction(currentPage);
+		
+		return list;
+	}
 	
 	/**
 	 * 내옥션 조회 ----수정해야함

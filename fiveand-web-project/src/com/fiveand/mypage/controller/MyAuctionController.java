@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fiveand.mypage.service.MyPageService;
+import com.fiveand.auction.board.vo.PagingVO;
 import com.fiveand.auction.board.vo.ProductFileVO;
 import com.fiveand.auction.board.vo.ProductVO;
+import com.fiveand.boardList.service.BoardListService;
 import com.fiveand.controller.Controller;
 import com.fiveand.member.vo.MemberVO;
 
@@ -18,21 +20,35 @@ public class MyAuctionController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String id = request.getParameter("id");
+		PagingVO pagingVO = new PagingVO();
 		MyPageService service = new MyPageService();
-		List<Object> list = service.selectMyAuction(id);
-
-		// 0, 2, 4, 6, 8
-		List<ProductVO> myList = new ArrayList<ProductVO>();
-		// 1, 3, 5, 7, 9
-		List<ProductFileVO> myFileList = new ArrayList<ProductFileVO>();
-
-		for (int i = 0, j = 0; i < list.size(); i += 2, j++) {
-			myList.add((ProductVO) list.get(i));
-			myFileList.add((ProductFileVO) list.get(i + 1));
+		int totalCount = service.totalProductCnt();
+		pagingVO.setTotalCount(totalCount); //전체 물품 수
+		
+		int currentPage = 1;
+		if(request.getParameter("page") != null) {
+			currentPage = Integer.parseInt(request.getParameter("page"));
 		}
+		pagingVO.setCurrentPage(currentPage); //현재 페이지(기본 = 1)
+		
+		//마지막 페이지, 시작 페이지, 전체 페이지 설정
+		pagingVO.setEndPage( ((int) Math.ceil(pagingVO.getCurrentPage() / (double) pagingVO.getDisplayPage())) * pagingVO.getDisplayPage() );
+		pagingVO.setBeginPage( pagingVO.getEndPage() - (pagingVO.getDisplayPage() - 1) );
+		pagingVO.setTotalPage( (int) Math.ceil(pagingVO.getTotalCount() / (double) pagingVO.getDisplayRow()) );
+		
+		if (pagingVO.getEndPage() > pagingVO.getTotalPage()) {
+			pagingVO.setEndPage(pagingVO.getTotalPage());
+		} //마지막 페이지 전체 물품이 끝나는 지점으로 재설정
+		
+		
+		List<ProductVO> list = service.pagingMyAuction(currentPage);
 
-		request.setAttribute("myList", myList);
-		request.setAttribute("myFileList", myFileList);
+		request.setAttribute("pagingVO", pagingVO);
+		request.setAttribute("page", pagingVO.getCurrentPage());
+		request.setAttribute("beginPage", pagingVO.getBeginPage());
+		request.setAttribute("endPage", pagingVO.getEndPage());
+		request.setAttribute("totalPage", pagingVO.getTotalPage());
+		request.setAttribute("displayPage", pagingVO.getDisplayPage());
 		request.setAttribute("list", list);
 
 		return "/jsp/member/myAuction.jsp";
