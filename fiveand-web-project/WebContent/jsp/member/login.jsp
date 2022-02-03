@@ -6,12 +6,12 @@
 	request.setCharacterEncoding("utf-8");
 	
 	String id = request.getParameter("id");
-	String password = request.getParameter("pwd");
+	String pwd = request.getParameter("pwd");
 	
 	//객체 초기화
 	MemberVO memberVO = new MemberVO();
 	memberVO.setId(id);
-	memberVO.setPwd(password);
+	memberVO.setPwd(pwd);
 	
 	//DB에서 사용자 조회 (null이면 로그인 실패, null아니면 로그인성공)
 	LoginDAO dao = new LoginDAO();
@@ -38,7 +38,8 @@
 		url = "/";
 		
 		// 세션등록
-		session.setAttribute("userVO", userVO);
+		session.setAttribute("id", id);
+		session.setAttribute("pwd", pwd);
 	}
 
 	pageContext.setAttribute("msg", msg);
@@ -46,6 +47,6 @@
 %>
 
 <script>
-	modal('${ msg }')
+	alert('${ msg }')
 	location.href = '${ url }'
 </script>

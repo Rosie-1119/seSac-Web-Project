@@ -4,6 +4,6 @@
 	session.invalidate();
 %>
 <script>
-	modal('로그아웃되었습니다')
+	alert('로그아웃되었습니다')
 	location.href = "/main.do" 
 </script>

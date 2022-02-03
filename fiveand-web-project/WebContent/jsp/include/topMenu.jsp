@@ -13,25 +13,25 @@
 		
 				<ul class="header-links pull-right">
 					<span>
-					<c:if test="${ not empty userVO }">
-		   				[${ userVO.id }님으로 로그인 중]&emsp;
+					<c:if test="${ not empty id }">
+		   				[${ id }님으로 로그인 중]&emsp;
 					</c:if>
 					</span>
 					<!-- 회원가입 버튼 -->
 		
 				<c:choose>
-				<c:when test="${ empty userVO }">
+				<c:when test="${ empty id }">
       
 			<li><a href="${ pageContext.request.contextPath }/signup.do"><i
 					class="fa fa-arrow-right"></i> Join</a></li>
 			<!-- 로그인 버튼 -->
 			<li><a href="${ pageContext.request.contextPath }/login.do"><i
-					class="fa fa-user-o"></i> Login</a></li>
+					class="fa fa-user-o" id="btnLogin"></i> Login</a></li>
 								   </c:when>
 						<c:otherwise>
 			<!-- 로그아웃 버튼 -->
 			<li><a href="${ pageContext.request.contextPath }/logout.do"><i
-					class="fa fa-user-o"></i> Logout</a></li>
+					class="fa fa-user-o" id="btnLogout"></i> Logout</a></li>
 			 <li><a href="${ pageContext.request.contextPath }/myPage.do"><i
 					class="fa fa-user-o"></i> 마이페이지</a></li>
 				</c:otherwise>
@@ -91,7 +91,7 @@
 							
 								
 								<div>
-								<c:if test="${ empty userVO }">
+								<c:if test="${ empty id }">
 									<a onclick="alert('로그인이 필요합니다.')" id="suggList" href="${ pageContext.request.contextPath }/login.do">
 										<i class="fa fa-heart-o"></i>
 										<span>참여한 경매</span>
@@ -99,8 +99,8 @@
 								</c:if>
 								
 								
-								<c:if test="${ not empty userVO }">
-									<a id="suggList" href="${ pageContext.request.contextPath }/mySuggList.do?id= ${userVO.id}" >
+								<c:if test="${ not empty id }">
+									<a id="suggList" href="${ pageContext.request.contextPath }/mySuggList.do?id= ${id}" >
 										<i class="fa fa-heart-o"></i>
 										<span>참여한 경매</span>
 									</a>
@@ -110,13 +110,13 @@
 
 								<!-- Auction : 경매 등록하기 -->
 								<div class="dropdown">
-								<c:if test="${ empty userVO }">
+								<c:if test="${ empty id }">
 		   							<a onclick="alert('로그인이 필요합니다.')" id="auctionReg" href="${ pageContext.request.contextPath }/login.do">
 										<i class="fa fa-handshake-o"></i>
 										<span>경매 등록</span>
 									</a>
 								</c:if>
-								<c:if test="${ not empty userVO }">
+								<c:if test="${ not empty id }">
 									<a id="auctionReg" href="${ pageContext.request.contextPath }/auction/writeForm.do">
 										<i class="fa fa-handshake-o"></i>
 										<span>경매 등록</span>
@@ -158,15 +158,16 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<!-- 탑 네비게이션 바 => 카테고리별 분류  -->
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Categories</a></li>
-						<li><a href="#">디지털 기기</a></li>
-						<li><a href="#">생활가전</a></li>
-						<li><a href="#">가구/인테리어</a></li>
-						<li><a href="#">의류/잡화</a></li>
-						<li><a href="#">뷰티/미용</a></li>
-						<li><a href="#">도서/음반</a></li>
-						<li><a href="#">기타</a></li>
+						<li class="active"><a href="${ pageContext.request.contextPath }/main.do">Home</a></li>
+						
+						<!--여기 수정하기!!!!!!-->
+						<li><a href="javascript:digital();">디지털기기</a></li>
+						<li><a href="javascript:living();">생활가전</a></li>
+						<li><a href="javascript:interior();">가구/인테리어</a></li>
+						<li><a href="javascript:clothes();">의류/잡화</a></li>
+						<li><a href="javascript:beauty();">뷰티/미용</a></li>
+						<li><a href="javascript:book();">도서/음반</a></li>
+						<li><a href="javascript:etc();">기타</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
