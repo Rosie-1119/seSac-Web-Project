@@ -20,6 +20,7 @@ public class MyAuctionController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String id = request.getParameter("id");
+		
 		PagingVO pagingVO = new PagingVO();
 		MyPageService service = new MyPageService();
 		int totalCount = service.totalProductCnt();
@@ -41,7 +42,7 @@ public class MyAuctionController implements Controller {
 		} //마지막 페이지 전체 물품이 끝나는 지점으로 재설정
 		
 		
-		List<ProductVO> list = service.pagingMyAuction(currentPage);
+		List<ProductVO> list = service.pagingMyAuction(currentPage, id);
 
 		request.setAttribute("pagingVO", pagingVO);
 		request.setAttribute("page", pagingVO.getCurrentPage());

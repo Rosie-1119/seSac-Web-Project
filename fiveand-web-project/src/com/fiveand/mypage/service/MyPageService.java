@@ -41,7 +41,7 @@ public class MyPageService {
 	
 	
 	/**
-	 * 1. 전체 물품 수 체크 서비스
+	 * 전체 물품 수 체크 서비스
 	 */
 	public int totalProductCnt() {
 		
@@ -51,23 +51,16 @@ public class MyPageService {
 	}
 	
 	/**
-	 * 2. 페이징 처리한 제품 정보 리스트 가져오기
+	 * 페이징 처리한 내 경매 목록 가져오기
 	 */
-	public List<ProductVO> pagingMyAuction(int currentPage) {
+	public List<ProductVO> pagingMyAuction(int currentPage, String id) {
 		
-		List<ProductVO> list = myInfoDao.pagingMyAuction(currentPage);
+		List<ProductVO> list = myInfoDao.pagingMyAuction(currentPage, id);
 		
 		return list;
 	}
 	
-	/**
-	 * 내옥션 조회 ----수정해야함
-	 * 
-	 */
-	  public List<Object> selectMyAuction(String id) { 
-		  List<Object> list = myInfoDao.selectMyAuction(id);
-		  return list;
-	   }
+	
 	 
 	
 	/**
