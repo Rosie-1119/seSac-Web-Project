@@ -65,6 +65,8 @@ p.textBtn {
 	text-align: right;
 }
 </style>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <script>
 
 /* + 버튼 누르면 금액 추가 */
@@ -393,7 +395,10 @@ $(window).on("beforeunload", function(){
 						<p class="textBtn" id="modifyProduct">수정하기</p>
 					</c:if>
 
+<button id="btn-kakaopay" class="btn btn-primary">카카오페이</button>
 				</div>
+				
+				
 				<!-- /Product details -->
 
 
