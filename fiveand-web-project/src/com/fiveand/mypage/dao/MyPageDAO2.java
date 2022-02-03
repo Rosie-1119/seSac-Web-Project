@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.fiveand.auction.board.vo.ProductVO;
 import com.fiveand.util.ConnectionFactory;
+import com.fiveand.util.JDBCClose;
 
 public class MyPageDAO2 {
 	
@@ -16,27 +17,32 @@ public class MyPageDAO2 {
 	 *  
 	 */
 	public List<ProductVO> selectMySugg(String id){
+		
 			System.out.println("dao id : " + id);
 			List<ProductVO> list = new ArrayList<ProductVO>();
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sid = "serini";
 			
-			StringBuilder sql = new StringBuilder();
-			sql.append(" select * from ( select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name ");
-			sql.append("  from ftbl_product p ");
-			sql.append("  , ( select pd_no, row_number() over(partition by pd_no order by pd_no) f_row_num, file_save_name from  ftbl_product_file) f ");
-			sql.append("  , ftbl_category c ");
-			sql.append("  , (select row_number() over(partition by pd_no order by pd_no) a_row_num, a.* from ftbl_auction a ) a ");
-			sql.append(" where a.id = ? ");
-			sql.append("        and f_row_num = 1 and a_row_num = 1 ");
-			sql.append("        and p.pd_no = f.pd_no and p.c_no = c.c_no and a.pd_no = p.pd_no ");
-			sql.append("  order by a.sug_date desc) ");
-			
-			try(
-					Connection conn = new ConnectionFactory().getConnection();
-					PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-			){
-				pstmt.setString(1, id);
+			try {
+				
+				conn = new ConnectionFactory().getConnection();
+				StringBuilder sql = new StringBuilder();
+				sql.append(" select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name, a.id  "
+						+ "from ftbl_product p, "
+						+ "( select pd_no, row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f, "
+						+ "ftbl_category c, "
+						+ "(select row_number() over(partition by pd_no order by pd_no) row_num, a.* from ftbl_auction a ) a "
+						+ "where a.id = ? "
+						+ "and f.row_num = 1 and a.row_num = 1 "
+						+ "and p.pd_no = f.pd_no and p.c_no = c.c_no and a.pd_no = p.pd_no "
+						+ "order by a.sug_date desc ");
+				pstmt = conn.prepareStatement(sql.toString());
+				pstmt.setString(1, sid);
 				
 				ResultSet rs = pstmt.executeQuery();
+				boolean rsn = rs.next();
+				System.out.println(rsn);
 				
 				while(rs.next()) {
 					ProductVO productVO = new ProductVO();
@@ -48,15 +54,20 @@ public class MyPageDAO2 {
 					productVO.setcNo(rs.getInt("c_no"));
 					productVO.setcName(rs.getString("category"));
 					productVO.setFileSaveName(rs.getString("file_save_name"));
-					System.out.println("dao sug product : " + productVO);
+					
 					list.add(productVO);
 				}
-				
-			}catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {
+				JDBCClose.close(pstmt, conn);
 			}
 			
-			System.out.println("dao List : " + list);
+	        System.out.println("dao list : " +list);
 			return list;
 		}
+	
+	
+	
+	
 }

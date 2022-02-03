@@ -24,6 +24,7 @@ public class MySuggestController implements Controller {
 		
 		request.setAttribute("suggList", suggList);
 		
+		
 		return "/jsp/member/mySuggList.jsp";
 	}
 

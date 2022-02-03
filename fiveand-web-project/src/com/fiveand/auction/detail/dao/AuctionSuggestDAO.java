@@ -58,6 +58,7 @@ public class AuctionSuggestDAO {
 		Connection conn = null;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
 		
 		
 		
@@ -90,6 +91,28 @@ public class AuctionSuggestDAO {
 			pstmt2 = conn.prepareStatement(sql.toString());
 			pstmt2.setInt(1, suggest.getPdNo());
 			pstmt2.executeUpdate();
+			
+			
+			// sql 다시 초기화
+			sql.setLength(0);
+			//-----------ftbl_sold 에 업데이트 하도록 설정
+			sql.append(" merge into ftbl_sold s using dual ");
+			sql.append(" on (s.pd_no = ? ) ");
+			sql.append(" when matched then ");
+			sql.append(" update set s.sug_id = ? , s.sug_price = ? , s.sug_date = sysdate where s.sug_price < ? ");
+			sql.append(" when not matched then ");
+			sql.append(" insert (s_no, pd_no, sug_id, sug_price, sug_date) values(seq_ftbl_sold_s_no.nextval, ?, ?, ?, sysdate) ");
+			
+			//3번 쿼리용 pstmt 실행
+			pstmt3 = conn.prepareStatement(sql.toString());
+			pstmt3.setInt(1, suggest.getPdNo());
+			pstmt3.setString(2, suggest.getId());
+			pstmt3.setInt(3, suggest.getSugPrice());
+			pstmt3.setInt(4, suggest.getSugPrice());
+			pstmt3.setInt(5, suggest.getPdNo());
+			pstmt3.setString(6, suggest.getId());
+			pstmt3.setInt(7, suggest.getSugPrice());
+			pstmt3.executeUpdate();
 			
 			conn.commit();
 			

@@ -101,13 +101,10 @@
 									<div class="product-img">
 										<%-- 이미지 링크하기 --%>
 										
-											<img src="${ pageContext.request.contextPath }/upload/${ suggList.fileSaveName }" alt="">
+											<img src="${ pageContext.request.contextPath }/upload/${ suggList.fileSaveName }">
 										
 										<div class="product-label">
-											<%-- 마감일까지의 차이 등록 --%>
 											<span class="sale">마감 ${ suggList.dueDate }</span>
-											<%--등록일 기준 오늘 등록한 제품 NEW  --%> 
-											<%--<span class="new">마감임박!</span> --%>
 											
 										</div>
 									</div>
