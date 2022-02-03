@@ -89,10 +89,10 @@
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn" style="width: 280px;">
 							
-								<!-- Wishlist : 하트를 누른 경매물품 리스트 보기 -->
+								
 								<div>
 								<c:if test="${ empty userVO }">
-									<a onclick="alert('로그인이 필요합니다.')" id="wishList" href="${ pageContext.request.contextPath }/login.do">
+									<a onclick="alert('로그인이 필요합니다.')" id="suggList" href="${ pageContext.request.contextPath }/login.do">
 										<i class="fa fa-heart-o"></i>
 										<span>참여한 경매</span>
 									</a>
@@ -100,12 +100,9 @@
 								
 								
 								<c:if test="${ not empty userVO }">
-									<a id="wishList" href="#">
+									<a id="suggList" href="${ pageContext.request.contextPath }/mySuggList.do?id= ${userVO.id}" >
 										<i class="fa fa-heart-o"></i>
 										<span>참여한 경매</span>
-										<!-- 몇 개 눌렀는지 나오게 하려면, 하트를 누른 경매 물품을 저장해둔 테이블이 존재해야함
-											 셀렉트해서 갯수를 넣어주면 됨
-										<div class="qty"></div> -->
 									</a>
 								</c:if>
 								
