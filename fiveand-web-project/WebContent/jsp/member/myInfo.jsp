@@ -67,7 +67,7 @@ td {
 			}
 		
 	function goDeleteForm() {
-		location.href = "${ pageContext.request.contextPath }/deleteMyInfo.do?id=${ userVO.id }"
+		location.href = "${ pageContext.request.contextPath }/deleteMyInfoForm.do?id=${ userVO.id }"
 		}
 	
 </script>

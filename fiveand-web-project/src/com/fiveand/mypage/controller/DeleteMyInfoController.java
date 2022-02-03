@@ -23,9 +23,11 @@ public class DeleteMyInfoController implements Controller {
 		member.setPwd(pwd);
 		
 		MyPageService service = new MyPageService();
-		service.updateMyInfo(member);
-	
-		return "redirect:/myInfo.do?id="+id;
-	
+		service.deleteMyInfo(member);
+		
+		System.out.println("계정이 삭제 되었습니다.");
+		return "redirect:/main.do";
+	//  return "/main.do";
+	//	return "redirect:/myInfo.do?id="+id;
 }
 }
