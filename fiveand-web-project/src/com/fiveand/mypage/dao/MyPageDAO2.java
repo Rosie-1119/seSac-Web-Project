@@ -22,7 +22,7 @@ public class MyPageDAO2 {
 			List<ProductVO> list = new ArrayList<ProductVO>();
 			Connection conn = null;
 			PreparedStatement pstmt = null;
-			String sid = "serini";
+			//String id = 'serini'; 직접 입력하면 값은 나옴...
 			
 			try {
 				
@@ -38,7 +38,7 @@ public class MyPageDAO2 {
 						+ "and p.pd_no = f.pd_no and p.c_no = c.c_no and a.pd_no = p.pd_no "
 						+ "order by a.sug_date desc ");
 				pstmt = conn.prepareStatement(sql.toString());
-				pstmt.setString(1, sid);
+				pstmt.setString(1, id);
 				
 				ResultSet rs = pstmt.executeQuery();
 				boolean rsn = rs.next();
