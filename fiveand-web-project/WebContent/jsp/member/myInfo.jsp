@@ -66,6 +66,10 @@ td {
 		location.href = "${ pageContext.request.contextPath }/updateMyInfoForm.do?id=${ userVO.id }"
 			}
 		
+	function goDeleteForm() {
+		location.href = "${ pageContext.request.contextPath }/deleteMyInfo.do?id=${ userVO.id }"
+		}
+	
 </script>
 </head>
 <body>
@@ -123,8 +127,14 @@ td {
 			 	<br><br>
                      
                         <button class="primary-btn order-submit" id="UpdateInfo" onclick="goUpdateForm()">
-                        --->내 정보 수정하러 가기
+                        내 정보수정
                         </button>	
+                        <br>
+                        <br>
+                         <button class="primary-btn order-submit" id="DeleteInfo" onclick="goDeleteForm()">
+                        내 계정 삭제
+                        </button>
+                        
                      </div>
 			</div>
 			<!-- /row -->

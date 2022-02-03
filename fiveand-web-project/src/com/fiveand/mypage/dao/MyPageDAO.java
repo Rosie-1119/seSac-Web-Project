@@ -15,7 +15,7 @@ import com.fiveand.util.JDBCClose;
 public class MyPageDAO {
 
 	/**
-	 * 마이페이지(내정보 조회) ---미완...내 아이디 가져와서 조회해야하잖아 왜 안됨?? 샹
+	 * 마이페이지(내정보 조회) 
 	 */
 	public MemberVO selectMyInfo(String id) {
 		
@@ -55,7 +55,7 @@ public class MyPageDAO {
 	
 	
 	/**
-	 * 마이페이지(내정보 수정) -----미완(where check 할것!)
+	 * 마이페이지(내정보 수정) 
 	 */
 	public void updateMyInfo(MemberVO member) {
 	
@@ -83,6 +83,38 @@ public class MyPageDAO {
 			JDBCClose.close(pstmt, conn);
 		}
 	}
+	
+	
+
+	
+	/**
+	 * 마이페이지(내 계정 삭제) 
+	 */
+	
+	public void deleteMyInfo(MemberVO member) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try { 
+			conn = new ConnectionFactory().getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append(" delete from ftbl_member ");
+			sql.append(" where pwd = ? ");
+
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, member.getPwd());
+
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(pstmt, conn);
+		}
+	}
+	
+	
 	
 	
 	/**

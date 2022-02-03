@@ -30,6 +30,16 @@ public class MyPageService {
 	}
 	
 	
+
+	/**
+	 * 내계정 삭제 --
+	 */
+	public void deleteMyInfo(MemberVO member) {
+		myInfoDao.updateMyInfo(member);
+	}
+	
+	
+	
 	
 	/**
 	 * 내옥션 조회 ----수정해야함

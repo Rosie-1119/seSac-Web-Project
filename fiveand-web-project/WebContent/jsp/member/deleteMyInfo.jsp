@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>내 정보 수정</title>
+<title>내 계정 삭제</title>
 
 <!-- Google font -->
 <link
@@ -91,11 +91,11 @@
 			<!-- row -->
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="breadcrumb-header">내 정보 수정</h3>
+					<h3 class="breadcrumb-header">내 계정 삭제</h3>
 					<ul class="breadcrumb-tree">
 						<li><a href="${ pageContext.request.contextPath }/myPage.do">My
 								Page</a></li>
-						<li class="active">Update My Information</li>
+						<li class="active">Delete My Information</li>
 					</ul>
 				</div>
 			</div>
@@ -112,39 +112,35 @@
 			<!-- row -->
 			<div class="row">
 				<div class="col-md-7">
-					<!-- 정보수정 폼 -->
+					<!-- 계정 삭제 폼 -->
 					<form name="SignupForm" method="post"
-						action="${ pageContext.request.contextPath }/updateMyInfo.do" onsubmit="return checkForm()">
+						action="${ pageContext.request.contextPath }/deleteMyInfo.do" onsubmit="return checkForm()">
 						<input type="hidden" name="id" value="${ param.id }">
 						<div class="billing-details">
 							<div class="section-title"></div>
 
 							<div class="form-group">
 								<input class="input" type="password" name="pwd" id="pwd"
-									placeholder="변경하실 패스워드를 입력해 주세요." required>
+									placeholder="패스워드를 입력하세요." required>
 							</div>
 							<div class="form-group">
 								<input class="input" type="password" name="pwdCheck" id="pwd2"
-									placeholder="변경하실 패스워드를 다시 입력해 주세요." required> <span
+									placeholder="패스워드를 한번 더 입력하세요." required> <span
 									id="pwdCheck"> </span>
 							</div>
-
-							<div class="form-group">
-								<input class="input" type="tel" name="phone"
-									placeholder="변경하실 휴대폰 번호 '-'표 없이 입력해 주세요." required>
-							</div>
-							<div class="form-group">
-								<input class="input" type="email" name="email"
-									placeholder="변경하실 이메일을 입력해 주세요." required>
-							</div>
+					
+							<br>
+							
 							<div class="form-group">
 								<button class="primary-btn order-submit" id="signBtn"
-									type="submit">수정하기</button>
+									type="submit">계정 삭제</button>
 
 							</div>
+							
+							
 						</div>
 					</form>
-					<!-- /정보 수정 폼 -->
+					<!-- /계정 삭제 폼 -->
 
 
 					<!-- 
