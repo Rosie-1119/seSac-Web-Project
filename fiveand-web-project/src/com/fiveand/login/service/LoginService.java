@@ -13,4 +13,9 @@ public class LoginService {
 	public MemberVO login(MemberVO memberVO) {
 		return loginDao.login(memberVO);
 	}
+	
+	// 경매 성공했으나 결제 전인 건수 체크
+	public int checkWinBid(MemberVO user) {
+		return loginDao.checkWindBid(user);
+	}
 }

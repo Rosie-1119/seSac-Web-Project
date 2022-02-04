@@ -109,6 +109,9 @@
 									<a id="suggList" href="${ pageContext.request.contextPath }/mySuggList.do?id=${userVO.id}" >
 										<i class="fa fa-heart-o"></i>
 										<span>참여한 경매</span>
+										<c:if test="${ winBidCnt > 0 }">
+										<div class="qty">${ winBidCnt }</div>
+										</c:if>
 									</a>
 								</c:if>
 								
