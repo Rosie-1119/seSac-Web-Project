@@ -50,7 +50,9 @@ public class LoginProcessController implements Controller {
 			url = "/main.do"; // "/"했을때는 로그아웃이 안떠서 수정했음ㅠ!
 			HttpSession session = request.getSession();
 			session.setAttribute("userVO", userVO);
-			
+			// 경매 성공했으나 결제 전인 건수 체크
+			int winBidCnt = service.checkWinBid(userVO);
+			session.setAttribute("winBidCnt", winBidCnt);
 		}
 		System.out.println(msg);
 		return "redirect:" + url;

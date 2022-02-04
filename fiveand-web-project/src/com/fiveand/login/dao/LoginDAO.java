@@ -43,4 +43,41 @@ public class LoginDAO {
 		
 		return userVO;
 	}
+	
+	/**
+	 * 경매에 성공했으나 결제 전인 건수 체크
+	 * @param user 현재 로그인한 회원 정보
+	 * @return 경매 성공했으나 결제 전인 상품 수
+	 */
+	public int checkWindBid(MemberVO user) {
+		
+		int cnt = 0;
+		
+		if (user.getType().equals('A'))
+		{
+			return cnt;
+		}
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select p.pd_no, sug_id, due_date ");
+		sql.append(" from ftbl_product p inner join ftbl_sold s ");
+		sql.append(" on p.pd_no = s.pd_no ");
+		sql.append(" where sug_id = ? and due_date < sysdate and payment = 0 ");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		) {
+			pstmt.setString(1, user.getId());
+			
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				cnt++;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cnt;
 	}
+}
