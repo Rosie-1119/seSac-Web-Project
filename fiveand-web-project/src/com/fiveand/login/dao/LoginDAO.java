@@ -16,7 +16,7 @@ public class LoginDAO {
 	
 	System.out.println("member dao : " + memberVO);
 	StringBuilder sql = new StringBuilder();
-	sql.append("select id, pwd, type ");
+	sql.append("select id, pwd, type, warning_cnt ");
 	sql.append("  from ftbl_member ");
 	sql.append(" where id = ? and pwd = ? ");
 	
@@ -35,6 +35,7 @@ public class LoginDAO {
 				userVO.setId(rs.getString("id"));
 				userVO.setPwd(rs.getString("pwd"));
 				userVO.setType(rs.getString("type"));
+				userVO.setWarningCnt(rs.getInt("warning_cnt"));
 				System.out.println("dao userVO : " + userVO);
 			}			
 		} catch (Exception e) {
