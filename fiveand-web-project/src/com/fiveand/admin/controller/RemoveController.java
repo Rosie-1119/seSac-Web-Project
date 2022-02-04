@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fiveand.admin.service.BlindListService;
+import com.fiveand.auction.board.vo.ProductVO;
 import com.fiveand.controller.Controller;
 
 public class RemoveController implements Controller {
@@ -14,9 +15,13 @@ public class RemoveController implements Controller {
 		request.setCharacterEncoding("utf-8");
 		
 		int pdNo = Integer.parseInt(request.getParameter("no"));
+		String id = request.getParameter("id");
 		BlindListService service = new BlindListService();
 		
-		service.insertBlind(pdNo);
+		ProductVO product = new ProductVO();
+		product.setPdNo(pdNo);
+		product.setId(id);
+		service.insertBlind(product);
 		return "redirect:/main.do";
 	}
 

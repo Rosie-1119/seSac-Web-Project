@@ -69,7 +69,7 @@ public class BlindListDAO {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append("insert into FTBL_BLIND(PD_NO, ID, PD_NAME, HOPE_PRICE, START_PRICE, ");
-			sql.append("REG_DATE, DUE_DATE, PD_SIMPLE_INFO, PD_INFO, C_NO, VIEW_CNT, LIKE_CNT, SUG_CNT) ");
+			sql.append("REG_DATE, DUE_DATE, PD_SIMPLE_INFO, PD_INFO, C_NO, VIEW_CNT, LIKE_CNT, SUG_CNT, WARN_CNT) ");
 			sql.append("select * from FTBL_PRODUCT ");
 			sql.append("where PD_NO = ? ");
 			pstmt = conn.prepareStatement(sql.toString());
@@ -83,4 +83,30 @@ public class BlindListDAO {
 		}
 	}
 
+	/**
+	 * FTBL_MEMBER에 경고수 증가
+	 * @param id 경고 먹을 사람 아이디
+	 */
+	public void addWarnCnt(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = new ConnectionFactory().getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append(" update ftbl_member set ");
+			sql.append(" warning_cnt = warning_cnt + 1 ");
+			sql.append(" where id = ? ");
+
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(pstmt, conn);
+		}
+	}
+	
 }
