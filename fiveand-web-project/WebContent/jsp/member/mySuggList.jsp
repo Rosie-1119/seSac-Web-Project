@@ -87,7 +87,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">${ list.cName }</p>
-										<h3 class="product-name"><a href="#">${ list.pdName }</a></h3>
+										<h3 class="product-name">${ list.pdName }</h3>
 										<h4 class="product-price">최종가 ${ list.sugPrice }</h4>
 										
 										<div class="product-btns">
@@ -95,8 +95,8 @@
 											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 										</div>
 									</div>
-									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ list.pdNo }">
-										<button class="add-to-cart-btn"><i class="fa fa-qrcode"></i>결제하기</button></a>
+									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/pay.do?id=${ userVO.id }&pdNo=${ list.pdNo }">
+										<button class="add-to-cart-btn" onclick="javascript:btn()"><i class="fa fa-qrcode"></i>결제하기</button></a>
 									</div>
 									
 								</div>
@@ -175,7 +175,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">${ list.cName }</p>
-										<h3 class="product-name"><a href="#">${ list.pdName }</a></h3>
+										<h3 class="product-name">${ list.pdName }</h3>
 										<h4 class="product-price">시작가 ${ list.startPrice }</h4>
 										
 										<div class="product-btns">
