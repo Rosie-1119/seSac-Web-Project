@@ -41,7 +41,6 @@
 		width: 560px;
 		align-content: center;
 		align-items: center;
-		text-align: center;
 	}
 
 	.container_f {
@@ -165,7 +164,7 @@
                <form name="SignupForm" method="post" class="SignupForm"
                   action="${ pageContext.request.contextPath }/signupProcess.do" onsubmit="return checkForm()">
                   <div class="billing-details">
-                     <div class="section-title">
+                     <div class="section-title" style="text-align: center;">
                         <h3 class="title">Fiveand 회원가입</h3>
                      </div>
                      <div class="form-group">
@@ -194,7 +193,7 @@
                         <input class="input" type="email" name="email"
                            placeholder="이메일을 입력해 주세요." required>
                      </div>
-                     <div class="form-group">
+                     <div class="form-group" style="text-align: center;">
                         <button class="primary-btn order-submit" id="signBtn" type="submit">가입하기</button>
            
                      </div>

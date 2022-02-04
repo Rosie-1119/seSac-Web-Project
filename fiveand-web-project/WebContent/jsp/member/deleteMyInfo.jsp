@@ -39,42 +39,43 @@
 	href="${ pageContext.request.contextPath }/css/simple-modal.min.css">
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/css/simple-modal-default.min.css">
+
+<style>
+.deleteForm {
+	width: 560px;
+	align-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.container_f {
+	align-content: center;
+	align-items: center;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: 35%;
+	margin-left: 35%;
+}
+</style>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
+<script>
+	//패스워드 입력하기
 
-	//form submit 클릭시 유효성검사결과 변수
-	let resultFlag = true
-
-	$(document).ready(function() {
-		$('#pwd, #pwd2').on('keyup', pwdCheck)
-	})
-
-	function pwdCheck() {
-		let pass1 = $('#pwd').val();
-		let pass2 = $('#pwd2').val();
-
-		if (pass1 != "" || pass2 != "") {
-			if (pass1 == pass2) {
-				$('#pwdCheck').css('color', '#8d99ae'), $('#pwdCheck').html(
-						'* 패스워드가 일치합니다.')
-				resultFlag = true
-			} else {
-				$('#pwdCheck').css('color', 'red'), $('#pwdCheck').html(
-						'* 패스워드가 일치하지 않습니다.')
-				resultFlag = false
-			}
+	function isNull(obj, msg) {
+		if (obj.value == '') {
+			alert(msg)
+			obj.focus()
+			return true
 		}
+		return false
 	}
-	
+
 	function checkForm() {
-		   /*
-			모달창 되면 띄우기
-			*/
-			if(!resultFlag )
-			alert('오류')
-			return resultFlag
-		}
-	
+		let f = document.loginForm;
+		if (isNull(f.password, '패스워드를 입력하세요'))
+			return false
+		return true
+	}
 </script>
 </head>
 <body>
@@ -108,40 +109,35 @@
 	<!-- SECTION -->
 	<div class="section">
 		<!-- container -->
-		<div class="container">
+		<div class="container_f">
 			<!-- row -->
 			<div class="row">
 				<div class="col-md-7">
 					<!-- 계정 삭제 폼 -->
-					<form name="SignupForm" method="post"
-						action="${ pageContext.request.contextPath }/deleteMyInfo.do" onsubmit="return checkForm()">
+					<form name="deleteForm" method="post" class="deleteForm"
+						action="${ pageContext.request.contextPath }/deleteProcess.do"
+						onsubmit="return checkForm()">
 						<input type="hidden" name="id" value="${ param.id }">
 						<div class="billing-details">
-							<div class="section-title"></div>
 
-							<div class="form-group">
-								<input class="input" type="text" name="id" id="id"
-									placeholder="삭제하실 아이디를 입력하세요." required>
+							<div class="section-title">
+								<h3 class="title">Fiveand 탈퇴</h3>
 							</div>
+
 							<div class="form-group">
 								<input class="input" type="password" name="pwd" id="pwd"
 									placeholder="패스워드를 입력하세요." required>
 							</div>
-							<div class="form-group">
-								<input class="input" type="password" name="pwdCheck" id="pwd2"
-									placeholder="패스워드를 한번 더 입력하세요." required> <span
-									id="pwdCheck"> </span>
-							</div>
-					
+
 							<br>
-							
+
 							<div class="form-group">
 								<button class="primary-btn order-submit" id="signBtn"
-									type="submit">계정 삭제</button>
+									type="submit">탈퇴하기</button>
 
 							</div>
-							
-							
+
+
 						</div>
 					</form>
 					<!-- /계정 삭제 폼 -->
