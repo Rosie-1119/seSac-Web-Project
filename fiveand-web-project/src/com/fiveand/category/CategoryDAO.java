@@ -210,7 +210,7 @@ public class CategoryDAO {
 	}	
 	
 	//6. 카테고리-도서, 음반
-	public List<Object> selectbooks() {
+	public List<Object> selectBooks() {
 		
 		List<Object> list = new ArrayList<Object>();
 		

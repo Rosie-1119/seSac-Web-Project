@@ -34,10 +34,10 @@ public String handleRequest(HttpServletRequest request, HttpServletResponse resp
 	} //마지막 페이지 전체 물품이 끝나는 지점으로 재설정
 	
 	
-	List<ProductVO> viewList = service.pagingViewList(currentPage);
+	List<ProductVO> list = service.pagingViewList(currentPage);
 
 	
-	request.setAttribute("list", viewList);
+	request.setAttribute("list", list);
 	request.setAttribute("pagingVO", pagingVO);
 	request.setAttribute("page", pagingVO.getCurrentPage());
 	request.setAttribute("beginPage", pagingVO.getBeginPage());
