@@ -36,6 +36,24 @@
 <link type="text/css" rel="stylesheet" href="${ pageContext.request.contextPath }/css/style.css" />
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/simple-modal.min.css">
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/simple-modal-default.min.css">
+<style>
+	.SignupForm {
+		width: 560px;
+		align-content: center;
+		align-items: center;
+		text-align: center;
+	}
+
+	.container_f {
+		align-content: center;
+		align-items: center;
+		padding-right: 15px;
+    	padding-left: 15px;
+    	margin-right: 35%;
+    	margin-left: 35%;
+	}
+	
+</style>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
@@ -139,12 +157,12 @@
    <!-- SECTION -->
    <div class="section">
       <!-- container -->
-      <div class="container">
+      <div class="container_f">
          <!-- row -->
          <div class="row">
             <div class="col-md-7">
                <!-- 회원가입 폼 -->
-               <form name="SignupForm" method="post"
+               <form name="SignupForm" method="post" class="SignupForm"
                   action="${ pageContext.request.contextPath }/signupProcess.do" onsubmit="return checkForm()">
                   <div class="billing-details">
                      <div class="section-title">
