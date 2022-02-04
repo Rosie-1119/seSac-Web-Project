@@ -82,7 +82,7 @@ public class MyPageDAO2 {
 				
 				conn = new ConnectionFactory().getConnection();
 				StringBuilder sql = new StringBuilder();
-				sql.append(" select p.pd_no, p.pd_name, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name, s.sug_id, s.sug_price  "
+				sql.append(" select p.pd_no, p.pd_name, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name, s.sug_id, s.sug_price, s.payment  "
 						+ "from ftbl_product p, "
 						+ "( select pd_no, row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f, "
 						+ "ftbl_category c, "

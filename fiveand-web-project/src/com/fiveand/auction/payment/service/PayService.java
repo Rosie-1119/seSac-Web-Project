@@ -23,4 +23,13 @@ public class PayService {
 		  return productVO;
 	   }
 	
+	/**
+	 * 결제 완료 후에 상태 업데이트
+	 * @param pdNo
+	 */
+	public void updatePayment(int pdNo) { 
+		  payDao.updatePayment(pdNo);
+	   }
+	
+	
 }

@@ -71,8 +71,11 @@
 						<div class="row">
 						
 						
-							<!-- product -->
-							<c:forEach items="${ winList }" var="list" varStatus="status">
+							<!-- 결제가 안된 경우 payment=0 -->
+							<c:if test="${ list.payment eq 0 }">
+						<!-- product -->
+						<c:forEach items="${ winList }" var="list" varStatus="status">
+						
 							<div class="col-md-4 col-xs-7">
 								<div class="product" style="width: 357.5px; height: 509.77px; padding: 10px;">
 									<div class="product-img">
@@ -106,7 +109,43 @@
 						
 							</div>
 							</c:forEach>
-							<!-- /product -->
+							</c:if>
+							
+							<!-- 결제가 된 경우 payment=1 -->
+							<c:if test="${ list.payment ne 0 }">
+							<c:forEach items="${ winList }" var="list" varStatus="status">
+							<div class="col-md-4 col-xs-7">
+								<div class="product" style="width: 357.5px; height: 509.77px; padding: 10px;">
+									<div class="product-img">
+										<%-- 이미지 링크하기 --%>
+										
+											<img src="${ pageContext.request.contextPath }/upload/${ list.fileSaveName }">
+										
+										<div class="product-label">
+											<span class="sale">결제 완료</span>
+											
+										</div>
+									</div>
+									<div class="product-body">
+										<p class="product-category">${ list.cName }</p>
+										<h3 class="product-name">${ list.pdName }</h3>
+										<h4 class="product-price">최종가 ${ list.sugPrice }</h4>
+										
+										<div class="product-btns">
+											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to My Heart</span></button>
+											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+										</div>
+									</div>
+									
+								</div>
+								<c:if test="${ (i+1) mod 3 eq 0 }">
+									<div class="clearfix visible-lg visible-md"></div>
+								</c:if>
+							</div>
+							
+						</c:forEach>
+							</c:if>
+						<!-- /product -->
 
 							
 						</div>
@@ -149,11 +188,6 @@
 					<!-- STORE -->
 					<div id="store" class="col-md-11">
 					
-						
-						<div align="left">
-							TOTAL : ${ pagingVO.totalCount }<br>
-						</div>
-
 
 					<!-- store products -->
 						<div class="row">

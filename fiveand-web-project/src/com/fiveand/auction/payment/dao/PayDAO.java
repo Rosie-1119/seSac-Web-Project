@@ -61,4 +61,35 @@ public class PayDAO {
 			
 			return productVO;
 		}
+	
+	/**
+	 * 결제 완료 후에 ftbl_sold payment 상태 업데이트하기
+	 */
+	public void updatePayment(int pdNo){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			conn = new ConnectionFactory().getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append(" update ftbl_sold set payment = 1 where pd_no = ? ");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, pdNo);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(pstmt, conn);
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
 }
