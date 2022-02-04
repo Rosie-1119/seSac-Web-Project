@@ -52,6 +52,17 @@ public class MainBoardListController implements Controller{
 		List<ProductVO> sugList = service.selectTopSugList();
 		request.setAttribute("sugList", sugList);
 		
+		//요즘 뜨는 경매
+		List<ProductVO> topLike = service.selectTopLike();
+		request.setAttribute("topLike", topLike);
+		
+		//오늘의 경매
+		List<ProductVO> today = service.selectToday();
+		request.setAttribute("today", today);
+		
+		//마감 임박 경매
+		List<ProductVO> deadLine = service.selectDeadLine();
+		request.setAttribute("deadLine", deadLine);
 		
 		return "/main.jsp";
 	}

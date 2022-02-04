@@ -31,7 +31,7 @@ public class MainBoardListService {
 	}
 	
 	/**
-	 * 
+	 * 제일 많이 제시 받은 탑5 리스트 가져오기
 	 */
 	public List<ProductVO> selectTopSugList() {
 		
@@ -40,5 +40,34 @@ public class MainBoardListService {
 		return sugList;
 	}
 	
+	/**
+	 * 요즘 뜨는 경매 - 제일 좋아요수 많이 받은 리스트 가져오기
+	 */
+	public List<ProductVO> selectTopLike() {
+		
+		List<ProductVO> topLike = ListDao.selectTopLike();
+		
+		return topLike;
+	}
 	
+	/**
+	 * 오늘의 경매 - 오늘 등록된 경매 리스트 가져오기 (무작위 4개)
+	 */
+	public List<ProductVO> selectToday() {
+		
+		List<ProductVO> today = ListDao.selectToday();
+		
+		return today;
+	}
+	
+	
+	/**
+	 * 마감 임박 경매 - 마감기한이 오늘과 가장 가까운 경매 리스트 가져오기
+	 */
+	public List<ProductVO> selectDeadLine() {
+		
+		List<ProductVO> deadLine = ListDao.selectDeadLine();
+		
+		return deadLine;
+	}
 }

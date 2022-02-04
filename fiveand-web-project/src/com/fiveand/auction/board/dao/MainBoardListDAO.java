@@ -107,5 +107,139 @@ public class MainBoardListDAO {
 		return sugList;
 	}
 	
+	/**
+	 * 요즘 뜨는 경매 파트 - like_cnt 순으로 상위 4개 조회
+	 */
+	public List<ProductVO> selectTopLike(){
+		
+		List<ProductVO> topLike = new ArrayList<ProductVO>();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select * from(   ");
+		sql.append("  select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name, p.like_cnt  ");
+		sql.append("  from ftbl_product p,   ");
+		sql.append("  (select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f,  ");
+		sql.append("  ftbl_category c  ");
+		sql.append("  where row_num=1 and p.pd_no = f.pd_no and p.c_no = c.c_no ");
+		sql.append(" order by like_cnt desc) ");
+		sql.append(" where rownum <= 4 ");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		){
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO productVO = new ProductVO();
+				
+				productVO.setPdNo(rs.getInt("pd_no"));
+				productVO.setPdName(rs.getString("pd_name"));
+				productVO.setStartPrice(rs.getInt("start_price"));
+				productVO.setDueDate(rs.getString("due_date"));
+				productVO.setcNo(rs.getInt("c_no"));
+				productVO.setcName(rs.getString("category"));
+				productVO.setFileSaveName(rs.getString("file_save_name"));
+				productVO.setLikeCnt(rs.getInt("like_cnt"));
+				
+				topLike.add(productVO);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		//System.out.println(topLike);
+		return topLike;
+	}
+	
+	/**
+	 * 오늘의 경매 파트 - reg_date = sysdate 인 리스트 4개 뽑아오기
+	 */
+	public List<ProductVO> selectToday(){
+		
+		List<ProductVO> today = new ArrayList<ProductVO>();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select * from(   ");
+		sql.append("  select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name  ");
+		sql.append("  from ftbl_product p,   ");
+		sql.append("  (select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f,  ");
+		sql.append("  ftbl_category c  ");
+		sql.append("  where row_num=1 and p.pd_no = f.pd_no and p.c_no = c.c_no ");
+		sql.append(" and to_char(reg_date, 'yyyy-mm-dd') = to_char(sysdate, 'yyyy-mm-dd') ) ");
+		sql.append(" where rownum <= 4 ");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		){
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO productVO = new ProductVO();
+				
+				productVO.setPdNo(rs.getInt("pd_no"));
+				productVO.setPdName(rs.getString("pd_name"));
+				productVO.setStartPrice(rs.getInt("start_price"));
+				productVO.setDueDate(rs.getString("due_date"));
+				productVO.setcNo(rs.getInt("c_no"));
+				productVO.setcName(rs.getString("category"));
+				productVO.setFileSaveName(rs.getString("file_save_name"));
+				
+				today.add(productVO);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return today;
+	}
+	
+	/**
+	 * 마감 임박 경매 파트 - 현재 날짜와 due_date가 가장 가까운 순으로
+	 */
+	public List<ProductVO> selectDeadLine(){
+		
+		List<ProductVO> deadLine = new ArrayList<ProductVO>();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select * from(   ");
+		sql.append("  select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name  ");
+		sql.append("  from ftbl_product p,   ");
+		sql.append("  (select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f,  ");
+		sql.append("  ftbl_category c  ");
+		sql.append("  where row_num=1 and p.pd_no = f.pd_no and p.c_no = c.c_no and due_date > to_char(sysdate, 'yyyy-mm-dd') ");
+		sql.append(" order by due_date) ");
+		sql.append(" where rownum <= 4 ");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		){
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO productVO = new ProductVO();
+				
+				productVO.setPdNo(rs.getInt("pd_no"));
+				productVO.setPdName(rs.getString("pd_name"));
+				productVO.setStartPrice(rs.getInt("start_price"));
+				productVO.setDueDate(rs.getString("due_date"));
+				productVO.setcNo(rs.getInt("c_no"));
+				productVO.setcName(rs.getString("category"));
+				productVO.setFileSaveName(rs.getString("file_save_name"));
+				
+				deadLine.add(productVO);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return deadLine;
+	}
+	
+	
+	
+	
+	
 	
 }

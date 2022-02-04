@@ -18,11 +18,15 @@ public class MySuggestController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String id = request.getParameter("id");
-		System.out.println("로그인 중인 아이디: " +id);
+		//System.out.println("로그인 중인 아이디: " +id);
+		
 		MyPageService2 service = new MyPageService2();
 		List<ProductVO> suggList = service.selectMySugg(id);
+		List<ProductVO> winList = service.selectMyWin(id);
+		
 		
 		request.setAttribute("suggList", suggList);
+		request.setAttribute("winList", winList);
 		
 		
 		return "/jsp/member/mySuggList.jsp";
