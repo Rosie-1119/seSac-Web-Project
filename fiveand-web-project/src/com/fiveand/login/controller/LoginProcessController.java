@@ -47,12 +47,18 @@ public class LoginProcessController implements Controller {
 				msg = userVO.getId() + "님 환영합니다";
 				break;
 			}
-			url = "/main.do"; // "/"했을때는 로그아웃이 안떠서 수정했음ㅠ!
-			HttpSession session = request.getSession();
-			session.setAttribute("userVO", userVO);
-			// 경매 성공했으나 결제 전인 건수 체크
-			int winBidCnt = service.checkWinBid(userVO);
-			session.setAttribute("winBidCnt", winBidCnt);
+			if (userVO.getWarningCnt() >= 1) {
+				msg = "5회 경고받은 계정입니다. 이용이 제한됩니다.";
+				url = "/main.do";
+				userVO = null;
+			} else {
+				url = "/main.do"; // "/"했을때는 로그아웃이 안떠서 수정했음ㅠ!
+				HttpSession session = request.getSession();
+				session.setAttribute("userVO", userVO);
+				// 경매 성공했으나 결제 전인 건수 체크
+				int winBidCnt = service.checkWinBid(userVO);
+				session.setAttribute("winBidCnt", winBidCnt);
+			}
 		}
 		System.out.println(msg);
 		return "redirect:" + url;
