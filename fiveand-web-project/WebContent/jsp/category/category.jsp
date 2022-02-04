@@ -51,7 +51,7 @@
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
 							<li><a href="${ pageContext.request.contextPath }/main.do">Home</a></li>
-							<li class="active">디지털 기기</li>
+							<li class="active"></li>
 						</ul>
 					</div>
 				</div>
