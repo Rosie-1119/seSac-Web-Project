@@ -13,10 +13,11 @@
 		
 				<ul class="header-links pull-right">
 					<span>
-					<c:if test="${ not empty userVO }">
+					<c:if test="${ not empty userVO.id }">
 		   				[${ userVO.id }님으로 로그인 중]&emsp;
 					</c:if>
 					</span>
+					
 					<!-- 회원가입 버튼 -->
 		
 				<c:choose>
@@ -35,7 +36,12 @@
 			 <li><a href="${ pageContext.request.contextPath }/myPage.do"><i
 					class="fa fa-user-o"></i> 마이페이지</a></li>
 				</c:otherwise>
+				
 			</c:choose>
+			
+			
+			
+	
 			
 			
 		</ul>

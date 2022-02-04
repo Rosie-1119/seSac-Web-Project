@@ -188,7 +188,7 @@
 				.on("click",function() {
 							//1. 로그인 시도
 							Kakao.Auth.login({
-							scope: 'profile_nickname, account_email, gender, birthday'
+							scope: 'profile_nickname, account_email, gender, birthday',
 							success : function(response) {
 							//console.log(response)
 							//console.log(JSON.stringify(authObj));
