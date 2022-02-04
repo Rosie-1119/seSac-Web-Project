@@ -10,7 +10,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>최근 경매리스트</title>
+		<title>카테고리별 경매리스트</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -28,13 +28,10 @@
  		<!-- Font Awesome Icon -->
  		<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/font-awesome.min.css">
 
- 		<!-- Custom stlylesheet -->
+ 		<!-- Custom stylesheet -->
  		<link type="text/css" rel="stylesheet" href="${ pageContext.request.contextPath }/css/style.css"/>
 
-
-
     </head>
-    
     
     
 	<body>
@@ -53,8 +50,8 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li class="active">Recent List</li>
+							<li><a href="${ pageContext.request.contextPath }/main.do">Home</a></li>
+							<li class="active">디지털 기기</li>
 						</ul>
 					</div>
 				</div>
