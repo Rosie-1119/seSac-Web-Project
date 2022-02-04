@@ -70,8 +70,7 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
-								
+								<form name="search" role="search" method="get">
 									<!-- 검색할 때 선택할 수 있는 카테고리 -->
 									<select class="input-select">
 										<option value="0">전체</option>
@@ -83,8 +82,8 @@
 										<option value="6">도서/음반</option>
 										<option value="7">기타</option>
 									</select>
-									<input class="input" placeholder="Search here">
-									<button type="button" onclick="location.href='${ pageContext.request.contextPath }/search.do'"class="search-btn">Search</button>
+									<input type="search" placeholder="상품명을 입력하세요" value="${ param.findStr }" name="findStr" />
+									<button type="button" onclick="location.href='${ pageContext.request.contextPath }/search.do'"class="search-btn" name="btnFind">검색</button>
 								</form>
 							</div>
 						</div>
