@@ -39,6 +39,7 @@
 		<![endif]-->
 		
 <!-- 	<script>
+<!--
 	$(document).ready(
 			function(){
 				$('#wishList').click(function() {
@@ -57,6 +58,11 @@
 				});
 			});
 	</script> -->
+	<script>
+		<c:if test="${not empty msg}">
+			alert('${msg}')
+		</c:if>
+	</script>
     </head>
 	<body>
 		<!-- HEADER -->
