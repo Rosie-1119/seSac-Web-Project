@@ -41,8 +41,8 @@ public class MyPageDAO2 {
 				pstmt.setString(1, id);
 				
 				ResultSet rs = pstmt.executeQuery();
-				boolean rsn = rs.next();
-				System.out.println(rsn);
+//				boolean rsn = rs.next();
+//				System.out.println(rsn);
 				
 				while(rs.next()) {
 					ProductVO productVO = new ProductVO();

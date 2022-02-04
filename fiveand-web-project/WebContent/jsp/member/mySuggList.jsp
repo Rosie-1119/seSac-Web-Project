@@ -101,24 +101,24 @@
 									<div class="product-img">
 										<%-- 이미지 링크하기 --%>
 										
-											<img src="${ pageContext.request.contextPath }/upload/${ suggList.fileSaveName }">
+											<img src="${ pageContext.request.contextPath }/upload/${ list.fileSaveName }">
 										
 										<div class="product-label">
-											<span class="sale">마감 ${ suggList.dueDate }</span>
+											<span class="sale">마감 ${ list.dueDate }</span>
 											
 										</div>
 									</div>
 									<div class="product-body">
-										<p class="product-category">${ suggList.cName }</p>
-										<h3 class="product-name"><a href="#">${ suggList.pdName }</a></h3>
-										<h4 class="product-price">시작가 ${ suggList.startPrice }</h4>
+										<p class="product-category">${ list.cName }</p>
+										<h3 class="product-name"><a href="#">${ list.pdName }</a></h3>
+										<h4 class="product-price">시작가 ${ list.startPrice }</h4>
 										
 										<div class="product-btns">
 											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to My Heart</span></button>
 											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 										</div>
 									</div>
-									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ suggList.pdNo }">
+									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ list.pdNo }">
 										<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button></a>
 									</div>
 									
