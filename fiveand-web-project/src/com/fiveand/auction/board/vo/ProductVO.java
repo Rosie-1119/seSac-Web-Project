@@ -19,6 +19,8 @@ public class ProductVO {
 	private String delDate;  //삭제한 날짜
 	
 	private String fileSaveName; // 파일 저장명
+	private String sugId;
+	private int sugPrice;
 	
 
 	// 생성자
@@ -26,6 +28,30 @@ public class ProductVO {
 
 	}
 	
+	public ProductVO(int pdNo, String id, String pdName, int hopePrice, int startPrice, String regDate, String dueDate,
+			String pdSimpleInfo, String pdInfo, int cNo, String cName, int viewCnt, int likeCnt, int sugCnt,
+			String delDate, String fileSaveName, String sugId, int sugPrice) {
+		super();
+		this.pdNo = pdNo;
+		this.id = id;
+		this.pdName = pdName;
+		this.hopePrice = hopePrice;
+		this.startPrice = startPrice;
+		this.regDate = regDate;
+		this.dueDate = dueDate;
+		this.pdSimpleInfo = pdSimpleInfo;
+		this.pdInfo = pdInfo;
+		this.cNo = cNo;
+		this.cName = cName;
+		this.viewCnt = viewCnt;
+		this.likeCnt = likeCnt;
+		this.sugCnt = sugCnt;
+		this.delDate = delDate;
+		this.fileSaveName = fileSaveName;
+		this.sugId = sugId;
+		this.sugPrice = sugPrice;
+	}
+
 	public ProductVO(int pdNo, String id, String pdName, int hopePrice, int startPrice, String regDate, String dueDate,
 			String pdSimpleInfo, String pdInfo, int cNo, String cName, int viewCnt, int likeCnt, int sugCnt,
 			String delDate, String fileSaveName) {
@@ -96,6 +122,22 @@ public class ProductVO {
 		return pdNo;
 	}
 
+
+	public String getSugId() {
+		return sugId;
+	}
+
+	public void setSugId(String sugId) {
+		this.sugId = sugId;
+	}
+
+	public int getSugPrice() {
+		return sugPrice;
+	}
+
+	public void setSugPrice(int sugPrice) {
+		this.sugPrice = sugPrice;
+	}
 
 	public String getFileSaveName() {
 		return fileSaveName;
@@ -251,7 +293,7 @@ public class ProductVO {
 				+ ", startPrice=" + startPrice + ", regDate=" + regDate + ", dueDate=" + dueDate + ", pdSimpleInfo="
 				+ pdSimpleInfo + ", pdInfo=" + pdInfo + ", cNo=" + cNo + ", cName=" + cName + ", viewCnt=" + viewCnt
 				+ ", likeCnt=" + likeCnt + ", sugCnt=" + sugCnt + ", delDate=" + delDate + ", fileSaveName="
-				+ fileSaveName + "]";
+				+ fileSaveName + ", sugId=" + sugId + ", sugPrice=" + sugPrice + "]";
 	}
 	
 }
