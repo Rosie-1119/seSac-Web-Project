@@ -150,7 +150,6 @@
 									<button type="submit" class="primary-btn order-submit"
 										id="btnLogin" align="center">로그인</button>
 								</div>
-								<br>
 								<hr width="560px;">
 								<br>
 
