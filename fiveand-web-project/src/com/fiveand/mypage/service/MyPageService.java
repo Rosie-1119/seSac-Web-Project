@@ -35,8 +35,9 @@ public class MyPageService {
 	/**
 	 * 내계정 삭제 --
 	 */
-	public void deleteMyInfo(MemberVO member) {
-		myInfoDao.deleteMyInfo(member);
+	public int deleteMyInfo(MemberVO member) {
+		int result = myInfoDao.deleteMyInfo(member);
+		return result;
 	}
 	
 	

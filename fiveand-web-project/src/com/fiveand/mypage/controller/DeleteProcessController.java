@@ -8,7 +8,7 @@ import com.fiveand.controller.Controller;
 import com.fiveand.member.vo.MemberVO;
 import com.fiveand.mypage.service.MyPageService;
 
-public class DeleteMyInfoController implements Controller {
+public class DeleteProcessController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -17,18 +17,28 @@ public class DeleteMyInfoController implements Controller {
 
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
-
+		
 		MemberVO member = new MemberVO();
+		
 		member.setId(id);
 		member.setPwd(pwd);
-
+		
 		MyPageService service = new MyPageService();
-		service.deleteMyInfo(member);
+		int result = service.deleteMyInfo(member);
+		
+		String msg="";
+		String url="";
+		if(result == 0) {
+			msg = "패스워드가 일치하지 않습니다.";
+			url = "/deleteMyInfoForm.do?id=" + id;
+		} else {
+			msg = "회원 탈퇴가 완료되었습니다.";
+			url = "/main.do";
+			HttpSession session = request.getSession();
+			session.invalidate();
+			}
 
-		System.out.println("계정이 삭제 되었습니다.");
-		return "redirect:/main.do";
-		// return "/main.do";
-		// return "redirect:/myInfo.do?id="+id;
+		return "redirect:" + url;
 	}
 
 }

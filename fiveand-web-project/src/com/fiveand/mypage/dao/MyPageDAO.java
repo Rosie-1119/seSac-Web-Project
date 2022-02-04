@@ -92,8 +92,9 @@ public class MyPageDAO {
 	 * 마이페이지(내 계정 삭제) 
 	 */
 	
-	public void deleteMyInfo(MemberVO member) {
+	public int deleteMyInfo(MemberVO member) {
 		
+		int result = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -105,14 +106,15 @@ public class MyPageDAO {
 
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, member.getId());
-			pstmt.setString(2, member.getPwd());
-			pstmt.executeUpdate();
+			pstmt.setString(2, member.getPassword());
+			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			JDBCClose.close(pstmt, conn);
 		}
+		return result;
 	}
 	
 	
