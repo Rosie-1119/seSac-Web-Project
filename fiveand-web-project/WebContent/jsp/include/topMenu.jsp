@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src='<%=request.getContextPath() %>/js/login.js'></script>
 
 <!-- !!폼 만들 때 index.html에 있는 링크 복붙해 놓고 TopMenu/footer 넣기!! -->
 
@@ -70,20 +71,9 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form name="search" role="search" method="get">
-									<!-- 검색할 때 선택할 수 있는 카테고리 -->
-									<select class="input-select">
-										<option value="0">전체</option>
-										<option value="1">디지털기기</option>
-										<option value="2">생활가전</option>
-										<option value="3">가구/인테리어</option>
-										<option value="4">의류/잡화</option>
-										<option value="5">뷰티/미용</option>
-										<option value="6">도서/음반</option>
-										<option value="7">기타</option>
-									</select>
-									<input type="search" placeholder="상품명을 입력하세요" value="${ param.findStr }" name="findStr" />
-									<button type="button" onclick="location.href='${ pageContext.request.contextPath }/search.do'"class="search-btn" name="btnFind">검색</button>
+								<form action="${ pageContext.request.contextPath }/search.do" name="search" method="get">
+									<input class="input" placeholder="상품명을 입력하세요" name="findStr">
+									<button type="submit" class="search-btn">검색</button>
 								</form>
 							</div>
 						</div>
@@ -184,3 +174,4 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
+ <script>logInOut()</script>
