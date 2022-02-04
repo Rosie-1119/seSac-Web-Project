@@ -13,14 +13,14 @@
 		
 				<ul class="header-links pull-right">
 					<span>
-					<c:if test="${ not empty id }">
-		   				[${ id }님으로 로그인 중]&emsp;
+					<c:if test="${ not empty userVO }">
+		   				[${ userVO.id }님으로 로그인 중]&emsp;
 					</c:if>
 					</span>
 					<!-- 회원가입 버튼 -->
 		
 				<c:choose>
-				<c:when test="${ empty id }">
+				<c:when test="${ empty userVO.id }">
       
 			<li><a href="${ pageContext.request.contextPath }/signup.do"><i
 					class="fa fa-arrow-right"></i> Join</a></li>
@@ -91,7 +91,7 @@
 							
 								
 								<div>
-								<c:if test="${ empty id }">
+								<c:if test="${ empty userVO.id }">
 									<a onclick="alert('로그인이 필요합니다.')" id="suggList" href="${ pageContext.request.contextPath }/login.do">
 										<i class="fa fa-heart-o"></i>
 										<span>참여한 경매</span>
@@ -99,7 +99,7 @@
 								</c:if>
 								
 								
-								<c:if test="${ not empty id }">
+								<c:if test="${ not empty userVO.id }">
 									<a id="suggList" href="${ pageContext.request.contextPath }/mySuggList.do?id= ${id}" >
 										<i class="fa fa-heart-o"></i>
 										<span>참여한 경매</span>
@@ -110,13 +110,13 @@
 
 								<!-- Auction : 경매 등록하기 -->
 								<div class="dropdown">
-								<c:if test="${ empty id }">
+								<c:if test="${ empty userVO.id }">
 		   							<a onclick="alert('로그인이 필요합니다.')" id="auctionReg" href="${ pageContext.request.contextPath }/login.do">
 										<i class="fa fa-handshake-o"></i>
 										<span>경매 등록</span>
 									</a>
 								</c:if>
-								<c:if test="${ not empty id }">
+								<c:if test="${ not empty userVO.id }">
 									<a id="auctionReg" href="${ pageContext.request.contextPath }/auction/writeForm.do">
 										<i class="fa fa-handshake-o"></i>
 										<span>경매 등록</span>

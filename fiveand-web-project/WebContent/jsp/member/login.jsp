@@ -38,6 +38,7 @@
 		url = "/";
 		
 		// 세션등록
+		session.setAttribute("userVO", userVO);
 		session.setAttribute("id", id);
 		session.setAttribute("pwd", pwd);
 	}

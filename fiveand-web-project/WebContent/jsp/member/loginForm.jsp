@@ -19,7 +19,8 @@
 }
 
 .container_f {
-	text-align: center; align-content : center;
+	text-align: center;
+	align-content: center;
 	align-items: center;
 	padding-right: 15px;
 	padding-left: 15px;
@@ -161,7 +162,7 @@
 									</div>
 
 								</section>
-								</div>
+							</div>
 						</form>
 
 
@@ -183,38 +184,36 @@
 	<script type='text/javascript'>
 		Kakao.init('23d3236e95d78f95d78a5ca69eb39dc6');
 		$("#kakao-login-btn")
-				.on(
-						"click",
-						function() {
+				.on("click",function() {
 							//1. 로그인 시도
-							Kakao.Auth
-									.login({
-										success : function(authObj) {
-											//console.log(JSON.stringify(authObj));
-											//console.log(Kakao.Auth.getAccessToken());
-											//2. 로그인 성공시, API를 호출합니다.
-											Kakao.API
-													.request({
-														url : '/v2/user/me',
-														success : function(res) {
-															//console.log(JSON.stringify(res));
-															console.log(res);
-															var id = res.id;
-															scope: 'account_email';
-															alert('로그인성공');
-															//var email = res.kakao_account.email;
-															//var name = res.properties.nickname;
-															location.href = "http://localhost:9999/fiveand-web-project/jsp/member/kakaocallback.jsp";
-
-														}
-													})
-											console.log(authObj);
-											var token = authObj.access_token;
-										},
-										fail : function(err) {
-											alert(JSON.stringify(err));
-										}
-									});
+							Kakao.Auth.login({
+							scope: 'profile_nickname, account_email, gender, birthday'
+							success : function(response) {
+							//console.log(response)
+							//console.log(JSON.stringify(authObj));
+							//console.log(Kakao.Auth.getAccessToken());
+							//2. 로그인 성공시, API를 호출합니다.
+							Kakao.API.request({
+								url : '/v2/user/me',
+								success : function(res) {
+									//console.log(JSON.stringify(res));
+									console.log(res);
+									/* var id = res.id;
+									scope: 'account_email'; */
+									const kakao_account = res.kakao_account;
+									alert('로그인성공');
+									//var email = res.kakao_account.email;
+									//var name = res.properties.nickname;
+									location.href = "http://localhost:9999/fiveand-web-project/jsp/member/kakaocallback.jsp";
+								}
+							})
+					console.log(authObj);
+					var token = authObj.access_token;
+				},
+				fail : function(err) {
+					alert(JSON.stringify(err));
+				}
+			});
 
 						})
 	</script>
