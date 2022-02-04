@@ -14,7 +14,9 @@ public class SearchController implements Controller{
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		request.setCharacterEncoding("utf-8");
+		/*
+		 * request.setCharacterEncoding("utf-8");
+		 */
 		
 		String findStr = request.getParameter("findStr");
 		SearchService service = new SearchService();

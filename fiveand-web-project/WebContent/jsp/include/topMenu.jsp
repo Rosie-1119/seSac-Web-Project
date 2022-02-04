@@ -72,7 +72,7 @@
 						<div class="col-md-6">
 							<div class="header-search">
 								<form action="${ pageContext.request.contextPath }/search.do" name="search" method="get">
-									<input class="input" placeholder="상품명을 입력하세요" name="findStr">
+									<input class="input" placeholder="상품명을 입력하세요" value="${param.findStr }" name="findStr">
 									<button type="submit" class="search-btn">검색</button>
 								</form>
 							</div>
