@@ -14,7 +14,7 @@
 				<ul class="header-links pull-right">
 					<span>
 					<c:if test="${ not empty userVO.id }">
-		   				[${ userVO.id }님으로 로그인 중]&emsp;
+		   				[&emsp;${ userVO.id }님으로 로그인 중&emsp;<c:if test="${ userVO.warningCnt > 0 }">|&emsp;경고 : ${ userVO.warningCnt } 회&emsp;</c:if>]
 					</c:if>
 					</span>
 					
