@@ -72,12 +72,6 @@
 				<div class="row">
 					<!-- STORE -->
 					<div id="store" class="col-md-11">
-					
-						
-						<div align="left">
-							TOTAL PRODUCTS : ${ pagingVO.totalCount }<br>
-						</div>
-
 
 					<!-- store products -->
 						<div class="row">
@@ -131,7 +125,7 @@
 						
 						<!-- 페이징 기능 -->
 						<div class="store-filter clearfix">
-							<span class="store-qty">Showing products</span>
+							
 							
 							<ul class="store-pagination">
 								<c:if test="${ page <= 1 }">
