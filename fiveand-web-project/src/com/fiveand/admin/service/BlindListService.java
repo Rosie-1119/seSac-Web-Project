@@ -28,19 +28,22 @@ public class BlindListService {
 	
 	
 	/**
+	 * 특정 게시글 블라인드 처리하기
 	 * FTBL_PRODUCT --> FTBL_BLIND로 삭제할 게시글 복제
+	 * FTBL_PRODUCT에 해당 게시글 삭제
+	 * FTBL_MEMBER에 경고수 증가
 	 */
-	public void insertBlind(int pdNo) {
-		blindDao.insertBlind(pdNo);
-		auctionBoardDao.removeFileByNo(pdNo);
-		auctionBoardDao.removeProduct(pdNo);
-	}
-	
-	
-	/**
-	 * FTBL_PRODUCT에서 복제한 데이터 삭제
-	 */
-	public void removeProduct(int pdNo) {
+	public void insertBlind(ProductVO product) {
 		
+		// 블라인드 처리
+		blindDao.insertBlind(product.getPdNo());
+		
+		// 게시글 삭제
+		auctionBoardDao.removeFileByNo(product.getPdNo());
+		auctionBoardDao.removeProduct(product.getPdNo());
+		
+		// 경고수 증가
+		blindDao.addWarnCnt(product.getId());
 	}
+	
 }
