@@ -27,7 +27,7 @@ public class BoardWriteController implements Controller {
 		String savePath = request.getRealPath("/upload");
 
 		// 업로드 될 파일의 최대 사이즈 (50메가)
-		int sizeLimit = 50 * 1024 * 1024;
+		int sizeLimit = 5000 * 1024 * 1024;
 		
 		// 파일 업로드를 하기 위해서 cos.jar 추가 및 객체 생성
 		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "UTF-8", new SesacFileNamePolicy());
