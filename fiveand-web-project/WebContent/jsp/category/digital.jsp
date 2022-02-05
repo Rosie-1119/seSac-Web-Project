@@ -51,7 +51,7 @@
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
 							<li><a href="#">Category</a></li>
-							<li class="active">digital</li>
+							<li class="active">Digital</li>
 						</ul>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 					<!-- STORE -->
 					<div id="store" class="col-md-11">
 						<div align="left">
-							TOTAL PRODUCTS : ${ pagingVO.totalCount }<br>
+							
 						</div>
 
 						<!-- store products -->

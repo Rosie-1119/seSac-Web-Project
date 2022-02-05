@@ -10,8 +10,7 @@ import com.fiveand.auction.board.vo.ProductVO;
 import com.fiveand.category.service.CategoryService;
 import com.fiveand.controller.Controller;
 
-public class DigitalController implements Controller {
-	
+public class FurnitureController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		PagingVO pagingVO = new PagingVO();
@@ -36,8 +35,8 @@ public class DigitalController implements Controller {
 		} //마지막 페이지 전체 물품이 끝나는 지점으로 재설정
 		
 		
-		List<ProductVO> list = service.selectDigital();
-	
+		List<ProductVO> list = service.selectFurniture();
+
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pagingVO", pagingVO);
@@ -46,9 +45,9 @@ public class DigitalController implements Controller {
 		request.setAttribute("endPage", pagingVO.getEndPage());
 		request.setAttribute("totalPage", pagingVO.getTotalPage());
 		request.setAttribute("displayPage", pagingVO.getDisplayPage());
-	
-		return "/jsp/category/digital.jsp";
+
+		return "/jsp/category/furniture.jsp";
 		
-	
-	}
+		
+		}
 }
