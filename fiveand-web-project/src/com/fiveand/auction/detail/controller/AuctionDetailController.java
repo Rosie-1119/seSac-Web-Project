@@ -15,6 +15,8 @@ import com.fiveand.auction.suggest.service.AuctionProcessService;
 import com.fiveand.auction.suggest.vo.SuggestListVO;
 import com.fiveand.controller.Controller;
 import com.fiveand.member.vo.MemberVO;
+import com.fiveand.qna.service.QnAService;
+import com.fiveand.qna.vo.QnAVO;
 
 public class AuctionDetailController implements Controller {
 	@Override
@@ -52,6 +54,16 @@ public class AuctionDetailController implements Controller {
 		request.setAttribute("fileList", fileList);
 		request.setAttribute("suggestList", suggestList);
 		request.setAttribute("isHeart", isHeart);
+		
+		//---QnA관련 추가
+		QnAService service = new QnAService();
+		List<QnAVO> list = service.selectAllBoard(no);
+		int totalCount = service.totalCount();
+		request.setAttribute("list", list);
+		request.setAttribute("totalCount", totalCount);
+		System.out.println(list);
+		
+		
 		return "/jsp/detail/detail.jsp?no="+no;
 	}
 }

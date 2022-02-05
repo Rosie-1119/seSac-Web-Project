@@ -61,21 +61,29 @@ public class QnAService {
 
 		dao.insertBoard(qna);
 	}
-
+	
 	/**
-	 * 문의글 삭제 서비스
+	 * 수정할 게시글 정보 가져오기
 	 */
-	public void deleteBoard(QnAVO qna) {
-
-//		dao.deleteBoard(qna);
+	public QnAVO updateFormBoard(int bNo) {
+		QnAVO qna = dao.updateFormBoard(bNo);
+		return qna;
 	}
-
+	
 	/**
 	 * 문의글 수정 서비스
 	 */
 	public void updateBoard(QnAVO qna) {
+		
+		dao.updateBoard(qna);
+	}
 
-//		dao.updateBoard(qna);
+	/**
+	 * 문의글 삭제 서비스
+	 */
+	public void deleteBoard(int bNo) {
+
+		dao.deleteBoard(bNo);
 	}
 	
 	/**

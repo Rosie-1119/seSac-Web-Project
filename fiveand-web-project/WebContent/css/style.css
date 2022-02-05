@@ -48,6 +48,9 @@ Table OF Contents
 ------------------------------------*/
 
 
+
+
+
 /*=========================================================
 	01 -> GENERAL
 ===========================================================*/
@@ -748,6 +751,14 @@ textarea.input {
   position: relative;
   overflow: hidden;
   margin: 15px 0px;
+  
+}
+
+.mypage {
+  position: relative;
+  overflow: hidden;
+  margin: 15px 0px;
+  border-radius: 55px 0px 0px 40px;
 }
 
 .shop:before {
@@ -759,6 +770,20 @@ textarea.input {
   width: 20%;
   background: #adb5bd;
   opacity: 0.9;
+  -webkit-transform: skewX(-45deg);
+  -ms-transform: skewX(-45deg);
+  transform: skewX(-45deg);
+}
+
+.mypage:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0px;
+  width: 20%;
+  background: #e8ecec;
+  opacity: 0.5;
   -webkit-transform: skewX(-45deg);
   -ms-transform: skewX(-45deg);
   transform: skewX(-45deg);
@@ -778,9 +803,30 @@ textarea.input {
   transform: skewX(-45deg) translateX(-100%);
 }
 
+.mypage:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1px;
+  width: 100%;
+  background: #e8ecec;
+  opacity: 0.9;
+  -webkit-transform: skewX(-45deg) translateX(-100%);
+  -ms-transform: skewX(-45deg) translateX(-100%);
+  transform: skewX(-45deg) translateX(-100%);
+  border-radius: 40px 0px 0px 40px;
+}
+
 .shop .shop-img {
   position: relative;
   background-color: #E4E7ED;
+  z-index: -1;
+}
+
+.shop .mypage-img {
+  position: relative;
+  background-color: #FFF;
   z-index: -1;
 }
 
@@ -797,6 +843,14 @@ textarea.input {
 }
 
 .shop .shop-body {
+  position: absolute;
+  top: 0;
+  width: 75%;
+  padding: 30px;
+  z-index: 10;
+}
+
+.mypage .shop-body {
   position: absolute;
   top: 0;
   width: 75%;

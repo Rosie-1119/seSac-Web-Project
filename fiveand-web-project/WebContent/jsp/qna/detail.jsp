@@ -63,7 +63,7 @@ function doAction(type) {
 			location.href="${ pageContext.request.contextPath }/qna/updateForm.do?bNo=${result.bNo}"
 			break;
 		case 'D':
-			location.href="${ pageContext.request.contextPath }/qna/delete.do?bNo=${result.bNo}"
+			location.href="${ pageContext.request.contextPath }/qna/delete.do?bNo=${result.bNo}&pdNo=${result.pdNo}"
 			break;
 		case 'R':
 			//location.href="reply.jsp?id=${ param.id }"
@@ -155,15 +155,12 @@ function doWrite(){
 			
 			<table border="1" width="900px" class="list">
 				<tr>
-					<th width="10%">제목</th>
-					<td width="50%">${ result.title }</td>
-					<th width="10%">작성자</th>
-					<td width="10%">${ result.id }</td>
-					<th width="10%">등록일</th>
-					<td width="10%">${ result.regDate }</td>
-				</tr>
-				<tr>
-					<th width="10%" colspan="6">내용</th>
+					<th width="10%"><center>제목</center></th>
+					<td width="50%">&nbsp;&nbsp;${ result.title }</td>
+					<th width="10%"><center>작성자</center></th>
+					<td width="10%">&nbsp;&nbsp;${ result.id }</td>
+					<th width="10%"><center>등록일</center></th>
+					<td width="10%"><center>${ result.regDate }</center></td>
 				</tr>
 				<tr>
 					<td width="90%" height="200px" colspan="6">${ result.content }</td>
@@ -226,6 +223,7 @@ function doWrite(){
 			<div id="showComment" style="text-align: center;"></div>
 		</div> -->
 		
+		<br><br>
 
 		
 		

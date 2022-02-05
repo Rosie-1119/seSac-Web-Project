@@ -7,7 +7,7 @@ import com.fiveand.controller.Controller;
 import com.fiveand.qna.service.QnAService;
 import com.fiveand.qna.vo.QnAVO;
 
-public class QnAWriteController implements Controller {
+public class QnAUpdateController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -30,7 +30,7 @@ public class QnAWriteController implements Controller {
 		
 		QnAService service = new QnAService();
 		
-		service.insertBoard(qna);
+		service.updateBoard(qna);
 		
 		return "redirect:/qna/list.do?no=" + pdNo;
 	}
