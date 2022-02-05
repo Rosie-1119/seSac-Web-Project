@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<title>문의글 상세 페이지</title>
+<title>문의글 수정 페이지</title>
 
 <!-- Google font -->
 <link
@@ -59,24 +59,17 @@
 
 function doAction(type) {
 	switch(type) {
-		case 'U':
-			location.href="${ pageContext.request.contextPath }/qna/update.do"
-			break;
-		case 'D':
-			location.href="${ pageContext.request.contextPath }/qna/delete.do?bNo=${result.bNo}"
-			break;
-		case 'R':
-			//location.href="reply.jsp?id=${ param.id }"
-			$('#qnaReplyForm').css('display', 'block');
-			break;
+		/* case 'U':
+			//location.href="${ pageContext.request.contextPath }/qna/update.do"
+			break; */
 		case 'L':
-			location.href="${ pageContext.request.contextPath }/auction/detail.do?no=${result.pdNo}"
+			location.href="${ pageContext.request.contextPath }/auction/detail.do?no=${update.pdNo}"
 			break;
 	}
 }
 
 function doWrite(){
-	let f = document.inputForm
+	let f = document.updateForm
 
 	if(f.title.value == ''){
 		alert('제목을 입력하세요')
@@ -137,7 +130,7 @@ function doWrite(){
 					<div class="col-md-12">
 						<h3 class="breadcrumb-header">QnA Page</h3>
 						<ul class="breadcrumb-tree">
-							<li><a href="${ pageContext.request.contextPath }/auction/detail.do?no=${result.pdNo}">List</a></li>
+							<li><a href="${ pageContext.request.contextPath }/auction/detail.do?no=${update.pdNo}">List</a></li>
 							<li class="active">Current Page</li>
 						</ul>
 					</div>
@@ -151,59 +144,39 @@ function doWrite(){
 		
 		
 	<section>
-		<div align = "center">
-		
-		<br>
+			<div align="center" id="qnaUpdateForm">
+			<br>
 			<form action="${ pageContext.request.contextPath }/qna/update.do" 
 				  method="post" name="updateForm" onsubmit="return doWrite()">
-				<input type="hidden" name="id" value="${ userVO.id }">
-				<input type="hidden" name="pdNo" value="${ product.pdNo }"> 
-				<input type="hidden" name="pageNum" value="${pageNum}">
-				<input type="hidden" name="depth" value="${article.depth}"> 
-				<input type="hidden" name="pos" value="${article.pos}"> 
-				<input type="hidden" name="groupId" value="${article.groupId}"> 
+				<input type="hidden" name="bNo" value="${ update.bNo }">
+				<input type="hidden" name="id" value="${ update.id }">
+				<input type="hidden" name="pdNo" value="${ update.pdNo }">
+				<input type="hidden" name="regDate" value="${ update.regDate }">
 				
-			<div align="center" id="qnaUpdateForm">
 			<table border="1" width="900px" class="list">
 				<tr>
 					<th width="10%"><center>제목</center></th>
-					<td width="50%">&nbsp;&nbsp;${ update.title }</td>
+					<td width="50%"><input type="text" name="title" value="${ update.title }" required></td>
 					<th width="10%"><center>작성자</center></th>
-					<td width="10%">&nbsp;&nbsp;${ update.id }</td>
+					<td width="10%">${ update.id }</td>
 					<th width="10%"><center>등록일</center></th>
-					<td width="10%"><center>${ update.regDate }</center></td>
+					<td width="10%">${ update.regDate }</td>
 				</tr>
 				<tr>
-					<td width="90%" height="200px" colspan="6">${ update.content }</td>
+					<td width="90%" height="200px" colspan="6"><textarea name="content" rows="10" cols="60" required>${ update.content }</textarea></td>
 				</tr>
 			</table>
-			<table border="1" width="900px" id="reply_area">
-				<tr reply_type="all">
-					<!-- 뒤에 댓글 붙이기 쉽게 선언 -->
-					<td colspan="4"></td>
-				</tr>
-				<!-- 댓글이 들어갈 공간 -->
-			</table>
-			<table border="1" width="900px">
-				<tr>
-					<td width="500px">ID: ${userVO.id }&nbsp;&nbsp;&nbsp;
-						<button id="reply_save" name="reply_save">댓글 등록</button>
-					</td>
-				</tr>
-				<tr>
-					<td><textarea id="reply_content" name="reply_content" rows="4"
-							cols="50" placeholder="댓글을 입력하세요."></textarea></td>
-				</tr>
-			</table>
+			
+			
 			<br>
 			
-		<c:if test="${ result.id eq userVO.id }">
-			<button type="submit" class="bttn" onclick="doAction('U')">수정</button>
-			
-		</c:if>
-			<button class="bttn" onclick="doAction('L')">취소</button>
-		</div>
+			<c:if test="${ update.id eq userVO.id }">
+				<button type="submit" class="bttn">수정</button>
+				
+			</c:if>
+				<button class="bttn" onclick="doAction('L')">취소</button>
 		</form>
+		</div>
 		
 		
 		

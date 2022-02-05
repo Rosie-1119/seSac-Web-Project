@@ -104,6 +104,7 @@ public class MyPageDAO2 {
 					productVO.setFileSaveName(rs.getString("file_save_name"));
 					productVO.setSugId(rs.getString("sug_id"));
 					productVO.setSugPrice(rs.getInt("sug_price"));
+					productVO.setPayment(rs.getInt("payment"));
 					
 					list.add(productVO);
 				}

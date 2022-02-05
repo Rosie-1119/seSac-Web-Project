@@ -14,19 +14,21 @@ public class QnAUpdateController implements Controller {
 		
 		// 요청객체데이터 인코딩
 		request.setCharacterEncoding("utf-8");
-
+		
 		// 요청객체에서 입력한 데이터 추출
 		String id = request.getParameter("id");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int pdNo = Integer.parseInt(request.getParameter("pdNo"));
-		//System.out.println("title : "+ title+",id : "+id+", content : "+content+", no : "+pdNo);
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		System.out.println("수정할 내용 title : "+ title+",id : "+id+", content : "+content+", no : "+pdNo);
 		
 		QnAVO qna = new QnAVO();
 		qna.setTitle(title);
 		qna.setId(id);
 		qna.setContent(content);
 		qna.setPdNo(pdNo);
+		qna.setbNo(bNo);
 		
 		QnAService service = new QnAService();
 		

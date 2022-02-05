@@ -149,9 +149,9 @@ public class QnADAO {
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select b_no, pd_no, title, id, to_char(reg_date, 'yyyy-mm-dd') as reg_date , content, group_id, depth, pos ");
-			sql.append(" from ftbl_qna_board ");
-			sql.append(" where b_no = ? ");
+			sql.append("select q.b_no, q.pd_no, q.title, q.id  as qna_id , to_char(q.reg_date, 'yyyy-mm-dd') as reg_date , q.content, q.group_id, q.depth, q.pos, p.id as product_id ");
+			sql.append(" from ftbl_qna_board q, ftbl_product p ");
+			sql.append(" where q.pd_no = p.pd_no and b_no = ? ");
 
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, boardNo);
@@ -159,17 +159,14 @@ public class QnADAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				int bNo = rs.getInt("b_no");
-				int pdNo = rs.getInt("pd_no");
-				String title = rs.getString("title");
-				String id = rs.getString("id");
-				String regDate = rs.getString("reg_date");
-				String content = rs.getString("content");
-				int groupId = rs.getInt("group_id");
-				int depth = rs.getInt("depth");
-				int pos = rs.getInt("pos");
-				
-				qna = new QnAVO(bNo, pdNo, title, id, regDate, content, groupId, depth, pos);
+				qna = new QnAVO();
+				qna.setbNo(rs.getInt("b_no"));
+				qna.setId(rs.getString("qna_id"));
+				qna.setPdNo(rs.getInt("pd_no"));
+				qna.setTitle(rs.getString("title"));
+				qna.setContent(rs.getString("content"));
+				qna.setRegDate(rs.getString("reg_date"));
+				qna.setProductId(rs.getString("product_id"));
 				
 			}
 			
@@ -237,7 +234,8 @@ public class QnADAO {
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from ftbl_qna_board where b_no = ? ");
+			sql.append(" select q.b_no, q.id as qna_id , q.pd_no, q.title, q.content, to_char(q.reg_date, 'mm-dd') as reg_date, p.id as product_id ");
+			sql.append(" from ftbl_qna_board q, ftbl_product p where q.pd_no = p.pd_no and b_no = ? ");
 
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, boardNo);
@@ -245,17 +243,14 @@ public class QnADAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				int bNo = rs.getInt("b_no");
-				int pdNo = rs.getInt("pd_no");
-				String title = rs.getString("title");
-				String id = rs.getString("id");
-				String regDate = rs.getString("reg_date");
-				String content = rs.getString("content");
-				int groupId = rs.getInt("group_id");
-				int depth = rs.getInt("depth");
-				int pos = rs.getInt("pos");
-				
-				qna = new QnAVO(bNo, pdNo, title, id, regDate, content, groupId, depth, pos);
+				qna = new QnAVO();
+				qna.setbNo(rs.getInt("b_no"));
+				qna.setId(rs.getString("qna_id"));
+				qna.setPdNo(rs.getInt("pd_no"));
+				qna.setTitle(rs.getString("title"));
+				qna.setContent(rs.getString("content"));
+				qna.setRegDate(rs.getString("reg_date"));
+				qna.setProductId(rs.getString("product_id"));
 				
 			}
 
@@ -264,7 +259,7 @@ public class QnADAO {
 		} finally {
 			JDBCClose.close(pstmt, conn);
 		}
-		
+		System.out.println("가져온 내용: " +qna);
 		return qna;
 	}
 	
@@ -289,8 +284,9 @@ public class QnADAO {
 			pstmt.setString(2, qna.getContent());
 			pstmt.setInt(3, qna.getbNo());
 
-			pstmt.executeUpdate();
-
+			int rs = pstmt.executeUpdate();
+			System.out.println(rs);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
