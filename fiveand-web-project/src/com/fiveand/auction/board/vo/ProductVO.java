@@ -19,8 +19,10 @@ public class ProductVO {
 	private String delDate;  //삭제한 날짜
 	
 	private String fileSaveName; // 파일 저장명
-	private String sugId;
-	private int sugPrice;
+	
+	private String sugId; //최종 낙찰 아이디
+	private int sugPrice; //낙찰가
+	private int payment; //결제여부
 	
 
 	// 생성자
@@ -28,6 +30,33 @@ public class ProductVO {
 
 	}
 	
+	
+	public ProductVO(int pdNo, String id, String pdName, int hopePrice, int startPrice, String regDate, String dueDate,
+			String pdSimpleInfo, String pdInfo, int cNo, String cName, int viewCnt, int likeCnt, int sugCnt,
+			String delDate, String fileSaveName, String sugId, int sugPrice, int payment) {
+		super();
+		this.pdNo = pdNo;
+		this.id = id;
+		this.pdName = pdName;
+		this.hopePrice = hopePrice;
+		this.startPrice = startPrice;
+		this.regDate = regDate;
+		this.dueDate = dueDate;
+		this.pdSimpleInfo = pdSimpleInfo;
+		this.pdInfo = pdInfo;
+		this.cNo = cNo;
+		this.cName = cName;
+		this.viewCnt = viewCnt;
+		this.likeCnt = likeCnt;
+		this.sugCnt = sugCnt;
+		this.delDate = delDate;
+		this.fileSaveName = fileSaveName;
+		this.sugId = sugId;
+		this.sugPrice = sugPrice;
+		this.payment = payment;
+	}
+
+
 	public ProductVO(int pdNo, String id, String pdName, int hopePrice, int startPrice, String regDate, String dueDate,
 			String pdSimpleInfo, String pdInfo, int cNo, String cName, int viewCnt, int likeCnt, int sugCnt,
 			String delDate, String fileSaveName, String sugId, int sugPrice) {
@@ -118,8 +147,19 @@ public class ProductVO {
 
 	// getter, setter
 	
+	
 	public int getPdNo() {
 		return pdNo;
+	}
+
+
+	public int getPayment() {
+		return payment;
+	}
+
+
+	public void setPayment(int payment) {
+		this.payment = payment;
 	}
 
 
@@ -287,13 +327,15 @@ public class ProductVO {
 		this.delDate = delDate;
 	}
 
+
 	@Override
 	public String toString() {
 		return "ProductVO [pdNo=" + pdNo + ", id=" + id + ", pdName=" + pdName + ", hopePrice=" + hopePrice
 				+ ", startPrice=" + startPrice + ", regDate=" + regDate + ", dueDate=" + dueDate + ", pdSimpleInfo="
 				+ pdSimpleInfo + ", pdInfo=" + pdInfo + ", cNo=" + cNo + ", cName=" + cName + ", viewCnt=" + viewCnt
 				+ ", likeCnt=" + likeCnt + ", sugCnt=" + sugCnt + ", delDate=" + delDate + ", fileSaveName="
-				+ fileSaveName + ", sugId=" + sugId + ", sugPrice=" + sugPrice + "]";
+				+ fileSaveName + ", sugId=" + sugId + ", sugPrice=" + sugPrice + ", payment=" + payment + "]";
 	}
+
 	
 }

@@ -64,6 +64,7 @@ function doAction(type) {
 			break;
 		case 'D':
 			location.href="${ pageContext.request.contextPath }/qna/delete.do?bNo=${result.bNo}&pdNo=${result.pdNo}"
+			alert('삭제 완료되었습니다.')
 			break;
 		case 'R':
 			//location.href="reply.jsp?id=${ param.id }"
@@ -189,9 +190,9 @@ function doWrite(){
 		<c:if test="${ result.id eq userVO.id }">
 			<button class="bttn" onclick="doAction('U')">수정</button>
 			<button class="bttn"onclick="doAction('D')">삭제</button>
+		</c:if>
+		<c:if test="${ result.productId eq userVO.id }">
 			<button class="bttn"onclick="doAction('R')">답글</button>
-			<!-- request 영역에 등록되어 있는 product.id 를 어떻게 가져오는지? -->
-			
 		</c:if>
 			<button class="bttn" onclick="doAction('L')">목록</button>
 		</div>

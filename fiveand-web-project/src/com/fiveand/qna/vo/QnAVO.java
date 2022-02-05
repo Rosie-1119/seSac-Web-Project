@@ -13,12 +13,42 @@ public class QnAVO {
 	private int hit; 	
 	private int depth; 
 	private long comCount; //댓글 수 추가
+	private String productId;
 
 	public QnAVO() {
 
 	}
 
 	
+	public QnAVO(int bNo, String id, int pdNo, String title, String content, String regDate, int groupId, int pos,
+			int hit, int depth, long comCount, String productId) {
+		super();
+		this.bNo = bNo;
+		this.id = id;
+		this.pdNo = pdNo;
+		this.title = title;
+		this.content = content;
+		this.regDate = regDate;
+		this.groupId = groupId;
+		this.pos = pos;
+		this.hit = hit;
+		this.depth = depth;
+		this.comCount = comCount;
+		this.productId = productId;
+	}
+
+
+	public QnAVO(int bNo, String id, int pdNo, String title, String content, String regDate) {
+		super();
+		this.bNo = bNo;
+		this.id = id;
+		this.pdNo = pdNo;
+		this.title = title;
+		this.content = content;
+		this.regDate = regDate;
+	}
+
+
 	public QnAVO(int bNo, String id, int pdNo, String title, String content, String regDate, int groupId, int pos,
 			int hit, int depth, long comCount) {
 		super();
@@ -62,6 +92,16 @@ public class QnAVO {
 		this.groupId = groupId;
 		this.pos = pos;
 		this.depth = depth;
+	}
+
+
+	public String getProductId() {
+		return productId;
+	}
+
+
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 
@@ -180,7 +220,7 @@ public class QnAVO {
 	public String toString() {
 		return "QnAVO [bNo=" + bNo + ", id=" + id + ", pdNo=" + pdNo + ", title=" + title + ", content=" + content
 				+ ", regDate=" + regDate + ", groupId=" + groupId + ", pos=" + pos + ", hit=" + hit + ", depth=" + depth
-				+ ", comCount=" + comCount + "]";
+				+ ", comCount=" + comCount + ", productId=" + productId + "]";
 	}
 
 
