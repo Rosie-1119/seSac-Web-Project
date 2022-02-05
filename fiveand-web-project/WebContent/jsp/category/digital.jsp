@@ -10,7 +10,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>카테고리별 경매리스트</title>
+		<title>카테고리-디지털기기</title>
 
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -28,12 +28,12 @@
  		<!-- Font Awesome Icon -->
  		<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/font-awesome.min.css">
 
- 		<!-- Custom stylesheet -->
+ 		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="${ pageContext.request.contextPath }/css/style.css"/>
 
+
+
     </head>
-    
-    
 	<body>
 		<!-- HEADER -->
 		<header>
@@ -50,8 +50,8 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							<li><a href="${ pageContext.request.contextPath }/main.do">Home</a></li>
-							<li class="active"></li>
+							<li><a href="#">Category</a></li>
+							<li class="active">digital</li>
 						</ul>
 					</div>
 				</div>
@@ -71,31 +71,27 @@
 				<div class="row">
 					<!-- STORE -->
 					<div id="store" class="col-md-11">
-					
-						
 						<div align="left">
 							TOTAL PRODUCTS : ${ pagingVO.totalCount }<br>
 						</div>
 
-
-					<!-- store products -->
+						<!-- store products -->
 						<div class="row">
 						
 						
 							<!-- product -->
 							<c:forEach items="${ list }" var="list" varStatus="status">
 							<div class="col-md-4 col-xs-7">
+							
 								<div class="product" style="width: 357.5px; height: 509.77px; padding: 10px;">
 									<div class="product-img">
 										<%-- 이미지 링크하기 --%>
-										
-											<img src="${ pageContext.request.contextPath }/upload/${ list.fileSaveName }" alt="">
-										
+										<img src="${ pageContext.request.contextPath }/upload/${ list.fileSaveName }" alt="">
 										<div class="product-label">
 											<%-- 마감일까지의 차이 등록 --%>
-											<span class="sale">마감 ${ list.dueDate }</span>
-											<%--등록일 기준 오늘 등록한 제품 NEW  --%> 
-											<%--<span class="new">마감임박!</span> --%>
+											<span class="sale">마감 ${ list.dueDate  }</span>
+											<%-- 등록일 기준 오늘 등록한 제품 NEW 
+											<span class="new">NEW</span>--%>
 											
 										</div>
 									</div>
@@ -109,14 +105,14 @@
 											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 										</div>
 									</div>
-									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ list.pdNo }">
+									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ heartList.pdNo }">
 										<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button></a>
 									</div>
 									
 								</div>
 								<c:if test="${ (i+1) mod 3 eq 0 }">
-									<div class="clearfix visible-lg visible-md"></div>
-								</c:if>
+										<div class="clearfix visible-lg visible-md"></div>
+									</c:if>
 						
 							</div>
 							</c:forEach>
@@ -126,6 +122,8 @@
 						</div>
 						<!-- /store products -->
 						
+
+
 
 						
 						<!-- 페이징 기능 -->
@@ -145,7 +143,7 @@
 										<li>${ item }</li>
 									</c:if>
 									<c:if test="${ page != item }">
-					 					<li><a href="${ pageContext.request.contextPath }/boardList/recent.do?page=${ item }">${ item }</a></li>
+					 					<li><a href="${ pageContext.request.contextPath }/category/digital.do?page=${ item }">${ item }</a></li>
 			               			</c:if>
 									<!-- <li class="active">1</li>
 									<li><a href="#">2</a></li>
@@ -156,7 +154,7 @@
 									<li><i class="fa fa-angle-right"></i></li>
 								</c:if>
 								<c:if test="${ page < totalPage }">
-			 						<li><a href="${ pageContext.request.contextPath }/boardList/recent.do?page=${ page + 1 }"><i class="fa fa-angle-right"></i></a></li>
+			 						<li><a href="${ pageContext.request.contextPath }/category/digital.do?page=${ page + 1 }"><i class="fa fa-angle-right"></i></a></li>
 			           			</c:if>
 								
 							</ul>

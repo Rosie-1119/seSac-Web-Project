@@ -7,16 +7,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fiveand.auction.board.vo.PagingVO;
 import com.fiveand.auction.board.vo.ProductVO;
-import com.fiveand.boardList.service.BoardListService;
+import com.fiveand.category.service.CategoryService;
 import com.fiveand.controller.Controller;
 
-public class CategoryController implements Controller {
+public class DigitalController implements Controller {
+	
 public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 	PagingVO pagingVO = new PagingVO();
-	BoardListService service = new BoardListService();
+	CategoryService service = new CategoryService();
 	int totalCount = service.totalProductCnt();
 	pagingVO.setTotalCount(totalCount); //전체 물품 수
+	
 	
 	int currentPage = 1;
 	if(request.getParameter("page") != null) {
@@ -34,7 +36,7 @@ public String handleRequest(HttpServletRequest request, HttpServletResponse resp
 	} //마지막 페이지 전체 물품이 끝나는 지점으로 재설정
 	
 	
-	List<ProductVO> list = service.pagingViewList(currentPage);
+	List<ProductVO> list = service.selectDigital();
 
 	
 	request.setAttribute("list", list);
@@ -45,7 +47,7 @@ public String handleRequest(HttpServletRequest request, HttpServletResponse resp
 	request.setAttribute("totalPage", pagingVO.getTotalPage());
 	request.setAttribute("displayPage", pagingVO.getDisplayPage());
 
-	return "/jsp/category/category.jsp";
+	return "/jsp/category/digital.jsp";
 	
 	
 	}

@@ -159,13 +159,13 @@
 						<li class="active"><a href="${ pageContext.request.contextPath }/main.do">Home</a></li>
 						
 						<!--여기 수정하기!!!!!!-->
-						<li><a href="javascript:digital();">디지털기기</a></li>
-						<li><a href="javascript:living();">생활가전</a></li>
-						<li><a href="javascript:interior();">가구/인테리어</a></li>
-						<li><a href="javascript:clothes();">의류/잡화</a></li>
-						<li><a href="javascript:beauty();">뷰티/미용</a></li>
-						<li><a href="javascript:book();">도서/음반</a></li>
-						<li><a href="javascript:etc();">기타</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/digital.do">디지털기기</a></li>
+						<li><a href="">생활가전</a></li>
+						<li><a href="">가구/인테리어</a></li>
+						<li><a href="">의류/잡화</a></li>
+						<li><a href="">뷰티/미용</a></li>
+						<li><a href="">도서/음반</a></li>
+						<li><a href="">기타</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
