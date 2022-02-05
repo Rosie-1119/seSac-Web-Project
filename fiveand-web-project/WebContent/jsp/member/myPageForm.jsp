@@ -88,10 +88,10 @@
 					<!-- 1.내정보 조회  -->
 					 <a href="${ pageContext.request.contextPath }/myInfo.do?id=${ userVO.id }"> 
 					<div class="col-md-4 col-xs-6">	
-						<div class="shop">
+						<div class="mypage">
 						<!-- 이미지 -->
-							<div class="shop-img">
-								<img src="${ pageContext.request.contextPath }/img/myinfo.jpg" alt="">
+							<div class="mypage-img">
+								<img src="${ pageContext.request.contextPath }/img/info.png" style="width: 300px; height: 300px;">
 							</div>
 							<div class="shop-body">
 								<h3>MY INFO</h3>
@@ -106,10 +106,10 @@
 					<!-- 2.내가 올린 경매 조회  -->
 					<a href="${ pageContext.request.contextPath }/myAcution.do?id=${ userVO.id }">
 					<div class="col-md-4 col-xs-6">	
-						<div class="shop">
+						<div class="mypage">
 						<!-- 이미지 -->
-							<div class="shop-img">
-								<img src="${ pageContext.request.contextPath }/img/myauction.jpg" alt="">
+							<div class="mypage-img">
+								<img src="${ pageContext.request.contextPath }/img/law.png"  style="width: 300px; height: 300px;">
 							</div>
 							<div class="shop-body">
 								<h3>MY AUCTION</h3>
@@ -124,10 +124,10 @@
 					<!-- 3.내가 누른 하트 조회-->
 					<a href="${ pageContext.request.contextPath }/myHeart.do">
 					<div class="col-md-4 col-xs-6">	
-						<div class="shop">
+						<div class="mypage">
 						<!-- 이미지 -->
-							<div class="shop-img">
-								<img src="${ pageContext.request.contextPath }/img/myheart.png" alt="">
+							<div class="mypage-img">
+								<img src="${ pageContext.request.contextPath }/img/love.png"  style="width: 300px; height: 300px;">
 							</div>
 							<div class="shop-body">
 								<h3>MY HEART</h3>
