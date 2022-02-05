@@ -24,7 +24,7 @@ public class MainBoardListDAO {
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select * from(   ");
-		sql.append("  select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name ");
+		sql.append("  select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name, p.view_cnt, p.like_cnt ");
 		sql.append("  	 from ftbl_product p, (  ");
 		sql.append("  select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name ");
 		sql.append("  from  ftbl_product_file) f, ftbl_category c ");
@@ -49,6 +49,8 @@ public class MainBoardListDAO {
 				productVO.setDueDate(rs.getString("due_date"));
 				productVO.setcNo(rs.getInt("c_no"));
 				productVO.setcName(rs.getString("category"));
+				productVO.setViewCnt(rs.getInt("view_cnt"));
+				productVO.setLikeCnt(rs.getInt("like_cnt"));
 				
 				productFVO.setPdNo(rs.getInt("pd_no"));
 				productFVO.setFileSaveName(rs.getString("file_save_name"));

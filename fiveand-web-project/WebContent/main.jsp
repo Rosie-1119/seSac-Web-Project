@@ -193,9 +193,9 @@
 													<h4 class="product-price">시작가 ${ recentList[i].startPrice }</h4>
 												
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to My Heart</span></button>
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i>&nbsp;${ recentList[i].likeCnt }<span class="tooltipp">add to My Heart</span></button>
 						
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i>&nbsp;${ recentList[i].viewCnt }</button>
 												</div>
 											</div>
 											<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ recentList[i].pdNo }">
@@ -203,6 +203,7 @@
 											</div>
 										</div>
 									</c:forEach>
+										
 								<!-- /product -->
 
 									</div>
