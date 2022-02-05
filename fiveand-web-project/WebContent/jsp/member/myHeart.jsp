@@ -140,7 +140,7 @@
 										<li>${ item }</li>
 									</c:if>
 									<c:if test="${ page != item }">
-					 					<li><a href="${ pageContext.request.contextPath }/boardList/recent.do?page=${ item }">${ item }</a></li>
+					 					<li><a href="${ pageContext.request.contextPath }/myHeart.do?id=${ userVO.id }&page=${ item }">${ item }</a></li>
 			               			</c:if>
 									<!-- <li class="active">1</li>
 									<li><a href="#">2</a></li>
@@ -151,7 +151,7 @@
 									<li><i class="fa fa-angle-right"></i></li>
 								</c:if>
 								<c:if test="${ page < totalPage }">
-			 						<li><a href="${ pageContext.request.contextPath }/boardList/recent.do?page=${ page + 1 }"><i class="fa fa-angle-right"></i></a></li>
+			 						<li><a href="${ pageContext.request.contextPath }/myHeart.do?id=${ userVO.id }&page=${ page + 1 }"><i class="fa fa-angle-right"></i></a></li>
 			           			</c:if>
 								
 							</ul>
