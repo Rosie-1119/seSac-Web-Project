@@ -225,6 +225,48 @@ public class QnADAO {
 		//return result;
 	}
 	
+	/**
+	 * 수정할 문의글 정보 가져오기 (updateForm)
+	 */
+	public QnAVO updateFormBoard(int boardNo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		QnAVO qna = null;
+		
+
+		try {
+			conn = new ConnectionFactory().getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from ftbl_qna_board where b_no = ? ");
+
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, boardNo);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				int bNo = rs.getInt("b_no");
+				int pdNo = rs.getInt("pd_no");
+				String title = rs.getString("title");
+				String id = rs.getString("id");
+				String regDate = rs.getString("reg_date");
+				String content = rs.getString("content");
+				int groupId = rs.getInt("group_id");
+				int depth = rs.getInt("depth");
+				int pos = rs.getInt("pos");
+				
+				qna = new QnAVO(bNo, pdNo, title, id, regDate, content, groupId, depth, pos);
+				
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(pstmt, conn);
+		}
+		
+		return qna;
+	}
 	
 	
 	/**
@@ -241,10 +283,11 @@ public class QnADAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append(" update ftbl_qna_board ");
 			sql.append(" set title = ?, content = ? ");
-			sql.append(" where no = ? ");
+			sql.append(" where b_no = ? ");
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, qna.getTitle());
 			pstmt.setString(2, qna.getContent());
+			pstmt.setInt(3, qna.getbNo());
 
 			pstmt.executeUpdate();
 
@@ -259,7 +302,7 @@ public class QnADAO {
 	 * 문의글 삭제 서비스
 	 */
 
-	public void deleteBoard(QnAVO qna) {
+	public void deleteBoard(int boardNo) {
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -271,7 +314,7 @@ public class QnADAO {
 			sql.append("where b_no = ? ");
 
 			pstmt = conn.prepareStatement(sql.toString());
-		//	pstmt.setInt(1, qna.getNo());
+			pstmt.setInt(1, boardNo);
 
 			pstmt.executeUpdate();
 

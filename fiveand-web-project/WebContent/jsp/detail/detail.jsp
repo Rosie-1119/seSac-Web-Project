@@ -64,6 +64,10 @@
 p.textBtn {
 	text-align: right;
 }
+
+.th{
+	text-align: center;
+}
 </style>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
@@ -240,7 +244,17 @@ $(document).ready(function() {
 		$('#qnaDetailForm').css('display', 'none');
 		$(this).css('display', 'none')
 		})
+		
+	$('#goQnAList').click(function() {
+		
+		$('#qnaList').css('display', 'block');
+		$('#qnaWriteForm').css('display', 'none');
+		$('#qnaDetailForm').css('display', 'none');
+		location.href="${ pageContext.request.contextPath }/auction/detail.do?no=" + ${ product.pdNo }
+		
 		})
+		
+})
 
 		
 		
@@ -477,7 +491,7 @@ function doAction(bNo){
 							<!-- /tab1  -->
 							
 							
-							<!-- tab3 : QnA 게시판 들어올 곳  --->
+							<!-- tab3 : QnA 게시판 리스트 들어올 곳  --->
 							<div id="tab3" class="tab-pane fade in">
 
 								<!-- 게시판 리스트 -->
@@ -486,7 +500,7 @@ function doAction(bNo){
 									<table width="700">
 										<tr>
 											<c:if test="${ not empty userVO }">
-												<td align="right" id="goWriteForm">문의글 작성 <%-- <a href="/bbs/writeForm.bbs?pageNum=${pageNum}">글쓰기</a> --%>
+												<td align="right" id="goWriteForm"><i class="fa fa-pencil"></i>&nbsp;문의글 작성 <%-- <a href="/bbs/writeForm.bbs?pageNum=${pageNum}">글쓰기</a> --%>
 												</td>
 											</c:if>
 										</tr>
@@ -494,10 +508,10 @@ function doAction(bNo){
 
 									<table border="1" width="700" class="list">
 										<tr>
-											<th width="5%">NO</th>
-											<th width="40%">TITLE</th>
-											<th width="10%">ID</th>
-											<th width="15%">DATE</th>
+											<th width="5%"><center>NO</center></th>
+											<th width="40%"><center>TITLE</center></th>
+											<th width="10%"><center>ID</center></th>
+											<th width="15%"><center>DATE</center></th>
 										</tr>
 										
 										<!-- 최근 개시글 10개씩 가져오기 -->
@@ -573,6 +587,7 @@ function doAction(bNo){
 										<br>
 										<input type="submit" value="문의 등록">
 										<input type="reset" value="전체 삭제">
+										<button id="goQnAList">취소</button>
 									</div>
 									</form>
 									<!-- 문의글 등록 -->
