@@ -14,9 +14,9 @@
 								<h3 class="footer-title">About Us</h3>
 								<p>Nous avons créé le site Web du premier projet sur le Web, la vente aux enchères.</p><br>
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>08535 GasanRo 70 B</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+081-6673-1804</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>fiveand_support@gmail.com</a></li>
+									<li><i class="fa fa-map-marker"></i>08535 GasanRo 70 B</li>
+									<li><i class="fa fa-phone"></i>+081-6673-1804</li>
+									<li><i class="fa fa-envelope-o"></i>fiveand_support@gmail.com</li>
 								</ul>
 							</div>
 						</div>
@@ -25,13 +25,13 @@
 							<div class="footer">
 								<h3 class="footer-title">Categories</h3>
 								<ul class="footer-links">
-									<li><a href="#">디지털 기기</a></li>
-									<li><a href="#">생활가전</a></li>
-									<li><a href="#">가구/인테리어</a></li>
-									<li><a href="#">의류/잡화</a></li>
-									<li><a href="#">뷰티/미용</a></li>
-									<li><a href="#">도서/음반</a></li>
-									<li><a href="#">기타</a></li>
+								<li><a href="${ pageContext.request.contextPath }/category/digital.do">디지털기기</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/electronics.do">생활가전</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/furniture.do">가구/인테리어</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/clothes.do">의류/잡화</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/beauty.do">뷰티/미용</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/books.do">도서/음반</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/etc.do">기타</a></li>
 								</ul>
 							</div>
 						</div>
@@ -42,10 +42,10 @@
 							<div class="footer">
 								<h3 class="footer-title">Information</h3>
 								<ul class="footer-links">
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Contact Us</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Terms & Conditions</a></li>
+									<li>About Us</li>
+									<li>Contact Us</li>
+									<li>Privacy Policy</li>
+									<li>Terms & Conditions</li>
 								</ul>
 							</div>
 						</div>
@@ -54,10 +54,10 @@
 							<div class="footer">
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
-									<li><a href="#">View Registration</a></li>
-									<li><a href="#">Wishlist</a></li>
-									<li><a href="#">QnA</a></li>
+									<li><a href="${ pageContext.request.contextPath }/myInfo.do?id=${ userVO.id }">Account</a></li>
+									<li><a href="${ pageContext.request.contextPath }/myAcution.do?id=${ userVO.id }">View Registration</a></li>
+									<li><a href="${ pageContext.request.contextPath }/myHeart.do?id=${ userVO.id }">Heart</a></li>
+									
 								</ul>
 							</div>
 						</div>

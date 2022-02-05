@@ -156,7 +156,7 @@
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
 						<!-- 탑 네비게이션 바 => 카테고리별 분류  -->
-						<li class="active"><a href="${ pageContext.request.contextPath }/main.do">Home</a></li>
+						<li><a href="${ pageContext.request.contextPath }/main.do">Home</a></li>
 						
 						<!--여기 수정하기!!!!!!-->
 						<li><a href="${ pageContext.request.contextPath }/category/digital.do">디지털기기</a></li>
