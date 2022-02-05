@@ -78,8 +78,14 @@ th, td {
 }
 
 th {
-	font-size: 15pt;
+	font-size: 14pt;
 }
+
+#id {
+	font-size: 13pt;
+}
+textarea {
+resize: none;}
 </style>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -161,11 +167,11 @@ th {
 					<table width="800px;">
 						<tr>
 							<th>작 성 자</th>
-							<td>&nbsp;<strong>${ userVO.id }</strong></td>
+							<td>&nbsp;&nbsp;<strong id="id">${ userVO.id }</strong></td>
 						</tr>
 						<tr>
 							<th>상 품 명</th>
-							<td>&nbsp;<input type="text" name="pdName" style="width: 100%; height: 30px; margin-bottom: 20px;"
+							<td>&nbsp;<input type="text" name="pdName" style="width: 100%; height: 40px; margin-bottom: 20px;"
 								placeholder="상품명을 입력해주세요" required></td>
 						</tr>
 						<tr>
@@ -181,8 +187,8 @@ th {
 							</td>
 						</tr>
 						<tr>
-							<th>제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</th>
-							<td>&nbsp;<input type="text" name="pdSimpleInfo" style="width: 100%; height: 30px; margin-bottom: 20px;"
+							<th>한줄설명</th>
+							<td>&nbsp;<input type="text" name="pdSimpleInfo" style="width: 100%; height: 40px; margin-bottom: 20px;"
 								placeholder="상품 한 줄 소개를 입력해주세요" required></td>
 						</tr>
 						<tr>
@@ -191,7 +197,7 @@ th {
 						</tr>
 						<tr>
 							<th>카테고리</th>
-							<td>&nbsp;<select name="cNo">
+							<td>&nbsp;<select name="cNo" style="height:60%">
 									<option value="1">디지털기기</option>
 									<option value="2">생활가전</option>
 									<option value="3">가구/인테리어</option>
