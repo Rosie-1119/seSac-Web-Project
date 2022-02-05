@@ -250,4 +250,55 @@ public class AuctionBoardDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	/**
+	 * 같은 판매자가 올린 다른 경매 물품 보기
+	 */
+	public List<Object> relatedList(String id) {
+		List<Object> list = new ArrayList<Object>();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("select * from (select rownum as row_num, board.* from( ");
+		sql.append("select p.pd_no, p.id, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date, ");
+		sql.append("p.c_no, c.category, f.file_save_name ");
+		sql.append("from ftbl_product p,  ");
+		sql.append("(select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f, ");
+		sql.append("ftbl_category c ");
+		sql.append("where row_num=1 and p.pd_no = f.pd_no and p.c_no = c.c_no and p.id= ? ");
+		sql.append("order by like_cnt desc) board) ");
+		sql.append("where row_num <= 4 ");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		){
+			
+			pstmt.setString(1, id);
+			
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO productVO = new ProductVO();
+				
+				productVO.setPdNo(rs.getInt("pd_no"));
+				productVO.setPdName(rs.getString("pd_name"));
+				productVO.setStartPrice(rs.getInt("start_price"));
+				productVO.setDueDate(rs.getString("due_date"));
+				productVO.setcNo(rs.getInt("c_no"));
+				productVO.setcName(rs.getString("category"));
+				productVO.setViewCnt(rs.getInt("view_cnt"));
+				productVO.setLikeCnt(rs.getInt("like_cnt"));
+				productVO.setFileSaveName(rs.getString("file_save_name"));
+			
+				
+				list.add(productVO);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 }
