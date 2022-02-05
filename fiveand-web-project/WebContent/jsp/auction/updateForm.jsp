@@ -1,37 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-<style>
-/*datepicker에서 사용한 이미지 버튼 style적용*/
-img.ui-datepicker-trigger {
-	margin-left: 5px;
-	vertical-align: middle;
-	cursor: pointer;
-	width: 30px;
-}
-
-#pdInfo {
-	width : 70%;
-	height: 400px;
-	resize: none;
-}
-</style>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<!-- datepicker 한국어로 -->
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-<title>Electro - HTML Ecommerce Template</title>
+<title>경매 수정하기</title>
 
 <!-- Google font -->
 <link
@@ -60,91 +35,161 @@ img.ui-datepicker-trigger {
 <link type="text/css" rel="stylesheet"
 	href="${ pageContext.request.contextPath }/css/style.css" />
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
 </head>
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<style>
+/*datepicker에서 사용한 이미지 버튼 style적용*/
+img.ui-datepicker-trigger {
+	margin-left: 5px;
+	vertical-align: middle;
+	cursor: pointer;
+	width: 30px;
+}
+
+.updateForm {
+	width: 800px;
+	align-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.container_f {
+	align-content: center;
+	align-items: center;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: 30%;
+	margin-left: 30%;
+}
+
+th, td {
+	height: 40px;
+	align-content: left;
+	align-items: left;
+	text-align: left;
+	vertical-align: middle;
+}
+
+th {
+	font-size: 15pt;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- datepicker 한국어로 -->
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+<script>
+	$(function() {
+
+		//오늘 날짜를 출력
+		$("#today").text(new Date().toLocaleDateString());
+
+		//datepicker 한국어로 사용하기 위한 언어설정
+		$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+		// 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
+		// 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
+
+		//시작일.
+		/* $('#fromDate').datepicker({
+		   showOn : "both", // 달력을 표시할 타이밍 (both: focus or button)
+		   buttonImage : "images/calendar.gif", // 버튼 이미지
+		   buttonImageOnly : true, // 버튼 이미지만 표시할지 여부
+		   buttonText : "날짜선택", // 버튼의 대체 텍스트
+		   dateFormat : "yy-mm-dd", // 날짜의 형식
+		   changeMonth : true, // 월을 이동하기 위한 선택상자 표시여부
+		   //minDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+		   onClose : function(selectedDate) {
+		      // 시작일(fromDate) datepicker가 닫힐때
+		      // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+		      $("#toDate").datepicker("option", "minDate", selectedDate);
+		   }
+		}); */
+
+		//종료일
+		$('#dueDate')
+				.datepicker(
+						{
+							showOn : "both",
+							buttonImage : "${pageContext.request.contextPath}/img/calendar.png",
+							buttonImageOnly : true,
+							dateFormat : "yy-mm-dd",
+							changeMonth : true,
+							minDate : 1,
+							maxDate : 20, // 오늘 이전 날짜 선택 불가
+							onClose : function(selectedDate) {
+								// 종료일(toDate) datepicker가 닫힐때
+								// 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
+								$('#today').datepicker("option", "maxDate",
+										selectedDate);
+							}
+						})
+	})
+</script>
 <body>
-	<!-- HEADER -->
 	<!-- HEADER -->
 	<header>
 		<jsp:include page="/jsp/include/topMenu.jsp" />
 	</header>
 	<!-- /HEADER -->
 
-	<!-- BREADCRUMB -->
-	<div id="breadcrumb" class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<div class="col-md-12">
-					<ul class="breadcrumb-tree">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">All Categories</a></li>
-						<li><a href="#">Accessories</a></li>
-						<li><a href="#">Headphones</a></li>
-						<li class="active">Product name goes here</li>
-					</ul>
-				</div>
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /BREADCRUMB -->
 
 	<!-- SECTION -->
-	<form action="${ pageContext.request.contextPath }/auction/update.do" method="post">
-			<input type="hidden" name="id" value="${ product.id }">
-			<input type="hidden" name="pdNo" value="${ product.pdNo }">
-		<div align="center">
-			<div class="section">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-
-						<!-- Product details -->
-
-						<div class="product-details">
-							<h2 class="product-name">
-								상품명 : <input type="text" class="input" name="pdName" placeholder="상품명을 입력해주세요"
-									required><br>
-							</h2>
-							<h4>
-								작성자 : ${ product.id }
-							</h4>
-							<div>
-								<h4 class="product-price">
-									희망가 : ￦ ${ product.hopePrice }
-								</h4>
-								<br>
-								<h4 class="product-price">
-									경매 시작가 : ￦${ product.startPrice }
-								</h4>
-							</div>
-							<hr>
-							<div class="product-options">
-								<p>
-									한 줄 소개 : <input type="text" width="100px" name="pdSimpleInfo"
-										placeholder="상품 한 줄 소개를 입력해주세요" required><br>
-								</p>
-								<p>
-									<label for="dueDate"> 경매 마감일 : ${ product.dueDate }</label>
-								</p>
-
-								<p>
-									상품 소개<br>
-									<textarea id="pdInfo" rows="10" cols="20" name="pdInfo" width="100px"></textarea>
-								</p>
-								<br>
-								카테고리 :
-									<select name="cNo">
+	<div class="section">
+		<!-- container -->
+		<div class="container_f">
+			<!-- row -->
+			<div class="row">
+				<!-- 경매 등록 폼 -->
+				<form
+					action="${ pageContext.request.contextPath }/auction/update.do"
+					class="updateForm" method="post">
+					<input type="hidden" name="id" value="${ product.id }"> <input
+						type="hidden" name="pdNo" value="${ product.pdNo }">
+					<div class="product-details">
+						<div class="section-title">
+							<h3 class="title">경매 수정하기</h3>
+						</div>
+						<table width="800px;">
+							<tr>
+								<th>작 성 자</th>
+								<td>&nbsp;<strong>${ userVO.id }</strong></td>
+							</tr>
+							<tr>
+								<th>상 품 명</th>
+								<td>&nbsp;<input type="text" name="pdName"
+									style="width: 100%; height: 30px; margin-bottom: 20px;"
+									placeholder="상품명을 입력해주세요" required></td>
+							</tr>
+							<tr>
+								<th>희 망 가</th>
+								<td>￦&nbsp;<strong>${ product.hopePrice }&nbsp;</strong>원
+								</td>
+							</tr>
+							<tr>
+								<th>시 작 가</th>
+								<td>￦&nbsp;<strong>${ product.startPrice }&nbsp;</strong>원
+								</td>
+							</tr>
+							<tr>
+								<th>제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</th>
+								<td>&nbsp;<input type="text" name="pdSimpleInfo"
+									style="width: 100%; height: 30px; margin-bottom: 20px;"
+									placeholder="상품 한 줄 소개를 입력해주세요" required></td>
+							</tr>
+							<tr>
+								<th>상세설명</th>
+								<td>&nbsp;<textarea
+										style="width: 100%; margin-bottom: 20px;" rows="10"
+										name="pdInfo"></textarea></td>
+							</tr>
+							<tr>
+								<th>카테고리</th>
+								<td>&nbsp;<select name="cNo">
 										<option value="1">디지털기기</option>
 										<option value="2">생활가전</option>
 										<option value="3">가구/인테리어</option>
@@ -152,236 +197,46 @@ img.ui-datepicker-trigger {
 										<option value="5">뷰티/미용</option>
 										<option value="6">도서/음반</option>
 										<option value="7">기타</option>
-									</select>
-								<hr>
-								<div class="add-to-cart">
-									<button class="add-to-cart-btn">
-										<i class="fa fa-shopping-cart"></i>수정하기
-									</button>
-								</div>
-							</div>
-						
-						</div>
+								</select></td>
+							</tr>
+							<tr>
+								<th>마 감 일</th>
+								<td><label for="dueDate">${ product.dueDate }</label></td>
+							</tr>
 
-					<!-- /Product details -->
+						</table>
+						<br>
+						<br>
+						<br>
+						<div class="add-to-cart">
+							<button class="add-to-cart-btn">
+								<i class="fa fa-hand-o-up"></i>수정하기
+							</button>
+						</div>
 					</div>
-					<!-- /row -->
-				</div>
-				<!-- /container -->
+				</form>
+				<!-- /경매 등록 폼 -->
 			</div>
+			<!-- /row -->
 		</div>
-	</form>
-		<!-- /SECTION -->
-
-		<!-- Section -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-
-					<div class="col-md-12">
-						<div class="section-title text-center">
-							<h3 class="title">Related Products</h3>
-						</div>
-					</div>
-
-					<!-- product -->
-					<div class="col-md-3 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="./img/product01.png" alt="">
-								<div class="product-label">
-									<span class="sale">-30%</span>
-								</div>
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name">
-									<a href="#">product name goes here</a>
-								</h3>
-								<h4 class="product-price">
-									$980.00
-									<del class="product-old-price">$990.00</del>
-								</h4>
-								<div class="product-rating"></div>
-								<div class="product-btns">
-									<button class="add-to-wishlist">
-										<i class="fa fa-heart-o"></i><span class="tooltipp">add
-											to wishlist</span>
-									</button>
-									<button class="add-to-compare">
-										<i class="fa fa-exchange"></i><span class="tooltipp">add
-											to compare</span>
-									</button>
-									<button class="quick-view">
-										<i class="fa fa-eye"></i><span class="tooltipp">quick
-											view</span>
-									</button>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<button class="add-to-cart-btn">
-									<i class="fa fa-shopping-cart"></i> add to cart
-								</button>
-							</div>
-						</div>
-					</div>
-					<!-- /product -->
-
-					<!-- product -->
-					<div class="col-md-3 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="./img/product02.png" alt="">
-								<div class="product-label">
-									<span class="new">NEW</span>
-								</div>
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name">
-									<a href="#">product name goes here</a>
-								</h3>
-								<h4 class="product-price">
-									$980.00
-									<del class="product-old-price">$990.00</del>
-								</h4>
-								<div class="product-rating">
-									<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i>
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist">
-										<i class="fa fa-heart-o"></i><span class="tooltipp">add
-											to wishlist</span>
-									</button>
-									<button class="add-to-compare">
-										<i class="fa fa-exchange"></i><span class="tooltipp">add
-											to compare</span>
-									</button>
-									<button class="quick-view">
-										<i class="fa fa-eye"></i><span class="tooltipp">quick
-											view</span>
-									</button>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<button class="add-to-cart-btn">
-									<i class="fa fa-shopping-cart"></i> add to cart
-								</button>
-
-							</div>
-						</div>
-					</div>
-					<!-- /product -->
-
-					<div class="clearfix visible-sm visible-xs"></div>
-
-					<!-- product -->
-					<div class="col-md-3 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="./img/product03.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name">
-									<a href="#">product name goes here</a>
-								</h3>
-								<h4 class="product-price">
-									$980.00
-									<del class="product-old-price">$990.00</del>
-								</h4>
-								<div class="product-rating">
-									<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star-o"></i>
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist">
-										<i class="fa fa-heart-o"></i><span class="tooltipp">add
-											to wishlist</span>
-									</button>
-									<button class="add-to-compare">
-										<i class="fa fa-exchange"></i><span class="tooltipp">add
-											to compare</span>
-									</button>
-									<button class="quick-view">
-										<i class="fa fa-eye"></i><span class="tooltipp">quick
-											view</span>
-									</button>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<button class="add-to-cart-btn">
-									<i class="fa fa-shopping-cart"></i> add to cart
-								</button>
-							</div>
-						</div>
-					</div>
-					<!-- /product -->
-
-					<!-- product -->
-					<div class="col-md-3 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="./img/product04.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">Category</p>
-								<h3 class="product-name">
-									<a href="#">product name goes here</a>
-								</h3>
-								<h4 class="product-price">
-									$980.00
-									<del class="product-old-price">$990.00</del>
-								</h4>
-								<div class="product-rating"></div>
-								<div class="product-btns">
-									<button class="add-to-wishlist">
-										<i class="fa fa-heart-o"></i><span class="tooltipp">add
-											to wishlist</span>
-									</button>
-									<button class="add-to-compare">
-										<i class="fa fa-exchange"></i><span class="tooltipp">add
-											to compare</span>
-									</button>
-									<button class="quick-view">
-										<i class="fa fa-eye"></i><span class="tooltipp">quick
-											view</span>
-									</button>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<button class="add-to-cart-btn">
-									<i class="fa fa-shopping-cart"></i> add to cart
-								</button>
-							</div>
-						</div>
-					</div>
-					<!-- /product -->
-
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /Section -->
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
 
 
-		<!-- FOOTER -->
-		<footer>
-			<jsp:include page="/jsp/include/footer.jsp" />
-		</footer>
-		<!-- /FOOTER -->
 
-		<!-- jQuery Plugins -->
-		<script src="${ pageContext.request.contextPath }/js/jquery.min.js"></script>
-		<script src="${ pageContext.request.contextPath }/js/bootstrap.min.js"></script>
-		<script src="${ pageContext.request.contextPath }/js/slick.min.js"></script>
-		<script src="${ pageContext.request.contextPath }/js/nouislider.min.js"></script>
-		<script src="${ pageContext.request.contextPath }/js/main.js"></script>
+	<!-- FOOTER -->
+	<footer>
+		<jsp:include page="/jsp/include/footer.jsp" />
+	</footer>
+	<!-- /FOOTER -->
+
+	<!-- jQuery Plugins -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/slick.min.js"></script>
+	<script src="js/nouislider.min.js"></script>
+	<script src="js/jquery.zoom.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>

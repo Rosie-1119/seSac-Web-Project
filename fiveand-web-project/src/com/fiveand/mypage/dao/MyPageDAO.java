@@ -154,7 +154,6 @@ public class MyPageDAO {
 	/**
 	 * 내가 등록한 auction목록
 	 * 페이징 된 목록 출력
-	 *  
 	 */
 	public List<ProductVO> pagingMyAuction(int currentPage, String id){
 		
@@ -210,34 +209,48 @@ public class MyPageDAO {
 	
 	
 	/**
-	 * 내가 등록한 하트 목록 -------미완.
-	 *  
+	 * 내가 누른 하트 목록
+	 * 페이징 된 목록 출력
 	 */
-	
-	public List<MemberVO> selectMyHeart() {
-		
-		List<MemberVO> list = new ArrayList<>();	
+	public List<ProductVO> selectMyHeart(int currentPage, String id) {
+
+		PagingVO paging = new PagingVO();
+		List<ProductVO> list = new ArrayList<ProductVO>();
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		
+
+		int startNum = ((currentPage - 1) * paging.getDisplayRow()) + 1;
+		int endNum = currentPage * paging.getDisplayRow();
+
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("pd_no, pd_name, , email, warning_cnt ");
-			sql.append(" from ftbl_product");
-
+			sql.append("select * from (select rownum as row_num, board.* from ( select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name ");
+			sql.append(" from ftbl_product p, ( select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f, ftbl_category c, (select * from ftbl_heart where id= ?) h ");
+			sql.append(" where row_num = 1 and p.pd_no = f.pd_no and p.c_no = c.c_no and p.pd_no = h.pd_no ");
+			sql.append(" order by pd_no desc) board) ");
+			sql.append(" where row_num >= ? and row_num <= ? ");
+			
 			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			pstmt.setInt(2, startNum);
+			pstmt.setInt(3, endNum);
+		
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				String id = rs.getString("id");
-				String name = rs.getString("name");
-				String phone = rs.getString("phone");
-				String email = rs.getString("email");
-				int warningCnt = rs.getInt("warning_cnt");
+				ProductVO productVO = new ProductVO();
 
-				MemberVO member = new MemberVO(id, name, phone, email, warningCnt);
-				list.add(member);
+				productVO.setPdNo(rs.getInt("pd_no"));
+				productVO.setPdName(rs.getString("pd_name"));
+				productVO.setStartPrice(rs.getInt("start_price"));
+				productVO.setDueDate(rs.getString("due_date"));
+				productVO.setcNo(rs.getInt("c_no"));
+				productVO.setcName(rs.getString("category"));
+				productVO.setFileSaveName(rs.getString("file_save_name"));
+
+				list.add(productVO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -247,17 +260,5 @@ public class MyPageDAO {
 		return list;
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
