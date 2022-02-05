@@ -228,6 +228,57 @@ function checkSuggest() {
 $(window).on("beforeunload", function(){
 	clearInterval(timers)
 })
+
+//-----------------------QnA 관련 함수----
+//문의글 등록 폼 display 조정
+$(document).ready(function() {
+	
+	$('#goWriteForm').click(function() {
+		
+		$('#qnaList').css('display', 'none');
+		$('#qnaWriteForm').css('display', 'block');
+		$('#qnaDetailForm').css('display', 'none');
+		$(this).css('display', 'none')
+		})
+		})
+
+		
+		
+function doWrite(){
+let f = document.inputForm
+
+if(f.title.value == ''){
+	alert('제목을 입력하세요')
+	f.title.focus()
+	return false
+}
+if(f.content.value == ''){
+	alert('내용 입력하세요')
+	f.content.focus()
+	return false
+}
+else{
+	alert('문의글 등록이 완료되었습니다!')
+}
+
+return true
+}
+
+
+function doAction(bNo){
+	
+	<c:choose>
+		<c:when test="${ not empty userVO }">
+			location.href="${ pageContext.request.contextPath }/qna/detail.do?bNo=" + bNo
+			//alert(bNo)
+		</c:when>
+		<c:otherwise>
+			if(confirm('로그인이 필요한 서비스입니다.\n이동하시겠습니까?')){
+				location.href="${ pageContext.request.contextPath }/login.do"
+			}
+		</c:otherwise>
+	</c:choose>
+}
 </script>
 
 
@@ -395,7 +446,6 @@ $(window).on("beforeunload", function(){
 						<p class="textBtn" id="modifyProduct">수정하기</p>
 					</c:if>
 
-<button id="btn-kakaopay" class="btn btn-primary">카카오페이</button>
 				</div>
 				
 				
@@ -410,7 +460,7 @@ $(window).on("beforeunload", function(){
 						<!-- product tab nav -->
 						<ul class="tab-nav">
 							<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-							<li><a href="${ pageContext.request.contextPath }/qna/list.do?no=${ product.pdNo }">QnA</a></li>
+							<li><a data-toggle="tab" href="#tab3">QnA</a></li>
 						</ul>
 						<!-- /product tab nav -->
 
@@ -425,6 +475,113 @@ $(window).on("beforeunload", function(){
 								</div>
 							</div>
 							<!-- /tab1  -->
+							
+							
+							<!-- tab3 : QnA 게시판 들어올 곳  --->
+							<div id="tab3" class="tab-pane fade in">
+
+								<!-- 게시판 리스트 -->
+								<div align="center">
+									<div id="qnaList">
+									<table width="700">
+										<tr>
+											<c:if test="${ not empty userVO }">
+												<td align="right" id="goWriteForm">문의글 작성 <%-- <a href="/bbs/writeForm.bbs?pageNum=${pageNum}">글쓰기</a> --%>
+												</td>
+											</c:if>
+										</tr>
+									</table>
+
+									<table border="1" width="700" class="list">
+										<tr>
+											<th width="5%">NO</th>
+											<th width="40%">TITLE</th>
+											<th width="10%">ID</th>
+											<th width="15%">DATE</th>
+										</tr>
+										
+										<!-- 최근 개시글 10개씩 가져오기 -->
+										<c:forEach var="list" items="${list}"
+											varStatus="status">
+											<tr align="center" height="30">
+												<td>${list.bNo}</td>
+												<td align="left" id="title">
+													<c:if test="${list.depth > 0}">
+														<c:forEach var="i" begin="1" end="${list.depth}">
+															<span>&nbsp;&nbsp;&nbsp;</span>
+														</c:forEach>
+													</c:if>
+														<a href="javascript:doAction(${ list.bNo })">
+														<c:out value="${list.title}"></c:out>
+													</a> 
+												</td>
+												<td>${list.id}</td>
+												<td>${list.regDate}</td>
+											<tr>
+										</c:forEach>
+									</table>
+										
+										<!-- Paging 처리 -->
+										<!-- <tr>
+											<td colspan="5" align="center" height="40">
+												<%-- ${pageCode} --%>
+											</td>
+										</tr> -->
+									</div>
+									<!-- 게시판 리스트 -->
+
+
+
+
+
+
+
+									<!-- 문의하기 작성 폼 display조정으로 나타내기 -->
+									<form action="${ pageContext.request.contextPath }/qna/write.do" 
+										method="post" name="inputForm" onsubmit="return doWrite()">
+										<input type="hidden" name="id" value="${ userVO.id }">
+										<input type="hidden" name="pdNo" value="${ product.pdNo }"> 
+										<input type="hidden" name="pageNum" value="${pageNum}">
+										<input type="hidden" name="depth" value="${article.depth}"> 
+										<input type="hidden" name="pos" value="${article.pos}"> 
+										<input type="hidden" name="groupId" value="${article.groupId}"> 
+										
+										<div align="center" id="qnaWriteForm">
+										<hr>
+										<h2>QnA 문의글 등록</h2>
+										<hr>
+										<br>
+										<table border="1">
+											<tr>
+												<th width=23%>제목</th>
+												<td>
+													<input type="text"
+													name="title" id="title" required>
+												</td>
+											</tr>
+											<tr>
+												<th>작성자</th>
+												<td>${ userVO.id }
+												</td>
+											</tr>
+											<tr>
+												<th>내용</th>
+												<td><textarea name="content" rows="7" cols="60"
+														id="content" placeholder="글을 적어 주세요." required></textarea></td>
+											</tr>
+										</table>
+										<br>
+										<input type="submit" value="문의 등록">
+										<input type="reset" value="전체 삭제">
+									</div>
+									</form>
+									<!-- 문의글 등록 -->
+									
+									
+								</div>
+								<!-- 전체 리스트 -->
+							</div>
+							<!-- /tab3  -->
 							
 							
 
