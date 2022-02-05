@@ -75,12 +75,12 @@
 			<header>
 				<jsp:include page="/jsp/include/topMenuAdmin.jsp" />
 			</header>	
-	</c:when>
+		</c:when>
 		<c:otherwise>
-		<header>
-			<jsp:include page="/jsp/include/topMenu.jsp" />
-		</header>
-	</c:otherwise>
+			<header>
+				<jsp:include page="/jsp/include/topMenu.jsp" />
+			</header>
+		</c:otherwise>
 	</c:choose>
 
 		<!-- SECTION -->
@@ -196,7 +196,7 @@
 													<h4 class="product-price">시작가 ${ recentList[i].startPrice }</h4>
 												
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i>&nbsp;${ recentList[i].likeCnt }<span class="tooltipp">add to My Heart</span></button>
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i>&nbsp;${ recentList[i].likeCnt }<!-- <span class="tooltipp">add to My Heart</span> --></button>
 						
 													<button class="quick-view"><i class="fa fa-eye"></i>&nbsp;${ recentList[i].viewCnt }</button>
 												</div>
@@ -261,8 +261,8 @@
 									</div>
 								</li> -->
 							</ul>
-							<h2 class="text-uppercase">Auction Old Products!</h2>
-							<p>New Price New Product </p>
+							<h2 class="text-uppercase">Auction Old, <br> Make Gold!</h2>
+							<p> 안 쓰는 물건으로 새로운 즐거움을 낙찰하세요! </p>
 							<a class="primary-btn cta-btn" href="#">Auction now</a>
 						</div>
 					</div>
@@ -314,7 +314,7 @@
 													<h4 class="product-price">시작가 ${ sugList.startPrice }</h4>
 												
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to My Heart</span></button>
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><!-- <span class="tooltipp">add to My Heart</span> --></button>
 						
 													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 												</div>
