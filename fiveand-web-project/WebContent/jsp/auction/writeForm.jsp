@@ -63,12 +63,18 @@ img.ui-datepicker-trigger {
     	margin-left: 30%;
 	}
 	
+table {
+	border-top: 1px solid #E4E7ED;
+    border-collapse: collapse;
+}
+
 th, td {
 	height: 40px;
 	align-content: left;
 	align-items: left;
 	text-align: left;
 	vertical-align: middle;
+	border-bottom: 1px solid #E4E7ED;
 }
 
 th {
@@ -164,14 +170,14 @@ th {
 						</tr>
 						<tr>
 							<th>희 망 가</th>
-							<td>￦<strong><input type="number" min="1000" step="1000" name="hopePrice" style="width: 35%; text-align: right;"
-								placeholder="경매 희망가를 입력해주세요" required></strong>원
+							<td>￦&nbsp;<strong><input type="number" min="1000" step="1000" name="hopePrice" style="width: 35%; text-align: right;"
+								placeholder="경매 희망가를 입력해주세요" required></strong>&nbsp;원
 							</td>
 						</tr>
 						<tr>
 							<th>시 작 가</th>
-							<td>￦<strong><input type="number" min="1000" step="1000" name="startPrice" style="width: 35%; text-align: right;"
-								placeholder="경매 시작가를 입력해주세요" required></strong>원
+							<td>￦&nbsp;<strong><input type="number" min="1000" step="1000" name="startPrice" style="width: 35%; text-align: right;"
+								placeholder="경매 시작가를 입력해주세요" required></strong>&nbsp;원
 							</td>
 						</tr>
 						<tr>
@@ -201,7 +207,7 @@ th {
 							<input type="text" name="dueDate" id="dueDate" style="width: 35%;"
 								placeholder="경매마감일을 지정해주세요" required></td>
 						</tr>
-						<tr><td></td></tr>
+
 						<tr>
 							<th>사&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;진</th>
 							<td>

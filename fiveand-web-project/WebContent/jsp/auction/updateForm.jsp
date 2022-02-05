@@ -63,12 +63,18 @@ img.ui-datepicker-trigger {
 	margin-left: 30%;
 }
 
+table {
+	border-top: 1px solid #E4E7ED;
+    border-collapse: collapse;
+}
+
 th, td {
 	height: 40px;
 	align-content: left;
 	align-items: left;
 	text-align: left;
 	vertical-align: middle;
+	border-bottom: 1px solid #E4E7ED;
 }
 
 th {
