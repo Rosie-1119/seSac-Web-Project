@@ -60,7 +60,7 @@
 	</script> -->
 	<script>
 		<c:if test="${not empty userVO}">
-			<c:if test="${userVO.warningCnt ge 1}">
+			<c:if test="${userVO.warningCnt ge 2}">
 				alert('${userVO.warningCnt}회 경고로 인해 이용이 제한됩니다.')
 				location.href="${ pageContext.request.contextPath }/logout.do"
 			</c:if>
