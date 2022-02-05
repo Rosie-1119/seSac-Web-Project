@@ -37,25 +37,16 @@ public class LoginProcessController implements Controller {
 		HttpSession session = request.getSession();
 		if(userVO == null) {
 			msg = "아이디 또는 패스워드가 잘못입력되었습니다.";
-			url = "/login.do";
+			url = "/jsp/member/loginFailure.jsp";
 		} else {
-			
-			switch(userVO.getType()) {
-			case "A" :
-				msg = "관리자님 환영합니다";
-				break;
-			case "U" :
-				msg = userVO.getId() + "님 환영합니다";
-				break;
-			}
-			url = "/main.do"; // "/"했을때는 로그아웃이 안떠서 수정했음ㅠ!
+			url = "redirect:/main.do"; // "/"했을때는 로그아웃이 안떠서 수정했음ㅠ!
 			session.setAttribute("userVO", userVO);
 			// 경매 성공했으나 결제 전인 건수 체크
 			int winBidCnt = service.checkWinBid(userVO);
 			session.setAttribute("winBidCnt", winBidCnt);
 		}
 		System.out.println(msg);		
-		return "redirect:" + url;
+		return url;
 	}
 
 	
