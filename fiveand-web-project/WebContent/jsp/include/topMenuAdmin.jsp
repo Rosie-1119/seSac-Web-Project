@@ -12,7 +12,7 @@
 		<ul class="header-links pull-right">
 		<span>
 			<c:if test="${ not empty userVO }">
-                              [${ userVO.id }님으로 로그인 중...]
+                              [&emsp;${ userVO.id }님으로 로그인 중...&emsp;]&emsp;
             </c:if>
             </span>
 					<!-- 로그아웃 버튼 -->
@@ -44,19 +44,9 @@
 			<!-- SEARCH BAR -->
 			<div class="col-md-6">
 				<div class="header-search">
-					<form>
-						<!-- 검색할 때 선택할 수 있는 카테고리 -->
-						<select class="input-select">
-							<option value="0">전체</option>
-							<option value="1">디지털기기</option>
-							<option value="1">생활가전</option>
-							<option value="1">가구/인테리어</option>
-							<option value="1">의류/잡화</option>
-							<option value="1">뷰티/미용</option>
-							<option value="1">도서/음반</option>
-							<option value="1">기타</option>
-						</select> <input class="input" placeholder="Search here">
-						<button class="search-btn">Search</button>
+					<form action="${ pageContext.request.contextPath }/search.do" name="search" method="get">
+						<input class="input" placeholder="상품명을 입력하세요" value="${param.findStr }" name="findStr">
+						<button type="submit" class="search-btn">검색</button>
 					</form>
 				</div>
 			</div>
@@ -65,7 +55,7 @@
 
 			<!-- ACCOUNT -->
 			<div class="col-md-3 clearfix">
-				<div class="header-ctn">
+				<div class="header-ctn" style="width: 280px;">
 
 					<!-- Wishlist : 하트를 누른 경매물품 리스트 보기 -->
 					<div>
@@ -148,14 +138,13 @@
 			<ul class="main-nav nav navbar-nav">
 				<!-- 탑 네비게이션 바 => 카테고리별 분류  -->
 				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Categories</a></li>
-				<li><a href="#">디지털 기기</a></li>
-				<li><a href="#">생활가전</a></li>
-				<li><a href="#">가구/인테리어</a></li>
-				<li><a href="#">의류/잡화</a></li>
-				<li><a href="#">뷰티/미용</a></li>
-				<li><a href="#">도서/음반</a></li>
-				<li><a href="#">기타</a></li>
+				<li><a href="${ pageContext.request.contextPath }/category/digital.do">디지털기기</a></li>
+				<li><a href="${ pageContext.request.contextPath }/category/electronics.do">생활가전</a></li>
+				<li><a href="${ pageContext.request.contextPath }/category/furniture.do">가구/인테리어</a></li>
+				<li><a href="${ pageContext.request.contextPath }/category/clothes.do">의류/잡화</a></li>
+				<li><a href="${ pageContext.request.contextPath }/category/beauty.do">뷰티/미용</a></li>
+				<li><a href="${ pageContext.request.contextPath }/category/books.do">도서/음반</a></li>
+				<li><a href="${ pageContext.request.contextPath }/category/etc.do">기타</a></li>
 			</ul>
 			<!-- /NAV -->
 		</div>
