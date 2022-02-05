@@ -18,11 +18,10 @@ public class MyPageDAO2 {
 	 */
 	public List<ProductVO> selectMySugg(String id){
 		
-			System.out.println("dao id : " + id);
+			//System.out.println("dao id : " + id);
 			List<ProductVO> list = new ArrayList<ProductVO>();
 			Connection conn = null;
 			PreparedStatement pstmt = null;
-			//String id = 'serini'; 직접 입력하면 값은 나옴...
 			
 			try {
 				
@@ -41,8 +40,6 @@ public class MyPageDAO2 {
 				pstmt.setString(1, id);
 				
 				ResultSet rs = pstmt.executeQuery();
-//				boolean rsn = rs.next();
-//				System.out.println(rsn);
 				
 				while(rs.next()) {
 					ProductVO productVO = new ProductVO();
@@ -63,7 +60,7 @@ public class MyPageDAO2 {
 				JDBCClose.close(pstmt, conn);
 			}
 			
-	        System.out.println("dao list : " +list);
+	        //System.out.println("dao list : " +list);
 			return list;
 		}
 	
@@ -73,7 +70,7 @@ public class MyPageDAO2 {
 	 */
 	public List<ProductVO> selectMyWin(String id){
 		
-			System.out.println("dao id : " + id);
+			//System.out.println("dao id : " + id);
 			List<ProductVO> list = new ArrayList<ProductVO>();
 			Connection conn = null;
 			PreparedStatement pstmt = null;

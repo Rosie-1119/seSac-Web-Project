@@ -71,8 +71,8 @@
 						<div class="row">
 						
 						
-							<!-- 결제가 안된 경우 payment=0 -->
-							<c:if test="${ list.payment eq 0 }">
+					<!-- 결제가 안된 경우 payment=0 -->
+					<c:if test="${ list.payment eq 0 }">
 						<!-- product -->
 						<c:forEach items="${ winList }" var="list" varStatus="status">
 						
@@ -109,10 +109,10 @@
 						
 							</div>
 							</c:forEach>
-							</c:if>
+						</c:if>
 							
-							<!-- 결제가 된 경우 payment=1 -->
-							<c:if test="${ list.payment ne 0 }">
+						<!-- 결제가 된 경우 payment=1 -->
+						<c:if test="${ list.payment ne 0 }">
 							<c:forEach items="${ winList }" var="list" varStatus="status">
 							<div class="col-md-4 col-xs-7">
 								<div class="product" style="width: 357.5px; height: 509.77px; padding: 10px;">
@@ -144,7 +144,7 @@
 							</div>
 							
 						</c:forEach>
-							</c:if>
+						</c:if>
 						<!-- /product -->
 
 							
