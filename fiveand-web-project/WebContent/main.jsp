@@ -77,9 +77,9 @@
 			</header>	
 		</c:when>
 		<c:otherwise>
-		<header>
-			<jsp:include page="/jsp/include/topMenu.jsp" />
-		</header>
+			<header>
+				<jsp:include page="/jsp/include/topMenu.jsp" />
+			</header>
 		</c:otherwise>
 	</c:choose>
 
