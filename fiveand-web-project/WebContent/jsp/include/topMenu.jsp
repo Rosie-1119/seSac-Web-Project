@@ -160,12 +160,12 @@
 						
 						<!--여기 수정하기!!!!!!-->
 						<li><a href="${ pageContext.request.contextPath }/category/digital.do">디지털기기</a></li>
-						<li><a href="">생활가전</a></li>
-						<li><a href="">가구/인테리어</a></li>
-						<li><a href="">의류/잡화</a></li>
-						<li><a href="">뷰티/미용</a></li>
-						<li><a href="">도서/음반</a></li>
-						<li><a href="">기타</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/electronics.do">생활가전</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/furniture.do">가구/인테리어</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/clothes.do">의류/잡화</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/beauty.do">뷰티/미용</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/books.do">도서/음반</a></li>
+						<li><a href="${ pageContext.request.contextPath }/category/etc.do">기타</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
