@@ -247,11 +247,11 @@
    </div>
    <!-- /SECTION -->
 
-   <!-- FOOTER -->
-   <footer>
-      <jsp:include page="/jsp/include/footer.jsp" />
-   </footer>
-   <!-- /FOOTER -->
+	<!-- FOOTER -->
+	<footer id="footer">
+		<jsp:include page="/jsp/include/footer.jsp" />
+	</footer>
+	<!-- /FOOTER -->
 
    <!-- jQuery Plugins -->
    <script src="${ pageContext.request.contextPath }/js/jquery.min.js"></script>

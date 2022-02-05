@@ -221,11 +221,11 @@
 
 
 	<!-- FOOTER -->
-	<footer>
+	<footer id="footer">
 		<jsp:include page="/jsp/include/footer.jsp" />
 	</footer>
 	<!-- /FOOTER -->
-
+	
 	<!-- jQuery Plugins -->
 	<script src="${ pageContext.request.contextPath }/js/jquery.min.js"></script>
 	<script src="${ pageContext.request.contextPath }/js/bootstrap.min.js"></script>
