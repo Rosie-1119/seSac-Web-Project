@@ -167,7 +167,7 @@
 	<!-- /SECTION -->
 
 	<!-- FOOTER -->
-	<footer>
+	<footer id="footer">
 		<jsp:include page="/jsp/include/footer.jsp" />
 	</footer>
 	<!-- /FOOTER -->
