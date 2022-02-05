@@ -49,4 +49,12 @@ public class AuctionBoardService {
 	public void updateBoard(ProductVO product) {
 		auctionBoardDao.updateProduct(product);
 	}
+	
+	/**
+	 * 같은 판매자가 올린 다른 경매 물품 보기
+	 */
+	public List<Object> relatedList(String id) {
+		List<Object> list = auctionBoardDao.relatedList(id);
+		return list;
+	}
 }

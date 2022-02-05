@@ -170,13 +170,13 @@ th {
 						</tr>
 						<tr>
 							<th>희 망 가</th>
-							<td>￦&nbsp;<strong><input type="number" min="1000" step="1000" name="hopePrice" style="width: 35%; text-align: right;"
+							<td>￦&nbsp;<strong><input type="number" min="1000" step="500" name="hopePrice" style="width: 35%; text-align: right;"
 								placeholder="경매 희망가를 입력해주세요" required></strong>&nbsp;원
 							</td>
 						</tr>
 						<tr>
 							<th>시 작 가</th>
-							<td>￦&nbsp;<strong><input type="number" min="1000" step="1000" name="startPrice" style="width: 35%; text-align: right;"
+							<td>￦&nbsp;<strong><input type="number" min="1000" step="500" name="startPrice" style="width: 35%; text-align: right;"
 								placeholder="경매 시작가를 입력해주세요" required></strong>&nbsp;원
 							</td>
 						</tr>

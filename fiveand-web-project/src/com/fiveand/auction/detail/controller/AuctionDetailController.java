@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fiveand.auction.board.service.AuctionBoardService;
 import com.fiveand.auction.board.vo.ProductFileVO;
 import com.fiveand.auction.board.vo.ProductVO;
 import com.fiveand.auction.detail.service.AuctionDetailService;
@@ -23,6 +24,8 @@ public class AuctionDetailController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
+
+		
 		
 		int no = Integer.parseInt(request.getParameter("no"));
 		HttpSession session = request.getSession();
@@ -62,7 +65,13 @@ public class AuctionDetailController implements Controller {
 		request.setAttribute("list", list);
 		request.setAttribute("totalCount", totalCount);
 		System.out.println(list);
+
+
 		
+		//----relatedList 추가
+		AuctionBoardService relatedService = new AuctionBoardService();
+		List<Object> relatedList = relatedService.relatedList(product.getId());
+		request.setAttribute("relatedList", relatedList);
 		
 		return "/jsp/detail/detail.jsp?no="+no;
 	}
