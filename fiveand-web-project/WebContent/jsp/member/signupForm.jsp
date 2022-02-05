@@ -221,7 +221,7 @@
   </div>
 </div>
 
-<button role="button" data-modal="open-modal" >클릭하면 모달 !</button>
+
 
                <!-- blank  -->
                <div>
