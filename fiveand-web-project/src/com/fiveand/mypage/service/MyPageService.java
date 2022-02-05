@@ -67,8 +67,10 @@ public class MyPageService {
 	/**
 	 * 내하트 조회
 	 */
-	public List<MemberVO> selectMyHeart() {
-		List<MemberVO> list = myInfoDao.selectMyHeart();
+	public List<ProductVO> selectMyHeart(int currentPage, String id) {
+		
+		List<ProductVO> list = myInfoDao.selectMyHeart(currentPage, id);
+		
 		return list;
 	}
 	

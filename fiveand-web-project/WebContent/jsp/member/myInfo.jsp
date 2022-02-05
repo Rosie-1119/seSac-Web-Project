@@ -74,10 +74,10 @@ td {
 </head>
 <body>
 	<!-- HEADER -->
-	<header>
-		<jsp:include page="/jsp/include/topMenuAdmin.jsp" />
-	</header>
-	<!-- /HEADER -->
+		<header>
+			<jsp:include page="/jsp/include/topMenu.jsp" />
+		</header>
+		<!-- /HEADER -->
 
 	<!-- BREADCRUMB -->
 	<div id="breadcrumb" class="section">
@@ -123,14 +123,13 @@ td {
 					</tr>
 			</table>
 			<!-- /내 정보 조회 -->
-			 <div class="form-group">
+			 <div class="form-group" style="text-align:right;">
 			 	<br><br>
                      
                         <button class="primary-btn order-submit" id="UpdateInfo" onclick="goUpdateForm()">
                         내 정보수정
                         </button>	
-                        <br>
-                        <br>
+
                          <button class="primary-btn order-submit" id="DeleteInfo" onclick="goDeleteForm()">
                         내 계정 삭제
                         </button>

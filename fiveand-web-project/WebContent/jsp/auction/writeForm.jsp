@@ -155,7 +155,7 @@ th {
 					<table width="800px;">
 						<tr>
 							<th>작 성 자</th>
-							<td>&nbsp;${ userVO.id }</td>
+							<td>&nbsp;<strong>${ userVO.id }</strong></td>
 						</tr>
 						<tr>
 							<th>상 품 명</th>
@@ -164,14 +164,14 @@ th {
 						</tr>
 						<tr>
 							<th>희 망 가</th>
-							<td>￦<input type="number" name="hopePrice" style="width: 35%; text-align: right;"
-								placeholder="경매 희망가를 입력해주세요" required>원
+							<td>￦<strong><input type="number" min="1000" step="1000" name="hopePrice" style="width: 35%; text-align: right;"
+								placeholder="경매 희망가를 입력해주세요" required></strong>원
 							</td>
 						</tr>
 						<tr>
 							<th>시 작 가</th>
-							<td>￦<input type="number" name="startPrice" style="width: 35%; text-align: right;"
-								placeholder="경매 시작가를 입력해주세요" required>원
+							<td>￦<strong><input type="number" min="1000" step="1000" name="startPrice" style="width: 35%; text-align: right;"
+								placeholder="경매 시작가를 입력해주세요" required></strong>원
 							</td>
 						</tr>
 						<tr>
@@ -217,7 +217,7 @@ th {
 					<br><br><br>
 					<div class="add-to-cart">
 						<button class="add-to-cart-btn">
-							<i class="fa-check-square-o"></i>등록하기
+							<i class="fa fa-hand-o-up"></i>등록하기
 						</button>
 					</div>
 				</div>
