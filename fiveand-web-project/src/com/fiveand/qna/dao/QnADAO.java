@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.fiveand.qna.vo.CommentVO;
 import com.fiveand.qna.vo.PagingVO;
 import com.fiveand.qna.vo.QnAVO;
 import com.fiveand.util.ConnectionFactory;
@@ -380,84 +379,6 @@ public class QnADAO {
 		} finally {
 			JDBCClose.close(pstmt, conn);
 		}
-	}
-	
-	/**
-	 * 댓글 리스트 조회 기능
-	 */
-	public ArrayList<CommentVO> selectComment(int boardNo, int comPageSize){
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		CommentVO com = null;
-		ArrayList<CommentVO> comList = new ArrayList<>();
-
-		try {
-			conn = new ConnectionFactory().getConnection();
-			StringBuilder sql = new StringBuilder();
-			sql.append("select * ");
-			sql.append(" from (select id, c_content, c_date, b_no from ftbl_qna_comment ");
-			sql.append(" where b_no = ? order by c_no desc) ftbl_qna_comment ");
-			sql.append(" where rownum between 1 and ? ");
-
-			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, boardNo);
-			pstmt.setInt(2, comPageSize);
-
-			ResultSet rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				String id = rs.getString("id");
-				String comContent = rs.getString("c_content");
-				String comDate = rs.getString("c_date");
-				int bNo = rs.getInt("b_no");
-				
-				com = new CommentVO(id, comContent, comDate, bNo);
-				comList.add(com);
-			}
-			
-			
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCClose.close(pstmt, conn);
-		}
-		return comList;
-		
-	}
-	
-	/**
-	 * 댓글 삽입 기능
-	 */
-	public HashMap<String, Object> insertComment(String id, String comContent, int bNo){
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		HashMap<String, Object> hm = new HashMap<>();
-
-		try {
-			conn = new ConnectionFactory().getConnection();
-			StringBuilder sql = new StringBuilder();
-			sql.append("insert into ftbl_qna_comment ");
-			sql.append("  values(seq_ftbl_qna_comment_c_no.nextval, ?, ?, sysdate, ?) ");
-			
-			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, id);
-			pstmt.setString(2, comContent);
-			pstmt.setInt(3, bNo);
-			
-			int result = pstmt.executeUpdate();
-			ArrayList<CommentVO> comments = selectComment(bNo, 10);
-			
-			hm.put("result", result);
-			hm.put("comments", comments);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCClose.close(pstmt, conn);
-		}
-		
-		return hm;
 	}
 	
 	

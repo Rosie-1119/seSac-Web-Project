@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.fiveand.qna.dao.QnADAO;
-import com.fiveand.qna.vo.CommentVO;
 import com.fiveand.qna.vo.QnAVO;
 
 public class QnAService {
@@ -93,25 +92,6 @@ public class QnAService {
 		dao.upPos(qna.getGroupId(), qna.getPos());
 		dao.replyboard(qna);
 	}
-	
-	/**
-	 * 댓글 등록 서비스
-	 */
-	public HashMap<String, Object> insertComment(String id, String comContent, int bNo) {
-		HashMap<String, Object> list =dao.insertComment(id, comContent, bNo);
-		return list;
-	}
-	
-	/**
-	 * 댓글 조회 서비스
-	 */
-	public ArrayList<CommentVO> selectComment(int bNo, int comPageNum){
-		ArrayList<CommentVO> comList = dao.selectComment(bNo, comPageNum);
-		return comList;
-	}
-	
-	
-	
 	
 	
 	
