@@ -18,7 +18,7 @@
 			</tr>
 			<tr>
 				<th width="25%">제목</th>
-				<td id="input"><input type="text" name="title" style=""width: 728px; height: 92px;"></td>
+				<td id="input"><input type="text" name="title" style="width: 728px; height: 92px;"></td>
 			</tr>
 			<tr>
 				<th width="25%">작성자</th>

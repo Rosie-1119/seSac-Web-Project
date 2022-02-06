@@ -111,6 +111,23 @@ function doWrite(){
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
+
+table {
+	border-color: #E4E7ED;
+}
+
+th {
+	text-align: center;
+	font-size: 10pt;
+	height: 25px;
+	color: ##1E1F29;
+	background-color: #FBFBFC;
+}
+
+td {
+	height: 25px;
+	color: ##1E1F29;
+}
 </style>
 
 </head>
@@ -154,27 +171,27 @@ function doWrite(){
 		
 		<br>
 			
-			<table border="1" width="900px" class="list">
+			<table border="1" width="650px" class="list">
+				
 				<tr>
-					<th width="10%"><center>제목</center></th>
-					<td width="50%">&nbsp;&nbsp;${ result.title }</td>
-					<th width="10%"><center>작성자</center></th>
-					<td width="10%">&nbsp;&nbsp;${ result.id }</td>
-					<th width="10%"><center>등록일</center></th>
-					<td width="10%"><center>${ result.regDate }</center></td>
+					<th width=23%>제목</th>
+					<td>&nbsp;${ result.title }</td>
 				</tr>
 				<tr>
-					<td width="90%" height="200px" colspan="6">${ result.content }</td>
+					<th>작성자</th>
+					<td><strong>&nbsp;${ result.id }</strong></td>			
+				</tr>
+				<tr>
+					<th>등록일</th>
+					<td>&nbsp;${ result.regDate }</td>		
+				</tr>
+				<tr>
+					<th style="height: 200px;">내용</th>
+					<td colspan="6">&nbsp;${ result.content }</td>			
 				</tr>
 			</table>
-			<table border="1" width="900px" id="reply_area">
-				<tr reply_type="all">
-					<!-- 뒤에 댓글 붙이기 쉽게 선언 -->
-					<td colspan="4"></td>
-				</tr>
-				<!-- 댓글이 들어갈 공간 -->
-			</table>
-			<table border="1" width="900px">
+
+			<%-- <table border="1" width="900px">
 				<tr>
 					<td width="500px">ID: ${userVO.id }&nbsp;&nbsp;&nbsp;
 						<button id="reply_save" name="reply_save">댓글 등록</button>
@@ -184,7 +201,7 @@ function doWrite(){
 					<td><textarea id="reply_content" name="reply_content" rows="4"
 							cols="50" placeholder="댓글을 입력하세요."></textarea></td>
 				</tr>
-			</table>
+			</table> --%>
 			<br>
 			
 		<c:if test="${ result.id eq userVO.id }">
@@ -233,7 +250,6 @@ function doWrite(){
 		<div align="center" id="qnaReplyForm">
 			<hr>
 			<h2>답글 등록</h2>
-			<hr>
 			<br>
 			<!-- submit이라는 타입을 가진 것을 눌렀을 때 실행되도록 하는 메소드 onsubmit -->
 			<form action="${ pageContext.request.contextPath }/qna/reply.do"
@@ -246,27 +262,27 @@ function doWrite(){
 				<input type="hidden" name="pos" value="${ result.pos }">
 				
 
-				<table border="1">
+				<table border="1" style="width:650px;">
 					<tr>
 						<th width=23%>제목</th>
 						<td>
-							<input type="text" name="title" value="	&#8627;[Re]&nbsp;" required>
+							<input type="text" name="title" value="	&#8627;[Re]&nbsp;" style="width:100%;" required>
 						</td>
 					</tr>
 					<tr>
 						<th>글쓴이</th>
-						<td>${ userVO.id }
+						<td><strong>&nbsp;${ userVO.id }</strong>
 						</td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea name="content" rows="10" cols="60" placeholder="글을 적어 주세요." required></textarea></td>
+						<td><textarea name="content" rows="10" cols="60" placeholder="글을 적어 주세요." style="width:100%;" required></textarea></td>
 					</tr>
 				</table>
-				<br> 
-				<input type="submit" value="답글등록">
-				<input type="button" value="취소" onclick="doAction('L')">
-					
+				<br>
+				<input type="submit" class="bttn" value="답글등록">
+				<input type="button" class="bttn" value="취소" onclick="doAction('L')">
+					<br><br><br><br><br>
 			</form>
 		</div>
 	</section>
