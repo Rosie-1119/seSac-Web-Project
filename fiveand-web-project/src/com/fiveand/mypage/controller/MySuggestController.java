@@ -20,7 +20,7 @@ public class MySuggestController implements Controller {
 		String id = request.getParameter("id");
 		//System.out.println("로그인 중인 아이디: " +id);
 		
-		MyPageService2 service = new MyPageService2();
+		MyPageService service = new MyPageService();
 		List<ProductVO> suggList = service.selectMySugg(id);
 		List<ProductVO> winList = service.selectMyWin(id);
 		

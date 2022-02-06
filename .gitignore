@@ -1,2 +1,5 @@
 fiveand-web-project/build/
 fiveand-web-project/WebContent/WEB-INF/web.xml
+fiveand-web-project/WebContent/WEB-INF/lib/net.java.amateras.umleditor.java_1.3.4.jar
+fiveand-web-project/WebContent/WEB-INF/lib/net.java.amateras.umleditor_1.3.4.jar
+fiveand-web-project/WebContent/WEB-INF/lib/net.java.amateras.xstream_1.3.4.jar

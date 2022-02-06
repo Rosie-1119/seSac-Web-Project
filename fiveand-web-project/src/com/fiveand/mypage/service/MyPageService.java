@@ -74,6 +74,29 @@ public class MyPageService {
 		return list;
 	}
 	
+	/**
+	 * 내가 제안한 경매 물품 목록을 볼 수 있는 서비스
+	 * @param id 현재 로그인 한 아이디
+	 * @return 
+	 */
+	public List<ProductVO> selectMySugg(String id) { 
+		  List<ProductVO> list = myInfoDao.selectMySugg(id);
+		  //System.out.println("service List : " + list);
+		  return list;
+	   }
+	
+	
+	/**
+	 * 낙찰된 경매 물품 목록을 볼 수 있는 서비스
+	 * @param id 현재 로그인 한 아이디
+	 * @return 
+	 */
+	public List<ProductVO> selectMyWin(String id) { 
+		  List<ProductVO> list = myInfoDao.selectMyWin(id);
+		  //System.out.println("service List : " + list);
+		  return list;
+	   }
+	
 	
 }
 
