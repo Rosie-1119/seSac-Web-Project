@@ -12,7 +12,7 @@
 		<ul class="header-links pull-right">
 		<span>
 			<c:if test="${ not empty userVO }">
-                              [&emsp;${ userVO.id }님으로 로그인 중...&emsp;]&emsp;
+                              [&emsp;${ userVO.id }님 환영합니다&emsp;]&emsp;
             </c:if>
             </span>
 					<!-- 로그아웃 버튼 -->

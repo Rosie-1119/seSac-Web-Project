@@ -193,7 +193,7 @@
 											<div class="product-body">
 													<p class="product-category">${ recentList[i].cName }</p>
 													<h3 class="product-name"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ recentList[i].pdNo }">${ recentList[i].pdName }</a></h3>
-													<h4 class="product-price">시작가 ${ recentList[i].startPrice }</h4>
+													<h4 class="product-price">시작가 ${ recentList[i].startPrice } 원</h4>
 												
 												<div class="product-btns">
 													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i>&nbsp;${ recentList[i].likeCnt }<!-- <span class="tooltipp">add to My Heart</span> --></button>
@@ -263,7 +263,21 @@
 							</ul>
 							<h2 class="text-uppercase">Auction Old, <br> Make Gold!</h2>
 							<p> 안 쓰는 물건으로 새로운 즐거움을 낙찰하세요! </p>
-							<a class="primary-btn cta-btn" href="#">Auction now</a>
+							
+							<div class="dropdown">
+								<c:if test="${ empty userVO.id }">
+		   							<a class="primary-btn cta-btn" onclick="alert('로그인이 필요합니다.')" href="${ pageContext.request.contextPath }/login.do">
+										<span>Auction now</span>
+									</a>
+								</c:if>
+								<c:if test="${ not empty userVO.id }">
+									<a class="primary-btn cta-btn" href="${ pageContext.request.contextPath }/auction/writeForm.do">
+										<span>Auction now</span>
+									</a>
+								</c:if>
+								
+								</div>
+				
 						</div>
 					</div>
 				</div>
@@ -311,7 +325,7 @@
 											<div class="product-body">
 													<p class="product-category">${ sugList.cName }</p>
 													<h3 class="product-name"><a href="#">${ sugList.pdName }</a></h3>
-													<h4 class="product-price">시작가 ${ sugList.startPrice }</h4>
+													<h4 class="product-price">시작가 ${ sugList.startPrice } 원</h4>
 												
 												<div class="product-btns">
 													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><!-- <span class="tooltipp">add to My Heart</span> --></button>
@@ -368,7 +382,7 @@
 									<div class="product-body">
 										<p class="product-category">${ list.cName }</p>
 										<h3 class="product-name"><a href="#">${ list.pdName }</a></h3>
-										<h4 class="product-price">시작가 ${ list.startPrice }</h4>
+										<h4 class="product-price">시작가 ${ list.startPrice } 원</h4>
 									</div>
 								</div>
 								<!-- product widget -->
@@ -398,7 +412,7 @@
 									<div class="product-body">
 										<p class="product-category">${ list.cName }</p>
 										<h3 class="product-name"><a href="#">${ list.pdName }</a></h3>
-										<h4 class="product-price">시작가 ${ list.startPrice }</h4>
+										<h4 class="product-price">시작가 ${ list.startPrice } 원</h4>
 									</div>
 								</div>
 								<!-- product widget -->
@@ -428,7 +442,7 @@
 									<div class="product-body">
 										<p class="product-category">${ deadLine.cName }</p>
 										<h3 class="product-name"><a href="#">${ deadLine.pdName }</a></h3>
-										<h4 class="product-price">시작가 ${ deadLine.startPrice }</h4>
+										<h4 class="product-price">시작가 ${ deadLine.startPrice } 원</h4>
 									</div>
 								</div>
 								<!-- product widget -->

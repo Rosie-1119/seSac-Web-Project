@@ -182,7 +182,7 @@ th {
 								</td>
 							</tr>
 							<tr>
-								<th>제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</th>
+								<th>한줄설명</th>
 								<td>&nbsp;<input type="text" name="pdSimpleInfo"
 									style="width: 100%; height: 30px; margin-bottom: 20px;"
 									placeholder="상품 한 줄 소개를 입력해주세요" required></td>

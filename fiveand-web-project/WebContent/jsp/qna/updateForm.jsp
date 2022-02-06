@@ -103,6 +103,24 @@ function doWrite(){
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
+
+table {
+	border-color: #E4E7ED;
+}
+
+
+th {
+	text-align: center;
+	font-size: 10pt;
+	height: 25px;
+	color: ##1E1F29;
+	background-color: #FBFBFC;
+}
+
+td {
+	height: 25px;
+	color: ##1E1F29;
+}
 </style>
 
 </head>
@@ -153,17 +171,23 @@ function doWrite(){
 				<input type="hidden" name="pdNo" value="${ update.pdNo }">
 				<input type="hidden" name="regDate" value="${ update.regDate }">
 				
-			<table border="1" width="900px" class="list">
+			<table border="1" width="650px" class="list">
+				
 				<tr>
-					<th width="10%"><center>제목</center></th>
-					<td width="50%"><input type="text" name="title" value="${ update.title }" required></td>
-					<th width="10%"><center>작성자</center></th>
-					<td width="10%">${ update.id }</td>
-					<th width="10%"><center>등록일</center></th>
-					<td width="10%">${ update.regDate }</td>
+					<th width=23%>제목</th>
+					<td>&nbsp;${ update.title }</td>
 				</tr>
 				<tr>
-					<td width="90%" height="200px" colspan="6"><textarea name="content" rows="10" cols="60" required>${ update.content }</textarea></td>
+					<th>작성자</th>
+					<td><strong>&nbsp;${ update.id }</strong></td>			
+				</tr>
+				<tr>
+					<th>등록일</th>
+					<td>&nbsp;${ update.regDate }</td>		
+				</tr>
+				<tr>
+					<th style="height: 200px;">내용</th>
+					<td colspan="6">&nbsp;${ update.content }</td>			
 				</tr>
 			</table>
 			
@@ -219,7 +243,6 @@ function doWrite(){
 		<div align="center" id="qnaReplyForm">
 			<hr>
 			<h2>답글 등록</h2>
-			<hr>
 			<br>
 			<!-- submit이라는 타입을 가진 것을 눌렀을 때 실행되도록 하는 메소드 onsubmit -->
 			<form action="${ pageContext.request.contextPath }/qna/reply.do"
@@ -241,7 +264,7 @@ function doWrite(){
 					</tr>
 					<tr>
 						<th>글쓴이</th>
-						<td>${ userVO.id }
+						<td><strong>&nbsp;${ userVO.id }</strong>
 						</td>
 					</tr>
 					<tr>
@@ -250,8 +273,8 @@ function doWrite(){
 					</tr>
 				</table>
 				<br> 
-				<input type="submit" value="답글등록">
-				<input type="button" value="취소" onclick="doAction('L')">
+				<input type="submit" class="bttn" value="답글등록">
+				<input type="button" class="bttn" value="취소" onclick="doAction('L')">
 					
 			</form>
 		</div>
