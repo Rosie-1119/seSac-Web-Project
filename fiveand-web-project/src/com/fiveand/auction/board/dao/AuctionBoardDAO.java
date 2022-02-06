@@ -258,11 +258,12 @@ public class AuctionBoardDAO {
 	 */
 	public List<Object> relatedList(String id) {
 		List<Object> list = new ArrayList<Object>();
+		//System.out.println("경매 올린 판매자 : " +id);
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("select * from (select rownum as row_num, board.* from( ");
 		sql.append("select p.pd_no, p.id, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date, ");
-		sql.append("p.c_no, c.category, f.file_save_name ");
+		sql.append("p.c_no, p.like_cnt, p.view_cnt, c.category, f.file_save_name ");
 		sql.append("from ftbl_product p,  ");
 		sql.append("(select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f, ");
 		sql.append("ftbl_category c ");
@@ -287,8 +288,8 @@ public class AuctionBoardDAO {
 				productVO.setDueDate(rs.getString("due_date"));
 				productVO.setcNo(rs.getInt("c_no"));
 				productVO.setcName(rs.getString("category"));
-				productVO.setViewCnt(rs.getInt("view_cnt"));
 				productVO.setLikeCnt(rs.getInt("like_cnt"));
+				productVO.setViewCnt(rs.getInt("view_cnt"));
 				productVO.setFileSaveName(rs.getString("file_save_name"));
 			
 				
@@ -298,7 +299,7 @@ public class AuctionBoardDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+		//System.out.println("판매자가 올린 리스트 : "+list);
 		return list;
 	}
 }

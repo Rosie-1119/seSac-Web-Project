@@ -629,36 +629,36 @@ function doAction(bNo){
 				</div>
 
 				
-
 				<c:forEach items="${ relatedList }" var="list" >
-									<!-- product -->
-										<div class="product">
-											<div class="product-img">
-											<%-- 서버에 저장된 이미지 가져오기(메인서버 하나)
-												  확인할 때에는 upload 파일에서 확인  --%>
-												<img src="${ pageContext.request.contextPath }/upload/${ list.fileSaveName }" alt="">
-												<div class="product-label">
-													<span class="new">NEW</span>
-													<span class="sale">마감 ${ list.dueDate }</span>
-												</div>
-											</div>
-											
-											<div class="product-body">
-													<p class="product-category">${ relatedList.cName }</p>
-													<h3 class="product-name"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ list.pdNo }">${ list.pdName }</a></h3>
-													<h4 class="product-price">시작가 ${ list.startPrice }</h4>
-												
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i>&nbsp;${ list.likeCnt }<span class="tooltipp">add to My Heart</span></button>
-						
-													<button class="quick-view"><i class="fa fa-eye"></i>&nbsp;${ list.viewCnt }</button>
-												</div>
-											</div>
-											<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ list.pdNo }">
-												<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button></a>
-											</div>
-										</div>
-									</c:forEach>
+				<div class="col-md-3 col-xs-6">
+						<!-- product -->
+							<div class="product">
+								<div class="product-img">
+								<%-- 서버에 저장된 이미지 가져오기(메인서버 하나)
+									  확인할 때에는 upload 파일에서 확인  --%>
+									<img src="${ pageContext.request.contextPath }/upload/${ list.fileSaveName }" alt="">
+									<div class="product-label">
+										<span class="sale">마감 ${ list.dueDate }</span>
+									</div>
+								</div>
+								
+								<div class="product-body">
+										<p class="product-category">${ list.cName }</p>
+										<h3 class="product-name"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ list.pdNo }">${ list.pdName }</a></h3>
+										<h4 class="product-price">시작가 ${ list.startPrice }</h4>
+									
+									<div class="product-btns">
+										<button class="add-to-wishlist"><i class="fa fa-heart-o"></i>&nbsp;${ list.likeCnt }<span class="tooltipp">add to My Heart</span></button>
+			
+										<button class="quick-view"><i class="fa fa-eye"></i>&nbsp;${ list.viewCnt }</button>
+									</div>
+								</div>
+								<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ list.pdNo }">
+									<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button></a>
+								</div>
+							</div>
+				</div>
+				</c:forEach>
 
 			</div>
 			<!-- /row -->
