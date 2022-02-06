@@ -485,7 +485,7 @@ function doAction(bNo){
 						</ul>
 						<hr>
 						<div>
-							<p style="font-size: 14pt;">경매 진행 현황 (TOP 3)</p>
+							<p style="font-size: 14pt; text-align: center;">경매 진행 현황 (TOP 3)</p>
 							<hr>
 							<c:forEach items="${ suggestList }" var="suggest">
 								<h4 style="color: #E8001E;">${ suggest.sugPrice }&#8361</h4>
