@@ -64,6 +64,24 @@
 p.textBtn {
 	text-align: right;
 }
+
+table {
+	width: 70%;
+	border-color: #E4E7ED;
+}
+
+th {
+	text-align: center;
+	font-size: 10pt;
+	height: 25px;
+	color: ##1E1F29;
+	background-color: #FBFBFC;
+}
+
+td {
+	height: 25px;
+	color: ##1E1F29;
+}
 </style>
 <script>
 
@@ -445,13 +463,13 @@ function doAction(bNo){
 									<table width="700">
 										<tr>
 											<c:if test="${ not empty userVO }">
-												<td align="right" id="goWriteForm">문의글 작성 <%-- <a href="/bbs/writeForm.bbs?pageNum=${pageNum}">글쓰기</a> --%>
+												<td align="right" id="goWriteForm"><i class="fa fa-pencil"></i>&nbsp;문의글 작성 <%-- <a href="/bbs/writeForm.bbs?pageNum=${pageNum}">글쓰기</a> --%>
 												</td>
 											</c:if>
 										</tr>
 									</table>
 
-									<table border="1" width="700" class="list">
+									<table border="1" class="list">
 										<tr>
 											<th width="5%">NO</th>
 											<th width="40%">TITLE</th>
@@ -510,22 +528,22 @@ function doAction(bNo){
 										<h2>QnA 문의글 등록</h2>
 										<hr>
 										<br>
-										<table border="1">
+										<table border="1" style="width:650px">
 											<tr>
 												<th width=23%>제목</th>
 												<td>
-													<input type="text"
+													<input type="text" style="width:100%;"
 													name="title" id="title" required>
 												</td>
 											</tr>
 											<tr>
 												<th>작성자</th>
-												<td>${ userVO.id }
+												<td><strong>${ userVO.id }</strong>
 												</td>
 											</tr>
 											<tr>
 												<th>내용</th>
-												<td><textarea name="content" rows="7" cols="60"
+												<td><textarea name="content" rows="7" cols="60" style="width:100%;"
 														id="content" placeholder="글을 적어 주세요." required></textarea></td>
 											</tr>
 										</table>

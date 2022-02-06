@@ -99,7 +99,7 @@
 									<div class="product-body">
 										<p class="product-category">${ viewList.cName }</p>
 										<h3 class="product-name"><a href="#">${ viewList.pdName }</a></h3>
-										<h4 class="product-price">시작가 ${ viewList.startPrice }</h4>
+										<h4 class="product-price">시작가 ${ viewList.startPrice } 원</h4>
 										
 										<div class="product-btns">
 											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to My Heart</span></button>

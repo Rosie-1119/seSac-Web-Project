@@ -107,7 +107,7 @@
 									<div class="product-body">
 										<p class="product-category">${ list.cName }</p>
 										<h3 class="product-name"><a href="#">${ list.pdName }</a></h3>
-										<h4 class="product-price">시작가 ${ list.startPrice }</h4>
+										<h4 class="product-price">시작가 ${ list.startPrice } 원</h4>
 										
 										<div class="product-btns">
 											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to My Heart</span></button>

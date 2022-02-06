@@ -61,6 +61,19 @@
 	src="${ pageContext.request.contextPath }/js/simple-modal.min.js"></script>
 
 <style>
+.bttn {
+  display: inline-block;
+  padding: 8px 20px;
+  background-color: #FFF;
+  border-color: #E4E7ED;
+  border-radius: 15px;
+  color: #000;
+  font-weight: 700;
+  text-align: center;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
 p.textBtn {
 	text-align: right;
 }
@@ -68,6 +81,25 @@ p.textBtn {
 .th{
 	text-align: center;
 }
+
+table {
+	width: 70%;
+	border-color: #E4E7ED;
+}
+
+th {
+	text-align: center;
+	font-size: 10pt;
+	height: 25px;
+	color: ##1E1F29;
+	background-color: #FBFBFC;
+}
+
+td {
+	height: 25px;
+	color: ##1E1F29;
+}
+
 </style>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
@@ -133,7 +165,7 @@ $(document).ready(function(){
 				success : function(result){
 					if(result.trim() > '0') {
 						$('#heart-btns').children('ul').attr('id', 'cancle-heart')
-						$('#heart-btn').html('<i id="heart-icon" class="fa fa-heart"></i> cancle to Heart')
+						$('#heart-btn').html('<i id="heart-icon" class="fa fa-heart"></i> cancel to Heart')
 						$('#heart-cnt').html(result.trim())
 						alert('마음함에 추가되었습니다.')
 					}
@@ -351,16 +383,29 @@ function doAction(bNo){
 				<div class="col-md-5">
 					<div class="product-details">
 						<h6 class="product-price time-title"></h6>
-						<div class="count"></div>
-						<h2 class="product-name">${ product.pdName }</h2>
-						<h5>판매자 ${ product.id }</h5>
+						<br>
+						
+						<b class="product-name" style="font-size: 17pt">상품명: ${ product.pdName }</b>
+						
+						<ul class="product-links" style="margin-bottom: 15px; font-weight: bold;">
+							<li>Category :</li>
+							<li>${ product.cName }</li>
+							<!-- <li><a href="#">Accessories</a></li>  -->
+						</ul>
+					
+						<b>판매자:  ${ product.id }</b>
+						
+					<br>	<br>	
+
+						<b style="font-size: 14pt;">한줄소개: ${ product.pdSimpleInfo }</b>
+						
+						<br><br><br>
 						<div>
-							<h3 class="product-price">${ product.startPrice }&#8361
-								<del class="product-old-price">${ product.hopePrice }&#8361</del>
-							</h3>
+							<h3 class="product-old-price">희망가: ${ product.hopePrice }&#8361</h3>
+							<h2 class="product-price">시작가: ${ product.startPrice }&#8361 </h2>
+						
 							<!-- <span class="product-available">In Stock</span>  -->
 						</div>
-						<p>${ product.pdSimpleInfo }</p>
 						<hr>
 
 
@@ -371,9 +416,9 @@ function doAction(bNo){
 									onsubmit="return checkSuggest()">
 									<input type="hidden" name="id" value="${ userVO.id }">
 									<input type="hidden" name="pdNo" value="${ product.pdNo }">
-									<div class="qty-label">
+									<div class="qty-label" style="font-size: 12pt" >
 										제시가
-										<div class="input-number">
+										<div class="input-number" style="width: 150px">
 											<c:choose>
 												<c:when test="${ empty suggestList }">
 													<input id="suggest" type="number" name="sugPrice"
@@ -419,7 +464,7 @@ function doAction(bNo){
 						<c:when test="${isHeart eq true}">
 							<div id="heart-btns">
 							<ul class="product-btns" id="cancle-heart">
-								<li id="heart-btn"><i id="heart-icon" class="fa fa-heart"></i> cancle to Heart</li>
+								<li id="heart-btn"><i id="heart-icon" class="fa fa-heart"></i> cancel to Heart</li>
 							</ul>
 							</div>
 						</c:when>
@@ -435,16 +480,15 @@ function doAction(bNo){
 						<ul class="product-links">
 							<li><i id="heart-icon" class="fa fa-heart"></i></li>
 							<li id="heart-cnt">${ product.likeCnt }</li>
-							<li>Category :</li>
-							<li><a href="#">${ product.cName }</a></li>
+						
 							<!-- <li><a href="#">Accessories</a></li>  -->
 						</ul>
 						<hr>
 						<div>
-							<p>경매 진행 현황 (TOP 3)</p>
+							<p style="font-size: 14pt;">경매 진행 현황 (TOP 3)</p>
 							<hr>
 							<c:forEach items="${ suggestList }" var="suggest">
-								<h4>${ suggest.sugPrice }&#8361</h4>
+								<h4 style="color: #E8001E;">${ suggest.sugPrice }&#8361</h4>
 								<h6>${ suggest.id }(${ suggest.sugDate })</h6>
 								<hr>
 							</c:forEach>
@@ -479,12 +523,12 @@ function doAction(bNo){
 						<!-- /product tab nav -->
 
 						<!-- product tab content -->
-						<div class="tab-content">
+						<div class="tab-content"  style="align:center; align-content: center; text-align: center; ">
 							<!-- tab1  -->
-							<div id="tab1" class="tab-pane fade in active">
-								<div class="row">
-									<div class="col-md-12">
-										<p>${ product.pdInfo }</p>
+							<div id="tab1" class="tab-pane fade in active" style="align:center; align-content: center; text-align: center;">
+								<div class="row" style="align:center; align-content: center; text-align: center;" >
+									<div class="col-md-12" style="align:center; align-content: center; text-align: center; ">
+										<p style="font-size: 15pt;" >${ product.pdInfo }</p>
 									</div>
 								</div>
 							</div>
@@ -497,21 +541,22 @@ function doAction(bNo){
 								<!-- 게시판 리스트 -->
 								<div align="center">
 									<div id="qnaList">
-									<table width="700">
+									<table>
 										<tr>
 											<c:if test="${ not empty userVO }">
-												<td align="right" id="goWriteForm"><i class="fa fa-pencil"></i>&nbsp;문의글 작성 <%-- <a href="/bbs/writeForm.bbs?pageNum=${pageNum}">글쓰기</a> --%>
+												<td style="text-align:right;" id="goWriteForm"><i class="fa fa-pencil"></i>&nbsp;문의글 작성 <%-- <a href="/bbs/writeForm.bbs?pageNum=${pageNum}">글쓰기</a> --%>
+												
 												</td>
 											</c:if>
 										</tr>
 									</table>
 
-									<table border="1" width="700" class="list">
+									<table border="1" class="list">
 										<tr>
-											<th width="5%"><center>NO</center></th>
-											<th width="40%"><center>TITLE</center></th>
-											<th width="10%"><center>ID</center></th>
-											<th width="15%"><center>DATE</center></th>
+											<th width="5%">NO</th>
+											<th width="40%">TITLE</th>
+											<th width="10%">ID</th>
+											<th width="15%">DATE</th>
 										</tr>
 										
 										<!-- 최근 개시글 10개씩 가져오기 -->
@@ -561,33 +606,31 @@ function doAction(bNo){
 										<input type="hidden" name="groupId" value="${article.groupId}"> 
 										
 										<div align="center" id="qnaWriteForm">
-										<hr>
 										<h2>QnA 문의글 등록</h2>
-										<hr>
 										<br>
-										<table border="1">
+										<table border="1" style="width:650px">
 											<tr>
 												<th width=23%>제목</th>
 												<td>
-													<input type="text"
+													<input type="text" style="width:100%;"
 													name="title" id="title" required>
 												</td>
 											</tr>
 											<tr>
 												<th>작성자</th>
-												<td>${ userVO.id }
+												<td><strong>${ userVO.id }</strong>
 												</td>
 											</tr>
 											<tr>
 												<th>내용</th>
-												<td><textarea name="content" rows="7" cols="60"
+												<td><textarea name="content" rows="7" cols="60" style="width:100%;"
 														id="content" placeholder="글을 적어 주세요." required></textarea></td>
 											</tr>
 										</table>
 										<br>
-										<input type="submit" value="문의 등록">
-										<input type="reset" value="전체 삭제">
-										<button id="goQnAList">취소</button>
+										<input type="submit" class="bttn" value="문의 등록">
+										<input type="reset" class="bttn" value="전체 삭제">
+										<button id="goQnAList" class="bttn">취소</button>
 									</div>
 									</form>
 									<!-- 문의글 등록 -->
