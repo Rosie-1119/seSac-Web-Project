@@ -114,7 +114,7 @@
 												<button class="quick-view"><i class="fa fa-eye"></i>&nbsp;${ list.viewCnt }</button>
 										</div>
 									</div>
-									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ heartList.pdNo }">
+									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ list.pdNo }">
 										<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button></a>
 									</div>
 									
