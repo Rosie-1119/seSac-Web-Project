@@ -77,6 +77,13 @@
 			return false
 		return true
 	}
+	
+	$(document).ready(function(){
+		$("#signBtn").click(function(){
+			let conf = confirm('계정 삭제가 되었습니다.')
+		})
+	})
+	
 </script>
 </head>
 <body>

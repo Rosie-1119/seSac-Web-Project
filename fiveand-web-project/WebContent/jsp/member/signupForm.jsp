@@ -120,7 +120,10 @@
 		모달창 되면 띄우기
 		*/
 		if(!resultFlag )
-		alert('오류')
+		alert('회원가입 실패했습니다. 다시 확인해주세요.')
+	
+		if(resultFlag)
+		alert('회원가입 성공했습니다. 로그인 페이지로 이동합니다.')			
 		return resultFlag
 	}
 	

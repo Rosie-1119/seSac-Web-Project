@@ -10,7 +10,7 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<script type='text/javascript'>
-
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- Kakao.init('23d3236e95d78f95d78a5ca69eb39dc6');
 $("#btnLogout")
 .on("click",function() {

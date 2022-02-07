@@ -204,6 +204,11 @@
 											<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ recentList[i].pdNo }">
 												<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>경매 참여</button></a>
 											</div>
+											
+											
+											
+											
+											
 										</div>
 									</c:forEach>
 										
@@ -390,7 +395,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">${ list.cName }</p>
-										<h3 class="product-name"><a href="#">${ list.pdName }</a></h3>
+										<h3 class="product-name"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ list.pdNo }">${ list.pdName }</a></h3>
 										<h4 class="product-price">시작가 ${ list.startPrice } 원</h4>
 									</div>
 								</div>
@@ -420,7 +425,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">${ list.cName }</p>
-										<h3 class="product-name"><a href="#">${ list.pdName }</a></h3>
+										<h3 class="product-name"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ list.pdNo }">${ list.pdName }</a></h3>
 										<h4 class="product-price">시작가 ${ list.startPrice } 원</h4>
 									</div>
 								</div>
@@ -450,7 +455,7 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">${ deadLine.cName }</p>
-										<h3 class="product-name"><a href="#">${ deadLine.pdName }</a></h3>
+										<h3 class="product-name"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ deadLine.pdNo }">${ deadLine.pdName }</a></h3>
 										<h4 class="product-price">시작가 ${ deadLine.startPrice } 원</h4>
 									</div>
 								</div>
