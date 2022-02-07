@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -92,9 +92,19 @@
 
 <body>
 	<!-- HEADER -->
-	<header>
-		<jsp:include page="/jsp/include/topMenu.jsp" />
-	</header>
+
+	<c:choose>
+		<c:when test="${ userVO.type eq 'A' }">
+			<header>
+				<jsp:include page="/jsp/include/topMenuAdmin.jsp" />
+			</header>	
+		</c:when>
+		<c:otherwise>
+			<header>
+				<jsp:include page="/jsp/include/topMenu.jsp" />
+			</header>
+		</c:otherwise>
+	</c:choose>
 	<!-- /HEADER -->
 
 	<!-- BREADCRUMB -->

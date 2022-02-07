@@ -270,13 +270,22 @@
 										<span>Auction now</span>
 									</a>
 								</c:if>
-								<c:if test="${ not empty userVO.id }">
+								<c:if test="${ userVO.type eq 'U' }">
 									<a class="primary-btn cta-btn" href="${ pageContext.request.contextPath }/auction/writeForm.do">
 										<span>Auction now</span>
 									</a>
 								</c:if>
-								
-								</div>
+							
+							</div>
+
+				
+				
+				
+				
+				
+				
+				
+				
 				
 						</div>
 					</div>
@@ -328,9 +337,9 @@
 													<h4 class="product-price">시작가 ${ sugList.startPrice } 원</h4>
 												
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><!-- <span class="tooltipp">add to My Heart</span> --></button>
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i>&nbsp;${ sugList.likeCnt }<!-- <span class="tooltipp">add to My Heart</span> --></button>
 						
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+													<button class="quick-view"><i class="fa fa-eye"></i>&nbsp;${ sugList.viewCnt }</button>
 												</div>
 											</div>
 											<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ sugList.pdNo }">

@@ -36,9 +36,19 @@
     </head>
 	<body>
 		<!-- HEADER -->
-		<header>
-			<jsp:include page="/jsp/include/topMenu.jsp" />
-		</header>
+
+	<c:choose>
+		<c:when test="${ userVO.type eq 'A' }">
+			<header>
+				<jsp:include page="/jsp/include/topMenuAdmin.jsp" />
+			</header>	
+		</c:when>
+		<c:otherwise>
+			<header>
+				<jsp:include page="/jsp/include/topMenu.jsp" />
+			</header>
+		</c:otherwise>
+	</c:choose>
 		<!-- /HEADER -->
 
 
@@ -101,8 +111,8 @@
 										<h4 class="product-price">시작가 ${ heartList.startPrice } 원</h4>
 										
 										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to My Heart</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												<button class="add-to-wishlist"><i class="fa fa-heart-o"></i>&nbsp;${ heartList.likeCnt }<!-- <span class="tooltipp">add to My Heart</span> --></button>
+												<button class="quick-view"><i class="fa fa-eye"></i>&nbsp;${ heartList.viewCnt }</button>
 										</div>
 									</div>
 									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/viewcnt.do?no=${ heartList.pdNo }">
