@@ -277,6 +277,15 @@ public class MyPageDAO {
 				
 				conn = new ConnectionFactory().getConnection();
 				StringBuilder sql = new StringBuilder();
+				
+				sql.append(" select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name, a.id, a.a_row_num ");
+				sql.append(" from ftbl_product p, ");
+				sql.append(" ( select pd_no, row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f,  ");
+				sql.append(" ftbl_category c, ");
+				sql.append(" (select * from (select row_number() over(partition by pd_no order by pd_no) a_row_num, pd_no, id, sug_price, sug_date from ftbl_auction where id= ? ) where a_row_num = 1 ) a ");
+				sql.append(" where f.row_num = 1 and p.pd_no = f.pd_no and p.c_no = c.c_no and a.pd_no = p.pd_no ");
+				sql.append(" order by a.sug_date desc ");
+				/*
 				sql.append(" select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name, a.id  "
 						+ "from ftbl_product p, "
 						+ "( select pd_no, row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f, "
@@ -286,11 +295,11 @@ public class MyPageDAO {
 						+ "and f.row_num = 1 and a.row_num = 1 "
 						+ "and p.pd_no = f.pd_no and p.c_no = c.c_no and a.pd_no = p.pd_no "
 						+ "order by a.sug_date desc ");
+				*/
 				pstmt = conn.prepareStatement(sql.toString());
 				pstmt.setString(1, id);
 				
 				ResultSet rs = pstmt.executeQuery();
-				
 				while(rs.next()) {
 					ProductVO productVO = new ProductVO();
 					
@@ -310,7 +319,7 @@ public class MyPageDAO {
 				JDBCClose.close(pstmt, conn);
 			}
 			
-	        //System.out.println("dao list : " +list);
+	        System.out.println("dao list : " +list);
 			return list;
 		}
 	
