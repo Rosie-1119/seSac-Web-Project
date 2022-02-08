@@ -110,9 +110,10 @@
 										<h4 class="product-price">시작가 ${ list.startPrice }</h4>
 										
 										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to My Heart</span></button>
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i>&nbsp;${ list.likeCnt }<!-- <span class="tooltipp">add to My Heart</span> --></button>
+						
+													<button class="quick-view"><i class="fa fa-eye"></i>&nbsp;${ list.viewCnt }</button>
+												</div>
 									</div>
 									<div class="add-to-cart"><a href="${ pageContext.request.contextPath }/auction/updateForm.do?no=${list.pdNo}">
 										<button class="add-to-cart-btn"><i class="fa fa-hand-o-up"></i>수정하기</button></a>

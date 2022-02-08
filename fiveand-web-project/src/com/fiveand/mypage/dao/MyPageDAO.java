@@ -170,7 +170,7 @@ public class MyPageDAO {
 			
         	conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from (select rownum as row_num, board.* from ( select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name ");
+			sql.append("select * from (select rownum as row_num, board.* from ( select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name, p.view_cnt, p.like_cnt ");
 			sql.append(" from ftbl_product p, ( select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f, ftbl_category c ");
 			sql.append(" where row_num = 1 and p.pd_no = f.pd_no and p.c_no = c.c_no and id = ? ");
 			sql.append(" order by pd_no desc) board) ");
@@ -192,6 +192,8 @@ public class MyPageDAO {
 				productVO.setcNo(rs.getInt("c_no"));
 				productVO.setcName(rs.getString("category"));
 				productVO.setFileSaveName(rs.getString("file_save_name"));
+				productVO.setViewCnt(rs.getInt("view_cnt"));
+				productVO.setLikeCnt(rs.getInt("like_cnt"));
 				
 				list.add(productVO);
 			}
@@ -226,7 +228,7 @@ public class MyPageDAO {
 		try {
 			conn = new ConnectionFactory().getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from (select rownum as row_num, board.* from ( select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name ");
+			sql.append("select * from (select rownum as row_num, board.* from ( select p.pd_no, p.pd_name, p.start_price, p.reg_date, to_char(p.due_date, 'mm-dd') as due_date , p.c_no, c.category, f.file_save_name, p.view_cnt, p.like_cnt  ");
 			sql.append(" from ftbl_product p, ( select pd_no,  row_number() over(partition by pd_no order by pd_no) row_num, file_save_name from  ftbl_product_file) f, ftbl_category c, (select * from ftbl_heart where id= ?) h ");
 			sql.append(" where row_num = 1 and p.pd_no = f.pd_no and p.c_no = c.c_no and p.pd_no = h.pd_no ");
 			sql.append(" order by pd_no desc) board) ");
@@ -249,7 +251,9 @@ public class MyPageDAO {
 				productVO.setcNo(rs.getInt("c_no"));
 				productVO.setcName(rs.getString("category"));
 				productVO.setFileSaveName(rs.getString("file_save_name"));
-
+				productVO.setViewCnt(rs.getInt("view_cnt"));
+				productVO.setLikeCnt(rs.getInt("like_cnt"));
+				
 				list.add(productVO);
 			}
 		} catch (Exception e) {

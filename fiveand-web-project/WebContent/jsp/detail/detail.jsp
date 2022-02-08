@@ -128,7 +128,7 @@ $(document).ready(
 $(document).ready(
 		function(){
 			$('p#deleteProduct').click(function() {
-				let conf = confirm('정말 삭제하시겠습니까?')
+				let conf = confirm('블라인드 처리 하시겠습니까?')
 				if (conf) {
 					location.href = "${ pageContext.request.contextPath }/remove.do?no=${product.pdNo}&id=${product.id}"
 				}
@@ -497,7 +497,7 @@ function doAction(bNo){
 					</div>
 					<c:if test="${ userVO.type eq 'A' }">
 						<div class="deletebtn">
-							<p class="textBtn" id="deleteProduct">삭제하기</p>
+							<p class="textBtn" id="deleteProduct">블라인드 처리하기</p>
 						</div>
 					</c:if>
 					<c:if test="${ userVO.id eq product.id }">
