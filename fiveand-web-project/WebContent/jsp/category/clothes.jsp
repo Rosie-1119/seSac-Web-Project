@@ -135,39 +135,7 @@
 
 
 						
-						<!-- 페이징 기능 -->
-						<div class="store-filter clearfix">
-							<span class="store-qty">Showing products</span>
-							
-							<ul class="store-pagination">
-								<c:if test="${ page <= 1 }">
-									<li><i class="fa fa-angle-left"></i></li>
-								</c:if>
-								<c:if test="${ page > 1 }">
-									<li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-								</c:if>
-								
-								<c:forEach var="item" varStatus="status" begin="${ beginPage }" end="${ endPage }" step="1">
-									<c:if test="${ page == item }">
-										<li>${ item }</li>
-									</c:if>
-									<c:if test="${ page != item }">
-					 					<li><a href="${ pageContext.request.contextPath }/category/clothes.do?page=${ item }">${ item }</a></li>
-			               			</c:if>
-									<!-- <li class="active">1</li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li> -->
-								</c:forEach>
-								
-								<c:if test="${ page >= totalPage }">
-									<li><i class="fa fa-angle-right"></i></li>
-								</c:if>
-								<c:if test="${ page < totalPage }">
-			 						<li><a href="${ pageContext.request.contextPath }/category/clothes.do?page=${ page + 1 }"><i class="fa fa-angle-right"></i></a></li>
-			           			</c:if>
-								
-							</ul>
-						</div>
+						
 						<!-- /store bottom filter -->
 					</div>
 					<!-- /STORE -->
